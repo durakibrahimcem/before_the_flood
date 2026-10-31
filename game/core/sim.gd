@@ -21,7 +21,8 @@ static func at(plan: Plan, year: float) -> WorldState:
 	var table := _table(plan)
 	var clamped := clampf(year, FIRST_YEAR, LAST_YEAR)
 	var low := mini(floori(clamped), LAST_YEAR - 1)
-	var mix := clamped - low
+	# The wall holds until its breach year, so the water jumps there and never eases in.
+	var mix := 0.0 if low == breach_year(plan) - 1 else clamped - low
 	var rows: Array = table["rows"]
 	var a: Dictionary = rows[low - FIRST_YEAR]
 	var b: Dictionary = rows[low + 1 - FIRST_YEAR]
@@ -168,7 +169,7 @@ static func _row(plan: Plan, year: int) -> Dictionary:
 	if has_wall:
 		var walls: int = plan.counts["wall"]
 		if year < breach_year(plan):
-			level = maxf(0.0, level - float(cfg["wall_crest_m"]) - float(cfg["wall_extra_m"]) * (walls - 1))
+			level = maxf(0.0, level - float(cfg["wall_crest_m"]) - float(cfg["wall_extra_m"]) * (plan.strength("wall") - 1.0))
 		else:
 			level += float(cfg["breach_after_m"]) * (1.0 + float(cfg["breach_growth"]) * (walls - 1))
 	return { "level": level, "meadow": meadow, "dune": dune_share }
@@ -221,5 +222,7 @@ static func _sea_data() -> Dictionary:
 
 static func _load_json(path: String) -> Dictionary:
 	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
-	assert(parsed is Dictionary, "Bad data file: %s" % path)
+	if not parsed is Dictionary:
+		push_error("Bad data file: %s" % path)
+		return {}
 	return parsed

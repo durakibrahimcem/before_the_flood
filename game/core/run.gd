@@ -30,7 +30,9 @@ func new_run() -> void:
 
 
 func record(action: String, performance: float) -> void:
-	assert(plan.total() < Plan.SLOTS, "The plan is already full")
+	if plan.total() >= Plan.SLOTS or not action in Plan.ACTIONS:
+		push_error("Ignored action: %s" % action)
+		return
 	plan.add(action, performance)
 	slots_left -= 1
 	if slots_left == 0 and day < DAYS:
@@ -51,11 +53,16 @@ func load_code(code: String) -> bool:
 	day = DAYS
 	slots_left = 0
 	plan_changed.emit()
+	day_changed.emit(day)
 	WorldClock.refresh()
+	plan_complete.emit()
 	return true
 
 
 func end_run() -> void:
+	if plan.total() != Plan.SLOTS:
+		push_error("A run ended with an unfinished plan")
+		return
 	var outcome := Sim.outcome(plan)
 	ghosts.append(outcome["depth_2080"])
 	_save()

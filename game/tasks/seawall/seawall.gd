@@ -34,7 +34,7 @@ const Gantry := preload("res://tasks/seawall/gantry.gd")
 const WallGuide := preload("res://tasks/seawall/wall_guide.gd")
 const WallBlock := preload("res://tasks/seawall/wall_block.gd")
 const DustBurst := preload("res://tasks/seawall/dust_burst.gd")
-const CrayonHint := preload("res://tasks/seawall/crayon_hint.gd")
+const SeawallHint := preload("res://tasks/seawall/crayon_hint.gd")
 
 @export var block_texture: Texture2D
 
@@ -66,7 +66,7 @@ var _bursts: Array[DustBurst] = []
 @onready var _gantry: Gantry = $Stage/Gantry
 @onready var _guide: WallGuide = $Stage/Guide
 @onready var _blocks: Node2D = $Stage/Blocks
-@onready var _hint: CrayonHint = $Stage/Hint
+@onready var _hint: SeawallHint = $Stage/Hint
 @onready var _dust_a: DustBurst = $Stage/Dust/DustA
 @onready var _dust_b: DustBurst = $Stage/Dust/DustB
 

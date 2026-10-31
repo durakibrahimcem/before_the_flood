@@ -9,8 +9,16 @@ func _initialize() -> void:
 	for check: Dictionary in Solver.check(rows):
 		print("%s  %s  %s" % ["PASS" if check["passed"] else "FAIL", check["rule"], check["detail"]])
 		failed += 0 if check["passed"] else 1
-	var file := FileAccess.open("res://data/plans.json", FileAccess.WRITE)
+	if failed > 0:
+		printerr("Balance rules failed, so plans.json was not written.")
+		quit(1)
+		return
+	var file := FileAccess.open(Solver.PLANS_PATH, FileAccess.WRITE)
+	if file == null:
+		printerr("Could not write plans.json")
+		quit(1)
+		return
 	file.store_string(JSON.stringify(rows, "  "))
 	file.close()
 	print("Wrote %d plans. Best: %s, %.2f m in 2080" % [rows.size(), rows[0]["plan"], rows[0]["depth_2080"]])
-	quit(1 if failed > 0 else 0)
+	quit(0)

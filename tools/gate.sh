@@ -12,6 +12,7 @@ if [ -n "$mission" ]; then
 	[ -f "docs/missions/reports/$mission.md" ] || fail "no mission report at docs/missions/reports/$mission.md"
 	[ -z "$(git status --porcelain)" ] || fail "uncommitted changes"
 	base=$(git merge-base develop HEAD)
+	[ -n "$base" ] || fail "no merge-base with develop"
 	while IFS= read -r path; do
 		ok=no
 		while IFS= read -r pattern; do
@@ -32,8 +33,8 @@ while IFS= read -r scene; do
 	res="res://${scene#game/}"
 	log=$(timeout 90 tools/g --headless --path game "$res" 2>&1)
 	status=$?
-	if echo "$log" | grep -E 'SCRIPT ERROR|Parse Error|Invalid call|Invalid access|Nonexistent function|Node not found' | grep -q .; then
-		echo "$log" | grep -E 'SCRIPT ERROR|Parse Error|Invalid|Nonexistent|Node not found' | head -8
+	if echo "$log" | grep -E 'SCRIPT ERROR|USER ERROR|^ERROR:|Parse Error|Invalid call|Invalid access|Nonexistent function|Node not found' | grep -vE 'PulseAudio|dri3|nouveau|resources still in use|ObjectDB' | grep -q .; then
+		echo "$log" | grep -E 'SCRIPT ERROR|USER ERROR|^ERROR:|Parse Error|Invalid|Nonexistent|Node not found' | head -8
 		fail "$res logged errors"
 	fi
 	[ "$status" -eq 0 ] || fail "$res exited with $status"

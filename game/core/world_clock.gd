@@ -15,9 +15,9 @@ func scrub(to_year: float) -> void:
 
 
 func jump(to_year: int) -> void:
-	assert(to_year in ERAS, "Not an era: %d" % to_year)
-	jumped.emit(to_year)
-	scrub(to_year)
+	var era := to_year if to_year in ERAS else nearest_era()
+	jumped.emit(era)
+	scrub(era)
 
 
 func next_era() -> int:

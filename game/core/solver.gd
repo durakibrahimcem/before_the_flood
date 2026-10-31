@@ -4,6 +4,19 @@ extends RefCounted
 
 const TARGET_LOW := 0.04
 const TARGET_HIGH := 0.07
+const PLANS_PATH := "res://data/plans.json"
+
+static var _ranks: Dictionary = {}
+
+
+## Rank of a plan code out of all plans, from the shipped solver results. 0 if unknown.
+static func rank_for(code: String) -> int:
+	if _ranks.is_empty():
+		var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(PLANS_PATH))
+		if parsed is Array:
+			for row: Dictionary in parsed:
+				_ranks[row["code"]] = int(row["rank"])
+	return int(_ranks.get(code, 0))
 
 
 static func score_all() -> Array[Dictionary]:

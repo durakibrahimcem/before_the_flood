@@ -27,6 +27,10 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if get_tree().paused and not scrubbing:
+		_pressed = false
+		_held = 0.0
+		return
 	if Input.is_action_pressed("time"):
 		_pressed = true
 		_held += delta

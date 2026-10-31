@@ -1,46 +1,347 @@
 {
+  "clues": {
+    "grass": "Older fishers say the bay stayed calm while the meadow lived.",
+    "dune": "Where the dunes had worn away, the sea walked straight in.",
+    "sort": "Crews pulled bags of rubbish from the street drains for days.",
+    "light": "With no power for a week, another family left.",
+    "meet": "One street's planting stopped at the fence, and the sea found the rest."
+  },
   "papers": [
-    { "era": 2050, "fix": "grass", "tier": 0, "headline": "The waves are coming closer", "story": "The storm passed and the water never reached the door. Older fishers remember when the bay stayed calm, before the meadow thinned.", "picture": "meadow" },
-    { "era": 2050, "fix": "grass", "tier": 1, "headline": "Water at the doorstep", "story": "The water came over the doorstep and stood for two days. Fishers say the waves have grown as the meadow thinned.", "picture": "meadow" },
-    { "era": 2050, "fix": "grass", "tier": 2, "headline": "No calm left in the bay", "story": "Deep water filled the front rooms and stayed. The waves now roll over the bare sand where the meadow once lay.", "picture": "meadow" },
-    { "era": 2080, "fix": "grass", "tier": 0, "headline": "The sea keeps its distance", "story": "The water stayed off the shore road. The meadow is thinner than the fishers remember, and it still holds the waves back.", "picture": "meadow" },
-    { "era": 2080, "fix": "grass", "tier": 1, "headline": "The waves come further in", "story": "The water crossed the doorstep and stayed inside. The meadow is thin now, and the fishers miss the calm bay.", "picture": "meadow" },
-    { "era": 2080, "fix": "grass", "tier": 2, "headline": "The meadow is gone", "story": "Deep water kept the street for a week, and the last homes emptied. The bay lies bare, and the waves come all the way in.", "picture": "meadow" },
-    { "era": 2050, "fix": "dune", "tier": 0, "headline": "The dunes are wearing thin", "story": "The storm stayed out at sea this time. Last winter it came through the gap where the dunes had worn away.", "picture": "dunes" },
-    { "era": 2050, "fix": "dune", "tier": 1, "headline": "Sea walks through the gap", "story": "The storm came through where the dunes had worn away. The water came up into the front rooms and stood for two days.", "picture": "dunes" },
-    { "era": 2050, "fix": "dune", "tier": 2, "headline": "The sea takes the low road", "story": "Deep water ran through the gap and homes went under. The dunes had worn to almost nothing.", "picture": "dunes" },
-    { "era": 2080, "fix": "dune", "tier": 0, "headline": "A calm sea, a wider gap", "story": "The storm blew itself out at sea. The gap in the dunes is wide enough to walk through now.", "picture": "dunes" },
-    { "era": 2080, "fix": "dune", "tier": 1, "headline": "The gap lets the sea in", "story": "The sea came through the gap, and the front rooms stayed wet for two days. Neighbours stacked sandbags on the bare shore.", "picture": "dunes" },
-    { "era": 2080, "fix": "dune", "tier": 2, "headline": "Where the dunes used to be", "story": "Deep water came through the bare gap, and the street emptied. The sand that once held the sea is gone.", "picture": "dunes" },
-    { "era": 2050, "fix": "sort", "tier": 0, "headline": "The drains run slow", "story": "The street stayed dry through the storm. The drains ran slow all the same, half full of rubbish.", "picture": "drains" },
-    { "era": 2050, "fix": "sort", "tier": 1, "headline": "Street drains choke again", "story": "Crews pulled bags of rubbish from the drains. The water lay inside the homes for two days.", "picture": "drains" },
-    { "era": 2050, "fix": "sort", "tier": 2, "headline": "The drains gave up", "story": "Deep water sat in the street all week, and families moved away one by one. The drains were packed solid.", "picture": "drains" },
-    { "era": 2080, "fix": "sort", "tier": 0, "headline": "Dry street, full grates", "story": "The rain fell and the road stayed clear. The corner grates sit full of rubbish, waiting for a heavier storm.", "picture": "drains" },
-    { "era": 2080, "fix": "sort", "tier": 1, "headline": "The water has nowhere to go", "story": "The storm water stood in the front rooms for two days. The drains were choked with rubbish before it even began.", "picture": "drains" },
-    { "era": 2080, "fix": "sort", "tier": 2, "headline": "A street under standing water", "story": "Deep water covered the road for a week, and the homes stood empty. The drains have been choked for years.", "picture": "drains" },
-    { "era": 2050, "fix": "light", "tier": 0, "headline": "The lights come and go", "story": "The storm went by and the street kept dry. The power went out for a night, and the street lamps with it.", "picture": "power" },
-    { "era": 2050, "fix": "light", "tier": 1, "headline": "Dark street, empty street", "story": "With no power for a week, another family left. The water came into the front rooms, and the lamps stayed off.", "picture": "power" },
-    { "era": 2050, "fix": "light", "tier": 2, "headline": "The last lights go out", "story": "Deep water took the homes on the low road. The power poles went down with them, and nobody came to mend the wires.", "picture": "power" },
-    { "era": 2080, "fix": "light", "tier": 0, "headline": "The lights held, mostly", "story": "The storm passed with the street still dry, and the lights held. The power still dips most evenings.", "picture": "power" },
-    { "era": 2080, "fix": "light", "tier": 1, "headline": "A week of dark evenings", "story": "The power has been off for a week, and more families have gone. The water lay in the front rooms the whole time.", "picture": "power" },
-    { "era": 2080, "fix": "light", "tier": 2, "headline": "The street went dark for good", "story": "The last families left the dark houses to the water. Nobody has mended the power line since the storm took it.", "picture": "power" },
-    { "era": 2050, "fix": "meet", "tier": 0, "headline": "A patchwork shore", "story": "The storm never came ashore. Some houses planted their strip of shore, and the rest left theirs bare.", "picture": "street" },
-    { "era": 2050, "fix": "meet", "tier": 1, "headline": "One street can't hold a bay", "story": "Next door's planting stopped at the fence, and the sea found the rest. The water lay indoors for two days.", "picture": "street" },
-    { "era": 2050, "fix": "meet", "tier": 2, "headline": "The fence was not enough", "story": "The sea came over every patch that stood alone, homes and all. The street went quiet, and the fences mark nothing now.", "picture": "street" },
-    { "era": 2080, "fix": "meet", "tier": 0, "headline": "The shore, house by house", "story": "The bay lay quiet all summer. Each house still minds its own patch, and the gaps between them show.", "picture": "street" },
-    { "era": 2080, "fix": "meet", "tier": 1, "headline": "Help that stops at the fence", "story": "The sea came through where the planting ended. The water sat in the houses for two days, and next door stayed dry.", "picture": "street" },
-    { "era": 2080, "fix": "meet", "tier": 2, "headline": "Alone, the street went under", "story": "The sea took the homes one fence at a time, until none were left. The street might have held together.", "picture": "street" },
-    { "era": 2050, "fix": "wall", "tier": 0, "headline": "The wall holds", "story": "The storm pushed all night and the wall did not move. The sea stayed on its side of the stone.", "picture": "wall" },
-    { "era": 2050, "fix": "wall", "tier": 1, "headline": "The wall held, the rain came in", "story": "The wall held the sea back all night. The rain found the low front rooms and stayed for two days.", "picture": "wall" },
-    { "era": 2050, "fix": "wall", "tier": 2, "headline": "High water behind the wall", "story": "The sea never got past the wall. The rain filled the low street for days, and families moved to higher ground.", "picture": "wall" },
-    { "era": 2080, "fix": "wall", "tier": 0, "headline": "The sea has been kind", "story": "The wall fell years ago, and nobody ever repaired it. The water kept off the street all the same.", "picture": "breach" },
-    { "era": 2080, "fix": "wall", "tier": 1, "headline": "The wall nobody mended", "story": "Years went by without a single repair, and the wall gave way in the night. The street lay under the sea for two days.", "picture": "breach" },
-    { "era": 2080, "fix": "wall", "tier": 2, "headline": "The wall that everyone forgot", "story": "Nobody had paid to repair it in years. It went in one night, and the deep water emptied the street by morning.", "picture": "breach" },
-    { "era": 2050, "fix": "none", "tier": 0, "headline": "A quiet year on the shore", "story": "The storm came and went. The street slept dry.", "picture": "bay" },
-    { "era": 2050, "fix": "none", "tier": 1, "headline": "The water came and went", "story": "The water reached the front rooms, and it stayed for two days. Neighbours helped each other carry the furniture up the stairs.", "picture": "bay" },
-    { "era": 2050, "fix": "none", "tier": 2, "headline": "Still here", "story": "The deep water left the street to the gulls. The neighbours who stayed share supper on the high road.", "picture": "bay" },
-    { "era": 2080, "fix": "none", "tier": 0, "headline": "A good year by the water", "story": "The boats came home full, and the sea kept to itself. Neighbours repainted their shutters in the good weather.", "picture": "bay" },
-    { "era": 2080, "fix": "none", "tier": 1, "headline": "The water rises, so do we", "story": "The water came up over the doorstep and took two days to leave. Neighbours gave each other dry rooms until it drained away.", "picture": "bay" },
-    { "era": 2080, "fix": "none", "tier": 2, "headline": "The high road holds", "story": "The deep water claimed the homes on the shore road. The families who stayed gather on the high road on clear evenings.", "picture": "bay" }
+    {
+      "era": 2050,
+      "fix": "grass",
+      "tier": 0,
+      "headline": "The waves are coming closer",
+      "story": "The storm passed and the water never reached the door. Older fishers remember when the bay stayed calm, before the meadow thinned.",
+      "picture": "meadow"
+    },
+    {
+      "era": 2050,
+      "fix": "grass",
+      "tier": 1,
+      "headline": "Water at the doorstep",
+      "story": "The water came over the doorstep and stood for two days. Fishers say the waves have grown as the meadow thinned.",
+      "picture": "meadow"
+    },
+    {
+      "era": 2050,
+      "fix": "grass",
+      "tier": 2,
+      "headline": "No calm left in the bay",
+      "story": "Deep water filled the front rooms and stayed. The waves now roll over the bare sand where the meadow once lay.",
+      "picture": "meadow"
+    },
+    {
+      "era": 2080,
+      "fix": "grass",
+      "tier": 0,
+      "headline": "The sea keeps its distance",
+      "story": "The water stayed off the shore road. The meadow is thinner than the fishers remember, and it still holds the waves back.",
+      "picture": "meadow"
+    },
+    {
+      "era": 2080,
+      "fix": "grass",
+      "tier": 1,
+      "headline": "The waves come further in",
+      "story": "The water crossed the doorstep and stayed inside. The meadow is thin now, and the fishers miss the calm bay.",
+      "picture": "meadow"
+    },
+    {
+      "era": 2080,
+      "fix": "grass",
+      "tier": 2,
+      "headline": "The meadow is gone",
+      "story": "Deep water kept the street for a week, and the last homes emptied. The bay lies bare, and the waves come all the way in.",
+      "picture": "meadow"
+    },
+    {
+      "era": 2050,
+      "fix": "dune",
+      "tier": 0,
+      "headline": "The dunes are wearing thin",
+      "story": "The storm stayed out at sea this time. Last winter it came through the gap where the dunes had worn away.",
+      "picture": "dunes"
+    },
+    {
+      "era": 2050,
+      "fix": "dune",
+      "tier": 1,
+      "headline": "Sea walks through the gap",
+      "story": "The storm came through where the dunes had worn away. The water came up into the front rooms and stood for two days.",
+      "picture": "dunes"
+    },
+    {
+      "era": 2050,
+      "fix": "dune",
+      "tier": 2,
+      "headline": "The sea takes the low road",
+      "story": "Deep water ran through the gap and homes went under. The dunes had worn to almost nothing.",
+      "picture": "dunes"
+    },
+    {
+      "era": 2080,
+      "fix": "dune",
+      "tier": 0,
+      "headline": "A calm sea, a wider gap",
+      "story": "The storm blew itself out at sea. The gap in the dunes is wide enough to walk through now.",
+      "picture": "dunes"
+    },
+    {
+      "era": 2080,
+      "fix": "dune",
+      "tier": 1,
+      "headline": "The gap lets the sea in",
+      "story": "The sea came through the gap, and the front rooms stayed wet for two days. Neighbours stacked sandbags on the bare shore.",
+      "picture": "dunes"
+    },
+    {
+      "era": 2080,
+      "fix": "dune",
+      "tier": 2,
+      "headline": "Where the dunes used to be",
+      "story": "Deep water came through the bare gap, and the street emptied. The sand that once held the sea is gone.",
+      "picture": "dunes"
+    },
+    {
+      "era": 2050,
+      "fix": "sort",
+      "tier": 0,
+      "headline": "The drains run slow",
+      "story": "The street stayed dry through the storm. The drains ran slow all the same, half full of rubbish.",
+      "picture": "drains"
+    },
+    {
+      "era": 2050,
+      "fix": "sort",
+      "tier": 1,
+      "headline": "Street drains choke again",
+      "story": "Crews pulled bags of rubbish from the drains. The water lay inside the homes for two days.",
+      "picture": "drains"
+    },
+    {
+      "era": 2050,
+      "fix": "sort",
+      "tier": 2,
+      "headline": "The drains gave up",
+      "story": "Deep water sat in the street all week, and families moved away one by one. The drains were packed solid.",
+      "picture": "drains"
+    },
+    {
+      "era": 2080,
+      "fix": "sort",
+      "tier": 0,
+      "headline": "Dry street, full grates",
+      "story": "The rain fell and the road stayed clear. The corner grates sit full of rubbish, waiting for a heavier storm.",
+      "picture": "drains"
+    },
+    {
+      "era": 2080,
+      "fix": "sort",
+      "tier": 1,
+      "headline": "The water has nowhere to go",
+      "story": "The storm water stood in the front rooms for two days. The drains were choked with rubbish before it even began.",
+      "picture": "drains"
+    },
+    {
+      "era": 2080,
+      "fix": "sort",
+      "tier": 2,
+      "headline": "A street under standing water",
+      "story": "Deep water covered the road for a week, and the homes stood empty. The drains have been choked for years.",
+      "picture": "drains"
+    },
+    {
+      "era": 2050,
+      "fix": "light",
+      "tier": 0,
+      "headline": "The lights come and go",
+      "story": "The storm went by and the street kept dry. The power went out for a night, and the street lamps with it.",
+      "picture": "power"
+    },
+    {
+      "era": 2050,
+      "fix": "light",
+      "tier": 1,
+      "headline": "Dark street, empty street",
+      "story": "With no power for a week, another family left. The water came into the front rooms, and the lamps stayed off.",
+      "picture": "power"
+    },
+    {
+      "era": 2050,
+      "fix": "light",
+      "tier": 2,
+      "headline": "The last lights go out",
+      "story": "Deep water took the homes on the low road. The power poles went down with them, and nobody came to mend the wires.",
+      "picture": "power"
+    },
+    {
+      "era": 2080,
+      "fix": "light",
+      "tier": 0,
+      "headline": "The lights held, mostly",
+      "story": "The storm passed with the street still dry, and the lights held. The power still dips most evenings.",
+      "picture": "power"
+    },
+    {
+      "era": 2080,
+      "fix": "light",
+      "tier": 1,
+      "headline": "A week of dark evenings",
+      "story": "The power has been off for a week, and more families have gone. The water lay in the front rooms the whole time.",
+      "picture": "power"
+    },
+    {
+      "era": 2080,
+      "fix": "light",
+      "tier": 2,
+      "headline": "The street went dark for good",
+      "story": "The last families left the dark houses to the water. Nobody has mended the power line since the storm took it.",
+      "picture": "power"
+    },
+    {
+      "era": 2050,
+      "fix": "meet",
+      "tier": 0,
+      "headline": "A patchwork shore",
+      "story": "The storm never came ashore. Some houses planted their strip of shore, and the rest left theirs bare.",
+      "picture": "street"
+    },
+    {
+      "era": 2050,
+      "fix": "meet",
+      "tier": 1,
+      "headline": "One street can't hold a bay",
+      "story": "Next door's planting stopped at the fence, and the sea found the rest. The water lay indoors for two days.",
+      "picture": "street"
+    },
+    {
+      "era": 2050,
+      "fix": "meet",
+      "tier": 2,
+      "headline": "The fence was not enough",
+      "story": "The sea came over every patch that stood alone, homes and all. The street went quiet, and the fences mark nothing now.",
+      "picture": "street"
+    },
+    {
+      "era": 2080,
+      "fix": "meet",
+      "tier": 0,
+      "headline": "The shore, house by house",
+      "story": "The bay lay quiet all summer. Each house still minds its own patch, and the gaps between them show.",
+      "picture": "street"
+    },
+    {
+      "era": 2080,
+      "fix": "meet",
+      "tier": 1,
+      "headline": "Help that stops at the fence",
+      "story": "The sea came through where the planting ended. The water sat in the houses for two days, and next door stayed dry.",
+      "picture": "street"
+    },
+    {
+      "era": 2080,
+      "fix": "meet",
+      "tier": 2,
+      "headline": "Alone, the street went under",
+      "story": "The sea took the homes one fence at a time, until none were left. The street might have held together.",
+      "picture": "street"
+    },
+    {
+      "era": 2050,
+      "fix": "wall",
+      "tier": 0,
+      "headline": "The wall holds",
+      "story": "The storm pushed all night and the wall did not move. The sea stayed on its side of the stone.",
+      "picture": "wall"
+    },
+    {
+      "era": 2050,
+      "fix": "wall",
+      "tier": 1,
+      "headline": "The wall held, the rain came in",
+      "story": "The wall held the sea back all night. The rain found the low front rooms and stayed for two days.",
+      "picture": "wall"
+    },
+    {
+      "era": 2050,
+      "fix": "wall",
+      "tier": 2,
+      "headline": "High water behind the wall",
+      "story": "The sea never got past the wall. The rain filled the low street for days, and families moved to higher ground.",
+      "picture": "wall"
+    },
+    {
+      "era": 2080,
+      "fix": "wall",
+      "tier": 0,
+      "headline": "The sea has been kind",
+      "story": "The wall fell years ago, and nobody ever repaired it. The water kept off the street all the same.",
+      "picture": "breach"
+    },
+    {
+      "era": 2080,
+      "fix": "wall",
+      "tier": 1,
+      "headline": "The wall nobody mended",
+      "story": "Years went by without a single repair, and the wall gave way in the night. The street lay under the sea for two days.",
+      "picture": "breach"
+    },
+    {
+      "era": 2080,
+      "fix": "wall",
+      "tier": 2,
+      "headline": "The wall that everyone forgot",
+      "story": "Nobody had paid to repair it in years. It went in one night, and the deep water emptied the street by morning.",
+      "picture": "breach"
+    },
+    {
+      "era": 2050,
+      "fix": "none",
+      "tier": 0,
+      "headline": "A quiet year on the shore",
+      "story": "The storm came and went. The street slept dry.",
+      "picture": "bay"
+    },
+    {
+      "era": 2050,
+      "fix": "none",
+      "tier": 1,
+      "headline": "The water came and went",
+      "story": "The water reached the front rooms, and it stayed for two days. Neighbours helped each other carry the furniture up the stairs.",
+      "picture": "bay"
+    },
+    {
+      "era": 2050,
+      "fix": "none",
+      "tier": 2,
+      "headline": "Still here",
+      "story": "The deep water left the street to the gulls. The neighbours who stayed share supper on the high road.",
+      "picture": "bay"
+    },
+    {
+      "era": 2080,
+      "fix": "none",
+      "tier": 0,
+      "headline": "A good year by the water",
+      "story": "The boats came home full, and the sea kept to itself. Neighbours repainted their shutters in the good weather.",
+      "picture": "bay"
+    },
+    {
+      "era": 2080,
+      "fix": "none",
+      "tier": 1,
+      "headline": "The water rises, so do we",
+      "story": "The water came up over the doorstep and took two days to leave. Neighbours gave each other dry rooms until it drained away.",
+      "picture": "bay"
+    },
+    {
+      "era": 2080,
+      "fix": "none",
+      "tier": 2,
+      "headline": "The high road holds",
+      "story": "The deep water claimed the homes on the shore road. The families who stayed gather on the high road on clear evenings.",
+      "picture": "bay"
+    }
   ]
 }

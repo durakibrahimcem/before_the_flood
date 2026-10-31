@@ -21,8 +21,22 @@ func _walk(folder: String) -> void:
 			if script == null or not script.can_instantiate():
 				_fail(folder.path_join(file))
 		elif file.ends_with(".tscn"):
+			_check_scene(folder.path_join(file))
+		elif file.ends_with(".gdshader"):
 			if load(folder.path_join(file)) == null:
 				_fail(folder.path_join(file))
+		elif file.ends_with(".json"):
+			if JSON.parse_string(FileAccess.get_file_as_string(folder.path_join(file))) == null:
+				_fail(folder.path_join(file))
+
+
+func _check_scene(path: String) -> void:
+	if load(path) == null:
+		_fail(path)
+	var links := RegEx.create_from_string("path=\"(res://[^\"]+)\"")
+	for link: RegExMatch in links.search_all(FileAccess.get_file_as_string(path)):
+		if not ResourceLoader.exists(link.get_string(1)):
+			_fail("%s needs %s" % [path, link.get_string(1)])
 
 
 func _fail(path: String) -> void:

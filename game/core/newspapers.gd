@@ -4,24 +4,45 @@ extends RefCounted
 
 const PATH := "res://data/newspapers.json"
 const TIERS: Array[float] = [0.25, 0.75]
+const WALL_CLUE_ERA := 2080
 
 static var _papers: Array = []
+static var _clues: Dictionary = {}
 
 
-## Returns { "headline": String, "story": String, "picture": String }.
+## Returns { "headline", "story", "picture", "action" }. Action is the fix the paper hints at.
 static func pick(plan: Plan, era: int) -> Dictionary:
-	if _papers.is_empty():
-		var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(PATH))
-		_papers = parsed["papers"]
+	_load()
 	var fix := fix_key(plan)
 	var tier := tier_of(Sim.at(plan, era).flood_m["salon"])
-	var fallback: Dictionary = _papers[0]
+	var found: Dictionary = {}
 	for paper: Dictionary in _papers:
 		if int(paper["era"]) == era and paper["fix"] == fix:
-			fallback = paper
+			found = paper
 			if int(paper["tier"]) == tier:
-				return paper
-	return fallback
+				break
+	if found.is_empty():
+		return { "headline": "", "story": "", "picture": "", "action": "" }
+	var page := found.duplicate()
+	page["action"] = fix
+	# Seawall papers keep their story, then quietly point at what would have helped.
+	if fix == "wall" and era == WALL_CLUE_ERA:
+		var action := Sim.best_fix(plan)
+		page["action"] = action
+		page["story"] = "%s %s" % [page["story"], _clues.get(action, "")]
+		page["story"] = (page["story"] as String).strip_edges()
+	return page
+
+
+static func _load() -> void:
+	if not _papers.is_empty():
+		return
+	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(PATH))
+	if parsed is Dictionary and parsed.get("papers") is Array:
+		_papers = parsed["papers"]
+		_clues = parsed.get("clues", {})
+	else:
+		push_error("Bad newspaper file: %s" % PATH)
 
 
 static func fix_key(plan: Plan) -> String:

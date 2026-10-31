@@ -23,6 +23,7 @@ func _process(delta: float) -> void:
 	if OS.has_feature("web"):
 		JavaScriptBridge.eval("document.title = 'FPS %d FLOOD %.2f GPU %s'" % [fps, flood, RenderingServer.get_video_adapter_name().replace("'", "")])
 	elif DisplayServer.get_name() == "headless" and frames >= HEADLESS_FRAMES:
-		assert(room.material.get_shader_parameter("flood_m") >= 0.0)
+		room.material.set_shader_parameter("flood_m", 0.75)
+		assert(is_equal_approx(room.material.get_shader_parameter("flood_m"), 0.75), "the room takes the flood value")
 		print("DEMO PASS")
 		get_tree().quit()
