@@ -76,10 +76,7 @@ func end_scrub() -> void:
 	scrubbing = false
 	bar.hide()
 	get_tree().paused = false
-	if _moved:
-		WorldClock.jump(WorldClock.nearest_era())
-	else:
-		tap()
+	WorldClock.jump(WorldClock.nearest_era())
 
 
 func _on_slider_changed(value: float) -> void:

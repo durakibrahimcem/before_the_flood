@@ -4,7 +4,7 @@ extends CanvasLayer
 
 const LAYER := 90
 const CARD_TOP := 190.0
-const CARD_SIZE := Vector2(620.0, 170.0)
+const CARD_SIZE := Vector2(720.0, 170.0)
 const HOLD_SECONDS := 2.2
 ## From the best result down. A score earns the first line it reaches.
 const WORDS: Array[Dictionary] = [

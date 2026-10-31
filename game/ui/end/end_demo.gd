@@ -9,7 +9,7 @@ const PARTIAL_CAPTION := "The street survives in part. Arda sits on the step of 
 const NONE_CAPTION := "Arda packs the teddy and closes the door. Another future can be drawn."
 const GHOST_CAPTION := "Each mark is a future you tried. The bright one is your newest."
 const GHOST_EMPTY_CAPTION := "No past futures yet. Try again, and the marks begin."
-const KEEPER_CAPTION := "One of the %d plans that keep every home."
+const KEEPER_CAPTION := "All 462 futures were tested. Yours is one of the %d that keep every home."
 const NOT_FOUND_CAPTION := "Finish all six choices to earn a rank."
 const BAD_CODE_MESSAGE := "That code doesn't match a plan. Check the three letters."
 const LOADED_MESSAGE := "Loaded. Their future is ready."
@@ -20,10 +20,10 @@ const CARD_TITLES := ["The sea", "Storms", "Seagrass", "Waste", "Seawalls", "Thi
 const CARD_BODIES := [
 	"The world's seas are rising, and how far depends on us. These numbers follow IPCC projections, counted from 2026 rather than the IPCC's 1995 to 2014 baseline.",
 	"A higher sea lets storms reach further inland, more often. The water you see is the year's worst storm at its peak, not a permanent level.",
-	"Mediterranean seagrass cuts wave height by about 20 to 30 percent. Real meadows recover far more slowly than in this game.",
+	"Mediterranean seagrass cuts wave height by about 20 to 30 percent. Real meadows recover far more slowly than in this game, and they also lock away carbon.",
 	"Plastic blocking drains puts over 200 million people at risk of worse flooding.",
 	"Well-built walls can protect dense cities. Ours failed because it was built fast and then neglected. Its harm to the meadow is a simplified game rule.",
-	"The country is fictional and the model is simplified. It shows how choices connect, and doesn't predict any real place.",
+	"The country is fictional and the model is simplified. It shows how choices connect, and doesn't predict any real place. Its COP 31 topics: climate change, oceans and seas, and zero waste.",
 ]
 
 var failed := false

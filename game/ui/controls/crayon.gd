@@ -175,7 +175,7 @@ static func _paper_box(fill: Color, border: Color, wide: float, tall: float) -> 
 static func _focus_box() -> StyleBoxFlat:
 	var box := StyleBoxFlat.new()
 	box.draw_center = false
-	box.border_color = CRAYON
+	box.border_color = INK
 	box.border_width_left = 4
 	box.border_width_top = 3
 	box.border_width_right = 5

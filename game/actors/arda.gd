@@ -16,6 +16,8 @@ const FOOT_PX_PER_M := 200.0
 @export var speed: float = 460.0
 
 var carried: String = ""
+## Keeps Arda still while a full-screen sheet is open over the room.
+var frozen := false
 ## Takes the room's scale with it, so Arda and their foot fit the painting.
 var room: Room:
 	set(value):
@@ -38,7 +40,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var direction := Vector2.ZERO if frozen else Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var depth := room.depth_at(global_position) if room != null else 0.0
 	velocity = direction * speed * wade_factor(depth)
 	move_and_slide()

@@ -6,7 +6,7 @@
   "dune_max_m": 0.50,
   "wall_crest_m": 1.05,
   "wall_extra_m": 0.25,
-  "wall_harm": 0.15,
+  "wall_harm": 0.10,
   "breach_after_m": 0.10,
   "breach_growth": 0.35,
   "breach_first_year": 2062,

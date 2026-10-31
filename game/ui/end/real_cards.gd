@@ -9,10 +9,10 @@ const CARD_TITLES: Array[String] = ["The sea", "Storms", "Seagrass", "Waste", "S
 const CARD_BODIES: Array[String] = [
 	"The world's seas are rising, and how far depends on us. These numbers follow IPCC projections, counted from 2026 rather than the IPCC's 1995 to 2014 baseline.",
 	"A higher sea lets storms reach further inland, more often. The water you see is the year's worst storm at its peak, not a permanent level.",
-	"Mediterranean seagrass cuts wave height by about 20 to 30 percent. Real meadows recover far more slowly than in this game.",
+	"Mediterranean seagrass cuts wave height by about 20 to 30 percent. Real meadows recover far more slowly than in this game, and they also lock away carbon.",
 	"Plastic blocking drains puts over 200 million people at risk of worse flooding.",
 	"Well-built walls can protect dense cities. Ours failed because it was built fast and then neglected. Its harm to the meadow is a simplified game rule.",
-	"The country is fictional and the model is simplified. It shows how choices connect, and doesn't predict any real place.",
+	"The country is fictional and the model is simplified. It shows how choices connect, and doesn't predict any real place. Its COP 31 topics: climate change, oceans and seas, and zero waste.",
 ]
 
 

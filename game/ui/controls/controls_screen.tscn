@@ -68,7 +68,7 @@ theme_override_constants/separation = 10
 
 [node name="hint_walk" type="Label" parent="Sheet/Center/Column/Rows/WalkRow"]
 layout_mode = 2
-text = "walk"
+text = "walk, or use the arrow keys"
 vertical_alignment = 1
 
 [node name="UseRow" type="HBoxContainer" parent="Sheet/Center/Column/Rows"]

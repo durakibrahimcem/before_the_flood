@@ -101,7 +101,7 @@ func _on_submit(text: String) -> void:
 	if _cache.has(wanted):
 		plan = _cache[wanted]
 	else:
-		plan = Plan.from_code(text)
+		plan = Plan.from_code(wanted)
 		_cache[wanted] = plan
 	if plan == null:
 		_show_message(BAD_CODE_MESSAGE)

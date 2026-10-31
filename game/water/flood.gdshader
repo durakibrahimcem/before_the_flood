@@ -19,6 +19,8 @@ uniform float creep_m = 0.05;
 uniform float quality = 2.0;
 // Outdoors there is no wall to meet the reflection, so it fades in over this much of the picture.
 uniform float mirror_soft = 0.001;
+// 1 the moment a wall breaks, then fading: the water heaves and foams.
+uniform float surge = 0.0;
 uniform vec3 shallow_color = vec3(0.45, 0.70, 0.71);
 uniform vec3 deep_color = vec3(0.1, 0.34, 0.42);
 
@@ -53,7 +55,7 @@ void fragment() {
 	vec2 uv = UV;
 	COLOR.a *= texture(cut_mask, uv).a;
 	float active = smoothstep(0.0, 0.03, flood_m);
-	float level = flood_m + waves(uv, TIME) * 0.012 * active;
+	float level = flood_m + waves(uv, TIME) * 0.012 * active * (1.0 + 8.0 * surge);
 	float depth = level - height_at(uv);
 	vec3 base = with_age(uv, texture(TEXTURE, uv).rgb);
 	if (depth <= 0.0 || flood_m <= 0.001) {
@@ -91,7 +93,7 @@ void fragment() {
 			color += caustic * 0.12 * (1.0 - absorb);
 		}
 		color = mix(color, vec3(0.95, 0.98, 0.97), min(rings, 1.0) * 0.4);
-		float foam = 1.0 - smoothstep(0.0, 0.03, depth);
+		float foam = 1.0 - smoothstep(0.0, 0.03 + 0.05 * surge, depth);
 		float breakup = 0.6 + 0.4 * sin(uv.x * 230.0 + TIME * 2.0) * sin(uv.y * 210.0 - TIME * 1.5);
 		COLOR.rgb = mix(color, vec3(0.95, 0.98, 0.97), foam * breakup * 0.8);
 	}

@@ -44,6 +44,7 @@ var switches_total := 0
 var phase := 0
 
 var time_left := PHASE1_SECONDS
+var _phase_seconds := PHASE1_SECONDS
 var _ending := false
 var _froze_walker := false
 var _owns_walker := false
@@ -66,7 +67,8 @@ func _init() -> void:
 
 func _begin() -> void:
 	switches_total = mini(target_count(3), ZONES.size())
-	time_left = PHASE1_SECONDS
+	_phase_seconds = target_time(PHASE1_SECONDS)
+	time_left = _phase_seconds
 	_tint.color = NIGHT_TINT
 	_build_salon()
 	_acquire_walker()
@@ -79,7 +81,7 @@ func _physics_process(delta: float) -> void:
 	time_left -= delta
 	if time_left < 0.0:
 		time_left = 0.0
-	_timer_bar.scale.x = time_left / PHASE1_SECONDS
+	_timer_bar.scale.x = time_left / _phase_seconds
 	_update_reach()
 	if Input.is_action_just_pressed("interact"):
 		var nearest := _nearest_switch_index()

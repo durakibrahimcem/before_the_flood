@@ -5,8 +5,8 @@ extends Control
 const PLANS_PATH := "res://data/plans.json"
 const TITLE := "Your plan"
 const SUB_LINE := "of 462 possible plans"
-const KEEPER_CAPTION := "One of the %d plans that keep every home."
-const OTHER_CAPTION := "%d of 462 plans keep every home. Yours can be one of them."
+const KEEPER_CAPTION := "All 462 futures were tested. Yours is one of the %d that keep every home."
+const OTHER_CAPTION := "All 462 futures were tested. %d keep every home. Yours can be one of them."
 const EMPTY_CAPTION := "Finish all six choices to earn a rank."
 
 var _entries: Array = []

@@ -52,7 +52,10 @@ func _ready() -> void:
 	time.begin_scrub()
 	time.end_scrub()
 	await _frames(2)
-	assert(is_equal_approx(WorldClock.year, 2080.0), "a hold with no drag acts like a tap")
+	assert(is_equal_approx(WorldClock.year, 2050.0), "a hold with no drag stays where it was")
+	time.tap()
+	await _frames(2)
+	assert(is_equal_approx(WorldClock.year, 2080.0), "tap still moves on")
 	time.tap()
 	await _frames(2)
 	assert(is_equal_approx(WorldClock.year, 2026.0), "tap wraps to 2026")
@@ -85,6 +88,8 @@ func _ready() -> void:
 	await _walk_every_door(main)
 	_check_verdicts()
 	await _check_view(main)
+	main.auto_tasks = false
+	await _check_flow(main)
 	await _check_outdoors(main)
 	print("DEMO PASS")
 	get_tree().quit()
@@ -126,6 +131,56 @@ func _check_verdicts() -> void:
 	assert(TaskVerdict.entry_for(0.8)["word"] == "Great job!", "a strong task is great")
 	assert(TaskVerdict.entry_for(0.5)["word"] == "Good work.", "half is good")
 	assert(TaskVerdict.entry_for(0.0)["word"] == "That went badly.", "nothing done is bad")
+
+
+## Keys, the skip rule and a peek at the future must all leave the player able to carry on.
+func _check_flow(main: Main) -> void:
+	for action: String in ["move_up", "move_down", "move_left", "move_right"]:
+		assert(InputMap.action_get_events(action).size() == 2, "%s has WASD and an arrow key" % action)
+	Run.new_run()
+	WorldClock.scrub(2026.0)
+	main.enter_room("salon", Main.FRIDGE)
+	await _frames(2)
+	assert(main.can_open_calendar(), "the fridge opens the calendar")
+	main.open_calendar()
+	assert(main.arda.frozen, "Arda waits while the calendar is open")
+	_key(KEY_E)
+	await _frames(2)
+	assert(not main.calendar.visible and not main.arda.frozen, "E puts the calendar away")
+	main.open_calendar()
+	_key(KEY_2)
+	await _frames(2)
+	assert(main.pending_action == "dune", "key 2 picks the second drawing, got %s" % main.pending_action)
+	assert(not main.calendar.visible and not main.arda.frozen, "picking closes the calendar")
+	var past_runs: Array[float] = Run.ghosts.duplicate()
+	Run.ghosts.clear()
+	assert(not main.can_skip(), "a first run cannot skip its first task")
+	Run.ghosts.assign(past_runs)
+	WorldClock.jump(2080)
+	await _frames(2)
+	main.enter_room("shore", Vector2(300, 800))
+	await _frames(2)
+	assert(main.task == null, "no task starts in the future")
+	assert(main.hint.text == "Tap T to come back to today.", "the hint says how to get back, got %s" % main.hint.text)
+	WorldClock.jump(2026)
+	await _frames(3)
+	assert(main.task != null, "coming back to today starts the waiting task")
+	main.task.complete(1.0)
+	await _frames(3)
+	Run.plan.counts["sort"] = 1
+	Run.ghosts.clear()
+	assert(main.can_skip(), "two actions in, a judge can skip")
+	Run.ghosts.assign(past_runs)
+	Run.new_run()
+	main.pending_action = ""
+
+
+func _key(code: Key) -> void:
+	var event := InputEventKey.new()
+	event.keycode = code
+	event.physical_keycode = code
+	event.pressed = true
+	Input.parse_input_event(event)
 
 
 ## Whole objects slide against the walker. The floor, and whatever sits on it, must stay put.

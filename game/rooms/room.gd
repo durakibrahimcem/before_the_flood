@@ -18,6 +18,7 @@ const OUTDOOR_ROOMS := ["street", "shore"]
 ## The strongest slide, in pixels, for an object at the very front. The floor and walls never move.
 const SLIDE_PX := 9.0
 const SLIDE_EASE := 1.5
+const SURGE_FADE := 2.2
 const OUTDOOR_MIRROR_SOFT := 0.09
 const INDOOR_MIRROR_SOFT := 0.001
 
@@ -42,6 +43,7 @@ var _material: ShaderMaterial
 var _object_materials: Array[ShaderMaterial] = []
 var _height_image: Image
 var _ripples: Array[Vector3] = []
+var _surge := 0.0
 var _slide_px := 0.0
 var _view_ready := false
 var _sliders: Array[Sprite2D] = []
@@ -140,6 +142,11 @@ func ripple_count() -> int:
 	return _ripples.size()
 
 
+## The water heaves for a moment, as when a wall breaks.
+func start_surge() -> void:
+	_surge = 1.0
+
+
 ## How far something this near the front has slid. Near objects move more than far ones.
 func slide_at(nearness: float) -> float:
 	return _slide_px * nearness
@@ -159,6 +166,11 @@ func _update_view(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	_update_view(delta)
+	if _surge > 0.0:
+		_surge = maxf(_surge * exp(-SURGE_FADE * delta) - delta * 0.01, 0.0)
+		_material.set_shader_parameter("surge", _surge)
+		for object_material: ShaderMaterial in _object_materials:
+			object_material.set_shader_parameter("surge", _surge)
 	var was_active := not _ripples.is_empty()
 	var still_alive: Array[Vector3] = []
 	for ring: Vector3 in _ripples:

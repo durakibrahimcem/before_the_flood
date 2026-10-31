@@ -98,7 +98,7 @@ func _begin() -> void:
 	_falling_block = null
 	# Repeats need more blocks under the same crane, so the blocks shrink.
 	_block_h = minf(BLOCK_H_MAX, STACK_USABLE / goal)
-	_slide_speed = CARRIAGE_TRAVEL / maxf(0.8, 24.5 / goal - 0.9)
+	_slide_speed = CARRIAGE_TRAVEL / maxf(0.8, 30.0 / goal - 0.9)
 	_carriage_x = CARRIAGE_MIN_X
 	_carriage_dir = 1.0
 	_gantry.set_carriage_x(_carriage_x)

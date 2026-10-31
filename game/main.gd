@@ -19,6 +19,11 @@ const TASKS := {
 }
 const FRIDGE := Vector2(1700, 720)
 const FRIDGE_REACH := 260.0
+const FRIDGE_PROMPT := "Press E for the calendar"
+const FRIDGE_PROMPT_SPOT := Vector2(1420, 470)
+const PROMPT_FADE_PER_SECOND := 6.0
+## A judge may only have minutes, so skipping opens up early.
+const SKIP_AFTER_ACTIONS := 2
 const HINT_ROOM_NAMES := { "street": "the street", "shore": "the shore", "salon": "the salon" }
 const SHAKE_PIXELS := 18.0
 const SHAKE_STEPS := 8
@@ -35,6 +40,7 @@ var _seen_papers: Dictionary = {}
 var _wall_state: int = WorldState.Wall.NONE
 var _skipping := false
 var _verdict: TaskVerdict
+var _fridge_prompt: Label
 
 @onready var arda: Arda = $Arda
 @onready var time: TimeControl = $TimeControl
@@ -47,6 +53,9 @@ var _verdict: TaskVerdict
 
 func _ready() -> void:
 	calendar.action_chosen.connect(_on_action_chosen)
+	calendar.closed.connect(_on_calendar_closed)
+	# This script owns the paper, so seen pages stay seen and it never pops up twice.
+	newspaper.auto_popup = false
 	newspaper.dismissed.connect(_on_paper_dismissed)
 	ending.retry_requested.connect(new_run)
 	ending.code_loaded.connect(_on_code_loaded)
@@ -57,6 +66,7 @@ func _ready() -> void:
 	ending.hide()
 	_verdict = TaskVerdict.new()
 	add_child(_verdict)
+	_build_fridge_prompt()
 	enter_room("bedroom", Vector2.INF)
 	time.enabled = false
 	controls.open()
@@ -66,7 +76,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and can_open_calendar():
 		get_viewport().set_input_as_handled()
 		open_calendar()
-	elif event.is_action_pressed("skip") and task != null and is_replay():
+	elif event.is_action_pressed("skip") and task != null and can_skip():
 		get_viewport().set_input_as_handled()
 		_skipping = true
 		task.complete(0.0)
@@ -77,8 +87,29 @@ func is_replay() -> bool:
 	return not Run.ghosts.is_empty()
 
 
+func can_skip() -> bool:
+	return is_replay() or Run.plan.total() >= SKIP_AFTER_ACTIONS
+
+
+func _process(delta: float) -> void:
+	var goal := 1.0 if can_open_calendar() else 0.0
+	_fridge_prompt.modulate.a = move_toward(_fridge_prompt.modulate.a, goal, PROMPT_FADE_PER_SECOND * delta)
+
+
+func _build_fridge_prompt() -> void:
+	_fridge_prompt = Label.new()
+	_fridge_prompt.text = FRIDGE_PROMPT
+	_fridge_prompt.position = FRIDGE_PROMPT_SPOT
+	_fridge_prompt.modulate.a = 0.0
+	_fridge_prompt.add_theme_font_size_override("font_size", 36)
+	_fridge_prompt.add_theme_color_override("font_color", Door.INK)
+	_fridge_prompt.add_theme_color_override("font_outline_color", Door.OUTLINE)
+	_fridge_prompt.add_theme_constant_override("outline_size", 10)
+	$Ui.add_child(_fridge_prompt)
+
+
 func can_open_calendar() -> bool:
-	return room.room_name == "salon" and task == null and pending_action == "" and not final_walk \
+	return room.room_name == "salon" and not calendar.visible and task == null and pending_action == "" and not final_walk \
 		and is_equal_approx(WorldClock.year, WorldClock.ERAS[0]) and Run.plan.total() < Plan.SLOTS \
 		and arda.position.distance_to(FRIDGE) <= FRIDGE_REACH
 
@@ -86,7 +117,13 @@ func can_open_calendar() -> bool:
 func open_calendar() -> void:
 	hint.text = ""
 	time.enabled = false
+	arda.frozen = true
 	calendar.open()
+
+
+func _on_calendar_closed() -> void:
+	time.enabled = true
+	arda.frozen = false
 
 
 func enter_room(room_name: String, arrive_at: Vector2) -> void:
@@ -141,6 +178,7 @@ func _on_controls_started() -> void:
 func _on_action_chosen(action: String) -> void:
 	pending_action = action
 	time.enabled = true
+	arda.frozen = false
 	var place: String = TASKS[action]["room"]
 	hint.text = "Go to %s." % HINT_ROOM_NAMES[place]
 	_start_pending_task()
@@ -150,9 +188,12 @@ func _start_pending_task() -> void:
 	if pending_action == "" or task != null or not is_node_ready():
 		return
 	var spec: Dictionary = TASKS[pending_action]
-	if room.room_name != spec["room"] or not is_equal_approx(WorldClock.year, WorldClock.ERAS[0]):
+	if room.room_name != spec["room"]:
 		return
-	hint.text = "Tab skips this task." if is_replay() else ""
+	if not is_equal_approx(WorldClock.year, WorldClock.ERAS[0]):
+		hint.text = "Tap T to come back to today."
+		return
+	hint.text = "Press Tab to skip." if can_skip() else ""
 	time.enabled = false
 	room.hold_view = true
 	task = (load(spec["scene"]) as PackedScene).instantiate()
@@ -191,6 +232,8 @@ func _show_era(era: int) -> void:
 
 
 func _on_jumped(era: int) -> void:
+	if era == WorldClock.ERAS[0]:
+		_start_pending_task.call_deferred()
 	if not final_walk and era != WorldClock.ERAS[0] and not _seen_papers.has("%s/%d" % [Run.plan.cache_key(), era]):
 		_open_paper.call_deferred(era)
 
@@ -214,6 +257,7 @@ func _on_year_changed(state: WorldState) -> void:
 	if _wall_state == WorldState.Wall.CRACKED and state.wall_state == WorldState.Wall.BREACHED:
 		Sfx.play("block")
 		Sfx.play("wave_crash")
+		room.start_surge()
 		_shake()
 	_wall_state = state.wall_state
 

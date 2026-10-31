@@ -6,7 +6,6 @@ signal finished
 
 const DRAW_SPOT := Vector2(722, 560)
 const DRAW_REACH := 240.0
-const WAIT_FOR_DRAWING := 10.0
 const GREETING_SECONDS := 2.5
 const CAPTION_SECONDS := 1.2
 
@@ -21,10 +20,8 @@ func play() -> void:
 	await get_tree().create_timer(GREETING_SECONDS).timeout
 	main.hint.text = "Walk to the crayon sun, and press E to draw."
 	_can_draw = true
-	var waited := 0.0
-	while not _drew and waited < WAIT_FOR_DRAWING:
+	while not _drew:
 		await get_tree().process_frame
-		waited += get_process_delta_time()
 	_can_draw = false
 	main.hint.text = "\"My house when I'm big.\""
 	await get_tree().create_timer(CAPTION_SECONDS).timeout

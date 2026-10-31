@@ -16,7 +16,7 @@ func _ready() -> void:
 	await _frames(2)
 	assert(screen.visible, "the screen starts visible")
 	assert(screen.title_label.text == "Before the Flood", "the title is right")
-	assert(screen.hint_walk.text == "walk", "walk hint")
+	assert(screen.hint_walk.text == "walk, or use the arrow keys", "walk hint")
 	assert(screen.hint_use.text == "use", "use hint")
 	assert(screen.hint_time.text == "tap to jump through time", "time hint")
 	assert(screen.hint_scrub.text == "hold to scrub the years", "scrub hint")

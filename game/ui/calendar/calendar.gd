@@ -4,6 +4,7 @@ extends Control
 ## action_chosen, runs the task, and records. This screen never records.
 
 signal action_chosen(action: String)
+signal closed
 
 const NAMES := {
 	"grass": "Seagrass",
@@ -76,6 +77,21 @@ func open() -> void:
 func close() -> void:
 	_end_drag()
 	hide()
+
+
+## Keys 1 to 6 pick a drawing, so a plan needs no mouse. E puts the calendar away.
+func _unhandled_key_input(event: InputEvent) -> void:
+	var key := event as InputEventKey
+	if not visible or key == null or not key.pressed or key.echo:
+		return
+	var index: int = key.keycode - KEY_1
+	if index >= 0 and index < Plan.ACTIONS.size():
+		get_viewport().set_input_as_handled()
+		_choose(Plan.ACTIONS[index])
+	elif event.is_action_pressed("interact"):
+		get_viewport().set_input_as_handled()
+		close()
+		closed.emit()
 
 
 ## Day and index are 1-based, like the labels: slot(2, 1) is day 2, slot 1.

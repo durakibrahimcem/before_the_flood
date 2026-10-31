@@ -1,3 +1,4 @@
+class_name Door
 extends Area2D
 ## Sends the walker to another room when touched.
 
