@@ -31,14 +31,13 @@ const PIN_RED := Color(0.80, 0.22, 0.18)
 	$Rows/Neighbours as Control,
 ]
 
-var _hand := SystemFont.new()
+var _hand: Font = preload("res://ui/fonts/Caveat.ttf")
 var _scrap := StyleBoxFlat.new()
 var _pulses: Dictionary = {}
 var _pulse_next := false
 
 
 func _ready() -> void:
-	_hand.font_names = PackedStringArray(["Comic Sans MS", "Segoe Print", "Bradley Hand", "Comic Neue", "cursive"])
 	_scrap.bg_color = WARM_PAPER
 	_scrap.border_color = Color(INK, 0.35)
 	_scrap.set_border_width_all(1)

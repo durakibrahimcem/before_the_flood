@@ -131,6 +131,10 @@ func _ready() -> void:
 	assert(not get_tree().paused, "the foreign pause is released")
 
 	Settings.set_options(calm_before, large_before)
+	var volume_before := Settings.volume
+	menu.volume_slider.value = 0.5
+	assert(is_equal_approx(Settings.volume, 0.5), "the slider sets the volume")
+	menu.volume_slider.value = volume_before
 	_esc(true)
 	await _beat()
 	_esc(false)

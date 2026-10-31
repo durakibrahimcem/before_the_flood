@@ -16,6 +16,7 @@ const ICON_BASE := 32
 @onready var large_box: CheckBox = $Center/Panel/Column/Large
 @onready var hint_label: Label = $Center/Panel/Column/Hint
 
+var volume_slider: HSlider
 var squiggle_phase: float = 0.0
 var _underline: Squiggle
 var _owned_pause: bool = false
@@ -34,6 +35,7 @@ func _ready() -> void:
 	calm_box.toggled.connect(_on_box_toggled)
 	large_box.toggled.connect(_on_box_toggled)
 	Settings.changed.connect(_on_settings_changed)
+	_add_volume()
 	_track(title_label, 44)
 	_track(resume_button, 30)
 	_track(calm_box, 26)
@@ -51,6 +53,24 @@ func _input(event: InputEvent) -> void:
 		else:
 			open()
 		get_viewport().set_input_as_handled()
+
+
+func _add_volume() -> void:
+	var label := Label.new()
+	label.text = "Volume"
+	volume_slider = HSlider.new()
+	volume_slider.name = "Volume"
+	volume_slider.max_value = 1.0
+	volume_slider.step = 0.05
+	volume_slider.custom_minimum_size = Vector2(320, 32)
+	volume_slider.value = Settings.volume
+	volume_slider.value_changed.connect(Settings.set_volume)
+	column.add_child(label)
+	column.add_child(volume_slider)
+	var after_large := large_box.get_index() + 1
+	column.move_child(label, after_large)
+	column.move_child(volume_slider, after_large + 1)
+	_track(label, 26)
 
 
 func open() -> void:

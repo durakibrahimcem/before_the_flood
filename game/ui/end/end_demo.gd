@@ -14,15 +14,15 @@ const NOT_FOUND_CAPTION := "Finish all six choices to earn a rank."
 const BAD_CODE_MESSAGE := "That code doesn't match a plan. Check the three letters."
 const LOADED_MESSAGE := "Loaded. Their future is ready."
 const NO_CODE_LINE := "Finish all six choices to get a code of your own."
-const CREDITS := "Built with help from AI tools for code and writing drafts. Art by Ebru."
+const CREDITS := "Art by Ebru. Built with help from AI tools for code and writing drafts. Fonts: Caveat and Playfair Display (SIL Open Font License). Music rendered with FluidSynth and the FluidR3 GM SoundFont (MIT license)."
 const LINK_TEXT := "Learn more about climate adaptation"
 const CARD_TITLES := ["The sea", "Storms", "Seagrass", "Waste", "Seawalls", "This game"]
 const CARD_BODIES := [
-	"The world's seas are rising, and how far depends on us. These numbers follow IPCC projections.",
-	"A higher sea lets storms reach further inland, more often.",
+	"The world's seas are rising, and how far depends on us. These numbers follow IPCC projections, counted from 2026 rather than the IPCC's 1995 to 2014 baseline.",
+	"A higher sea lets storms reach further inland, more often. The water you see is the year's worst storm at its peak, not a permanent level.",
 	"Mediterranean seagrass cuts wave height by about 20 to 30 percent. Real meadows recover far more slowly than in this game.",
 	"Plastic blocking drains puts over 200 million people at risk of worse flooding.",
-	"Well-built walls can protect dense cities. Ours failed because it was built fast and then forgotten.",
+	"Well-built walls can protect dense cities. Ours failed because it was built fast and then neglected. Its harm to the meadow is a simplified game rule.",
 	"The country is fictional and the model is simplified. It shows how choices connect, and doesn't predict any real place.",
 ]
 

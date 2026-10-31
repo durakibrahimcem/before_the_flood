@@ -27,12 +27,11 @@ const MUTED := Color(0.45, 0.40, 0.34)
 @onready var hint: Label = $Center/Sheet/Margins/Column/Hint
 @onready var picture: CrayonPicture = $Center/Sheet/Margins/Column/Picture
 
-var _serif := SystemFont.new()
+var _serif: Font = preload("res://ui/fonts/PlayfairDisplay.ttf")
 var _tween: Tween
 
 
 func _ready() -> void:
-	_serif.font_names = PackedStringArray(["Georgia", "Times New Roman", "Liberation Serif", "DejaVu Serif", "Noto Serif", "serif"])
 	_style_sheet()
 	_style_text()
 	_apply_text_sizes()
