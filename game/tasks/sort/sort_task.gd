@@ -5,6 +5,14 @@ extends Task
 const BASE_ITEMS := 8
 const KINDS: Array[String] = ["plastic", "paper", "glass", "metal"]
 const ITEM_SCENE: PackedScene = preload("res://tasks/sort/sort_item.tscn")
+## Ebru's waste, by the bin it belongs in. A juice carton is mostly card, so it goes with paper.
+const ITEM_ART := {
+	"plastic": [preload("res://tasks/sort/art/bag.png")],
+	"paper": [preload("res://tasks/sort/art/paper.png"), preload("res://tasks/sort/art/carton.png")],
+	"glass": [preload("res://tasks/sort/art/bottle.png")],
+	"metal": [preload("res://tasks/sort/art/can.png")],
+}
+const ITEM_TILT := 0.4
 ## The pavement and road beside Ebru's bins, near enough for a full round in the time.
 const FIELD := Rect2(120.0, 590.0, 900.0, 320.0)
 const ITEM_GAP := 90.0
@@ -25,8 +33,6 @@ const VERDICT_WRONG := Color(1.0, 0.72, 0.6)
 @export var seconds := 25.0
 ## 0 randomizes the layout each run; a nonzero seed makes it repeatable.
 @export var layout_seed := 0
-## Art drop-in per kind; empty means code placeholders.
-@export var item_art: Dictionary[String, Texture2D] = {}
 ## Art drop-in for the placeholder walker we spawn; the room's own walker needs none.
 @export var walker_art: Texture2D
 
@@ -170,8 +176,10 @@ func _spawn_items() -> void:
 	for i: int in total_items:
 		var item := ITEM_SCENE.instantiate() as SortItem
 		item.kind = KINDS[i % KINDS.size()]
-		if item_art.has(item.kind):
-			item.art = item_art[item.kind]
+		var pictures: Array = ITEM_ART[item.kind]
+		item.art = pictures[i / KINDS.size() % pictures.size()]
+		item.flipped = _rng.randf() < 0.5
+		item.rotation = _rng.randf_range(-ITEM_TILT, ITEM_TILT)
 		item.position = _item_spot(placed)
 		placed.append(item.position)
 		item.add_to_group(ITEM_GROUP)
