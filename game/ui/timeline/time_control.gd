@@ -10,6 +10,8 @@ const SCRIBBLE_SECONDS := 0.3
 @onready var year_label: Label = $Bar/Year
 @onready var scribble: ColorRect = $Scribble
 
+## Off while a task or screen has the player's attention.
+var enabled: bool = true
 var scrubbing: bool = false
 var _held: float = 0.0
 var _pressed: bool = false
@@ -27,7 +29,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if get_tree().paused and not scrubbing:
+	if not enabled or (get_tree().paused and not scrubbing):
 		_pressed = false
 		_held = 0.0
 		return

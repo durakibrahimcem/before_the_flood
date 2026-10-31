@@ -9,6 +9,8 @@ func _ready() -> void:
 	add_child(main)
 	await _frames(3)
 	var time: TimeControl = main.get_node("TimeControl")
+	main.controls.started.emit()
+	main.controls.hide()
 	assert(main.room.room_name == "bedroom", "starts in the bedroom")
 	assert(is_equal_approx(WorldClock.year, 2026.0), "starts in 2026")
 	assert(main.room.flood_m == 0.0, "dry in 2026")

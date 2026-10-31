@@ -3,10 +3,47 @@
 [ext_resource type="Script" path="res://main.gd" id="1"]
 [ext_resource type="PackedScene" path="res://actors/arda.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://ui/timeline/time_control.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://ui/calendar/calendar.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://ui/numbers/numbers_panel.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://ui/newspaper/newspaper.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://ui/end/end_sequence.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://ui/controls/controls_screen.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://ui/pause/pause_menu.tscn" id="9"]
+[ext_resource type="Script" path="res://audio/music_director.gd" id="10"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1")
 
 [node name="Arda" parent="." instance=ExtResource("2")]
 
+[node name="Music" type="Node" parent="."]
+script = ExtResource("10")
+
 [node name="TimeControl" parent="." instance=ExtResource("3")]
+
+[node name="Ui" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Numbers" parent="Ui" instance=ExtResource("5")]
+
+[node name="Hint" type="Label" parent="Ui"]
+offset_left = 40.0
+offset_top = 960.0
+offset_right = 1880.0
+offset_bottom = 1040.0
+theme_override_colors/font_color = Color(0.97, 0.95, 0.88, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.17, 0.14, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+
+[node name="Calendar" parent="Ui" instance=ExtResource("4")]
+visible = false
+
+[node name="Newspaper" parent="." instance=ExtResource("6")]
+
+[node name="Ending" parent="." instance=ExtResource("7")]
+
+[node name="Controls" parent="." instance=ExtResource("8")]
+
+[node name="Pause" parent="." instance=ExtResource("9")]
