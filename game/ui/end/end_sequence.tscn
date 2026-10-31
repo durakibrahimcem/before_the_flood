@@ -1,0 +1,168 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://ui/end/end_sequence.gd" id="1_seq"]
+[ext_resource type="Script" path="res://ui/end/ending_picture.gd" id="2_pic"]
+[ext_resource type="Script" path="res://ui/end/rank_card.gd" id="3_rank"]
+[ext_resource type="Script" path="res://ui/end/ghost_chart.gd" id="4_ghost"]
+[ext_resource type="Script" path="res://ui/end/real_cards.gd" id="5_real"]
+[ext_resource type="Script" path="res://ui/end/share_card.gd" id="6_share"]
+
+[node name="EndSequence" type="CanvasLayer"]
+layer = 20
+process_mode = 3
+script = ExtResource("1_seq")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0.96, 0.93, 0.85, 1)
+
+[node name="ClickCatch" type="Button" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 0
+flat = true
+focus_mode = 0
+
+[node name="Steps" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="EndingStep" type="Control" parent="Steps"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Picture" type="Control" parent="Steps/EndingStep"]
+offset_left = 360.0
+offset_top = 90.0
+offset_right = 1560.0
+offset_bottom = 690.0
+mouse_filter = 2
+script = ExtResource("2_pic")
+
+[node name="Caption" type="Label" parent="Steps/EndingStep"]
+anchor_left = 0.0
+anchor_right = 1.0
+offset_top = 726.0
+offset_bottom = 794.0
+horizontal_alignment = 1
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.16, 0.14, 0.12, 1)
+theme_override_font_sizes/font_size = 28
+
+[node name="RankStep" type="Control" parent="Steps"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("3_rank")
+
+[node name="GhostStep" type="Control" parent="Steps"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Steps/GhostStep"]
+anchor_left = 0.0
+anchor_right = 1.0
+offset_top = 60.0
+offset_bottom = 134.0
+horizontal_alignment = 1
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.16, 0.14, 0.12, 1)
+theme_override_font_sizes/font_size = 64
+text = "Past futures"
+
+[node name="Chart" type="Control" parent="Steps/GhostStep"]
+offset_left = 680.0
+offset_top = 200.0
+offset_right = 1240.0
+offset_bottom = 840.0
+mouse_filter = 2
+script = ExtResource("4_ghost")
+
+[node name="Caption" type="Label" parent="Steps/GhostStep"]
+anchor_left = 0.0
+anchor_right = 1.0
+offset_top = 872.0
+offset_bottom = 938.0
+horizontal_alignment = 1
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.16, 0.14, 0.12, 1)
+theme_override_font_sizes/font_size = 26
+
+[node name="RealStep" type="Control" parent="Steps"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("5_real")
+
+[node name="ShareStep" type="Control" parent="Steps"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("6_share")
+
+[node name="RetryStep" type="Control" parent="Steps"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Steps/RetryStep"]
+anchor_left = 0.0
+anchor_right = 1.0
+offset_top = 300.0
+offset_bottom = 380.0
+horizontal_alignment = 1
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.16, 0.14, 0.12, 1)
+theme_override_font_sizes/font_size = 64
+text = "Try again"
+
+[node name="Body" type="Label" parent="Steps/RetryStep"]
+anchor_left = 0.0
+anchor_right = 1.0
+offset_top = 404.0
+offset_bottom = 466.0
+horizontal_alignment = 1
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.16, 0.14, 0.12, 1)
+theme_override_font_sizes/font_size = 28
+text = "Go back to 2026 and draw a different future."
+
+[node name="Retry" type="Button" parent="Steps/RetryStep"]
+offset_left = 860.0
+offset_top = 540.0
+offset_right = 1060.0
+offset_bottom = 612.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 30
+text = "Try again"
+
+[node name="Skip" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -176.0
+offset_top = 36.0
+offset_right = -40.0
+offset_bottom = 104.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 28
+text = "Skip"

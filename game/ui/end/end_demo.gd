@@ -1,0 +1,283 @@
+extends Node
+## Bot-driven demo for the end sequence. Asserts the real UI, prints DEMO PASS, quits.
+
+const SEQUENCE := preload("res://ui/end/end_sequence.tscn")
+const PLANS_PATH := "res://data/plans.json"
+
+const THREE_CAPTION := "Old Arda plants seagrass in a thriving meadow. The crayon child plants beside them."
+const PARTIAL_CAPTION := "The street survives in part. Arda sits on the step of the home that remains."
+const NONE_CAPTION := "Arda packs the teddy and closes the door. Another future can be drawn."
+const GHOST_CAPTION := "Each mark is a future you tried. The bright one is your newest."
+const GHOST_EMPTY_CAPTION := "No past futures yet. Try again, and the marks begin."
+const KEEPER_CAPTION := "One of the %d plans that keep every home."
+const NOT_FOUND_CAPTION := "Finish all six choices to earn a rank."
+const BAD_CODE_MESSAGE := "That code doesn't match a plan. Check the three letters."
+const LOADED_MESSAGE := "Loaded. Their future is ready."
+const NO_CODE_LINE := "Finish all six choices to get a code of your own."
+const CREDITS := "Built with help from AI tools for code and writing drafts. Art by Ebru."
+const LINK_TEXT := "Learn more about climate adaptation"
+const CARD_TITLES := ["The sea", "Storms", "Seagrass", "Waste", "Seawalls", "This game"]
+const CARD_BODIES := [
+	"The world's seas are rising, and how far depends on us. These numbers follow IPCC projections.",
+	"A higher sea lets storms reach further inland, more often.",
+	"Mediterranean seagrass cuts wave height by about 20 to 30 percent. Real meadows recover far more slowly than in this game.",
+	"Plastic blocking drains puts over 200 million people at risk of worse flooding.",
+	"Well-built walls can protect dense cities. Ours failed because it was built fast and then forgotten.",
+	"The country is fictional and the model is simplified. It shows how choices connect, and doesn't predict any real place.",
+]
+
+var failed := false
+var fail_count := 0
+var retry_count := 0
+var loaded_codes: Array[String] = []
+var seq: EndSequence
+var _plans: Array = []
+
+
+func _ready() -> void:
+	seq = SEQUENCE.instantiate()
+	add_child(seq)
+	seq.retry_requested.connect(_on_retry)
+	seq.code_loaded.connect(_on_code)
+	await _frames(2)
+
+	Run.plan = Plan.from_code("3AT")
+	Run.ghosts.clear()
+	Run.ghosts.append(0.9)
+	Run.ghosts.append(1.3)
+	Run.ghosts.append(0.371)
+	var outcome: Dictionary = Sim.outcome(Run.plan)
+	seq.play(outcome)
+	await _frames(2)
+
+	check(seq.step_index() == 0, "play restarts at step 0")
+	check(seq.steps[0].visible, "the ending step is visible")
+	check(seq.picture.variant == "three", "three homes draw the three variant, got %s" % seq.picture.variant)
+	check(seq.ending_caption.text == THREE_CAPTION, "three caption text, got '%s'" % seq.ending_caption.text)
+	if failed:
+		_finish()
+		return
+
+	await _tap()
+	check(seq.step_index() == 1, "interact advances to the rank step")
+	check(seq.steps[1].visible, "the rank step is visible")
+	var number := seq.get_node("Steps/RankStep/Number") as Label
+	var caption := seq.get_node("Steps/RankStep/Caption") as Label
+	var expected_rank := _rank_of("3AT")
+	var keepers := _keepers()
+	check(expected_rank == 1, "the sample plan 3AT ranks 1, got %d" % expected_rank)
+	check(number != null and number.text == str(expected_rank), "the rank label shows %d, got '%s'" % [expected_rank, number.text if number != null else ""])
+	check(caption != null and caption.text == KEEPER_CAPTION % keepers, "keeper caption, got '%s'" % caption.text if caption != null else "no caption")
+	check(seq.rank_card.show_rank() == expected_rank, "show_rank returns the plan rank")
+	if failed:
+		_finish()
+		return
+
+	seq.skip.pressed.emit()
+	await _frames(2)
+	check(seq.step_index() == 2, "Skip advances to the ghost step")
+	check(seq.steps[2].visible, "the ghost step is visible")
+	check(seq.chart.depths == [0.9, 1.3, 0.371], "the chart holds the run ghosts, got %s" % str(seq.chart.depths))
+	check(seq.chart.newest_index() == 2, "the newest ghost is the last one")
+	check(seq.ghost_caption.text == GHOST_CAPTION, "ghost caption text, got '%s'" % seq.ghost_caption.text)
+	if failed:
+		_finish()
+		return
+
+	seq.click.pressed.emit()
+	await _frames(2)
+	check(seq.step_index() == 3, "a background click advances to the real step")
+	check(seq.steps[3].visible, "the real step is visible")
+	for i: int in CARD_BODIES.size():
+		var body := seq.get_node("Steps/RealStep/Box/Grid/Card%d/Inner/Body" % i) as Label
+		var title := seq.get_node("Steps/RealStep/Box/Grid/Card%d/Inner/Title" % i) as Label
+		check(body != null and body.text == String(CARD_BODIES[i]), "card %d body text" % i)
+		check(title != null and title.text == String(CARD_TITLES[i]), "card %d title text" % i)
+	var credits := seq.get_node("Steps/RealStep/Box/Credits") as Label
+	check(credits != null and credits.text == CREDITS, "credits line exact, got '%s'" % credits.text if credits != null else "no credits")
+	var link := seq.get_node("Steps/RealStep/Box/Link") as LinkButton
+	check(link != null and link.text == LINK_TEXT, "the learn-more link exists with its caption")
+	if failed:
+		_finish()
+		return
+
+	await _tap()
+	check(seq.step_index() == 4, "interact advances to the share step")
+	check(seq.steps[4].visible, "the share step is visible")
+	var code_label := seq.get_node("Steps/ShareStep/Code") as Label
+	check(code_label != null and code_label.text == "3AT", "the big code label shows 3AT")
+	var share_line := seq.get_node("Steps/ShareStep/Line") as Label
+	check(share_line != null and share_line.text == "Share it, and a friend can walk your future.", "the share line under the code")
+	var edit := seq.get_node("Steps/ShareStep/RowCenter/Row/Edit") as LineEdit
+	var message := seq.get_node("Steps/ShareStep/Message") as Label
+	check(edit != null, "the friend code box exists")
+	check(message != null, "the message label exists")
+	edit.text = "ZZZ"
+	edit.text_submitted.emit("ZZZ")
+	await _frames(2)
+	check(message.visible, "the invalid code message is visible")
+	check(message.text == BAD_CODE_MESSAGE, "invalid code message text, got '%s'" % message.text)
+	check(loaded_codes.is_empty(), "an invalid code loads nothing")
+	edit.text = "bfn"
+	edit.text_submitted.emit("bfn")
+	await _frames(2)
+	check(loaded_codes.size() == 1 and loaded_codes[0] == "BFN", "a lowercase friend code loads BFN, got %s" % str(loaded_codes))
+	check(message.visible and message.text == LOADED_MESSAGE, "the loaded message shows")
+	if failed:
+		_finish()
+		return
+
+	await _tap()
+	check(seq.step_index() == 5, "interact advances to the retry step")
+	check(seq.steps[5].visible, "the retry step is visible")
+	(seq.get_node("Steps/RetryStep/Retry") as Button).pressed.emit()
+	await _frames(2)
+	check(retry_count == 1, "the retry button asks for a retry, count %d" % retry_count)
+	if failed:
+		_finish()
+		return
+
+	seq.play(Sim.outcome(Plan.from_code("00S")))
+	await _frames(2)
+	check(not message.visible and edit.text.is_empty(), "a fresh play clears the share message and box")
+	check(seq.picture.variant == "partial", "two homes draw the partial variant, got %s" % seq.picture.variant)
+	check(seq.ending_caption.text == PARTIAL_CAPTION, "partial caption text")
+	seq.play(Sim.outcome(Plan.from_code("3Y6")))
+	await _frames(2)
+	check(seq.picture.variant == "partial", "one home draws the partial variant, got %s" % seq.picture.variant)
+	check(seq.ending_caption.text == PARTIAL_CAPTION, "partial caption text for one home")
+	seq.play(Sim.outcome(Plan.from_code("24F")))
+	await _frames(2)
+	check(seq.picture.variant == "none", "no homes draw the none variant, got %s" % seq.picture.variant)
+	check(seq.ending_caption.text == NONE_CAPTION, "none caption text")
+	if failed:
+		_finish()
+		return
+
+	Run.ghosts.clear()
+	seq.play(Sim.outcome(Run.plan))
+	await _frames(2)
+	await _tap()
+	check(seq.step_index() == 1, "at the rank step with cleared ghosts")
+	var rank_number := seq.get_node("Steps/RankStep/Number") as Label
+	check(rank_number != null and rank_number.text == "1", "the rank still shows 1")
+	await _tap()
+	check(seq.step_index() == 2, "at the ghost step with cleared ghosts")
+	check(seq.chart.depths.is_empty(), "cleared ghosts empty the chart")
+	check(seq.chart.newest_index() == -1, "no newest ghost when the chart is empty")
+	check(seq.ghost_caption.text == GHOST_EMPTY_CAPTION, "empty ghost caption, got '%s'" % seq.ghost_caption.text)
+	if failed:
+		_finish()
+		return
+
+	Run.plan = Plan.new()
+	seq.play(Sim.outcome(Run.plan))
+	await _frames(2)
+	await _tap()
+	check(seq.step_index() == 1, "at the rank step without a code")
+	var empty_number := seq.get_node("Steps/RankStep/Number") as Label
+	var empty_caption := seq.get_node("Steps/RankStep/Caption") as Label
+	check(empty_number != null and empty_number.text == "-", "without a code the rank shows a dash")
+	check(empty_caption != null and empty_caption.text == NOT_FOUND_CAPTION, "without a code the rank caption guides gently")
+	await _tap()
+	await _tap()
+	await _tap()
+	check(seq.step_index() == 4, "at the share step without a code")
+	var no_code := seq.get_node("Steps/ShareStep/Code") as Label
+	var no_line := seq.get_node("Steps/ShareStep/Line") as Label
+	check(no_code != null and no_code.text == "-", "without a code the share step shows a dash")
+	check(no_line != null and no_line.text == NO_CODE_LINE, "the no-code share line")
+	if failed:
+		_finish()
+		return
+
+	var guard := 0
+	while not seq.share_card.warm_ready() and guard < 3000:
+		await get_tree().process_frame
+		guard += 1
+	check(seq.share_card.warm_ready(), "the code map finishes warming, %d frames" % guard)
+	edit.text = "ZZZ"
+	edit.text_submitted.emit("ZZZ")
+	await _frames(2)
+	check(message.visible and message.text == BAD_CODE_MESSAGE, "a cached invalid code still gets the gentle message")
+	check(loaded_codes.size() == 1, "a cached invalid code loads nothing, got %s" % str(loaded_codes))
+	edit.text = "00s"
+	edit.text_submitted.emit("00s")
+	await _frames(2)
+	check(loaded_codes.size() == 2 and loaded_codes[1] == "00S", "a warmed code loads without freezing, got %s" % str(loaded_codes))
+	check(message.visible and message.text == LOADED_MESSAGE, "the warmed load message shows")
+	if failed:
+		_finish()
+		return
+
+	Run.plan = Plan.from_code("3AT")
+	seq.play(Sim.outcome(Run.plan))
+	await _frames(2)
+	for expected: int in 6:
+		check(seq.step_index() == expected, "final pass reaches step %d" % expected)
+		await _tap()
+	check(retry_count == 2, "moving on from the end is a retry, count %d" % retry_count)
+	_finish()
+
+
+func check(condition: bool, msg: String) -> void:
+	if not condition:
+		failed = true
+		fail_count += 1
+		print("DEMO FAIL: %s" % msg)
+
+
+func _finish() -> void:
+	if failed:
+		print("DEMO FAIL: %d checks failed" % fail_count)
+		get_tree().quit(1)
+		return
+	print("DEMO PASS")
+	get_tree().quit()
+
+
+func _tap() -> void:
+	var press := InputEventAction.new()
+	press.action = "interact"
+	press.pressed = true
+	Input.parse_input_event(press)
+	await _frames(2)
+	press.pressed = false
+	Input.parse_input_event(press)
+	await _frames(1)
+
+
+func _frames(count: int) -> void:
+	for i: int in count:
+		await get_tree().process_frame
+
+
+func _rank_of(code: String) -> int:
+	for entry: Dictionary in _plans_data():
+		if String(entry.get("code", "")) == code:
+			return int(entry.get("rank", 0))
+	return 0
+
+
+func _keepers() -> int:
+	var total := 0
+	for entry: Dictionary in _plans_data():
+		if int(entry.get("homes", 0)) == 3:
+			total += 1
+	return total
+
+
+func _plans_data() -> Array:
+	if _plans.is_empty():
+		var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(PLANS_PATH))
+		if parsed is Array:
+			_plans = parsed
+	return _plans
+
+
+func _on_retry() -> void:
+	retry_count += 1
+
+
+func _on_code(code: String) -> void:
+	loaded_codes.append(code)
