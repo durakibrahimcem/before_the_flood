@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/calendar/calendar_demo.gd" id="1"]
+
+[node name="CalendarDemo" type="Node"]
+script = ExtResource("1")
