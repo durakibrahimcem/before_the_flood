@@ -4,6 +4,7 @@ extends Node2D
 
 const ROOMS := {
 	"bedroom": preload("res://rooms/bedroom/bedroom.tscn"),
+	"aylin": preload("res://rooms/aylin/aylin.tscn"),
 	"salon": preload("res://rooms/salon/salon.tscn"),
 	"street": preload("res://rooms/street/street.tscn"),
 	"shore": preload("res://rooms/shore/shore.tscn"),

@@ -88,7 +88,8 @@ func _walk_every_door(main: Main) -> void:
 	WorldClock.scrub(2026.0)
 	var route: Array[Array] = [
 		["shore", "ToStreet", "street"], ["street", "ToSalon", "salon"], ["salon", "ToBedroom", "bedroom"],
-		["bedroom", "ToSalon", "salon"], ["salon", "ToStreet", "street"], ["street", "ToShore", "shore"],
+		["bedroom", "ToSalon", "salon"], ["salon", "ToAylin", "aylin"], ["aylin", "ToSalon", "salon"],
+		["salon", "ToStreet", "street"], ["street", "ToShore", "shore"],
 	]
 	for leg: Array in route:
 		assert(main.room.room_name == leg[0], "the walk reached %s, got %s" % [leg[0], main.room.room_name])

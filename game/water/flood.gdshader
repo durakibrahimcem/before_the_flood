@@ -51,6 +51,9 @@ void fragment() {
 	} else {
 		float strength = clamp(depth * 2.2, 0.0, 1.0);
 		vec2 ripple = vec2(sin(uv.y * 64.0 + TIME * 1.3), cos(uv.x * 52.0 + TIME * 1.1)) * 0.0028 * strength;
+		// The paintings end in a paper edge, which must not ripple with the water.
+		vec2 edge = min(uv, 1.0 - uv);
+		ripple *= smoothstep(0.004, 0.03, min(edge.x, edge.y));
 		vec3 under = with_age(uv + ripple, texture(TEXTURE, uv + ripple).rgb);
 		float absorb = 1.0 - exp(-depth * 1.5);
 		vec3 water = mix(shallow_color, deep_color, absorb);

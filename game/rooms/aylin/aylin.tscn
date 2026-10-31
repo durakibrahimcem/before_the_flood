@@ -1,0 +1,109 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://rooms/room.gd" id="1"]
+[ext_resource type="Script" path="res://rooms/door.gd" id="2"]
+[ext_resource type="Texture2D" path="res://rooms/aylin/aylin.png" id="3"]
+[ext_resource type="Texture2D" path="res://rooms/aylin/aylin_height.png" id="4"]
+[ext_resource type="Texture2D" path="res://rooms/aylin/nightstandleft_cut.png" id="c0"]
+[ext_resource type="Texture2D" path="res://rooms/aylin/nightstandright_cut.png" id="c1"]
+[ext_resource type="Texture2D" path="res://rooms/aylin/bed_cut.png" id="c2"]
+[ext_resource type="Texture2D" path="res://rooms/aylin/lamp_on.png" id="o0"]
+[ext_resource type="Texture2D" path="res://rooms/aylin/lamp_off.png" id="o1"]
+
+[sub_resource type="RectangleShape2D" id="door"]
+size = Vector2(220, 60)
+
+[sub_resource type="RectangleShape2D" id="edge_h"]
+size = Vector2(2120, 100)
+
+[sub_resource type="RectangleShape2D" id="edge_v"]
+size = Vector2(100, 1280)
+
+[node name="Aylin" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1")
+room_name = "aylin"
+painting = ExtResource("3")
+height = ExtResource("4")
+floor_line = 0.4657
+wall_m_per_uv = 5.2
+spawn = Vector2(312.0, 640.0)
+
+[node name="NightstandLeft" type="Sprite2D" parent="."]
+position = Vector2(0, 574)
+texture = ExtResource("3")
+centered = false
+offset = Vector2(609, -127)
+region_enabled = true
+region_rect = Rect2(609, 447, 196, 129)
+metadata/cut = ExtResource("c0")
+
+[node name="NightstandRight" type="Sprite2D" parent="."]
+position = Vector2(0, 576)
+texture = ExtResource("3")
+centered = false
+offset = Vector2(1245, -237)
+region_enabled = true
+region_rect = Rect2(1245, 339, 193, 235)
+metadata/cut = ExtResource("c1")
+
+[node name="Bed" type="Sprite2D" parent="."]
+position = Vector2(0, 846)
+texture = ExtResource("3")
+centered = false
+offset = Vector2(659, -595)
+region_enabled = true
+region_rect = Rect2(659, 251, 697, 594)
+metadata/cut = ExtResource("c2")
+
+[node name="LampOn" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("o0")
+centered = false
+offset = Vector2(679, 8)
+region_enabled = true
+region_rect = Rect2(679, 8, 126, 37)
+
+[node name="LampOff" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("o1")
+centered = false
+offset = Vector2(679, 8)
+region_enabled = true
+region_rect = Rect2(679, 8, 126, 37)
+
+[node name="Solid" type="StaticBody2D" parent="."]
+
+[node name="NightstandLeftFoot" type="CollisionPolygon2D" parent="Solid"]
+polygon = PackedVector2Array(612.0, 525.0, 795.0, 525.0, 752.0, 570.0, 616.0, 570.0)
+
+[node name="NightstandRightFoot" type="CollisionPolygon2D" parent="Solid"]
+polygon = PackedVector2Array(1262.0, 525.0, 1432.0, 525.0, 1428.0, 572.0, 1290.0, 572.0)
+
+[node name="BedFoot" type="CollisionPolygon2D" parent="Solid"]
+polygon = PackedVector2Array(808.0, 510.0, 1236.0, 510.0, 1355.0, 720.0, 1350.0, 770.0, 1200.0, 835.0, 1040.0, 845.0, 800.0, 825.0, 680.0, 780.0, 660.0, 705.0)
+
+[node name="Top" type="CollisionShape2D" parent="Solid"]
+position = Vector2(960.0, 463.0)
+shape = SubResource("edge_h")
+
+[node name="Bottom" type="CollisionShape2D" parent="Solid"]
+position = Vector2(960.0, 1100.0)
+shape = SubResource("edge_h")
+
+[node name="Left" type="CollisionShape2D" parent="Solid"]
+position = Vector2(-45.0, 540.0)
+shape = SubResource("edge_v")
+
+[node name="Right" type="CollisionShape2D" parent="Solid"]
+position = Vector2(1965.0, 540.0)
+shape = SubResource("edge_v")
+
+[node name="ToSalon" type="Area2D" parent="."]
+position = Vector2(312.0, 535.0)
+script = ExtResource("2")
+target_room = "salon"
+arrive_at = Vector2(1153, 680)
+
+[node name="Shape" type="CollisionShape2D" parent="ToSalon"]
+shape = SubResource("door")

@@ -15,7 +15,7 @@
   "home_limit_m": 0.70,
   "light_margin_m": 0.22,
   "ground_m": { "own": 1.30, "near": 1.10, "far": 1.20 },
-  "room_ground_m": { "bedroom": 1.30, "salon": 1.30, "street": 1.12, "shore": 0.40 },
+  "room_ground_m": { "bedroom": 1.30, "aylin": 1.30, "salon": 1.30, "street": 1.12, "shore": 0.40 },
   "severity_full_m": 1.20,
   "world_per_meet": 0.12,
   "world_per_light": 0.04,

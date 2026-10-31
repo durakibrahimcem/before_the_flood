@@ -44,10 +44,10 @@ func _ready() -> void:
 	background.z_index = -1
 	background.material = _material
 	add_child(background)
+	# Bowls and lamps sit on the same layer, so the painting must draw first.
+	move_child(background, 0)
 	for child: Node in get_children():
-		if child is Polygon2D:
-			child.material = _material
-		elif child.has_meta("cut"):
+		if child.has_meta("cut"):
 			var cutout := _material.duplicate() as ShaderMaterial
 			cutout.set_shader_parameter("cut_mask", child.get_meta("cut"))
 			child.material = cutout
