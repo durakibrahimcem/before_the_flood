@@ -21,6 +21,10 @@ const FRIDGE := Vector2(1700, 720)
 const FRIDGE_REACH := 260.0
 const FRIDGE_PROMPT := "Press E for the calendar"
 const FRIDGE_PROMPT_SPOT := Vector2(1420, 470)
+const PLANT_PROMPT := "Press E to plant a tree"
+const PLANT_PROMPT_LIFT := Vector2(-150, -130)
+const PLANT_REACH := 125.0
+const PLANT_LINE := "A small tree. It will take years to grow."
 const PROMPT_FADE_PER_SECOND := 6.0
 ## A judge may only have minutes, so skipping opens up early.
 const SKIP_AFTER_ACTIONS := 2
@@ -40,7 +44,7 @@ var _seen_papers: Dictionary = {}
 var _wall_state: int = WorldState.Wall.NONE
 var _skipping := false
 var _verdict: TaskVerdict
-var _fridge_prompt: Label
+var _prompt: Label
 
 @onready var arda: Arda = $Arda
 @onready var time: TimeControl = $TimeControl
@@ -66,7 +70,7 @@ func _ready() -> void:
 	ending.hide()
 	_verdict = TaskVerdict.new()
 	add_child(_verdict)
-	_build_fridge_prompt()
+	_build_prompt()
 	enter_room("bedroom", Vector2.INF)
 	time.enabled = false
 	controls.open()
@@ -76,6 +80,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and can_open_calendar():
 		get_viewport().set_input_as_handled()
 		open_calendar()
+	elif event.is_action_pressed("interact") and planter_in_reach() >= 0:
+		get_viewport().set_input_as_handled()
+		plant_tree(planter_in_reach())
 	elif event.is_action_pressed("skip") and task != null and can_skip():
 		get_viewport().set_input_as_handled()
 		_skipping = true
@@ -92,20 +99,44 @@ func can_skip() -> bool:
 
 
 func _process(delta: float) -> void:
-	var goal := 1.0 if can_open_calendar() else 0.0
-	_fridge_prompt.modulate.a = move_toward(_fridge_prompt.modulate.a, goal, PROMPT_FADE_PER_SECOND * delta)
+	var at_fridge := can_open_calendar()
+	var at_planter := not at_fridge and planter_in_reach() >= 0
+	if at_fridge:
+		_prompt.text = FRIDGE_PROMPT
+		_prompt.position = FRIDGE_PROMPT_SPOT
+	elif at_planter:
+		_prompt.text = PLANT_PROMPT
+		_prompt.position = arda.position + PLANT_PROMPT_LIFT
+	var goal := 1.0 if at_fridge or at_planter else 0.0
+	_prompt.modulate.a = move_toward(_prompt.modulate.a, goal, PROMPT_FADE_PER_SECOND * delta)
 
 
-func _build_fridge_prompt() -> void:
-	_fridge_prompt = Label.new()
-	_fridge_prompt.text = FRIDGE_PROMPT
-	_fridge_prompt.position = FRIDGE_PROMPT_SPOT
-	_fridge_prompt.modulate.a = 0.0
-	_fridge_prompt.add_theme_font_size_override("font_size", 36)
-	_fridge_prompt.add_theme_color_override("font_color", Door.INK)
-	_fridge_prompt.add_theme_color_override("font_outline_color", Door.OUTLINE)
-	_fridge_prompt.add_theme_constant_override("outline_size", 10)
-	$Ui.add_child(_fridge_prompt)
+func _build_prompt() -> void:
+	_prompt = Label.new()
+	_prompt.modulate.a = 0.0
+	_prompt.add_theme_font_size_override("font_size", 36)
+	_prompt.add_theme_color_override("font_color", Door.INK)
+	_prompt.add_theme_color_override("font_outline_color", Door.OUTLINE)
+	_prompt.add_theme_constant_override("outline_size", 10)
+	$Ui.add_child(_prompt)
+
+
+## The empty planter Arda can reach today, or -1.
+func planter_in_reach() -> int:
+	if room.room_name != "street" or task != null or final_walk or not is_equal_approx(WorldClock.year, WorldClock.ERAS[0]):
+		return -1
+	var spots := WorldProps.SAPLING_SPOTS
+	for index: int in spots.size():
+		if not index in Run.planted and arda.position.distance_to(spots[index]) <= PLANT_REACH:
+			return index
+	return -1
+
+
+func plant_tree(index: int) -> void:
+	Run.planted.append(index)
+	Sfx.play("plant")
+	hint.text = PLANT_LINE
+	WorldClock.refresh()
 
 
 func can_open_calendar() -> bool:

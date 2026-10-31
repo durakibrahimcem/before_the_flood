@@ -115,9 +115,19 @@ func _draw_saplings() -> void:
 	var age := inverse_lerp(Sim.FIRST_YEAR, Sim.LAST_YEAR, state.year)
 	var care := clampf(state.dune / SAPLING_FULL_SHARE, 0.0, 1.0)
 	var size := lerpf(SAPLING_SIZE_MIN, SAPLING_SIZE_MAX, age * lerpf(SAPLING_BARE_GROWTH, 1.0, care))
-	for index: int in mini(state.saplings, SAPLING_SPOTS.size()):
+	for index: int in _grown_spots():
 		var spot := SAPLING_SPOTS[index]
 		draw_texture_rect(SAPLING, Rect2(spot.x - size * 0.5, spot.y - size, size, size), false)
+
+
+## The planters planted by hand, then as many more as the plan's care has filled.
+func _grown_spots() -> Array[int]:
+	var spots: Array[int] = Run.planted.duplicate()
+	var wanted := mini(state.saplings + spots.size(), SAPLING_SPOTS.size())
+	for index: int in SAPLING_SPOTS.size():
+		if spots.size() < wanted and not index in spots:
+			spots.append(index)
+	return spots
 
 
 func _draw_boards(openings: Array) -> void:

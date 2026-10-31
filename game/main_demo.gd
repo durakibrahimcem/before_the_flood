@@ -103,6 +103,8 @@ func _ready() -> void:
 	_check_verdicts()
 	await _check_view(main)
 	main.auto_tasks = false
+	await _check_characters(main)
+	await _check_planting(main)
 	await _check_flow(main)
 	await _check_outdoors(main)
 	print("DEMO PASS")
@@ -145,6 +147,58 @@ func _check_verdicts() -> void:
 	assert(TaskVerdict.entry_for(0.8)["word"] == "Great job!", "a strong task is great")
 	assert(TaskVerdict.entry_for(0.5)["word"] == "Good work.", "half is good")
 	assert(TaskVerdict.entry_for(0.0)["word"] == "That went badly.", "nothing done is bad")
+
+
+## Ebru's poses swap as Arda walks, and Ayla shares the salon's water.
+func _check_characters(main: Main) -> void:
+	WorldClock.scrub(2026.0)
+	main.enter_room("salon", Vector2(900, 700))
+	await _frames(2)
+	assert(main.arda.body_sprite.texture == Arda.IDLE, "Arda stands in the idle pose")
+	var poses := {}
+	Input.action_press("move_left")
+	for step: int in 40:
+		await _physics(1)
+		poses[main.arda.body_sprite.texture] = true
+	Input.action_release("move_left")
+	assert(poses.has(Arda.WALK[0]) and poses.has(Arda.WALK[1]), "the two walk poses swap")
+	await _physics(3)
+	assert(main.arda.body_sprite.texture == Arda.IDLE, "Arda stops in the idle pose")
+	var ayla: Ayla = main.room.get_node("Ayla")
+	assert(ayla.visible, "Ayla is home in 2026")
+	WorldClock.scrub(2050.0)
+	await _frames(1)
+	WorldClock.scrub(2026.0)
+	await _frames(1)
+	var feet: ShaderMaterial = ayla.get_child(0).material
+	assert(is_equal_approx(feet.get_shader_parameter("waterline"), 1.0), "Ayla stands dry in dry 2026")
+	WorldClock.scrub(2080.0)
+	await _frames(1)
+	assert(not ayla.visible, "Ayla is gone by 2080")
+	WorldClock.scrub(2026.0)
+	await _frames(1)
+
+
+## Planting is free: it uses no calendar slot and leaves the water alone.
+func _check_planting(main: Main) -> void:
+	Run.new_run()
+	WorldClock.scrub(2026.0)
+	var spot: Vector2 = WorldProps.SAPLING_SPOTS[0]
+	main.enter_room("street", spot + Vector2(0, 60))
+	await _frames(2)
+	assert(main.planter_in_reach() == 0, "a planter is in reach")
+	var level := Sim.at(Run.plan, 2080).water_m
+	main.plant_tree(main.planter_in_reach())
+	assert(Run.planted == [0] and Run.plan.total() == 0, "planting uses no calendar slot")
+	assert(Sim.at(Run.plan, 2080).water_m == level, "planting does not change the water")
+	assert(main.planter_in_reach() != 0, "a planted planter is full")
+	WorldClock.scrub(2050.0)
+	await _frames(1)
+	assert(main.planter_in_reach() == -1, "trees are planted today, not in the future")
+	WorldClock.scrub(2026.0)
+	await _frames(1)
+	Run.new_run()
+	assert(Run.planted.is_empty(), "a new run starts with empty planters")
 
 
 ## Keys, the skip rule and a peek at the future must all leave the player able to carry on.

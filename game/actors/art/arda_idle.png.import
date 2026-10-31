@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4xfk50l15j5w"
-path="res://.godot/imported/arda_placeholder.png-1a818cb6966f16c76e962fecaa051afa.ctex"
+uid="uid://buchd8mphr6gh"
+path="res://.godot/imported/arda_idle.png-80a9c33ba592fd5034952d3bfd569015.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://actors/arda_placeholder.png"
-dest_files=["res://.godot/imported/arda_placeholder.png-1a818cb6966f16c76e962fecaa051afa.ctex"]
+source_file="res://actors/art/arda_idle.png"
+dest_files=["res://.godot/imported/arda_idle.png-80a9c33ba592fd5034952d3bfd569015.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

@@ -36,7 +36,7 @@ const ZONES: Array[Dictionary] = [
 ]
 
 @export var switch_texture: Texture2D
-@export var walker_texture: Texture2D = preload("res://actors/arda_placeholder.png")
+@export var walker_texture: Texture2D = preload("res://actors/art/arda_idle.png")
 
 var walker: CharacterBody2D
 var switches_done := 0

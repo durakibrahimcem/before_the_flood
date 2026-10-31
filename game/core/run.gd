@@ -14,6 +14,8 @@ var plan: Plan = Plan.new()
 var day: int = 1
 var slots_left: int = SLOTS_PER_DAY
 var ghosts: Array[float] = []
+## Planters where the player planted a tree by hand. Free, and it never changes the water.
+var planted: Array[int] = []
 
 
 func _ready() -> void:
@@ -24,6 +26,7 @@ func new_run() -> void:
 	plan = Plan.new()
 	day = 1
 	slots_left = SLOTS_PER_DAY
+	planted.clear()
 	plan_changed.emit()
 	day_changed.emit(day)
 	WorldClock.scrub(WorldClock.ERAS[0])
