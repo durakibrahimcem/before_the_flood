@@ -3,6 +3,7 @@ config_version=5
 [application]
 
 config/name="Before the Flood"
+run/main_scene="res://water/flood_demo.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [autoload]
