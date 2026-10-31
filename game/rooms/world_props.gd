@@ -39,6 +39,7 @@ const REDRAW_PX := 0.25
 var state: WorldState
 var room: Room
 var _drawn_slide := 0.0
+var _saplings: Array[Sprite2D] = []
 
 
 func _ready() -> void:
@@ -46,6 +47,17 @@ func _ready() -> void:
 		z_index = -1
 	else:
 		position.y = STREET_SORT_Y
+		# Each sapling sorts with Arda on its own line, so he can stand behind or before it.
+		y_sort_enabled = true
+		for spot: Vector2 in SAPLING_SPOTS:
+			var sapling := Sprite2D.new()
+			sapling.texture = SAPLING
+			sapling.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+			sapling.centered = false
+			sapling.offset = -Vector2(SAPLING.get_width() * 0.5, SAPLING.get_height())
+			sapling.position = spot - Vector2(0.0, STREET_SORT_Y)
+			_saplings.append(sapling)
+			add_child(sapling)
 	WorldClock.year_changed.connect(_on_year_changed)
 	WorldClock.refresh()
 
@@ -53,6 +65,8 @@ func _ready() -> void:
 func _on_year_changed(new_state: WorldState) -> void:
 	state = new_state
 	queue_redraw()
+	if outdoor_room != "shore":
+		_update_saplings()
 
 
 func _process(_delta: float) -> void:
@@ -70,8 +84,6 @@ func _draw() -> void:
 		draw_set_transform(Vector2(_drawn_slide * DUNE_NEARNESS, 0.0))
 		_draw_dune()
 	else:
-		draw_set_transform(Vector2(0.0, -STREET_SORT_Y))
-		_draw_saplings()
 		draw_set_transform(Vector2(_drawn_slide * HOUSE_NEARNESS, -STREET_SORT_Y))
 		for home: String in HOME_OPENINGS:
 			if not state.home_alive.get(home, true):
@@ -109,15 +121,15 @@ func _draw_dune() -> void:
 			draw_line(spot, spot + Vector2(blade * 26.0, -30.0 - 40.0 * state.dune), DUNE_GRASS, 4.0)
 
 
-func _draw_saplings() -> void:
-	if float(state.flood_m.get("street", 0.0)) >= SAPLING_DROWNS_M:
-		return
+func _update_saplings() -> void:
+	var drowned := float(state.flood_m.get("street", 0.0)) >= SAPLING_DROWNS_M
 	var age := inverse_lerp(Sim.FIRST_YEAR, Sim.LAST_YEAR, state.year)
 	var care := clampf(state.dune / SAPLING_FULL_SHARE, 0.0, 1.0)
 	var size := lerpf(SAPLING_SIZE_MIN, SAPLING_SIZE_MAX, age * lerpf(SAPLING_BARE_GROWTH, 1.0, care))
-	for index: int in _grown_spots():
-		var spot := SAPLING_SPOTS[index]
-		draw_texture_rect(SAPLING, Rect2(spot.x - size * 0.5, spot.y - size, size, size), false)
+	var grown := _grown_spots()
+	for index: int in _saplings.size():
+		_saplings[index].visible = index in grown and not drowned
+		_saplings[index].scale = Vector2.ONE * size / SAPLING.get_height()
 
 
 ## The planters planted by hand, then as many more as the plan's care has filled.

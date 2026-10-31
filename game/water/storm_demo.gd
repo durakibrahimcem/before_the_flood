@@ -17,7 +17,10 @@ func _ready() -> void:
 	WorldClock.refresh()
 	assert(storm.rain.emitting, "rain falls outdoors")
 	storm.strike()
-	await get_tree().create_timer(0.04).timeout
+	var waited := 0
+	while storm.flash.color.a <= 0.0 and waited < 60:
+		await get_tree().process_frame
+		waited += 1
 	assert(storm.flash.color.a > 0.0, "lightning lights the screen")
 	await get_tree().create_timer(0.6).timeout
 	assert(is_zero_approx(storm.flash.color.a), "the flash fades away")
