@@ -34,27 +34,27 @@ spawn = Vector2(312.0, 640.0)
 position = Vector2(0, 574)
 texture = ExtResource("3")
 centered = false
-offset = Vector2(609, -127)
+offset = Vector2(581, -155)
 region_enabled = true
-region_rect = Rect2(609, 447, 196, 129)
+region_rect = Rect2(581, 419, 252, 185)
 metadata/cut = ExtResource("c0")
 
 [node name="NightstandRight" type="Sprite2D" parent="."]
 position = Vector2(0, 576)
 texture = ExtResource("3")
 centered = false
-offset = Vector2(1245, -237)
+offset = Vector2(1217, -265)
 region_enabled = true
-region_rect = Rect2(1245, 339, 193, 235)
+region_rect = Rect2(1217, 311, 249, 291)
 metadata/cut = ExtResource("c1")
 
 [node name="Bed" type="Sprite2D" parent="."]
 position = Vector2(0, 846)
 texture = ExtResource("3")
 centered = false
-offset = Vector2(659, -595)
+offset = Vector2(631, -623)
 region_enabled = true
-region_rect = Rect2(659, 251, 697, 594)
+region_rect = Rect2(631, 223, 753, 650)
 metadata/cut = ExtResource("c2")
 
 [node name="LampOn" type="Sprite2D" parent="."]

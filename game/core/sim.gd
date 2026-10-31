@@ -66,6 +66,7 @@ static func outcome(plan: Plan) -> Dictionary:
 	return {
 		"homes": homes,
 		"depth_2050": depth_2050,
+		"level_2050": at(plan, 2050).water_m,
 		"depth_2080": depth_2080,
 		"peak_m": peak,
 		"breach_year": breach_year(plan),

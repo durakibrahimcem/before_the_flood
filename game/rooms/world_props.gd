@@ -29,10 +29,17 @@ const DUNE_STEP_PX := 120
 const DUNE_FILL := Color("eadba9")
 const DUNE_MARK := Color("dcc896")
 const DUNE_GRASS := Color("8fa97a")
+## Parallax depth of what is drawn here: the planters and houses, the sea, and the dune.
+const STREET_NEARNESS := 0.13
+const MEADOW_NEARNESS := 0.2
+const DUNE_NEARNESS := 0.85
+const REDRAW_PX := 0.5
 
 @export var outdoor_room: String = "shore"
 
 var state: WorldState
+var room: Room
+var _drawn_px := Vector2.ZERO
 
 
 func _ready() -> void:
@@ -49,14 +56,23 @@ func _on_year_changed(new_state: WorldState) -> void:
 	queue_redraw()
 
 
+func _process(_delta: float) -> void:
+	var view := room.parallax_px(1.0)
+	if view.distance_to(_drawn_px) >= REDRAW_PX:
+		_drawn_px = view
+		queue_redraw()
+
+
 func _draw() -> void:
 	if state == null:
 		return
 	if outdoor_room == "shore":
+		draw_set_transform(_drawn_px * MEADOW_NEARNESS)
 		_draw_meadow()
+		draw_set_transform(_drawn_px * DUNE_NEARNESS)
 		_draw_dune()
 	else:
-		draw_set_transform(Vector2(0.0, -STREET_SORT_Y))
+		draw_set_transform(Vector2(0.0, -STREET_SORT_Y) + _drawn_px * STREET_NEARNESS)
 		_draw_saplings()
 		for home: String in HOME_OPENINGS:
 			if not state.home_alive.get(home, true):

@@ -45,7 +45,7 @@ static func check(rows: Array[Dictionary]) -> Array[Dictionary]:
 		if action != "wall":
 			checks.append(_rule("%s appears in a full save" % action, best.any(func(r: Dictionary) -> bool: return r["plan"][action] > 0), ""))
 	checks.append(_rule("No full save uses a wall", not best.any(func(r: Dictionary) -> bool: return r["plan"]["wall"] > 0), ""))
-	checks.append(_rule("Walls beat no walls in 2050", _median(walls, "depth_2050") < _median(others, "depth_2050"), ""))
+	checks.append(_rule("Walls beat no walls in 2050", _median(walls, "level_2050") < _median(others, "level_2050"), ""))
 	checks.append(_rule("Walls lose to no walls in 2080", _median(walls, "depth_2080") > _median(others, "depth_2080"), ""))
 	var six := Plan.new()
 	six.counts["wall"] = Plan.SLOTS

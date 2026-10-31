@@ -48,7 +48,9 @@ func _physics_process(delta: float) -> void:
 		_step(depth)
 	if direction.x != 0.0:
 		body_sprite.flip_h = direction.x < 0.0
-	body_sprite.position.y = -absf(sin(_walked * BOB_SPEED)) * BOB_HEIGHT
+	body_sprite.position = Vector2(0.0, -absf(sin(_walked * BOB_SPEED)) * BOB_HEIGHT)
+	if room != null:
+		body_sprite.position += room.parallax_px(room.nearness_at(global_position))
 	_set_waterline(depth)
 
 

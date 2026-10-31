@@ -43,36 +43,36 @@ spawn = Vector2(804.0, 619.1)
 position = Vector2(0, 1006)
 texture = ExtResource("3")
 centered = false
-offset = Vector2(112, -407)
+offset = Vector2(84, -435)
 region_enabled = true
-region_rect = Rect2(112, 599, 567, 421)
+region_rect = Rect2(84, 571, 623, 477)
 metadata/cut = ExtResource("c0")
 
 [node name="Table" type="Sprite2D" parent="."]
 position = Vector2(0, 1044)
 texture = ExtResource("3")
 centered = false
-offset = Vector2(1074, -298)
+offset = Vector2(1046, -326)
 region_enabled = true
-region_rect = Rect2(1074, 746, 705, 297)
+region_rect = Rect2(1046, 718, 761, 353)
 metadata/cut = ExtResource("c1")
 
 [node name="Counter" type="Sprite2D" parent="."]
 position = Vector2(0, 620)
 texture = ExtResource("3")
 centered = false
-offset = Vector2(1248, -200)
+offset = Vector2(1220, -228)
 region_enabled = true
-region_rect = Rect2(1248, 420, 568, 347)
+region_rect = Rect2(1220, 392, 624, 403)
 metadata/cut = ExtResource("c2")
 
 [node name="Fridge" type="Sprite2D" parent="."]
 position = Vector2(0, 776)
 texture = ExtResource("3")
 centered = false
-offset = Vector2(1815, -491)
+offset = Vector2(1787, -519)
 region_enabled = true
-region_rect = Rect2(1815, 285, 101, 516)
+region_rect = Rect2(1787, 257, 133, 572)
 metadata/cut = ExtResource("c3")
 
 [node name="BowlsFull" type="Sprite2D" parent="."]

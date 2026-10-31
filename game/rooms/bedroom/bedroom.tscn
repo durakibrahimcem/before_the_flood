@@ -35,36 +35,36 @@ spawn = Vector2(1253.0, 640.0)
 position = Vector2(0, 636)
 texture = ExtResource("3")
 centered = false
-offset = Vector2(7, -276)
+offset = Vector2(0, -304)
 region_enabled = true
-region_rect = Rect2(7, 360, 146, 275)
+region_rect = Rect2(0, 332, 181, 331)
 metadata/cut = ExtResource("c0")
 
 [node name="Bed" type="Sprite2D" parent="."]
 position = Vector2(0, 594)
 texture = ExtResource("3")
 centered = false
-offset = Vector2(44, -355)
+offset = Vector2(16, -383)
 region_enabled = true
-region_rect = Rect2(44, 239, 607, 358)
+region_rect = Rect2(16, 211, 663, 414)
 metadata/cut = ExtResource("c1")
 
 [node name="Tub" type="Sprite2D" parent="."]
 position = Vector2(0, 570)
 texture = ExtResource("3")
 centered = false
-offset = Vector2(1463, -175)
+offset = Vector2(1435, -203)
 region_enabled = true
-region_rect = Rect2(1463, 395, 336, 186)
+region_rect = Rect2(1435, 367, 392, 242)
 metadata/cut = ExtResource("c2")
 
 [node name="Wardrobe" type="Sprite2D" parent="."]
 position = Vector2(0, 912)
 texture = ExtResource("3")
 centered = false
-offset = Vector2(1785, -712)
+offset = Vector2(1757, -740)
 region_enabled = true
-region_rect = Rect2(1785, 200, 135, 712)
+region_rect = Rect2(1757, 172, 163, 768)
 metadata/cut = ExtResource("c3")
 
 [node name="LampOn" type="Sprite2D" parent="."]

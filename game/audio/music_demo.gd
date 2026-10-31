@@ -69,7 +69,7 @@ func _check_2026() -> void:
 
 
 func _check_2080_damaged() -> void:
-	# The empty plan floods the salon to 1.26 m: severity 1, still above water.
+	# The empty plan floods the salon to 0.91 m: severity 1, still above water.
 	_expect("melody", 0.0)
 	_expect("harmony", 0.0)
 	_expect("low", 0.0)

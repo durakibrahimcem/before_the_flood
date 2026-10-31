@@ -3,7 +3,8 @@ extends RefCounted
 ## Picks the front page for a plan. The lead story points at the best fix.
 
 const PATH := "res://data/newspapers.json"
-const TIERS: Array[float] = [0.25, 0.75]
+## Storm water levels that split the stories into mild, serious and deep.
+const TIERS: Array[float] = [1.55, 2.05]
 const WALL_CLUE_ERA := 2080
 
 static var _papers: Array = []
@@ -14,7 +15,7 @@ static var _clues: Dictionary = {}
 static func pick(plan: Plan, era: int) -> Dictionary:
 	_load()
 	var fix := fix_key(plan)
-	var tier := tier_of(Sim.at(plan, era).flood_m["salon"])
+	var tier := tier_of(Sim.at(plan, era).water_m)
 	var found: Dictionary = {}
 	for paper: Dictionary in _papers:
 		if int(paper["era"]) == era and paper["fix"] == fix:
@@ -52,8 +53,8 @@ static func fix_key(plan: Plan) -> String:
 	return fix if fix != "" else "none"
 
 
-static func tier_of(depth_m: float) -> int:
+static func tier_of(level_m: float) -> int:
 	for index: int in TIERS.size():
-		if depth_m < TIERS[index]:
+		if level_m < TIERS[index]:
 			return index
 	return TIERS.size()

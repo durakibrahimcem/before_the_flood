@@ -17,8 +17,10 @@ uniform float creep_m = 0.05;
 uniform float quality = 2.0;
 // Outdoors there is no wall to meet the reflection, so it fades in over this much of the picture.
 uniform float mirror_soft = 0.001;
+// Parallax: how far a pixel at full nearness slides, in uv. Depth lives in the height map's blue.
+uniform vec2 view_shift = vec2(0.0);
 uniform vec3 shallow_color = vec3(0.45, 0.70, 0.71);
-uniform vec3 deep_color = vec3(0.06, 0.26, 0.35);
+uniform vec3 deep_color = vec3(0.1, 0.34, 0.42);
 
 const float OBJECT_FULL_M = 2.5;
 
@@ -40,6 +42,15 @@ float height_at(vec2 uv) {
 	return map.r * OBJECT_FULL_M + tilt;
 }
 
+// Finds which point of the painting belongs at this spot on screen. Two passes keep object edges
+// clean, and the paper edge stays put.
+vec2 parallax(vec2 uv) {
+	vec2 edge = min(uv, 1.0 - uv);
+	vec2 shift = view_shift * smoothstep(0.004, 0.03, min(edge.x, edge.y));
+	vec2 found = uv - shift * texture(height_map, uv).b;
+	return uv - shift * texture(height_map, found).b;
+}
+
 vec3 with_age(vec2 uv, vec3 color) {
 	vec4 cared = texture(aged_cared, uv);
 	vec4 damaged = texture(aged_damaged, uv);
@@ -48,8 +59,8 @@ vec3 with_age(vec2 uv, vec3 color) {
 }
 
 void fragment() {
-	vec2 uv = UV;
-	COLOR.a *= texture(cut_mask, uv).a;
+	vec2 uv = parallax(UV);
+	COLOR.a = texture(TEXTURE, uv).a * texture(cut_mask, uv).a;
 	float active = smoothstep(0.0, 0.03, flood_m);
 	float level = flood_m + waves(uv, TIME) * 0.012 * active;
 	float depth = level - height_at(uv);
@@ -75,7 +86,7 @@ void fragment() {
 		vec3 under = with_age(uv + ripple, texture(TEXTURE, uv + ripple).rgb);
 		float absorb = 1.0 - exp(-depth * 1.5);
 		vec3 water = mix(shallow_color, deep_color, absorb);
-		vec3 color = mix(under, water, 0.30 + 0.55 * absorb);
+		vec3 color = mix(under, water, 0.22 + 0.42 * absorb);
 		if (quality > 0.5) {
 			float line_y = floor_line - level / wall_m_per_uv;
 			vec2 mirror = vec2(uv.x + ripple.x * 2.0, 2.0 * line_y - uv.y + ripple.y);

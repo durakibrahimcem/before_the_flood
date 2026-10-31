@@ -23,8 +23,8 @@ const ERA_YEARS: Array[float] = [2026.0, 2050.0, 2080.0]
 const DETUNE_FROM := 0.6
 const DETUNE_TO := 0.9
 ## Flood water past Arda's head blends the stems into their low passed copies.
-const MUFFLE_FROM_M := 1.3
-const MUFFLE_TO_M := 1.55
+const MUFFLE_FROM_M := 0.95
+const MUFFLE_TO_M := 1.20
 
 ## -79 dB instead of -80: the synchronized stream stops advancing sub-streams
 ## at the -80 dB cutoff, so silent stems would freeze and come back off beat.

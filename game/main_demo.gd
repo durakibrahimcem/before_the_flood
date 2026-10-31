@@ -27,7 +27,7 @@ func _ready() -> void:
 	await _frames(2)
 	assert(is_equal_approx(WorldClock.year, 2080.0), "tap jumps to 2080")
 	var deep := main.room.flood_m
-	assert(is_equal_approx(snappedf(deep, 0.001), 1.261), "room depth matches the simulation, got %f" % deep)
+	assert(is_equal_approx(snappedf(deep, 0.001), 0.911), "room depth matches the simulation, got %f" % deep)
 
 	var start: Vector2 = main.arda.position
 	Input.action_press("move_left")

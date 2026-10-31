@@ -15,6 +15,9 @@ const LAST_YEAR := 2080.0
 const RIPPLE_SLOTS := 8
 const RIPPLE_SECONDS := 1.3
 const OUTDOOR_ROOMS := ["street", "shore"]
+## The strongest parallax slide, in pixels, for something right at the viewer.
+const PARALLAX_PX := Vector2(18.0, 7.0)
+const PARALLAX_EASE := 4.0
 const OUTDOOR_MIRROR_SOFT := 0.09
 const INDOOR_MIRROR_SOFT := 0.001
 
@@ -34,6 +37,9 @@ var _material: ShaderMaterial
 var _object_materials: Array[ShaderMaterial] = []
 var _height_image: Image
 var _ripples: Array[Vector3] = []
+var _view_px := Vector2.ZERO
+var _lamps: Array[Sprite2D] = []
+var _lamp_depths: Array[float] = []
 
 
 func _ready() -> void:
@@ -70,6 +76,7 @@ func _ready() -> void:
 	if room_name in OUTDOOR_ROOMS:
 		var props := WorldProps.new()
 		props.outdoor_room = room_name
+		props.room = self
 		add_child(props)
 	if room_name == "shore":
 		var wall := ShoreWall.new()
@@ -86,6 +93,11 @@ func _ready() -> void:
 		add_child(marks)
 	_height_image = height.get_image()
 	_height_image.decompress()
+	for lamp: String in ["LampOn", "LampOff"]:
+		if has_node(lamp):
+			var sprite: Sprite2D = get_node(lamp)
+			_lamps.append(sprite)
+			_lamp_depths.append(nearness_at(sprite.get_rect().get_center()))
 	WorldClock.year_changed.connect(_on_year_changed)
 	WorldClock.refresh()
 
@@ -125,7 +137,35 @@ func ripple_count() -> int:
 	return _ripples.size()
 
 
+## The slide for a depth, in pixels. Drawn things that skip the flood shader use it to keep up.
+func parallax_px(nearness: float) -> Vector2:
+	return _view_px * nearness
+
+
+## How near the viewer a room position sits, from 0 at the far wall to 1 at the front.
+func nearness_at(point: Vector2) -> float:
+	var uv := (point / ROOM_SIZE).clamp(Vector2.ZERO, Vector2.ONE)
+	var size := _height_image.get_size()
+	return _height_image.get_pixel(mini(int(uv.x * size.x), size.x - 1), mini(int(uv.y * size.y), size.y - 1)).b
+
+
+## The view drifts opposite to the walker, so near things slide further than far ones.
+func _update_view(delta: float) -> void:
+	var walker := get_tree().get_first_node_in_group("walker") as Node2D
+	var target := Vector2.ZERO
+	if walker != null and not Settings.calm_storm:
+		target = (Vector2(0.5, 0.5) - walker.global_position / ROOM_SIZE) * 2.0 * PARALLAX_PX
+	_view_px = _view_px.lerp(target, 1.0 - exp(-PARALLAX_EASE * delta))
+	var shift := _view_px / ROOM_SIZE
+	_material.set_shader_parameter("view_shift", shift)
+	for object_material: ShaderMaterial in _object_materials:
+		object_material.set_shader_parameter("view_shift", shift)
+	for index: int in _lamps.size():
+		_lamps[index].position = parallax_px(_lamp_depths[index])
+
+
 func _process(delta: float) -> void:
+	_update_view(delta)
 	var was_active := not _ripples.is_empty()
 	var still_alive: Array[Vector3] = []
 	for ring: Vector3 in _ripples:

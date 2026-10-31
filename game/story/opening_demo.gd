@@ -24,7 +24,7 @@ func _ready() -> void:
 	await _frames(3)
 	assert(is_equal_approx(WorldClock.year, 2080.0), "the drawing opens 2080")
 	assert(main.newspaper.visible, "the paper pops up")
-	assert(main.room.flood_m > 1.0, "the bedroom is flooded")
+	assert(main.room.flood_m > 0.5, "the bedroom is flooded")
 	main.newspaper._close()
 	await _frames(2)
 	assert(main.hint.text.begins_with("This is what happens"), "the hint teaches the way back")
