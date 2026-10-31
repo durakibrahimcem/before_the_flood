@@ -19,7 +19,7 @@
   "severity_full_m": 1.20,
   "world_per_meet": 0.12,
   "world_per_light": 0.04,
-  "world_max": 0.30,
+  "world_max": 0.20,
   "cover_base": 0.50,
   "cover_first": 0.35,
   "cover_second": 0.15,
