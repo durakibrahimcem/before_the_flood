@@ -1,0 +1,10 @@
+{
+	"worries": [
+		{"topic": "cost", "worry": "Money is tight for us. Seedlings and tools sound dear.", "answers": ["We can share ours. Cuttings cost almost nothing.", "The park got new benches last spring.", "There is always money for what matters."], "right_reply": "Shared tools, then. That we can do.", "wrong_reply": "Perhaps. We will see how spring goes."},
+		{"topic": "one-street", "worry": "It is one small street. Would it truly change anything?", "answers": ["Streets copy the street next door. Ours can start it.", "Two streets over, they repainted their fences.", "If nobody starts, nobody ever will."], "right_reply": "If it spreads... all right. We will try.", "wrong_reply": "Maybe so. It still feels small to us."},
+		{"topic": "age", "worry": "We are not young now. Digging and lifting is too much.", "answers": ["We will take the heavy parts. You could water the pots.", "The soil on this street is soft and light.", "A little garden work would do you good."], "right_reply": "Watering we can manage. Thank you.", "wrong_reply": "We will watch from the window for now."},
+		{"topic": "distance", "worry": "We live far from the sea. Let the shore streets worry.", "answers": ["Storms reach further inland now. The bay holds us all.", "The shore streets do get the worst of it.", "Everyone must do their part, near or far."], "right_reply": "The whole bay... we had not thought of that.", "wrong_reply": "Far is far. But we will think on it."},
+		{"topic": "disruption", "worry": "Diggers and mud for weeks? We just redid our front path.", "answers": ["One corner at a time, and we keep your path clear.", "The children here love watching the diggers.", "A little mud never hurt anyone."], "right_reply": "Keep the path clear, and we are easy.", "wrong_reply": "Let us hope the mud settles quickly."},
+		{"topic": "distrust", "worry": "We signed a petition once. Nothing came of it.", "answers": ["Come watch the first day. You will see it with your own eyes.", "The new drain covers do look sturdy.", "You cannot give up after one try."], "right_reply": "Seeing is believing. We will come by.", "wrong_reply": "Words are easy. We have heard many."}
+	]
+}
