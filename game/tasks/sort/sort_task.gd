@@ -5,7 +5,8 @@ extends Task
 const BASE_ITEMS := 8
 const KINDS: Array[String] = ["plastic", "paper", "glass", "metal"]
 const ITEM_SCENE: PackedScene = preload("res://tasks/sort/sort_item.tscn")
-const FIELD := Rect2(340.0, 540.0, 1240.0, 340.0)
+## The pavement and road beside Ebru's bins, near enough for a full round in the time.
+const FIELD := Rect2(120.0, 590.0, 900.0, 320.0)
 const ITEM_GAP := 90.0
 const WALKER_CLEARANCE := 170.0
 const WALKER_START := Vector2(960, 980)
@@ -17,6 +18,9 @@ const ITEM_GROUP := "sort_item"
 const WALKER_GROUP := "walker"
 const LABEL_WIDTH := 200.0
 const LABEL_LIFT := Vector2(-100.0, -90.0)
+const VERDICT_LIFT := Vector2(-100.0, -120.0)
+const VERDICT_RIGHT := Color(0.72, 0.95, 0.6)
+const VERDICT_WRONG := Color(1.0, 0.72, 0.6)
 
 @export var seconds := 25.0
 ## 0 randomizes the layout each run; a nonzero seed makes it repeatable.
@@ -82,6 +86,15 @@ func _physics_process(delta: float) -> void:
 	time_left = maxf(time_left - delta, 0.0)
 	if time_left <= 0.0 or (_items_left() == 0 and _carried() == ""):
 		_end()
+
+
+func debug_note() -> String:
+	var item := Vector2(-1, -1)
+	for child: Node in get_children():
+		if child is SortItem and not child.is_queued_for_deletion():
+			item = (child as SortItem).position
+			break
+	return "%d %d %s %d %d" % [sorted_correct, total_items, _carried() if _carried() != "" else "none", item.x, item.y]
 
 
 func _end() -> void:
@@ -216,11 +229,36 @@ func _on_bin_touched(_body: Node2D, bin: SortBin) -> void:
 	var carried := _carried()
 	if carried == "":
 		return
-	if carried == bin.kind:
+	var correct := carried == bin.kind
+	if correct:
 		sorted_correct += 1
-	Sfx.play("drop")
+	Sfx.play("drop" if correct else "knock")
 	_set_carried("")
 	_update_carried_label()
+	_show_verdict(bin, correct)
+
+
+## The painted bins cannot react, so a short word rises from the bin that was used.
+func _show_verdict(bin: SortBin, correct: bool) -> void:
+	var label := Label.new()
+	label.text = "+1" if correct else "Wrong bin"
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.custom_minimum_size = Vector2(LABEL_WIDTH, 34.0)
+	label.pivot_offset = Vector2(LABEL_WIDTH * 0.5, 17.0)
+	label.position = bin.position + VERDICT_LIFT
+	var settings := LabelSettings.new()
+	settings.font_size = 34
+	settings.font_color = VERDICT_RIGHT if correct else VERDICT_WRONG
+	settings.outline_size = 10
+	settings.outline_color = Color(0.13, 0.11, 0.09, 0.9)
+	label.label_settings = settings
+	add_child(label)
+	label.scale = Vector2(1.4, 1.4)
+	var tween := create_tween().bind_node(label).set_parallel(true)
+	tween.tween_property(label, "scale", Vector2.ONE, 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(label, "position:y", label.position.y - 46.0, 0.9).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.tween_property(label, "modulate:a", 0.0, 0.3).set_delay(0.6)
+	tween.chain().tween_callback(label.queue_free)
 
 
 func _build_carried_label() -> void:

@@ -83,6 +83,7 @@ func _ready() -> void:
 	assert(main.room.flood_m > 0.0, "the sea is at the shore")
 	assert(main.room.depth_at(Vector2(960, 300)) > main.room.depth_at(Vector2(960, 1000)), "the sea is deeper than the beach")
 	await _walk_every_door(main)
+	await _check_outdoors(main)
 	print("DEMO PASS")
 	get_tree().quit()
 
@@ -116,6 +117,68 @@ func _walk_every_door(main: Main) -> void:
 	await _physics(40)
 	Input.action_release("move_right")
 	assert(main.arda.position.x < 1830.0, "the fridge stops Arda, got x %f" % main.arda.position.x)
+
+
+## Plays Ebru's street and shore on foot: Arda shrinks to fit them, so every reach is checked with real physics.
+func _check_outdoors(main: Main) -> void:
+	WorldClock.scrub(2026.0)
+	main.enter_room("street", Vector2(702, 460))
+	await _frames(2)
+	assert(main.arda.height_m * main.arda.pixels_per_metre < 110.0, "Arda fits the painted door")
+	assert(main.room.has_node("Home") and main.room.has_node("Neighbour"), "the street has the family's home and one neighbour")
+	Input.action_press("move_up")
+	await _physics(30)
+	Input.action_release("move_up")
+	assert(main.room.room_name == "salon", "the painted door leads home, got %s" % main.room.room_name)
+
+	main.auto_tasks = false
+	main.pending_action = "sort"
+	main.enter_room("street", Vector2(177, 600))
+	await _frames(2)
+	var sort := main.task as SortTask
+	assert(sort != null, "the sort task starts on the street")
+	main.arda.carried = "paper"
+	Input.action_press("move_up")
+	await _physics(40)
+	Input.action_release("move_up")
+	assert(sort.sorted_correct == 1, "Arda reaches the painted paper bin, got %d" % sort.sorted_correct)
+	sort.running = false
+	await _leave_task(main)
+
+	main.pending_action = "meet"
+	main.enter_room("street", Vector2(1581, 560))
+	await _frames(2)
+	var meeting := main.task as Meeting
+	assert(meeting != null, "the meeting starts on the street")
+	Input.action_press("move_up")
+	await _physics(40)
+	Input.action_release("move_up")
+	assert(main.arda.position.distance_to(meeting.active_mat()) <= Meeting.KNOCK_RADIUS, "Arda reaches the neighbours' mat")
+	meeting.state = Meeting.State.IDLE
+	await _leave_task(main)
+
+	Run.new_run()
+	Run.plan.counts["wall"] = 1
+	main.enter_room("shore", Vector2(960, 700))
+	await _frames(2)
+	var wall: ShoreWall = main.room.get_node("ShoreWall")
+	assert(wall.visible and wall.texture == ShoreWall.TEXTURES[WorldState.Wall.STANDING], "the wall stands in 2026")
+	Input.action_press("move_up")
+	await _physics(40)
+	Input.action_release("move_up")
+	assert(main.arda.position.y > ShoreWall.FOOT_Y, "the wall stops Arda, got y %f" % main.arda.position.y)
+	WorldClock.scrub(2080.0)
+	await _frames(1)
+	assert(wall.texture == ShoreWall.TEXTURES[WorldState.Wall.BREACHED], "the wall is broken by 2080")
+	Run.new_run()
+	WorldClock.scrub(2026.0)
+	await _frames(1)
+	assert(not wall.visible, "a plan with no wall shows no wall")
+
+
+func _leave_task(main: Main) -> void:
+	main.task.complete(0.0)
+	await _frames(3)
 
 
 func _frames(count: int) -> void:

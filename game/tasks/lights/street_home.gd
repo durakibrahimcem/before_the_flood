@@ -1,60 +1,42 @@
 class_name StreetHome
 extends Node2D
-## One home on the night street, with two warm windows that can go dark.
+## The lit windows of one home on Ebru's night street. They can go dark.
 
-const BODY_COLOR := Color(0.3, 0.28, 0.34)
-const ROOF_COLOR := Color(0.22, 0.2, 0.28)
-const DOOR_COLOR := Color(0.15, 0.13, 0.19)
 const WINDOW_LIT := Color(1.0, 0.86, 0.6, 0.95)
+const GLOW := Color(1.0, 0.8, 0.5, 0.2)
+const GLOW_GROW := 18.0
 ## Multiplies the lit colour down to night. Tweening a polygon's own colour rebuilds its buffers
 ## every frame, which floods WebGL with errors.
 const WINDOW_DARK := Color(0.1, 0.14, 0.33)
+const GLOW_OFF := Color(1.0, 1.0, 1.0, 0.0)
 const DARK_SECONDS := 0.7
-const WINDOW_RECTS: Array[Rect2] = [
-	Rect2(-134, -244, 66, 58),
-	Rect2(68, -244, 66, 58),
-]
 
-@export var home_texture: Texture2D
+var window_rects: Array[Rect2] = []
 
-var _body: Node2D
 var _windows: Array[Polygon2D] = []
+var _glows: Array[Polygon2D] = []
 var _tween: Tween
 
 
 func _ready() -> void:
-	if home_texture != null:
-		var sprite := Sprite2D.new()
-		sprite.texture = home_texture
-		sprite.centered = false
-		sprite.offset = -Vector2(float(home_texture.get_width()) / 2.0, float(home_texture.get_height()))
-		_body = sprite
-		add_child(_body)
-	else:
-		_body = _polygon(PackedVector2Array([
-			Vector2(-172, 0), Vector2(168, -2), Vector2(164, -282), Vector2(-166, -278),
-		]), BODY_COLOR)
-		add_child(_body)
-		add_child(_polygon(PackedVector2Array([
-			Vector2(-212, -276), Vector2(208, -278), Vector2(6, -424),
-		]), ROOF_COLOR))
-		add_child(_polygon(PackedVector2Array([
-			Vector2(-28, 0), Vector2(28, 0), Vector2(24, -98), Vector2(-24, -96),
-		]), DOOR_COLOR))
-	for rect: Rect2 in WINDOW_RECTS:
+	for rect: Rect2 in window_rects:
+		var glow := _polygon(SalonZone.wobbly_rect(rect.grow(GLOW_GROW), 34.0), GLOW)
+		_glows.append(glow)
+		add_child(glow)
 		var window := _polygon(SalonZone.wobbly_rect(rect, 26.0), WINDOW_LIT)
 		_windows.append(window)
 		add_child(window)
 
 
-## The windows cool to night, and the body dims a little. Kill before recreate.
+## The windows cool to night. Kill before recreate.
 func go_dark() -> void:
 	if _tween != null and _tween.is_valid():
 		_tween.kill()
 	_tween = create_tween().set_parallel(true)
 	for window: Polygon2D in _windows:
 		_tween.tween_property(window, "modulate", WINDOW_DARK, DARK_SECONDS).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
-	_tween.tween_property(_body, "modulate", Color(0.8, 0.8, 0.86), DARK_SECONDS).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	for glow: Polygon2D in _glows:
+		_tween.tween_property(glow, "modulate", GLOW_OFF, DARK_SECONDS).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 
 
 func _polygon(points: PackedVector2Array, color: Color) -> Polygon2D:

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://tasks/sort/sort_bin.gd" id="1"]
 
 [sub_resource type="RectangleShape2D" id="bin_shape"]
-size = Vector2(120, 170)
+size = Vector2(80, 84)
 
 [node name="SortBin" type="Area2D"]
 script = ExtResource("1")

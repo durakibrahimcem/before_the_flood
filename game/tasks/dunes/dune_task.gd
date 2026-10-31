@@ -6,30 +6,12 @@ const BASE_SPOTS := 5
 const PLANT_RADIUS := 70.0
 const MARGIN := 36.0
 const HINT := "Plant grass where the sand blows."
-const SAND_FILL := Color(0.87, 0.73, 0.51)
-const SAND_LINE := Color(0.55, 0.42, 0.26)
-const SAND_RIDGE := Color(0.55, 0.42, 0.26, 0.22)
 ## Fixed spot pool; the last entry covers target_count at repeat 5.
 const SPOT_POOL: Array[Vector2] = [
-	Vector2(280, 640), Vector2(620, 720), Vector2(960, 600), Vector2(1290, 760),
-	Vector2(1640, 660), Vector2(450, 820), Vector2(1050, 800), Vector2(1420, 560),
+	Vector2(280, 640), Vector2(620, 720), Vector2(960, 640), Vector2(1290, 760),
+	Vector2(1640, 660), Vector2(450, 820), Vector2(1050, 800), Vector2(1420, 630),
 	Vector2(820, 690), Vector2(1720, 800), Vector2(180, 780), Vector2(1180, 660),
 ]
-const CREST: Array[Vector2] = [
-	Vector2(0, 615), Vector2(160, 560), Vector2(320, 640), Vector2(480, 545),
-	Vector2(640, 605), Vector2(800, 650), Vector2(960, 555), Vector2(1120, 630),
-	Vector2(1280, 540), Vector2(1440, 600), Vector2(1600, 645), Vector2(1760, 565),
-	Vector2(1920, 610),
-]
-const RIDGE_1: Array[Vector2] = [
-	Vector2(320, 750), Vector2(640, 715), Vector2(960, 665), Vector2(1280, 650),
-	Vector2(1600, 755),
-]
-const RIDGE_2: Array[Vector2] = [
-	Vector2(480, 830), Vector2(800, 880), Vector2(1120, 860), Vector2(1440, 835),
-]
-
-@export var dune_texture: Texture2D
 @export var spot_texture: Texture2D
 @export var plant_texture: Texture2D
 ## The real run lasts about 25 seconds; demos shorten it for a quick poor run.
@@ -55,6 +37,10 @@ func complete(performance: float) -> void:
 	super.complete(performance)
 
 
+func debug_note() -> String:
+	return "%d %d" % [planted_count, _total]
+
+
 func _begin() -> void:
 	_claim_walker()
 	var wanted := target_count(BASE_SPOTS)
@@ -72,7 +58,6 @@ func _begin() -> void:
 	_time_left = time_limit
 	_was_interact_pressed = false
 	set_physics_process(true)
-	queue_redraw()
 
 
 func _physics_process(delta: float) -> void:
@@ -147,16 +132,3 @@ func _show_hint() -> void:
 	fade.tween_interval(5.0)
 	fade.tween_property(hint, "modulate:a", 0.0, 1.0)
 	fade.tween_callback(hint.queue_free)
-
-
-func _draw() -> void:
-	if dune_texture != null:
-		draw_texture_rect(dune_texture, Rect2(0, 0, 1920, 1080), false)
-		return
-	var band := PackedVector2Array(CREST)
-	band.append(Vector2(1920, 1080))
-	band.append(Vector2(0, 1080))
-	draw_colored_polygon(band, SAND_FILL)
-	draw_polyline(PackedVector2Array(CREST), SAND_LINE, 5.0)
-	draw_polyline(PackedVector2Array(RIDGE_1), SAND_RIDGE, 3.0)
-	draw_polyline(PackedVector2Array(RIDGE_2), SAND_RIDGE, 3.0)

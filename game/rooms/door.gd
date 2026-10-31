@@ -5,7 +5,7 @@ extends Area2D
 ## sits at the old room's coordinates, where it could touch a door here by accident.
 const SETTLE_STEPS := 2
 const PLACE_NAMES := {
-	"bedroom": "Arda's room", "aylin": "Aylin's room", "salon": "Salon", "street": "Street", "shore": "Shore",
+	"bedroom": "Arda's room", "aylin": "Ayla's room", "salon": "Salon", "street": "Street", "shore": "Shore",
 }
 const LABEL_REACH_PX := 230.0
 const LABEL_FADE_PER_SECOND := 6.0

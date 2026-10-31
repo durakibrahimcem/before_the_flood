@@ -10,9 +10,9 @@ func _ready() -> void:
 	add_child(panel)
 	await _frames(2)
 
-	assert(_value(panel, "Homes").text == "3 of 3", "every home stands in 2026")
+	assert(_value(panel, "Homes").text == "2 of 2", "every home stands in 2026")
 	assert(_value(panel, "Flood").text == "dry", "the salon is dry in 2026")
-	assert(_value(panel, "Neighbours").text == "2 of 2", "both neighbours stay in 2026")
+	assert(_value(panel, "Neighbours").text == "yes", "the neighbours stay in 2026")
 	assert(_dateline(panel).text == "2026", "the dateline shows the year")
 	_check_rows(panel)
 	_check_fits(panel)
@@ -52,10 +52,10 @@ func _ready() -> void:
 ## The rows must read exactly what the simulation says for the current year.
 func _check_rows(panel: NumbersPanel) -> void:
 	var state := Sim.at(Run.plan, WorldClock.year)
-	assert(_value(panel, "Homes").text == "%d of 3" % state.homes, "homes track the simulation")
+	assert(_value(panel, "Homes").text == "%d of 2" % state.homes, "homes track the simulation")
 	var depth := float(state.flood_m.get("salon", 0.0))
 	assert(_value(panel, "Flood").text == ("dry" if depth < 0.05 else "%.1f m" % depth), "flood tracks the simulation")
-	assert(_value(panel, "Neighbours").text == "%d of 2" % state.neighbours, "neighbours track the simulation")
+	assert(_value(panel, "Neighbours").text == ("yes" if state.neighbours > 0 else "no"), "neighbours track the simulation")
 	assert(_dateline(panel).text == str(roundi(state.year)), "the dateline tracks the year")
 
 

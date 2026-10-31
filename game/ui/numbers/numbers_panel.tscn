@@ -39,7 +39,7 @@ text = "Homes standing"
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 2
-text = "3 of 3"
+text = "2 of 2"
 
 [node name="Flood" type="HBoxContainer" parent="Rows"]
 layout_mode = 2
@@ -75,4 +75,4 @@ text = "Neighbours stayed"
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 2
-text = "2 of 2"
+text = "yes"

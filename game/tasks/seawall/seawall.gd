@@ -36,7 +36,7 @@ const WallBlock := preload("res://tasks/seawall/wall_block.gd")
 const DustBurst := preload("res://tasks/seawall/dust_burst.gd")
 const SeawallHint := preload("res://tasks/seawall/crayon_hint.gd")
 
-@export var block_texture: Texture2D
+@export var block_texture: Texture2D = preload("res://tasks/seawall/block.png")
 
 var goal: int = 0
 var blocks_landed: int = 0
@@ -128,6 +128,10 @@ func _physics_process(delta: float) -> void:
 		State.SETTLING:
 			_settle(delta)
 	_update_shake(delta)
+
+
+func debug_note() -> String:
+	return "%d %d %d %d %d" % [aligned_blocks, blocks_landed, goal, _carriage_x, 1 if can_drop() else 0]
 
 
 func can_drop() -> bool:

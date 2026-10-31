@@ -5,10 +5,10 @@ extends Area2D
 signal touched(body: Node2D)
 
 const KIND_COLORS := {
-	"plastic": Color(1.0, 0.78, 0.1),
-	"paper": Color(0.24, 0.68, 0.32),
-	"glass": Color(0.36, 0.62, 0.95),
-	"metal": Color(0.64, 0.64, 0.64),
+	"plastic": Color(0.98, 0.96, 0.36),
+	"paper": Color(0.34, 0.49, 0.78),
+	"glass": Color(0.56, 0.86, 0.45),
+	"metal": Color(0.48, 0.47, 0.42),
 }
 const OUTLINE := Color(0.13, 0.11, 0.09)
 const SHADOW := Color(1.0, 1.0, 1.0, 0.85)

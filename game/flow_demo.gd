@@ -45,7 +45,7 @@ func _ready() -> void:
 	await _frames(3)
 	assert(main.ending.visible, "the ending plays")
 	assert(Run.ghosts.size() > 0, "the attempt is saved")
-	assert(Sim.outcome(Run.plan)["homes"] == 3, "this plan saves all three homes")
+	assert(Sim.outcome(Run.plan)["homes"] == Sim.ALL_HOMES, "this plan saves both homes")
 
 	main.ending.retry_requested.emit()
 	await _frames(3)

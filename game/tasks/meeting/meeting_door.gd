@@ -1,31 +1,36 @@
 class_name MeetingDoor
 extends Node2D
-## One house front on the street: placeholder art drawn in code, a doormat to
-## knock at, a speech bubble and a window lamp. Ebru's art drops in via `art`.
+## The door Ebru painted on the house next door: a doormat to knock at, a
+## speech bubble and a window that lights up.
 
 const INK := Color("3b342e")
 const PAPER := Color("f7efe2")
-const WALL := Color("efe3d0")
 const MAT := Color("c9b291")
 const LAMP := Color("ffdf9e")
-const WINDOW := Color("d8cdb8")
-const MAT_OFFSET := Vector2(0.0, 180.0)
+const TINT := Color("7fa06a")
+const MAT_OFFSET := Vector2(0.0, 30.0)
+const MAT_SIZE := Vector2(112.0, 22.0)
 const BUBBLE_SIZE := Vector2(640.0, 190.0)
-
-@export var art: Texture2D = null
-@export var tint: Color = Color("7fa06a")
-@export var door_color: Color = Color("4f7d4f")
-@export var title: String = "the green door"
+const BUBBLE_OFFSET := Vector2(-760.0, -350.0)
+const BUBBLE_Z := 20
+const TITLE := "next door"
+## The neighbours' window, measured from the foot of their door.
+const WINDOW := Rect2(155.0, -79.0, 74.0, 92.0)
+const WINDOW_GROW := 20.0
+const WINDOW_GLOW_ALPHA := 0.3
 
 var _active := false
-var _lit := false
 var _bubble: Panel
 var _speech: Label
+var _window: Node2D
 var _bubble_tween: Tween
 
 
 func _ready() -> void:
+	# Below the walker and the houses, so the mat lies on the ground.
+	z_index = -1
 	_build_bubble()
+	_build_window()
 
 
 func _process(_delta: float) -> void:
@@ -62,30 +67,45 @@ func hide_speech() -> void:
 
 ## A right answer lights the window; no fanfare, no penalty elsewhere.
 func light_up() -> void:
-	_lit = true
-	queue_redraw()
+	_window.show()
+
+
+func _build_window() -> void:
+	_window = Node2D.new()
+	_window.z_index = BUBBLE_Z
+	_window.hide()
+	add_child(_window)
+	var glow := Polygon2D.new()
+	glow.polygon = SalonZone.wobbly_rect(WINDOW.grow(WINDOW_GROW), 34.0)
+	glow.color = Color(LAMP, WINDOW_GLOW_ALPHA)
+	_window.add_child(glow)
+	var pane := Polygon2D.new()
+	pane.polygon = SalonZone.wobbly_rect(WINDOW, 26.0)
+	pane.color = LAMP
+	_window.add_child(pane)
 
 
 func _build_bubble() -> void:
 	_bubble = Panel.new()
 	_bubble.size = BUBBLE_SIZE
-	_bubble.position = Vector2(-BUBBLE_SIZE.x / 2.0, -585.0)
+	_bubble.position = BUBBLE_OFFSET
+	_bubble.z_index = BUBBLE_Z
 	_bubble.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_bubble.visible = false
 	_bubble.modulate.a = 0.0
 	var style := StyleBoxFlat.new()
 	style.bg_color = PAPER
-	style.border_color = tint
+	style.border_color = TINT
 	style.set_border_width_all(2)
 	style.set_corner_radius_all(14)
 	_bubble.add_theme_stylebox_override("panel", style)
 	add_child(_bubble)
 	var name_label := Label.new()
-	name_label.text = title
+	name_label.text = TITLE
 	name_label.position = Vector2(18.0, 10.0)
 	name_label.size = Vector2(BUBBLE_SIZE.x - 36.0, 30.0)
 	name_label.add_theme_font_size_override("font_size", 22)
-	name_label.add_theme_color_override("font_color", tint.darkened(0.25))
+	name_label.add_theme_color_override("font_color", TINT.darkened(0.25))
 	name_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_bubble.add_child(name_label)
 	_speech = Label.new()
@@ -114,41 +134,9 @@ func _fade_bubble(alpha: float, open: bool) -> void:
 
 
 func _draw() -> void:
-	if art != null:
-		draw_texture(art, Vector2(-art.get_width() / 2.0, -art.get_height()))
-		if _lit:
-			draw_circle(Vector2(0.0, -art.get_height() / 2.0), 90.0, Color(LAMP, 0.18))
-	else:
-		_draw_house()
-	_draw_mat()
-
-
-func _draw_house() -> void:
-	var wall := Rect2(Vector2(-150.0, -260.0), Vector2(300.0, 260.0))
-	draw_rect(wall, WALL)
-	draw_rect(wall, INK, false, 4.0)
-	var roof := PackedVector2Array([Vector2(-185.0, -260.0), Vector2(185.0, -260.0), Vector2(0.0, -380.0)])
-	draw_colored_polygon(roof, tint)
-	draw_polyline(PackedVector2Array([roof[0], roof[1], roof[2], roof[0]]), INK, 4.0)
-	var door := Rect2(Vector2(-45.0, -170.0), Vector2(90.0, 170.0))
-	draw_rect(door, door_color)
-	draw_rect(door, INK, false, 3.0)
-	draw_circle(Vector2(26.0, -84.0), 5.0, INK)
-	var window := Rect2(Vector2(78.0, -225.0), Vector2(64.0, 64.0))
-	if _lit:
-		draw_circle(window.get_center(), 52.0, Color(LAMP, 0.30))
-		draw_rect(window, LAMP)
-	else:
-		draw_rect(window, WINDOW)
-	draw_rect(window, INK, false, 3.0)
-	draw_line(Vector2(window.position.x, window.get_center().y), Vector2(window.end.x, window.get_center().y), INK, 2.0)
-	draw_line(Vector2(window.get_center().x, window.position.y), Vector2(window.get_center().x, window.end.y), INK, 2.0)
-
-
-func _draw_mat() -> void:
-	var mat := Rect2(MAT_OFFSET + Vector2(-70.0, -14.0), Vector2(140.0, 28.0))
+	var mat := Rect2(MAT_OFFSET - MAT_SIZE * 0.5, MAT_SIZE)
 	draw_rect(mat, MAT)
 	draw_rect(mat, INK, false, 3.0)
 	if _active:
 		var pulse := 0.5 + 0.5 * sin(Time.get_ticks_msec() * 0.004)
-		draw_rect(mat.grow(5.0 + 5.0 * pulse), Color(tint.r, tint.g, tint.b, 0.25 + 0.3 * pulse), false, 4.0)
+		draw_rect(mat.grow(5.0 + 5.0 * pulse), Color(TINT.r, TINT.g, TINT.b, 0.25 + 0.3 * pulse), false, 4.0)

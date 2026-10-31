@@ -14,6 +14,9 @@ const FIRST_YEAR := 2026.0
 const LAST_YEAR := 2080.0
 const RIPPLE_SLOTS := 8
 const RIPPLE_SECONDS := 1.3
+const OUTDOOR_ROOMS := ["street", "shore"]
+const OUTDOOR_MIRROR_SOFT := 0.09
+const INDOOR_MIRROR_SOFT := 0.001
 
 @export var room_name: String = ""
 @export var painting: Texture2D
@@ -23,6 +26,8 @@ const RIPPLE_SECONDS := 1.3
 @export var floor_line: float = 0.48
 @export var wall_m_per_uv: float = 5.4
 @export var spawn: Vector2 = Vector2(960, 700)
+## How many pixels one metre takes here. The street is seen from far further away than a room.
+@export var px_per_m: float = 200.0
 
 var flood_m: float = 0.0
 var _material: ShaderMaterial
@@ -38,6 +43,7 @@ func _ready() -> void:
 	_material.set_shader_parameter("floor_line", floor_line)
 	_material.set_shader_parameter("wall_m_per_uv", wall_m_per_uv)
 	_material.set_shader_parameter("creep_m", CREEP_M)
+	_material.set_shader_parameter("mirror_soft", OUTDOOR_MIRROR_SOFT if room_name in OUTDOOR_ROOMS else INDOOR_MIRROR_SOFT)
 	_material.set_shader_parameter("aged_cared", aged_cared if aged_cared != null else _blank())
 	_material.set_shader_parameter("aged_damaged", aged_damaged if aged_damaged != null else _blank())
 	var background := Sprite2D.new()
@@ -61,10 +67,18 @@ func _ready() -> void:
 			layer.set_shader_parameter("quality", 0.0)
 			get_node(bowls).material = layer
 			_object_materials.append(layer)
-	if room_name in ["street", "shore"]:
+	if room_name in OUTDOOR_ROOMS:
 		var props := WorldProps.new()
 		props.outdoor_room = room_name
 		add_child(props)
+	if room_name == "shore":
+		var wall := ShoreWall.new()
+		wall.name = "ShoreWall"
+		var wall_layer := _material.duplicate() as ShaderMaterial
+		wall_layer.set_shader_parameter("height_map", ShoreWall.HEIGHT)
+		wall.material = wall_layer
+		_object_materials.append(wall_layer)
+		add_child(wall)
 	if room_name == "bedroom":
 		var marks := HeightMarks.new()
 		marks.name = "HeightMarks"
@@ -130,6 +144,8 @@ func depth_at(point: Vector2) -> float:
 	var size := _height_image.get_size()
 	var pixel := _height_image.get_pixel(mini(int(uv.x * size.x), size.x - 1), mini(int(uv.y * size.y), size.y - 1))
 	var ground: float
+	if pixel.r > 0.99:
+		return 0.0
 	if pixel.g > 0.5:
 		ground = maxf(floor_line - uv.y, 0.0) * wall_m_per_uv
 	else:

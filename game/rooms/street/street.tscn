@@ -4,9 +4,19 @@
 [ext_resource type="Script" path="res://rooms/door.gd" id="2"]
 [ext_resource type="Texture2D" path="res://rooms/street/street.png" id="3"]
 [ext_resource type="Texture2D" path="res://rooms/street/street_height.png" id="4"]
+[ext_resource type="Texture2D" path="res://rooms/street/home_cut.png" id="c0"]
+[ext_resource type="Texture2D" path="res://rooms/street/neighbour_cut.png" id="c1"]
+[ext_resource type="Texture2D" path="res://rooms/street/bingeneral_cut.png" id="c2"]
+[ext_resource type="Texture2D" path="res://rooms/street/binpaper_cut.png" id="c3"]
+[ext_resource type="Texture2D" path="res://rooms/street/binplastic_cut.png" id="c4"]
+[ext_resource type="Texture2D" path="res://rooms/street/binglass_cut.png" id="c5"]
+[ext_resource type="Texture2D" path="res://rooms/street/binmetal_cut.png" id="c6"]
 
-[sub_resource type="RectangleShape2D" id="door"]
-size = Vector2(220, 60)
+[sub_resource type="RectangleShape2D" id="ToSalon"]
+size = Vector2(110, 40)
+
+[sub_resource type="RectangleShape2D" id="ToShore"]
+size = Vector2(80, 420)
 
 [sub_resource type="RectangleShape2D" id="edge_h"]
 size = Vector2(2120, 100)
@@ -20,18 +30,118 @@ script = ExtResource("1")
 room_name = "street"
 painting = ExtResource("3")
 height = ExtResource("4")
-floor_line = 0.4000
-wall_m_per_uv = 5.0
-spawn = Vector2(960.0, 620.0)
+floor_line = 0.4352
+wall_m_per_uv = 14.4
+px_per_m = 75.0
+spawn = Vector2(702.0, 460.0)
+
+[node name="Home" type="Sprite2D" parent="."]
+position = Vector2(0, 381)
+texture = ExtResource("3")
+centered = false
+offset = Vector2(594, -256)
+region_enabled = true
+region_rect = Rect2(594, 125, 615, 362)
+metadata/cut = ExtResource("c0")
+
+[node name="Neighbour" type="Sprite2D" parent="."]
+position = Vector2(0, 381)
+texture = ExtResource("3")
+centered = false
+offset = Vector2(1463, -256)
+region_enabled = true
+region_rect = Rect2(1463, 125, 457, 362)
+metadata/cut = ExtResource("c1")
+
+[node name="BinGeneral" type="Sprite2D" parent="."]
+position = Vector2(0, 490)
+texture = ExtResource("3")
+centered = false
+offset = Vector2(22, -141)
+region_enabled = true
+region_rect = Rect2(22, 349, 110, 143)
+metadata/cut = ExtResource("c2")
+
+[node name="BinPaper" type="Sprite2D" parent="."]
+position = Vector2(0, 505)
+texture = ExtResource("3")
+centered = false
+offset = Vector2(135, -111)
+region_enabled = true
+region_rect = Rect2(135, 394, 83, 112)
+metadata/cut = ExtResource("c3")
+
+[node name="BinPlastic" type="Sprite2D" parent="."]
+position = Vector2(0, 503)
+texture = ExtResource("3")
+centered = false
+offset = Vector2(224, -108)
+region_enabled = true
+region_rect = Rect2(224, 395, 88, 110)
+metadata/cut = ExtResource("c4")
+
+[node name="BinGlass" type="Sprite2D" parent="."]
+position = Vector2(0, 512)
+texture = ExtResource("3")
+centered = false
+offset = Vector2(317, -111)
+region_enabled = true
+region_rect = Rect2(317, 401, 84, 112)
+metadata/cut = ExtResource("c5")
+
+[node name="BinMetal" type="Sprite2D" parent="."]
+position = Vector2(0, 511)
+texture = ExtResource("3")
+centered = false
+offset = Vector2(411, -110)
+region_enabled = true
+region_rect = Rect2(411, 401, 84, 112)
+metadata/cut = ExtResource("c6")
 
 [node name="Solid" type="StaticBody2D" parent="."]
 
+[node name="HomeFoot" type="CollisionPolygon2D" parent="Solid"]
+polygon = PackedVector2Array(610.0, 300.0, 1200.0, 300.0, 1200.0, 472.0, 805.0, 472.0, 805.0, 384.0, 612.0, 384.0)
+
+[node name="NeighbourFoot" type="CollisionPolygon2D" parent="Solid"]
+polygon = PackedVector2Array(1478.0, 300.0, 1920.0, 300.0, 1920.0, 472.0, 1682.0, 472.0, 1682.0, 384.0, 1478.0, 384.0)
+
+[node name="BinGeneralFoot" type="CollisionPolygon2D" parent="Solid"]
+polygon = PackedVector2Array(28.0, 456.0, 130.0, 456.0, 128.0, 490.0, 30.0, 490.0)
+
+[node name="BinPaperFoot" type="CollisionPolygon2D" parent="Solid"]
+polygon = PackedVector2Array(138.0, 470.0, 216.0, 470.0, 216.0, 505.0, 138.0, 505.0)
+
+[node name="BinPlasticFoot" type="CollisionPolygon2D" parent="Solid"]
+polygon = PackedVector2Array(228.0, 470.0, 308.0, 470.0, 308.0, 503.0, 228.0, 503.0)
+
+[node name="BinGlassFoot" type="CollisionPolygon2D" parent="Solid"]
+polygon = PackedVector2Array(320.0, 478.0, 398.0, 478.0, 398.0, 512.0, 320.0, 512.0)
+
+[node name="BinMetalFoot" type="CollisionPolygon2D" parent="Solid"]
+polygon = PackedVector2Array(414.0, 478.0, 492.0, 478.0, 492.0, 511.0, 414.0, 511.0)
+
+[node name="Block0" type="CollisionPolygon2D" parent="Solid"]
+polygon = PackedVector2Array(102.0, 215.0, 233.0, 215.0, 233.0, 249.0, 102.0, 249.0)
+
+[node name="Block1" type="CollisionPolygon2D" parent="Solid"]
+polygon = PackedVector2Array(308.0, 221.0, 439.0, 221.0, 439.0, 255.0, 308.0, 255.0)
+
+[node name="Block2" type="CollisionPolygon2D" parent="Solid"]
+polygon = PackedVector2Array(24.0, 288.0, 155.0, 288.0, 155.0, 322.0, 24.0, 322.0)
+
+[node name="Block3" type="CollisionPolygon2D" parent="Solid"]
+polygon = PackedVector2Array(190.0, 289.0, 321.0, 289.0, 321.0, 323.0, 190.0, 323.0)
+
+[node name="Block4" type="CollisionPolygon2D" parent="Solid"]
+polygon = PackedVector2Array(376.0, 292.0, 507.0, 292.0, 507.0, 326.0, 376.0, 326.0)
+
 [node name="Top" type="CollisionShape2D" parent="Solid"]
-position = Vector2(960.0, 392.0)
+position = Vector2(960.0, 145.0)
 shape = SubResource("edge_h")
 
 [node name="Bottom" type="CollisionShape2D" parent="Solid"]
-position = Vector2(960.0, 1125.0)
+position = Vector2(960.0, 1100.0)
 shape = SubResource("edge_h")
 
 [node name="Left" type="CollisionShape2D" parent="Solid"]
@@ -43,19 +153,19 @@ position = Vector2(1965.0, 540.0)
 shape = SubResource("edge_v")
 
 [node name="ToSalon" type="Area2D" parent="."]
-position = Vector2(360.0, 450.0)
+position = Vector2(702.0, 392.0)
 script = ExtResource("2")
 target_room = "salon"
-arrive_at = Vector2(300, 680)
+arrive_at = Vector2(284, 660)
 
 [node name="Shape" type="CollisionShape2D" parent="ToSalon"]
-shape = SubResource("door")
+shape = SubResource("ToSalon")
 
 [node name="ToShore" type="Area2D" parent="."]
-position = Vector2(1860.0, 800.0)
+position = Vector2(1880.0, 800.0)
 script = ExtResource("2")
 target_room = "shore"
-arrive_at = Vector2(320, 800)
+arrive_at = Vector2(300, 800)
 
 [node name="Shape" type="CollisionShape2D" parent="ToShore"]
-shape = SubResource("door")
+shape = SubResource("ToShore")

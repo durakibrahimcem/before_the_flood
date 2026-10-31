@@ -19,7 +19,6 @@ const TASKS := {
 }
 const FRIDGE := Vector2(1700, 720)
 const FRIDGE_REACH := 260.0
-const OUTDOOR_ROOMS := ["street", "shore"]
 const HINT_ROOM_NAMES := { "street": "the street", "shore": "the shore", "salon": "the salon" }
 const SHAKE_PIXELS := 18.0
 const SHAKE_STEPS := 8
@@ -100,7 +99,7 @@ func enter_room(room_name: String, arrive_at: Vector2) -> void:
 	arda.position = room.spawn if arrive_at == Vector2.INF else arrive_at
 	room.add_child(arda)
 	arda.room = room
-	$Storm.outdoors = room_name in OUTDOOR_ROOMS
+	$Storm.outdoors = room_name in Room.OUTDOOR_ROOMS
 	WorldClock.refresh()
 	_start_pending_task()
 

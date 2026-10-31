@@ -1,7 +1,7 @@
 class_name Meeting
 extends Task
-## The neighbourhood meeting. Two doors each state worries as one quiet line;
-## the player walks between the doormats, knocks with E and picks 1 of 3
+## The neighbourhood meeting. The family next door state their worries as quiet
+## lines; the player walks to their doormat, knocks with E and picks 1 of 3
 ## arguments with the mouse or keys 1 to 3. No named neighbours, no audio.
 
 enum State { IDLE, AWAIT_KNOCK, WORRY, REPLY, DONE }
@@ -19,20 +19,14 @@ const HINT_FADE_AT := 4.0
 const UI_Z := 10
 const CRAYON := Color("d98a3f")
 const AMBER := Color("e0a44e")
-const GREEN_TINT := Color("7fa06a")
-const GREEN_DOOR := Color("4f7d4f")
-const BLUE_TINT := Color("6f92b8")
-const BLUE_DOOR := Color("4a6f94")
 const LAMPS_LINE := "The lamps come on down the street."
 const EVENING_LINE := "The evening closes. Another day, then."
 
 @export var time_limit: float = 25.0
-@export var green_home_art: Texture2D = null
-@export var blue_home_art: Texture2D = null
-@export var hint_text: String = "Walk to a door and press E to knock."
-@export var green_pos: Vector2 = Vector2(480.0, 620.0)
-@export var blue_pos: Vector2 = Vector2(1440.0, 620.0)
-@export var spawn_pos: Vector2 = Vector2(960.0, 880.0)
+@export var hint_text: String = "Walk to the neighbours' door and press E to knock."
+## The foot of the door Ebru painted on the house next door.
+@export var door_pos: Vector2 = Vector2(1581.0, 381.0)
+@export var spawn_pos: Vector2 = Vector2(1000.0, 450.0)
 
 var state: State = State.IDLE
 var walker: CharacterBody2D = null
@@ -46,11 +40,7 @@ var run_topics: Array[String] = []
 static var _pool: Array = []
 static var _pool_offset := 0
 
-var _green_door: MeetingDoor
-var _blue_door: MeetingDoor
-var _active_door: MeetingDoor
-var _green_worries: Array = []
-var _blue_worries: Array = []
+var _door: MeetingDoor
 var _door_worries: Array = []
 var _worry_cursor := 0
 var _run_worry_index := 0
@@ -82,21 +72,11 @@ func _begin() -> void:
 	for worry: Dictionary in worries:
 		run_topics.append(worry["topic"])
 	_build_scene()
-	var first_is_green := repeat_index % 2 == 0
-	var first_count := ceili(goal / 2.0)
-	if first_is_green:
-		_green_worries = worries.slice(0, first_count)
-		_blue_worries = worries.slice(first_count, worries.size())
-		_active_door = _green_door
-	else:
-		_green_worries = worries.slice(first_count, worries.size())
-		_blue_worries = worries.slice(0, first_count)
-		_active_door = _blue_door
-	_door_worries = _green_worries if _active_door == _green_door else _blue_worries
+	_door_worries = worries
 	_worry_cursor = 0
 	_run_worry_index = 0
 	state = State.AWAIT_KNOCK
-	_active_door.set_active(true)
+	_door.set_active(true)
 	_show_hint()
 
 
@@ -124,10 +104,10 @@ func choose(index: int) -> void:
 	_cards.hide_cards()
 	if index == _right_card:
 		right_answers += 1
-		_active_door.light_up()
-		_active_door.reply(_worry["right_reply"])
+		_door.light_up()
+		_door.reply(_worry["right_reply"])
 	else:
-		_active_door.reply(_worry["wrong_reply"])
+		_door.reply(_worry["wrong_reply"])
 	_after(REPLY_TIME, _after_reply)
 
 
@@ -141,7 +121,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 ## World position of the mat the player should walk to next.
 func active_mat() -> Vector2:
-	return _active_door.mat_position()
+	return _door.mat_position()
 
 
 ## For scripted demos: the card index holding answers[0], the true answer.
@@ -169,6 +149,10 @@ func bot_cards_ready() -> bool:
 	return _cards_shown
 
 
+func debug_note() -> String:
+	return "%d %d %d %d" % [right_answers, worries_asked, state, _right_card if _cards_shown else -1]
+
+
 func _on_knock() -> void:
 	Sfx.play("knock")
 	_hide_hint()
@@ -179,7 +163,7 @@ func _on_knock() -> void:
 
 func _present_worry() -> void:
 	_worry = _door_worries[_worry_cursor]
-	_active_door.say(_worry["worry"])
+	_door.say(_worry["worry"])
 	_deal_answers()
 	_run_worry_index += 1
 	_after(WORRY_CARDS_DELAY, _show_cards)
@@ -215,21 +199,9 @@ func _after_reply() -> void:
 	if _worry_cursor < _door_worries.size():
 		_after(NEXT_WORRY_BEAT, _present_next_worry)
 		return
-	_active_door.set_active(false)
-	_active_door.hide_speech()
-	if _active_door == _green_door:
-		_green_worries = []
-	else:
-		_blue_worries = []
-	var other: MeetingDoor = _blue_door if _active_door == _green_door else _green_door
-	_door_worries = _blue_worries if other == _blue_door else _green_worries
-	if not _door_worries.is_empty():
-		_active_door = other
-		_worry_cursor = 0
-		state = State.AWAIT_KNOCK
-		other.set_active(true)
-	else:
-		_begin_close(LAMPS_LINE)
+	_door.set_active(false)
+	_door.hide_speech()
+	_begin_close(LAMPS_LINE)
 
 
 func _present_next_worry() -> void:
@@ -273,12 +245,9 @@ func _in_knock_range() -> bool:
 
 
 func _build_scene() -> void:
-	_green_door = _make_door("the green door", GREEN_TINT, GREEN_DOOR, green_home_art)
-	_green_door.position = green_pos
-	add_child(_green_door)
-	_blue_door = _make_door("the blue door", BLUE_TINT, BLUE_DOOR, blue_home_art)
-	_blue_door.position = blue_pos
-	add_child(_blue_door)
+	_door = MeetingDoor.new()
+	_door.position = door_pos
+	add_child(_door)
 	_cards = MeetingCards.new()
 	_cards.z_index = UI_Z
 	add_child(_cards)
@@ -286,7 +255,7 @@ func _build_scene() -> void:
 	_hint = Label.new()
 	_hint.z_index = UI_Z
 	_hint.text = hint_text
-	_hint.position = Vector2(510.0, 104.0)
+	_hint.position = Vector2(510.0, 690.0)
 	_hint.size = Vector2(900.0, 44.0)
 	_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_hint.rotation = deg_to_rad(-2.0)
@@ -306,15 +275,6 @@ func _build_scene() -> void:
 	_close_label.add_theme_color_override("font_color", AMBER)
 	add_child(_close_label)
 	_claim_walker()
-
-
-func _make_door(door_title: String, tone: Color, paint: Color, home_art: Texture2D) -> MeetingDoor:
-	var door := MeetingDoor.new()
-	door.title = door_title
-	door.tint = tone
-	door.door_color = paint
-	door.art = home_art
-	return door
 
 
 ## The shape-less TaskWalker still moves with move_and_slide, so no collision
@@ -358,7 +318,7 @@ func _draw_hint_underline() -> void:
 	var points := PackedVector2Array()
 	for i: int in 21:
 		var t := i / 20.0
-		points.append(Vector2(690.0 + t * 540.0, 172.0 + sin(t * 9.0) * 3.0))
+		points.append(Vector2(650.0 + t * 620.0, 748.0 + sin(t * 9.0) * 3.0))
 	draw_polyline(points, Color(CRAYON, _hint.modulate.a * 0.7), 3.0)
 
 

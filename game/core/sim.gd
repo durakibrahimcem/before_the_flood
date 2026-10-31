@@ -5,6 +5,8 @@ extends RefCounted
 const FIRST_YEAR := 2026
 const LAST_YEAR := 2080
 const CRACK_YEARS := 8
+## The family's home and the one next door.
+const ALL_HOMES := 2
 
 static var _balance: Dictionary = {}
 static var _sea: Dictionary = {}
@@ -46,7 +48,7 @@ static func at(plan: Plan, year: float) -> WorldState:
 		state.home_alive[home] = standing
 		alive += 1 if standing else 0
 	state.homes = alive
-	state.neighbours = (1 if state.home_alive["near"] else 0) + (1 if state.home_alive["far"] else 0)
+	state.neighbours = 1 if state.home_alive["near"] else 0
 	state.severity = clampf(float(state.flood_m["salon"]) / float(b_cfg["severity_full_m"]), 0.0, 1.0)
 	return state
 

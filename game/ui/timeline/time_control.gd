@@ -39,7 +39,8 @@ func _process(delta: float) -> void:
 	if OS.is_debug_build() and OS.has_feature("web"):
 		var main := get_parent() as Main
 		var where := "%s %d %d" % [main.room.room_name, main.arda.position.x, main.arda.position.y] if main.room != null else "none 0 0"
-		JavaScriptBridge.eval("document.title = 'YEAR %.1f SCRUB %s ROOM %s'" % [WorldClock.year, scrubbing, where])
+		var task := main.task.action + " " + main.task.debug_note() if main.task != null else "none"
+		JavaScriptBridge.eval("document.title = 'YEAR %.1f SCRUB %s ROOM %s TASK %s'" % [WorldClock.year, scrubbing, where, task])
 	if not enabled or (get_tree().paused and not scrubbing):
 		_pressed = false
 		_held = 0.0

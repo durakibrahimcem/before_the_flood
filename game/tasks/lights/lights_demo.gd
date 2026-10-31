@@ -189,8 +189,8 @@ func _on_home_dark(home_index: int) -> void:
 
 
 func _check_homes() -> void:
-	_check(home_order.size() == 3 and home_order[0] == 0 and home_order[1] == 1 and home_order[2] == 2,
-		"the family goes dark first, then the neighbours in order, got %s" % str(home_order))
+	_check(home_order.size() == 2 and home_order[0] == 0 and home_order[1] == 1,
+		"the family goes dark first, then the neighbours, got %s" % str(home_order))
 	for i: int in range(1, home_times.size()):
 		_check(home_times[i] - home_times[i - 1] >= NEIGHBOUR_GAP_MS,
 			"home %d follows after a quiet beat, got %d ms" % [i, home_times[i] - home_times[i - 1]])

@@ -10,12 +10,20 @@ const BOB_SPEED := 9.0
 const AGE_METRES := { 2026: 1.3, 2050: 1.75, 2080: 1.7 }
 const STRIDE := 0.35
 const RIPPLE_MIN_DEPTH_M := 0.03
+## The scale the foot shape was made for.
+const FOOT_PX_PER_M := 200.0
 
 @export var speed: float = 460.0
-@export var pixels_per_metre: float = 200.0
 
 var carried: String = ""
-var room: Room
+## Takes the room's scale with it, so Arda and their foot fit the painting.
+var room: Room:
+	set(value):
+		room = value
+		if room != null:
+			pixels_per_metre = room.px_per_m
+			$Foot.scale = Vector2.ONE * minf(1.0, room.px_per_m / FOOT_PX_PER_M)
+var pixels_per_metre: float = 200.0
 var height_m: float = 1.3
 var _walked: float = 0.0
 var _stepped_at: float = -STRIDE

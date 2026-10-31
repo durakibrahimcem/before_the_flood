@@ -39,7 +39,7 @@ func _test_doing_nothing() -> void:
 	_expect(is_equal_approx(snappedf(outcome["depth_2080"], 0.001), 1.261), "nothing gives 1.261 m in 2080, got %f" % outcome["depth_2080"])
 	_expect(outcome["homes"] == 0, "nothing loses every home")
 	var today := Sim.at(Plan.new(), 2026.0)
-	_expect(today.flood_m["salon"] == 0.0 and today.homes == 3, "every home is dry and standing in 2026")
+	_expect(today.flood_m["salon"] == 0.0 and today.homes == Sim.ALL_HOMES, "every home is dry and standing in 2026")
 	_expect(today.flood_m["street"] == 0.0, "the street is dry in 2026")
 
 

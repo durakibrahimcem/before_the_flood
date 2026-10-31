@@ -34,7 +34,7 @@ static func score_all() -> Array[Dictionary]:
 
 ## Returns one entry per rule: { "rule": String, "passed": bool, "detail": String }.
 static func check(rows: Array[Dictionary]) -> Array[Dictionary]:
-	var best := rows.filter(func(r: Dictionary) -> bool: return r["homes"] == 3)
+	var best := rows.filter(func(r: Dictionary) -> bool: return r["homes"] == Sim.ALL_HOMES)
 	var walls := rows.filter(func(r: Dictionary) -> bool: return r["plan"]["wall"] > 0)
 	var others := rows.filter(func(r: Dictionary) -> bool: return r["plan"]["wall"] == 0)
 	var share := float(best.size()) / rows.size()
@@ -54,7 +54,7 @@ static func check(rows: Array[Dictionary]) -> Array[Dictionary]:
 	var none_depth: float = Sim.outcome(nothing)["depth_2080"]
 	checks.append(_rule("Six walls are worse than nothing in 2080", six_depth > none_depth, "%.2f against %.2f" % [six_depth, none_depth]))
 	checks.append(_rule("At least one wall plan keeps a home", walls.any(func(r: Dictionary) -> bool: return r["homes"] > 0), ""))
-	checks.append(_rule("Skill cannot turn 0 homes into 3", _skill_is_bounded(), ""))
+	checks.append(_rule("Skill cannot turn 0 homes into a full save", _skill_is_bounded(), ""))
 	return checks
 
 
@@ -77,6 +77,6 @@ static func _skill_is_bounded() -> bool:
 		var skilled := plan.duplicate_plan()
 		for action: String in Plan.ACTIONS:
 			skilled.skill[action] = Plan.MAX_SKILL
-		if Sim.outcome(skilled)["homes"] == 3:
+		if Sim.outcome(skilled)["homes"] == Sim.ALL_HOMES:
 			return false
 	return true

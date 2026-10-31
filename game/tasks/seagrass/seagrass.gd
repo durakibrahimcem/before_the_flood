@@ -52,6 +52,10 @@ func is_calm() -> bool:
 	return not washing
 
 
+func debug_note() -> String:
+	return "%d %d %d" % [rooted, goal, 1 if is_calm() else 0]
+
+
 func _begin() -> void:
 	if not is_inside_tree():
 		await tree_entered

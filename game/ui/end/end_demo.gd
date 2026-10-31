@@ -4,7 +4,7 @@ extends Node
 const SEQUENCE := preload("res://ui/end/end_sequence.tscn")
 const PLANS_PATH := "res://data/plans.json"
 
-const THREE_CAPTION := "Old Arda plants seagrass in a thriving meadow. The crayon child plants beside them."
+const FULL_CAPTION := "Old Arda plants seagrass in a thriving meadow. The crayon child plants beside them."
 const PARTIAL_CAPTION := "The street survives in part. Arda sits on the step of the home that remains."
 const NONE_CAPTION := "Arda packs the teddy and closes the door. Another future can be drawn."
 const GHOST_CAPTION := "Each mark is a future you tried. The bright one is your newest."
@@ -52,8 +52,8 @@ func _ready() -> void:
 
 	check(seq.step_index() == 0, "play restarts at step 0")
 	check(seq.steps[0].visible, "the ending step is visible")
-	check(seq.picture.variant == "three", "three homes draw the three variant, got %s" % seq.picture.variant)
-	check(seq.ending_caption.text == THREE_CAPTION, "three caption text, got '%s'" % seq.ending_caption.text)
+	check(seq.picture.variant == "full", "both homes draw the full variant, got %s" % seq.picture.variant)
+	check(seq.ending_caption.text == FULL_CAPTION, "full caption text, got '%s'" % seq.ending_caption.text)
 	if failed:
 		_finish()
 		return
@@ -140,7 +140,7 @@ func _ready() -> void:
 	seq.play(Sim.outcome(Plan.from_code("00S")))
 	await _frames(2)
 	check(not message.visible and edit.text.is_empty(), "a fresh play clears the share message and box")
-	check(seq.picture.variant == "partial", "two homes draw the partial variant, got %s" % seq.picture.variant)
+	check(seq.picture.variant == "partial", "one home draws the partial variant, got %s" % seq.picture.variant)
 	check(seq.ending_caption.text == PARTIAL_CAPTION, "partial caption text")
 	seq.play(Sim.outcome(Plan.from_code("3Y6")))
 	await _frames(2)
@@ -262,7 +262,7 @@ func _rank_of(code: String) -> int:
 func _keepers() -> int:
 	var total := 0
 	for entry: Dictionary in _plans_data():
-		if int(entry.get("homes", 0)) == 3:
+		if int(entry.get("homes", 0)) == Sim.ALL_HOMES:
 			total += 1
 	return total
 

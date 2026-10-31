@@ -37,3 +37,8 @@ func complete(performance: float) -> void:
 ## Override this to start the task.
 func _begin() -> void:
 	pass
+
+
+## Progress for browser tests, reported in debug Web builds only.
+func debug_note() -> String:
+	return ""

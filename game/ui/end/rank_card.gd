@@ -35,12 +35,12 @@ func show_rank() -> int:
 		if String(entry.get("code", "")) == code:
 			rank = int(entry.get("rank", 0))
 			homes = int(entry.get("homes", 0))
-		if int(entry.get("homes", 0)) == 3:
+		if int(entry.get("homes", 0)) == Sim.ALL_HOMES:
 			keepers += 1
 	if rank > 0:
 		_number.text = str(rank)
 		_sub.visible = true
-		if homes == 3:
+		if homes == Sim.ALL_HOMES:
 			_caption.text = KEEPER_CAPTION % keepers
 		else:
 			_caption.text = OTHER_CAPTION % keepers

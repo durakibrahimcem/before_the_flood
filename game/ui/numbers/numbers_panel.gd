@@ -79,9 +79,9 @@ func _on_jumped(_to_year: int) -> void:
 
 func _fill(state: WorldState) -> void:
 	_set_value(dateline, str(roundi(state.year)))
-	_set_value(homes, "%d of 3" % state.homes)
+	_set_value(homes, "%d of %d" % [state.homes, Sim.ALL_HOMES])
 	_set_value(flood, _flood_text(float(state.flood_m.get("salon", 0.0))))
-	_set_value(neighbours, "%d of 2" % state.neighbours)
+	_set_value(neighbours, "yes" if state.neighbours > 0 else "no")
 	_pulse_next = false
 
 

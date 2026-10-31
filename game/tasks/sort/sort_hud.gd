@@ -30,8 +30,8 @@ func update_state(correct: int, total: int, remaining: float) -> void:
 
 
 func _draw() -> void:
-	draw_rect(Rect2(Vector2.ZERO, BAR_SIZE), BAR_BACK)
-	draw_rect(Rect2(Vector2.ZERO, Vector2(BAR_SIZE.x * _fraction, BAR_SIZE.y)), BAR_FILL)
+	draw_rect(Rect2(Vector2(0.0, BAR_TOP), BAR_SIZE), BAR_BACK)
+	draw_rect(Rect2(Vector2(0.0, BAR_TOP), Vector2(BAR_SIZE.x * _fraction, BAR_SIZE.y)), BAR_FILL)
 	draw_polyline(_edge, OUTLINE, 3.0)
 
 

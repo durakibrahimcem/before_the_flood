@@ -2,7 +2,7 @@ class_name EndingPicture
 extends Control
 ## Code-drawn placeholder ending art. Ebru's textures drop in through the slots.
 
-@export var art_three: Texture2D
+@export var art_full: Texture2D
 @export var art_partial: Texture2D
 @export var art_none: Texture2D
 
@@ -15,8 +15,8 @@ const SHOOT := Color(0.42, 0.58, 0.36)
 
 
 func show_outcome(homes: int) -> void:
-	if homes >= 3:
-		variant = "three"
+	if homes >= Sim.ALL_HOMES:
+		variant = "full"
 	elif homes >= 1:
 		variant = "partial"
 	else:
@@ -33,8 +33,8 @@ func _draw() -> void:
 		_draw_texture(art)
 		return
 	match variant:
-		"three":
-			_draw_three()
+		"full":
+			_draw_full()
 		"partial":
 			_draw_partial()
 		"none":
@@ -43,8 +43,8 @@ func _draw() -> void:
 
 func _art() -> Texture2D:
 	match variant:
-		"three":
-			return art_three
+		"full":
+			return art_full
 		"partial":
 			return art_partial
 	return art_none
@@ -59,7 +59,7 @@ func _draw_texture(art: Texture2D) -> void:
 	draw_texture_rect(art, Rect2((size - drawn) * 0.5, drawn), false)
 
 
-func _draw_three() -> void:
+func _draw_full() -> void:
 	var meadow_top := size.y * 0.66
 	draw_rect(Rect2(2.0, 2.0, size.x - 4.0, meadow_top - 2.0), SKY)
 	draw_rect(Rect2(2.0, meadow_top, size.x - 4.0, size.y * 0.16), SEA)

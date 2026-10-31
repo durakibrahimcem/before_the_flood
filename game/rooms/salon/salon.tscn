@@ -13,7 +13,13 @@
 [ext_resource type="Texture2D" path="res://rooms/salon/lamp_on.png" id="o2"]
 [ext_resource type="Texture2D" path="res://rooms/salon/lamp_off.png" id="o3"]
 
-[sub_resource type="RectangleShape2D" id="door"]
+[sub_resource type="RectangleShape2D" id="ToBedroom"]
+size = Vector2(220, 60)
+
+[sub_resource type="RectangleShape2D" id="ToAylin"]
+size = Vector2(220, 60)
+
+[sub_resource type="RectangleShape2D" id="ToStreet"]
 size = Vector2(220, 60)
 
 [sub_resource type="RectangleShape2D" id="edge_h"]
@@ -30,6 +36,7 @@ painting = ExtResource("3")
 height = ExtResource("4")
 floor_line = 0.4805
 wall_m_per_uv = 5.4
+px_per_m = 200.0
 spawn = Vector2(804.0, 619.1)
 
 [node name="Sofa" type="Sprite2D" parent="."]
@@ -137,7 +144,7 @@ target_room = "bedroom"
 arrive_at = Vector2(1260, 660)
 
 [node name="Shape" type="CollisionShape2D" parent="ToBedroom"]
-shape = SubResource("door")
+shape = SubResource("ToBedroom")
 
 [node name="ToAylin" type="Area2D" parent="."]
 position = Vector2(1152.0, 549.0)
@@ -146,13 +153,13 @@ target_room = "aylin"
 arrive_at = Vector2(312, 640)
 
 [node name="Shape" type="CollisionShape2D" parent="ToAylin"]
-shape = SubResource("door")
+shape = SubResource("ToAylin")
 
 [node name="ToStreet" type="Area2D" parent="."]
 position = Vector2(284.0, 549.0)
 script = ExtResource("2")
 target_room = "street"
-arrive_at = Vector2(960, 620)
+arrive_at = Vector2(702, 460)
 
 [node name="Shape" type="CollisionShape2D" parent="ToStreet"]
-shape = SubResource("door")
+shape = SubResource("ToStreet")

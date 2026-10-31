@@ -15,6 +15,8 @@ uniform float floor_line = 0.4805;
 uniform float wall_m_per_uv = 5.4;
 uniform float creep_m = 0.05;
 uniform float quality = 2.0;
+// Outdoors there is no wall to meet the reflection, so it fades in over this much of the picture.
+uniform float mirror_soft = 0.001;
 uniform vec3 shallow_color = vec3(0.45, 0.70, 0.71);
 uniform vec3 deep_color = vec3(0.06, 0.26, 0.35);
 
@@ -27,6 +29,10 @@ float waves(vec2 p, float t) {
 // Height in metres at a point. Walls are computed, so they stay perfectly smooth.
 float height_at(vec2 uv) {
 	vec4 map = texture(height_map, uv);
+	// Sky and roofs: the water never comes this high, and they must not look damp.
+	if (map.r > 0.99) {
+		return OBJECT_FULL_M * 40.0;
+	}
 	if (map.g > 0.5) {
 		return max(floor_line - uv.y, 0.0) * wall_m_per_uv;
 	}
@@ -74,7 +80,7 @@ void fragment() {
 			float line_y = floor_line - level / wall_m_per_uv;
 			vec2 mirror = vec2(uv.x + ripple.x * 2.0, 2.0 * line_y - uv.y + ripple.y);
 			if (mirror.y > 0.0 && uv.y > line_y) {
-				float fade = exp(-(uv.y - line_y) * 5.0);
+				float fade = exp(-(uv.y - line_y) * 5.0) * smoothstep(0.0, mirror_soft, uv.y - line_y) * smoothstep(0.0, 0.08, mirror.y);
 				color = mix(color, with_age(mirror, texture(TEXTURE, mirror).rgb) * vec3(0.78, 0.92, 0.96), 0.5 * fade);
 			}
 		}

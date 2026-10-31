@@ -15,15 +15,15 @@ const WALKER_HEIGHT_M := 1.3
 const WALKER_PX_PER_M := 200.0
 const NIGHT_TINT := Color(0.34, 0.38, 0.60)
 const DARK_TINT := Color(0.17, 0.19, 0.33)
-const STREET_WASH := Color(0.08, 0.09, 0.18)
-const STREET_BAND := Color(0.14, 0.15, 0.22, 0.9)
+const STREET_PAINTING := preload("res://rooms/street/street.png")
+const STREET_NIGHT := Color(0.27, 0.3, 0.5)
 const STREET_TINT := Color(0.68, 0.74, 0.96)
 const HINT_TEXT := "Switch off the lights before bed."
 const CAPTION_TEXT := "One by one, the street follows."
-const HOME_POSITIONS: Array[Vector2] = [
-	Vector2(960, 920),
-	Vector2(430, 920),
-	Vector2(1490, 920),
+## The windows Ebru painted: the family's home first, then the house next door.
+const HOME_WINDOWS: Array[Array] = [
+	[Rect2(866, 302, 74, 92), Rect2(1042, 305, 66, 85)],
+	[Rect2(1736, 302, 74, 92)],
 ]
 ## One entry per light left on: where it glows, how far, the wall switch, and where Arda stands to reach it.
 const ZONES: Array[Dictionary] = [
@@ -36,7 +36,6 @@ const ZONES: Array[Dictionary] = [
 ]
 
 @export var switch_texture: Texture2D
-@export var home_texture: Texture2D
 @export var walker_texture: Texture2D = preload("res://actors/arda_placeholder.png")
 
 var walker: CharacterBody2D
@@ -249,9 +248,6 @@ func _run_ending() -> void:
 	await _wait(NEIGHBOUR_DELAY)
 	(_homes[1] as StreetHome).go_dark()
 	home_dark.emit(1)
-	await _wait(NEIGHBOUR_DELAY)
-	(_homes[2] as StreetHome).go_dark()
-	home_dark.emit(2)
 	await _wait(CAPTION_HOLD)
 	_caption.fade_out(0.5)
 	_unfreeze_walker()
@@ -259,15 +255,14 @@ func _run_ending() -> void:
 
 
 func _build_street() -> void:
-	_street.add_child(_screen_polygon(STREET_WASH))
-	var band := Polygon2D.new()
-	band.polygon = SalonZone.wobbly_rect(Rect2(0, 900, 1920, 180), 90.0)
-	band.color = STREET_BAND
-	_street.add_child(band)
-	for i: int in HOME_POSITIONS.size():
+	var painting := Sprite2D.new()
+	painting.texture = STREET_PAINTING
+	painting.centered = false
+	painting.modulate = STREET_NIGHT
+	_street.add_child(painting)
+	for windows: Array in HOME_WINDOWS:
 		var home := StreetHome.new()
-		home.home_texture = home_texture
-		home.position = HOME_POSITIONS[i]
+		home.window_rects.assign(windows)
 		_street.add_child(home)
 		_homes.append(home)
 	_caption = CrayonHint.new()
