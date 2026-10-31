@@ -29,9 +29,11 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	# Debug Web builds report time in the tab title, so browser tests can read it without touching the page.
+	# Debug Web builds report state in the tab title, so browser tests can read it without touching the page.
 	if OS.is_debug_build() and OS.has_feature("web"):
-		JavaScriptBridge.eval("document.title = 'YEAR %.1f SCRUB %s'" % [WorldClock.year, scrubbing])
+		var main := get_parent() as Main
+		var where := "%s %d %d" % [main.room.room_name, main.arda.position.x, main.arda.position.y] if main.room != null else "none 0 0"
+		JavaScriptBridge.eval("document.title = 'YEAR %.1f SCRUB %s ROOM %s'" % [WorldClock.year, scrubbing, where])
 	if not enabled or (get_tree().paused and not scrubbing):
 		_pressed = false
 		_held = 0.0
