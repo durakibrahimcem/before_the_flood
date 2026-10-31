@@ -56,6 +56,15 @@ func _ready() -> void:
 	assert(main.arda.get_parent() == main.room, "Arda moved rooms")
 	var dry_x: float = main.arda.position.x
 	assert(dry_x > 0.0 and main.room.has_node("Sofa"), "salon has furniture")
+	main.room.get_node("ToStreet")._on_body_entered(main.arda)
+	await _frames(3)
+	assert(main.room.room_name == "street", "the salon leads to the street")
+	assert(main.room.flood_m == 0.0, "the street is dry in 2026")
+	main.room.get_node("ToShore")._on_body_entered(main.arda)
+	await _frames(3)
+	assert(main.room.room_name == "shore", "the street leads to the shore")
+	assert(main.room.flood_m > 0.0, "the sea is at the shore")
+	assert(main.room.depth_at(Vector2(960, 300)) > main.room.depth_at(Vector2(960, 1000)), "the sea is deeper than the beach")
 	print("DEMO PASS")
 	get_tree().quit()
 

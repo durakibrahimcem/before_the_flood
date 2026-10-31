@@ -32,7 +32,7 @@ func _ready() -> void:
 
 	# Ebru's art drops in by key without code changes.
 	var art := ImageTexture.create_from_image(Image.create_empty(8, 8, false, Image.FORMAT_RGB8))
-	overlay.pictures["calm"] = art
+	overlay.pictures[str(page.get("picture", ""))] = art
 	overlay.show_for(plan, 2050)
 	await _frames(1)
 	assert(picture.art == art, "exported art drops into the picture slot")

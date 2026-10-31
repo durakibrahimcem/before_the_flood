@@ -1,0 +1,61 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://rooms/room.gd" id="1"]
+[ext_resource type="Script" path="res://rooms/door.gd" id="2"]
+[ext_resource type="Texture2D" path="res://rooms/street/street.png" id="3"]
+[ext_resource type="Texture2D" path="res://rooms/street/street_height.png" id="4"]
+
+[sub_resource type="RectangleShape2D" id="door"]
+size = Vector2(220, 60)
+
+[sub_resource type="RectangleShape2D" id="edge_h"]
+size = Vector2(2120, 100)
+
+[sub_resource type="RectangleShape2D" id="edge_v"]
+size = Vector2(100, 1280)
+
+[node name="Street" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1")
+room_name = "street"
+painting = ExtResource("3")
+height = ExtResource("4")
+floor_line = 0.4000
+wall_m_per_uv = 5.0
+spawn = Vector2(960.0, 620.0)
+
+[node name="Solid" type="StaticBody2D" parent="."]
+
+[node name="Top" type="CollisionShape2D" parent="Solid"]
+position = Vector2(960.0, 392.0)
+shape = SubResource("edge_h")
+
+[node name="Bottom" type="CollisionShape2D" parent="Solid"]
+position = Vector2(960.0, 1125.0)
+shape = SubResource("edge_h")
+
+[node name="Left" type="CollisionShape2D" parent="Solid"]
+position = Vector2(-45.0, 540.0)
+shape = SubResource("edge_v")
+
+[node name="Right" type="CollisionShape2D" parent="Solid"]
+position = Vector2(1965.0, 540.0)
+shape = SubResource("edge_v")
+
+[node name="ToSalon" type="Area2D" parent="."]
+position = Vector2(360.0, 450.0)
+script = ExtResource("2")
+target_room = "salon"
+arrive_at = Vector2(300, 600)
+
+[node name="Shape" type="CollisionShape2D" parent="ToSalon"]
+shape = SubResource("door")
+
+[node name="ToShore" type="Area2D" parent="."]
+position = Vector2(1860.0, 800.0)
+script = ExtResource("2")
+target_room = "shore"
+arrive_at = Vector2(160, 800)
+
+[node name="Shape" type="CollisionShape2D" parent="ToShore"]
+shape = SubResource("door")
