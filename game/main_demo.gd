@@ -99,6 +99,7 @@ func _walk_every_door(main: Main) -> void:
 		assert(main.room.room_name == leg[0], "the walk reached %s, got %s" % [leg[0], main.room.room_name])
 		var door: Area2D = main.room.get_node(leg[1])
 		var target: String = leg[2]
+		assert(door._label.text != "", "%s names the place behind it" % leg[1])
 		main.arda.position = door.position
 		await _physics(4)
 		assert(main.room.room_name == target, "%s leads to %s, got %s" % [leg[1], target, main.room.room_name])

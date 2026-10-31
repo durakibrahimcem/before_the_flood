@@ -4,7 +4,7 @@ extends Control
 
 const LEARN_URL := "https://climatepromise.undp.org/news-and-stories/what-climate-change-adaptation-and-why-it-crucial"
 const LINK_TEXT := "Learn more about climate adaptation"
-const CREDITS := "Art by Ebru. Built with help from AI tools for code and writing drafts. Fonts: Caveat and Playfair Display (SIL Open Font License). Music rendered with FluidSynth and the FluidR3 GM SoundFont (MIT license)."
+const CREDITS := "Art by Ebru. Built with help from AI tools for code and writing drafts. Fonts: Caveat and Playfair Display (SIL Open Font License). Music rendered with FluidSynth and the FluidR3 GM SoundFont (MIT license). Sound effects made by our own scripts."
 const CARD_TITLES: Array[String] = ["The sea", "Storms", "Seagrass", "Waste", "Seawalls", "This game"]
 const CARD_BODIES: Array[String] = [
 	"The world's seas are rising, and how far depends on us. These numbers follow IPCC projections, counted from 2026 rather than the IPCC's 1995 to 2014 baseline.",
