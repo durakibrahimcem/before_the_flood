@@ -32,6 +32,7 @@ func _ready() -> void:
 	_underline = Squiggle.new()
 	column.add_child(_underline)
 	column.move_child(_underline, 1)
+	resume_button.pressed.connect(resume)
 	calm_box.toggled.connect(_on_box_toggled)
 	large_box.toggled.connect(_on_box_toggled)
 	Settings.changed.connect(_on_settings_changed)
