@@ -1,0 +1,133 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/controls/controls_screen.gd" id="1"]
+[ext_resource type="Script" path="res://ui/controls/crayon_art.gd" id="2"]
+
+[node name="ControlsScreen" type="CanvasLayer"]
+layer = 90
+script = ExtResource("1")
+
+[node name="Sheet" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 0
+
+[node name="Paper" type="TextureRect" parent="Sheet"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture_repeat = 1
+stretch_mode = 1
+
+[node name="Art" type="Control" parent="Sheet"]
+layout_mode = 1
+anchor_left = 0.7
+anchor_top = 0.2
+anchor_right = 0.96
+anchor_bottom = 0.78
+custom_minimum_size = Vector2(420, 360)
+mouse_filter = 2
+script = ExtResource("2")
+
+[node name="Center" type="CenterContainer" parent="Sheet"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Column" type="VBoxContainer" parent="Sheet/Center"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="Sheet/Center/Column"]
+layout_mode = 2
+text = "Before the Flood"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Sheet/Center/Column"]
+layout_mode = 2
+text = "How to play"
+horizontal_alignment = 1
+
+[node name="Rows" type="VBoxContainer" parent="Sheet/Center/Column"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="WalkRow" type="HBoxContainer" parent="Sheet/Center/Column/Rows"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="WalkKeys" type="HBoxContainer" parent="Sheet/Center/Column/Rows/WalkRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(282, 0)
+theme_override_constants/separation = 10
+
+[node name="hint_walk" type="Label" parent="Sheet/Center/Column/Rows/WalkRow"]
+layout_mode = 2
+text = "walk"
+vertical_alignment = 1
+
+[node name="UseRow" type="HBoxContainer" parent="Sheet/Center/Column/Rows"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="UseKeys" type="HBoxContainer" parent="Sheet/Center/Column/Rows/UseRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(282, 0)
+theme_override_constants/separation = 10
+
+[node name="hint_use" type="Label" parent="Sheet/Center/Column/Rows/UseRow"]
+layout_mode = 2
+text = "use"
+vertical_alignment = 1
+
+[node name="TimeRow" type="HBoxContainer" parent="Sheet/Center/Column/Rows"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TimeKeys" type="HBoxContainer" parent="Sheet/Center/Column/Rows/TimeRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(282, 0)
+theme_override_constants/separation = 10
+
+[node name="hint_time" type="Label" parent="Sheet/Center/Column/Rows/TimeRow"]
+layout_mode = 2
+text = "tap to jump through time"
+vertical_alignment = 1
+
+[node name="ScrubRow" type="HBoxContainer" parent="Sheet/Center/Column/Rows"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ScrubKeys" type="HBoxContainer" parent="Sheet/Center/Column/Rows/ScrubRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(282, 0)
+theme_override_constants/separation = 10
+
+[node name="hint_scrub" type="Label" parent="Sheet/Center/Column/Rows/ScrubRow"]
+layout_mode = 2
+text = "hold to scrub the years"
+vertical_alignment = 1
+
+[node name="PauseRow" type="HBoxContainer" parent="Sheet/Center/Column/Rows"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PauseKeys" type="HBoxContainer" parent="Sheet/Center/Column/Rows/PauseRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(282, 0)
+theme_override_constants/separation = 10
+
+[node name="hint_pause" type="Label" parent="Sheet/Center/Column/Rows/PauseRow"]
+layout_mode = 2
+text = "pause"
+vertical_alignment = 1
+
+[node name="Begin" type="Button" parent="Sheet/Center/Column"]
+layout_mode = 2
+text = "Begin"
+size_flags_horizontal = 4
