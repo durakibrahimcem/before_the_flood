@@ -62,6 +62,11 @@ func _ready() -> void:
 		var props := WorldProps.new()
 		props.outdoor_room = room_name
 		add_child(props)
+	if room_name == "bedroom":
+		var marks := HeightMarks.new()
+		marks.name = "HeightMarks"
+		marks.room = self
+		add_child(marks)
 	_height_image = height.get_image()
 	_height_image.decompress()
 	WorldClock.year_changed.connect(_on_year_changed)

@@ -2,9 +2,10 @@ class_name NumbersPanel
 extends Control
 ## A pinned scrap of paper with the numbers that matter, tracking the clock.
 
-const WIDTH := 340.0
-const BASE_HEIGHT := 190.0
-const ROW_HEIGHT := 30.0
+const WIDTH := 400.0
+## Short enough to sit on the wall above the doors in every room.
+const BASE_HEIGHT := 158.0
+const ROW_HEIGHT := 34.0
 const LARGE_SCALE := 1.35
 const DRY_BELOW_M := 0.05
 const PULSE_SECONDS := 0.22
@@ -119,12 +120,12 @@ func _style_text() -> void:
 
 func _apply_text_sizes() -> void:
 	var factor := LARGE_SCALE if Settings.large_text else 1.0
-	dateline.add_theme_font_size_override("font_size", roundi(14.0 * factor))
-	homes.add_theme_font_size_override("font_size", roundi(17.0 * factor))
-	flood.add_theme_font_size_override("font_size", roundi(17.0 * factor))
-	neighbours.add_theme_font_size_override("font_size", roundi(17.0 * factor))
+	dateline.add_theme_font_size_override("font_size", roundi(22.0 * factor))
+	homes.add_theme_font_size_override("font_size", roundi(26.0 * factor))
+	flood.add_theme_font_size_override("font_size", roundi(26.0 * factor))
+	neighbours.add_theme_font_size_override("font_size", roundi(26.0 * factor))
 	for caption: Label in captions:
-		caption.add_theme_font_size_override("font_size", roundi(16.0 * factor))
+		caption.add_theme_font_size_override("font_size", roundi(24.0 * factor))
 	for box: Control in row_boxes:
 		box.custom_minimum_size = Vector2(0.0, roundi(ROW_HEIGHT * factor))
 	custom_minimum_size = Vector2(WIDTH, roundi(BASE_HEIGHT * factor))

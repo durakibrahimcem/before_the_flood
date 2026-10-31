@@ -15,6 +15,9 @@ func _ready() -> void:
 	assert(main.room.room_name == "bedroom", "starts in the bedroom")
 	assert(is_equal_approx(WorldClock.year, 2026.0), "starts in 2026")
 	assert(main.room.flood_m == 0.0, "dry in 2026")
+	var marks: HeightMarks = main.room.get_node("HeightMarks")
+	var waterline: float = (main.room.floor_line - 1.0 / main.room.wall_m_per_uv) * Room.ROOM_SIZE.y
+	assert(is_equal_approx(marks.mark_y(1.0), waterline), "a chart mark sits where that depth of water reaches the wall")
 
 	time.tap()
 	await _frames(2)
