@@ -26,6 +26,11 @@ func target_count(base: int) -> int:
 	return ceili(base * (1.0 + REPEAT_GROWTH * repeat_index))
 
 
+## More to do on a repeat means more time, at the same rate as the target count.
+func target_time(base_seconds: float) -> float:
+	return base_seconds * (1.0 + REPEAT_GROWTH * repeat_index)
+
+
 func complete(performance: float) -> void:
 	if _done:
 		return
@@ -37,6 +42,11 @@ func complete(performance: float) -> void:
 ## Override this to start the task.
 func _begin() -> void:
 	pass
+
+
+## The score in words, for the verdict card, such as "6 of 8 sorted".
+func result_text() -> String:
+	return ""
 
 
 ## Progress for browser tests, reported in debug Web builds only.

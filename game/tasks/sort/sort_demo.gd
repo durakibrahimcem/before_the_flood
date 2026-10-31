@@ -44,7 +44,7 @@ func _run_sanity() -> void:
 
 func _run_perfect() -> void:
 	var task := _fresh_task()
-	assert(task.seconds == 25.0, "the task lasts 25 seconds by default, got %f" % task.seconds)
+	assert(task.seconds == 40.0, "the task lasts 40 seconds by default, got %f" % task.seconds)
 	task.layout_seed = 7
 	_performance = -1.0
 	task.finished.connect(_capture)

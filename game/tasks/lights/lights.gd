@@ -5,7 +5,7 @@ extends Task
 signal switch_flipped(zone_index: int)
 signal home_dark(home_index: int)
 
-const PHASE1_SECONDS := 15.0
+const PHASE1_SECONDS := 25.0
 const REACH_PX := 100.0
 const NEIGHBOUR_DELAY := 1.5
 const LAST_FLIP_HOLD := 1.2
@@ -270,6 +270,10 @@ func _build_street() -> void:
 	_caption.auto_fade_after = 0.0
 	_caption.position = Vector2(960, 140)
 	_street.add_child(_caption)
+
+
+func result_text() -> String:
+	return "%d of %d lights off" % [switches_done, switches_total]
 
 
 func _freeze_walker() -> void:

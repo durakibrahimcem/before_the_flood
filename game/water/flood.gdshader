@@ -5,6 +5,8 @@ uniform sampler2D height_map : filter_linear, repeat_disable;
 uniform sampler2D aged_cared : filter_linear, repeat_disable;
 uniform sampler2D aged_damaged : filter_linear, repeat_disable;
 uniform sampler2D cut_mask : hint_default_white, filter_linear, repeat_disable;
+// The whole painting, furniture included, for reflections in the water.
+uniform sampler2D mirror_source : filter_linear, repeat_disable;
 uniform float flood_m = 0.0;
 // Rings around a walker: x and y in uv, z is age from 0 to 1.
 uniform vec3 ripples[8];
@@ -17,8 +19,6 @@ uniform float creep_m = 0.05;
 uniform float quality = 2.0;
 // Outdoors there is no wall to meet the reflection, so it fades in over this much of the picture.
 uniform float mirror_soft = 0.001;
-// Parallax: how far a pixel at full nearness slides, in uv. Depth lives in the height map's blue.
-uniform vec2 view_shift = vec2(0.0);
 uniform vec3 shallow_color = vec3(0.45, 0.70, 0.71);
 uniform vec3 deep_color = vec3(0.1, 0.34, 0.42);
 
@@ -42,15 +42,6 @@ float height_at(vec2 uv) {
 	return map.r * OBJECT_FULL_M + tilt;
 }
 
-// Finds which point of the painting belongs at this spot on screen. Two passes keep object edges
-// clean, and the paper edge stays put.
-vec2 parallax(vec2 uv) {
-	vec2 edge = min(uv, 1.0 - uv);
-	vec2 shift = view_shift * smoothstep(0.004, 0.03, min(edge.x, edge.y));
-	vec2 found = uv - shift * texture(height_map, uv).b;
-	return uv - shift * texture(height_map, found).b;
-}
-
 vec3 with_age(vec2 uv, vec3 color) {
 	vec4 cared = texture(aged_cared, uv);
 	vec4 damaged = texture(aged_damaged, uv);
@@ -59,8 +50,8 @@ vec3 with_age(vec2 uv, vec3 color) {
 }
 
 void fragment() {
-	vec2 uv = parallax(UV);
-	COLOR.a = texture(TEXTURE, uv).a * texture(cut_mask, uv).a;
+	vec2 uv = UV;
+	COLOR.a *= texture(cut_mask, uv).a;
 	float active = smoothstep(0.0, 0.03, flood_m);
 	float level = flood_m + waves(uv, TIME) * 0.012 * active;
 	float depth = level - height_at(uv);
@@ -92,7 +83,7 @@ void fragment() {
 			vec2 mirror = vec2(uv.x + ripple.x * 2.0, 2.0 * line_y - uv.y + ripple.y);
 			if (mirror.y > 0.0 && uv.y > line_y) {
 				float fade = exp(-(uv.y - line_y) * 5.0) * smoothstep(0.0, mirror_soft, uv.y - line_y) * smoothstep(0.0, 0.08, mirror.y);
-				color = mix(color, with_age(mirror, texture(TEXTURE, mirror).rgb) * vec3(0.78, 0.92, 0.96), 0.5 * fade);
+				color = mix(color, with_age(mirror, texture(mirror_source, mirror).rgb) * vec3(0.78, 0.92, 0.96), 0.5 * fade);
 			}
 		}
 		if (quality > 1.5) {

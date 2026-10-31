@@ -4,6 +4,8 @@
 [ext_resource type="Script" path="res://rooms/door.gd" id="2"]
 [ext_resource type="Texture2D" path="res://rooms/street/street.png" id="3"]
 [ext_resource type="Texture2D" path="res://rooms/street/street_height.png" id="4"]
+[ext_resource type="Texture2D" path="res://rooms/street/street_plate.png" id="5"]
+[ext_resource type="Texture2D" path="res://rooms/street/street_plate_height.png" id="6"]
 [ext_resource type="Texture2D" path="res://rooms/street/home_cut.png" id="c0"]
 [ext_resource type="Texture2D" path="res://rooms/street/neighbour_cut.png" id="c1"]
 [ext_resource type="Texture2D" path="res://rooms/street/bingeneral_cut.png" id="c2"]
@@ -30,6 +32,8 @@ script = ExtResource("1")
 room_name = "street"
 painting = ExtResource("3")
 height = ExtResource("4")
+plate = ExtResource("5")
+plate_height = ExtResource("6")
 floor_line = 0.4352
 wall_m_per_uv = 14.4
 px_per_m = 75.0
@@ -39,63 +43,63 @@ spawn = Vector2(702.0, 460.0)
 position = Vector2(0, 381)
 texture = ExtResource("3")
 centered = false
-offset = Vector2(566, -284)
+offset = Vector2(594, -256)
 region_enabled = true
-region_rect = Rect2(566, 97, 671, 418)
+region_rect = Rect2(594, 125, 615, 362)
 metadata/cut = ExtResource("c0")
 
 [node name="Neighbour" type="Sprite2D" parent="."]
 position = Vector2(0, 381)
 texture = ExtResource("3")
 centered = false
-offset = Vector2(1435, -284)
+offset = Vector2(1463, -256)
 region_enabled = true
-region_rect = Rect2(1435, 97, 485, 418)
+region_rect = Rect2(1463, 125, 457, 362)
 metadata/cut = ExtResource("c1")
 
 [node name="BinGeneral" type="Sprite2D" parent="."]
 position = Vector2(0, 490)
 texture = ExtResource("3")
 centered = false
-offset = Vector2(0, -169)
+offset = Vector2(22, -141)
 region_enabled = true
-region_rect = Rect2(0, 321, 160, 199)
+region_rect = Rect2(22, 349, 110, 143)
 metadata/cut = ExtResource("c2")
 
 [node name="BinPaper" type="Sprite2D" parent="."]
 position = Vector2(0, 505)
 texture = ExtResource("3")
 centered = false
-offset = Vector2(107, -139)
+offset = Vector2(135, -111)
 region_enabled = true
-region_rect = Rect2(107, 366, 139, 168)
+region_rect = Rect2(135, 394, 83, 112)
 metadata/cut = ExtResource("c3")
 
 [node name="BinPlastic" type="Sprite2D" parent="."]
 position = Vector2(0, 503)
 texture = ExtResource("3")
 centered = false
-offset = Vector2(196, -136)
+offset = Vector2(224, -108)
 region_enabled = true
-region_rect = Rect2(196, 367, 144, 166)
+region_rect = Rect2(224, 395, 88, 110)
 metadata/cut = ExtResource("c4")
 
 [node name="BinGlass" type="Sprite2D" parent="."]
 position = Vector2(0, 512)
 texture = ExtResource("3")
 centered = false
-offset = Vector2(289, -139)
+offset = Vector2(317, -111)
 region_enabled = true
-region_rect = Rect2(289, 373, 140, 168)
+region_rect = Rect2(317, 401, 84, 112)
 metadata/cut = ExtResource("c5")
 
 [node name="BinMetal" type="Sprite2D" parent="."]
 position = Vector2(0, 511)
 texture = ExtResource("3")
 centered = false
-offset = Vector2(383, -138)
+offset = Vector2(411, -110)
 region_enabled = true
-region_rect = Rect2(383, 373, 140, 168)
+region_rect = Rect2(411, 401, 84, 112)
 metadata/cut = ExtResource("c6")
 
 [node name="Solid" type="StaticBody2D" parent="."]

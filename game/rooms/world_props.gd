@@ -29,17 +29,16 @@ const DUNE_STEP_PX := 120
 const DUNE_FILL := Color("eadba9")
 const DUNE_MARK := Color("dcc896")
 const DUNE_GRASS := Color("8fa97a")
-## Parallax depth of what is drawn here: the planters and houses, the sea, and the dune.
-const STREET_NEARNESS := 0.13
-const MEADOW_NEARNESS := 0.2
+## How near the front the boarded houses and the dune sit, to slide with the room's objects.
+const HOUSE_NEARNESS := 381.0 / 1080.0
 const DUNE_NEARNESS := 0.85
-const REDRAW_PX := 0.5
+const REDRAW_PX := 0.25
 
 @export var outdoor_room: String = "shore"
 
 var state: WorldState
 var room: Room
-var _drawn_px := Vector2.ZERO
+var _drawn_slide := 0.0
 
 
 func _ready() -> void:
@@ -57,9 +56,9 @@ func _on_year_changed(new_state: WorldState) -> void:
 
 
 func _process(_delta: float) -> void:
-	var view := room.parallax_px(1.0)
-	if view.distance_to(_drawn_px) >= REDRAW_PX:
-		_drawn_px = view
+	var slide := room.slide_at(1.0)
+	if absf(slide - _drawn_slide) >= REDRAW_PX:
+		_drawn_slide = slide
 		queue_redraw()
 
 
@@ -67,13 +66,13 @@ func _draw() -> void:
 	if state == null:
 		return
 	if outdoor_room == "shore":
-		draw_set_transform(_drawn_px * MEADOW_NEARNESS)
 		_draw_meadow()
-		draw_set_transform(_drawn_px * DUNE_NEARNESS)
+		draw_set_transform(Vector2(_drawn_slide * DUNE_NEARNESS, 0.0))
 		_draw_dune()
 	else:
-		draw_set_transform(Vector2(0.0, -STREET_SORT_Y) + _drawn_px * STREET_NEARNESS)
+		draw_set_transform(Vector2(0.0, -STREET_SORT_Y))
 		_draw_saplings()
+		draw_set_transform(Vector2(_drawn_slide * HOUSE_NEARNESS, -STREET_SORT_Y))
 		for home: String in HOME_OPENINGS:
 			if not state.home_alive.get(home, true):
 				_draw_boards(HOME_OPENINGS[home])
@@ -95,12 +94,12 @@ func _draw_dune() -> void:
 	if tall < 3.0:
 		return
 	var crest := PackedVector2Array()
-	for x: int in range(0, 1920 + DUNE_STEP_PX, DUNE_STEP_PX):
+	for x: int in range(-DUNE_STEP_PX, 1920 + 2 * DUNE_STEP_PX, DUNE_STEP_PX):
 		var swell := 0.72 + 0.28 * sin(x * 0.0071) * sin(x * 0.0023 + 1.0)
 		crest.append(Vector2(x, DUNE_FOOT_Y - tall * swell))
 	var body := crest.duplicate()
-	body.append(Vector2(1920, 1080))
-	body.append(Vector2(0, 1080))
+	body.append(Vector2(1920 + 2 * DUNE_STEP_PX, 1080))
+	body.append(Vector2(-DUNE_STEP_PX, 1080))
 	draw_colored_polygon(body, DUNE_FILL)
 	draw_polyline(crest, INK, 3.0)
 	for index: int in range(1, crest.size() - 1):

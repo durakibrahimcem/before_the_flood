@@ -15,9 +15,9 @@ const LAST_YEAR := 2080.0
 const RIPPLE_SLOTS := 8
 const RIPPLE_SECONDS := 1.3
 const OUTDOOR_ROOMS := ["street", "shore"]
-## The strongest parallax slide, in pixels, for something right at the viewer.
-const PARALLAX_PX := Vector2(18.0, 7.0)
-const PARALLAX_EASE := 4.0
+## The strongest slide, in pixels, for an object at the very front. The floor and walls never move.
+const SLIDE_PX := 9.0
+const SLIDE_EASE := 1.5
 const OUTDOOR_MIRROR_SOFT := 0.09
 const INDOOR_MIRROR_SOFT := 0.001
 
@@ -31,21 +31,27 @@ const INDOOR_MIRROR_SOFT := 0.001
 @export var spawn: Vector2 = Vector2(960, 700)
 ## How many pixels one metre takes here. The street is seen from far further away than a room.
 @export var px_per_m: float = 200.0
+## The painting with its cut-out objects lifted off, and that picture's heights.
+@export var plate: Texture2D
+@export var plate_height: Texture2D
 
 var flood_m: float = 0.0
+## Tasks place things on the objects, so the view rests while one runs.
+var hold_view := false
 var _material: ShaderMaterial
 var _object_materials: Array[ShaderMaterial] = []
 var _height_image: Image
 var _ripples: Array[Vector3] = []
-var _view_px := Vector2.ZERO
-var _lamps: Array[Sprite2D] = []
-var _lamp_depths: Array[float] = []
+var _slide_px := 0.0
+var _view_ready := false
+var _sliders: Array[Sprite2D] = []
 
 
 func _ready() -> void:
 	_material = ShaderMaterial.new()
 	_material.shader = SHADER
 	_material.set_shader_parameter("height_map", height)
+	_material.set_shader_parameter("mirror_source", painting)
 	_material.set_shader_parameter("floor_line", floor_line)
 	_material.set_shader_parameter("wall_m_per_uv", wall_m_per_uv)
 	_material.set_shader_parameter("creep_m", CREEP_M)
@@ -54,7 +60,7 @@ func _ready() -> void:
 	_material.set_shader_parameter("aged_damaged", aged_damaged if aged_damaged != null else _blank())
 	var background := Sprite2D.new()
 	background.name = "Painting"
-	background.texture = painting
+	background.texture = plate
 	background.centered = false
 	background.z_index = -1
 	background.material = _material
@@ -67,6 +73,7 @@ func _ready() -> void:
 			cutout.set_shader_parameter("cut_mask", child.get_meta("cut"))
 			child.material = cutout
 			_object_materials.append(cutout)
+			_sliders.append(child)
 	for bowls: String in ["BowlsFull", "BowlsEmpty"]:
 		if has_node(bowls):
 			var layer := _material.duplicate() as ShaderMaterial
@@ -93,11 +100,7 @@ func _ready() -> void:
 		add_child(marks)
 	_height_image = height.get_image()
 	_height_image.decompress()
-	for lamp: String in ["LampOn", "LampOff"]:
-		if has_node(lamp):
-			var sprite: Sprite2D = get_node(lamp)
-			_lamps.append(sprite)
-			_lamp_depths.append(nearness_at(sprite.get_rect().get_center()))
+	_material.set_shader_parameter("height_map", plate_height)
 	WorldClock.year_changed.connect(_on_year_changed)
 	WorldClock.refresh()
 
@@ -137,31 +140,21 @@ func ripple_count() -> int:
 	return _ripples.size()
 
 
-## The slide for a depth, in pixels. Drawn things that skip the flood shader use it to keep up.
-func parallax_px(nearness: float) -> Vector2:
-	return _view_px * nearness
+## How far something this near the front has slid. Near objects move more than far ones.
+func slide_at(nearness: float) -> float:
+	return _slide_px * nearness
 
 
-## How near the viewer a room position sits, from 0 at the far wall to 1 at the front.
-func nearness_at(point: Vector2) -> float:
-	var uv := (point / ROOM_SIZE).clamp(Vector2.ZERO, Vector2.ONE)
-	var size := _height_image.get_size()
-	return _height_image.get_pixel(mini(int(uv.x * size.x), size.x - 1), mini(int(uv.y * size.y), size.y - 1)).b
-
-
-## The view drifts opposite to the walker, so near things slide further than far ones.
+## Objects slide as whole paper cut-outs, slowly and against the walker, like a multiplane camera.
 func _update_view(delta: float) -> void:
 	var walker := get_tree().get_first_node_in_group("walker") as Node2D
-	var target := Vector2.ZERO
-	if walker != null and not Settings.calm_storm:
-		target = (Vector2(0.5, 0.5) - walker.global_position / ROOM_SIZE) * 2.0 * PARALLAX_PX
-	_view_px = _view_px.lerp(target, 1.0 - exp(-PARALLAX_EASE * delta))
-	var shift := _view_px / ROOM_SIZE
-	_material.set_shader_parameter("view_shift", shift)
-	for object_material: ShaderMaterial in _object_materials:
-		object_material.set_shader_parameter("view_shift", shift)
-	for index: int in _lamps.size():
-		_lamps[index].position = parallax_px(_lamp_depths[index])
+	var target := 0.0
+	if walker != null and not hold_view and not Settings.calm_storm:
+		target = (0.5 - walker.global_position.x / ROOM_SIZE.x) * 2.0 * SLIDE_PX
+	_slide_px = lerpf(_slide_px, target, 1.0 - exp(-SLIDE_EASE * delta)) if _view_ready else target
+	_view_ready = true
+	for sprite: Sprite2D in _sliders:
+		sprite.position.x = slide_at(sprite.position.y / ROOM_SIZE.y)
 
 
 func _process(delta: float) -> void:

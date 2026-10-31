@@ -83,6 +83,8 @@ func _ready() -> void:
 	assert(main.room.flood_m > 0.0, "the sea is at the shore")
 	assert(main.room.depth_at(Vector2(960, 300)) > main.room.depth_at(Vector2(960, 1000)), "the sea is deeper than the beach")
 	await _walk_every_door(main)
+	_check_verdicts()
+	await _check_view(main)
 	await _check_outdoors(main)
 	print("DEMO PASS")
 	get_tree().quit()
@@ -119,6 +121,41 @@ func _walk_every_door(main: Main) -> void:
 	assert(main.arda.position.x < 1830.0, "the fridge stops Arda, got x %f" % main.arda.position.x)
 
 
+func _check_verdicts() -> void:
+	assert(TaskVerdict.entry_for(1.0)["word"] == "Awesome!", "a perfect task is awesome")
+	assert(TaskVerdict.entry_for(0.8)["word"] == "Great job!", "a strong task is great")
+	assert(TaskVerdict.entry_for(0.5)["word"] == "Good work.", "half is good")
+	assert(TaskVerdict.entry_for(0.0)["word"] == "That went badly.", "nothing done is bad")
+
+
+## Whole objects slide against the walker. The floor, and whatever sits on it, must stay put.
+func _check_view(main: Main) -> void:
+	var calm := Settings.calm_storm
+	Settings.calm_storm = false
+	main.enter_room("salon", Vector2(120, 700))
+	await _frames(2)
+	var sofa: Sprite2D = main.room.get_node("Sofa")
+	var painting: Sprite2D = main.room.get_node("Painting")
+	var left := sofa.position.x
+	assert(left > 0.0, "with Arda on the left, the sofa rests to the right")
+	main.arda.position = Vector2(1800, 700)
+	await get_tree().create_timer(0.1).timeout
+	assert(sofa.position.x < left and sofa.position.x > 0.0, "the sofa eases, it does not jump")
+	assert(painting.position == Vector2.ZERO, "the floor never moves")
+	await get_tree().create_timer(3.0).timeout
+	assert(sofa.position.x < 0.0, "with Arda on the right, the sofa rests to the left")
+	assert(absf(sofa.position.x) <= Room.SLIDE_PX, "the slide stays small")
+	assert(sofa.position.y == 1006.0, "the view never shifts up or down")
+	main.room.hold_view = true
+	await get_tree().create_timer(4.0).timeout
+	assert(absf(sofa.position.x) < 0.3, "objects settle during a task")
+	Settings.calm_storm = true
+	main.room.hold_view = false
+	await get_tree().create_timer(4.0).timeout
+	assert(absf(sofa.position.x) < 0.3, "calm mode stops the slide")
+	Settings.calm_storm = calm
+
+
 ## Plays Ebru's street and shore on foot: Arda shrinks to fit them, so every reach is checked with real physics.
 func _check_outdoors(main: Main) -> void:
 	WorldClock.scrub(2026.0)
@@ -145,7 +182,10 @@ func _check_outdoors(main: Main) -> void:
 	Input.action_release("move_up")
 	assert(sort.sorted_correct == 1, "Arda reaches the painted paper bin, got %d" % sort.sorted_correct)
 	sort.running = false
-	await _leave_task(main)
+	assert(sort.result_text() == "1 of %d sorted" % sort.total_items, "the score reads as words, got %s" % sort.result_text())
+	main.task.complete(0.1)
+	await _frames(3)
+	assert(main._verdict.word() == "That went badly.", "a poor task says so, got %s" % main._verdict.word())
 
 	main.pending_action = "meet"
 	main.enter_room("street", Vector2(1581, 560))

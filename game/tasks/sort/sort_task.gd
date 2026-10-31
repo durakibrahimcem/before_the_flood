@@ -30,7 +30,7 @@ const VERDICT_LIFT := Vector2(-100.0, -120.0)
 const VERDICT_RIGHT := Color(0.72, 0.95, 0.6)
 const VERDICT_WRONG := Color(1.0, 0.72, 0.6)
 
-@export var seconds := 25.0
+@export var seconds := 40.0
 ## 0 randomizes the layout each run; a nonzero seed makes it repeatable.
 @export var layout_seed := 0
 ## Art drop-in for the placeholder walker we spawn; the room's own walker needs none.
@@ -58,6 +58,7 @@ func _begin() -> void:
 	if not is_node_ready():
 		await ready
 	total_items = target_count(BASE_ITEMS)
+	seconds = target_time(seconds)
 	time_left = seconds
 	running = true
 	_seed_rng()
@@ -92,6 +93,10 @@ func _physics_process(delta: float) -> void:
 	time_left = maxf(time_left - delta, 0.0)
 	if time_left <= 0.0 or (_items_left() == 0 and _carried() == ""):
 		_end()
+
+
+func result_text() -> String:
+	return "%d of %d sorted" % [sorted_correct, total_items]
 
 
 func debug_note() -> String:

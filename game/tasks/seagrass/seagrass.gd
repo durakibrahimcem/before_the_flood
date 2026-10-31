@@ -5,7 +5,7 @@ extends Task
 const WASH_SECONDS := 1.5
 const CALM_SECONDS := 2.5
 const CYCLE := WASH_SECONDS + CALM_SECONDS
-const TIMEOUT_SECONDS := 25.0
+const TIMEOUT_SECONDS := 40.0
 const PLANT_RADIUS := 110.0
 const TOP := 300.0
 const BOTTOM := 1120.0
@@ -52,6 +52,10 @@ func is_calm() -> bool:
 	return not washing
 
 
+func result_text() -> String:
+	return "%d of %d shoots rooted" % [rooted, goal]
+
+
 func debug_note() -> String:
 	return "%d %d %d" % [rooted, goal, 1 if is_calm() else 0]
 
@@ -94,7 +98,7 @@ func _physics_process(delta: float) -> void:
 		if spot != null:
 			_plant(spot)
 	_check_washes()
-	if elapsed >= TIMEOUT_SECONDS:
+	if elapsed >= target_time(TIMEOUT_SECONDS):
 		complete(float(rooted) / float(goal))
 	if _spawned_walker != null:
 		_spawned_walker.position.x = clampf(_spawned_walker.position.x, 40.0, 1880.0)

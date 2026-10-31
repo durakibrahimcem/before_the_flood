@@ -22,7 +22,7 @@ const AMBER := Color("e0a44e")
 const LAMPS_LINE := "The lamps come on down the street."
 const EVENING_LINE := "The evening closes. Another day, then."
 
-@export var time_limit: float = 25.0
+@export var time_limit: float = 45.0
 @export var hint_text: String = "Walk to the neighbours' door and press E to knock."
 ## The foot of the door Ebru painted on the house next door.
 @export var door_pos: Vector2 = Vector2(1581.0, 381.0)
@@ -61,6 +61,7 @@ func _init() -> void:
 
 func _begin() -> void:
 	goal = target_count(BASE_GOAL)
+	time_limit = target_time(time_limit)
 	right_answers = 0
 	worries_asked = 0
 	elapsed = 0.0
@@ -147,6 +148,10 @@ func bot_send_key(index: int) -> void:
 ## For scripted demos: true once the argument cards are on show.
 func bot_cards_ready() -> bool:
 	return _cards_shown
+
+
+func result_text() -> String:
+	return "%d of %d worries answered" % [right_answers, goal]
 
 
 func debug_note() -> String:

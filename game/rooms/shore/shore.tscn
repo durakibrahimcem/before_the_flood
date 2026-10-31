@@ -4,6 +4,8 @@
 [ext_resource type="Script" path="res://rooms/door.gd" id="2"]
 [ext_resource type="Texture2D" path="res://rooms/shore/shore.png" id="3"]
 [ext_resource type="Texture2D" path="res://rooms/shore/shore_height.png" id="4"]
+[ext_resource type="Texture2D" path="res://rooms/shore/shore_plate.png" id="5"]
+[ext_resource type="Texture2D" path="res://rooms/shore/shore_plate_height.png" id="6"]
 
 [sub_resource type="RectangleShape2D" id="ToStreet"]
 size = Vector2(80, 500)
@@ -20,6 +22,8 @@ script = ExtResource("1")
 room_name = "shore"
 painting = ExtResource("3")
 height = ExtResource("4")
+plate = ExtResource("5")
+plate_height = ExtResource("6")
 floor_line = 0.2009
 wall_m_per_uv = 100.0
 px_per_m = 130.0

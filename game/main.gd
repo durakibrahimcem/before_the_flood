@@ -33,6 +33,8 @@ var task: Task
 var final_walk: bool = false
 var _seen_papers: Dictionary = {}
 var _wall_state: int = WorldState.Wall.NONE
+var _skipping := false
+var _verdict: TaskVerdict
 
 @onready var arda: Arda = $Arda
 @onready var time: TimeControl = $TimeControl
@@ -53,6 +55,8 @@ func _ready() -> void:
 	Run.plan_complete.connect(_on_plan_complete)
 	WorldClock.year_changed.connect(_on_year_changed)
 	ending.hide()
+	_verdict = TaskVerdict.new()
+	add_child(_verdict)
 	enter_room("bedroom", Vector2.INF)
 	time.enabled = false
 	controls.open()
@@ -64,6 +68,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		open_calendar()
 	elif event.is_action_pressed("skip") and task != null and is_replay():
 		get_viewport().set_input_as_handled()
+		_skipping = true
 		task.complete(0.0)
 
 
@@ -149,6 +154,7 @@ func _start_pending_task() -> void:
 		return
 	hint.text = "Tab skips this task." if is_replay() else ""
 	time.enabled = false
+	room.hold_view = true
 	task = (load(spec["scene"]) as PackedScene).instantiate()
 	task.finished.connect(_on_task_finished)
 	add_child(task)
@@ -157,6 +163,9 @@ func _start_pending_task() -> void:
 
 func _on_task_finished(performance: float) -> void:
 	var action := pending_action
+	if not _skipping and not auto_tasks:
+		_verdict.show_result(performance, task.result_text())
+	_skipping = false
 	hint.text = ""
 	pending_action = ""
 	task.queue_free.call_deferred()

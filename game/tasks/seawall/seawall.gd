@@ -26,7 +26,7 @@ const FREEZE_MISSED := 0.04
 const SETTLE_GAP := 0.35
 const SHAKE_STRENGTH := 14.0
 const SHAKE_TIME := 0.35
-const CAP_SECONDS := 45.0
+const CAP_SECONDS := 60.0
 
 enum State { IDLE, SLIDING, FALLING, FROZEN, SETTLING }
 
@@ -112,7 +112,7 @@ func _physics_process(delta: float) -> void:
 	if _state == State.IDLE:
 		return
 	_elapsed += delta
-	if _elapsed >= CAP_SECONDS and not _done:
+	if _elapsed >= target_time(CAP_SECONDS) and not _done:
 		if _falling_block != null:
 			_land_on(_surface_for(_falling_block.position.x))
 		_stop()
@@ -128,6 +128,10 @@ func _physics_process(delta: float) -> void:
 		State.SETTLING:
 			_settle(delta)
 	_update_shake(delta)
+
+
+func result_text() -> String:
+	return "%d of %d blocks straight" % [aligned_blocks, goal]
 
 
 func debug_note() -> String:

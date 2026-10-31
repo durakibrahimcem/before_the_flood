@@ -15,7 +15,7 @@ const SPOT_POOL: Array[Vector2] = [
 @export var spot_texture: Texture2D
 @export var plant_texture: Texture2D
 ## The real run lasts about 25 seconds; demos shorten it for a quick poor run.
-@export var time_limit := 25.0
+@export var time_limit := 40.0
 
 var walker: CharacterBody2D
 var spots: Array[DuneSpot] = []
@@ -37,6 +37,10 @@ func complete(performance: float) -> void:
 	super.complete(performance)
 
 
+func result_text() -> String:
+	return "%d of %d spots planted" % [planted_count, _total]
+
+
 func debug_note() -> String:
 	return "%d %d" % [planted_count, _total]
 
@@ -55,7 +59,7 @@ func _begin() -> void:
 		add_child(spot)
 		spots.append(spot)
 	_show_hint()
-	_time_left = time_limit
+	_time_left = target_time(time_limit)
 	_was_interact_pressed = false
 	set_physics_process(true)
 
