@@ -149,6 +149,7 @@ func _nearest_empty_spot() -> SeagrassSpot:
 
 
 func _plant(spot: SeagrassSpot) -> void:
+	Sfx.play("plant")
 	var shoot := SeagrassShoot.new()
 	shoot.texture = shoot_texture
 	shoot.position = spot.position

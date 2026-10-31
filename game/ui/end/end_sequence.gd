@@ -93,7 +93,7 @@ func _show(index: int) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not visible:
 		return
-	if event.is_action_pressed("interact"):
+	if event.is_action_pressed("interact") or event.is_action_pressed("ui_accept"):
 		advance()
 		get_viewport().set_input_as_handled()
 

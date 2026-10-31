@@ -40,6 +40,7 @@ func play() -> void:
 
 
 func draw_now() -> void:
+	Sfx.play("scribble")
 	_drew = true
 
 

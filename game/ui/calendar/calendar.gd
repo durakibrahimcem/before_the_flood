@@ -306,6 +306,7 @@ func _release(card: ActionDrawing) -> void:
 
 
 func _choose(action: String) -> void:
+	Sfx.play("paper")
 	_end_drag()
 	_history.append(action)
 	action_chosen.emit(action)

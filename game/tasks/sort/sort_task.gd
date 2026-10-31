@@ -203,6 +203,7 @@ func _on_item_touched(_body: Node2D, item: SortItem) -> void:
 	if _carried() != "":
 		return
 	_set_carried(item.kind)
+	Sfx.play("pickup")
 	item.queue_free()
 	_update_carried_label()
 	_pop_carried_label()
@@ -217,6 +218,7 @@ func _on_bin_touched(_body: Node2D, bin: SortBin) -> void:
 		return
 	if carried == bin.kind:
 		sorted_correct += 1
+	Sfx.play("drop")
 	_set_carried("")
 	_update_carried_label()
 

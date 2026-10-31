@@ -56,7 +56,7 @@ offset_bottom = 794.0
 horizontal_alignment = 1
 mouse_filter = 2
 theme_override_colors/font_color = Color(0.16, 0.14, 0.12, 1)
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 34
 
 [node name="RankStep" type="Control" parent="Steps"]
 visible = false
@@ -100,7 +100,7 @@ offset_bottom = 938.0
 horizontal_alignment = 1
 mouse_filter = 2
 theme_override_colors/font_color = Color(0.16, 0.14, 0.12, 1)
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 32
 
 [node name="RealStep" type="Control" parent="Steps"]
 visible = false
@@ -144,7 +144,7 @@ offset_bottom = 466.0
 horizontal_alignment = 1
 mouse_filter = 2
 theme_override_colors/font_color = Color(0.16, 0.14, 0.12, 1)
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 34
 text = "Go back to 2026 and draw a different future."
 
 [node name="Retry" type="Button" parent="Steps/RetryStep"]

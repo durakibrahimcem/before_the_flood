@@ -40,6 +40,7 @@ func _ready() -> void:
 
 func plant() -> void:
 	is_planted = true
+	Sfx.play("plant")
 	particles.emitting = false
 	queue_redraw()
 	var pop := create_tween()

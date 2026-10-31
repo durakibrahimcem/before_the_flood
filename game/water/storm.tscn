@@ -1,0 +1,37 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://water/storm.gd" id="1"]
+[ext_resource type="AudioStream" path="res://audio/sfx/thunder.ogg" id="2"]
+[ext_resource type="AudioStream" path="res://audio/sfx/rain.ogg" id="3"]
+
+[node name="Storm" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1")
+
+[node name="Rain" type="CPUParticles2D" parent="."]
+position = Vector2(1060, -60)
+emitting = false
+amount = 320
+lifetime = 0.9
+preprocess = 0.9
+emission_shape = 3
+emission_rect_extents = Vector2(1260, 20)
+particle_flag_align_y = true
+direction = Vector2(-0.24, 1)
+spread = 2.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1500.0
+initial_velocity_max = 1900.0
+color = Color(0.82, 0.9, 0.97, 0.42)
+
+[node name="Flash" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.86, 0.91, 1, 0)
+
+[node name="Thunder" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2")
+
+[node name="RainSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3")

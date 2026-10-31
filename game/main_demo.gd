@@ -36,6 +36,7 @@ func _ready() -> void:
 	var waded: float = start.distance_to(main.arda.position)
 	assert(waded > 0.0, "Arda wades")
 	assert(main.arda.wade_factor(deep) < 1.0, "water slows Arda")
+	assert(main.room.ripple_count() > 0, "wading leaves rings on the water")
 
 	time.begin_scrub()
 	assert(get_tree().paused, "scrubbing pauses the world")
@@ -109,6 +110,11 @@ func _walk_every_door(main: Main) -> void:
 	assert(main.room.room_name == "shore", "doors stay shut during a task")
 	main.task.free()
 	main.task = null
+	main.enter_room("salon", Vector2(1760, 700))
+	Input.action_press("move_right")
+	await _physics(40)
+	Input.action_release("move_right")
+	assert(main.arda.position.x < 1830.0, "the fridge stops Arda, got x %f" % main.arda.position.x)
 
 
 func _frames(count: int) -> void:

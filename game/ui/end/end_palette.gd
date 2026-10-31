@@ -11,7 +11,7 @@ const CRAYON := Color(0.82, 0.32, 0.22)
 const TEAL_OLD := Color(0.24, 0.5, 0.5, 0.35)
 
 const TITLE_SIZE := 64
-const BODY_SIZE := 26
+const BODY_SIZE := 30
 const CARD_TITLE_SIZE := 30
 const RANK_SIZE := 140
 const CODE_SIZE := 110

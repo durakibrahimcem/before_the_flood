@@ -8,6 +8,8 @@ const SHOULDER_SHARE := 0.2
 const BOB_HEIGHT := 7.0
 const BOB_SPEED := 9.0
 const AGE_METRES := { 2026: 1.3, 2050: 1.75, 2080: 1.7 }
+const STRIDE := 0.35
+const RIPPLE_MIN_DEPTH_M := 0.03
 
 @export var speed: float = 460.0
 @export var pixels_per_metre: float = 200.0
@@ -16,6 +18,7 @@ var carried: String = ""
 var room: Room
 var height_m: float = 1.3
 var _walked: float = 0.0
+var _stepped_at: float = -STRIDE
 
 @onready var body_sprite: Sprite2D = $Sprite
 
@@ -32,10 +35,22 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * speed * wade_factor(depth)
 	move_and_slide()
 	_walked += velocity.length() * delta / speed
+	if velocity != Vector2.ZERO and _walked - _stepped_at >= STRIDE:
+		_stepped_at = _walked
+		_step(depth)
 	if direction.x != 0.0:
 		body_sprite.flip_h = direction.x < 0.0
 	body_sprite.position.y = -absf(sin(_walked * BOB_SPEED)) * BOB_HEIGHT
 	_set_waterline(depth)
+
+
+func _step(depth: float) -> void:
+	if depth <= RIPPLE_MIN_DEPTH_M:
+		Sfx.play("step_dry")
+		return
+	Sfx.play("step_wet")
+	var wet_m := minf(depth, height_m * (1.0 - SHOULDER_SHARE))
+	room.add_ripple(position - Vector2(0.0, wet_m * pixels_per_metre))
 
 
 func wade_factor(depth: float) -> float:

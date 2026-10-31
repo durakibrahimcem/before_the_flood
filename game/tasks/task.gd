@@ -30,6 +30,7 @@ func complete(performance: float) -> void:
 	if _done:
 		return
 	_done = true
+	Sfx.play("chime")
 	finished.emit(clampf(performance, 0.0, 1.0))
 
 

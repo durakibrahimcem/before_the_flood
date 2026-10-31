@@ -43,6 +43,7 @@ func _ready() -> void:
 ## Puts the front page for an era on screen, replacing any page already up.
 func show_for(plan: Plan, era: int) -> void:
 	assert(is_node_ready(), "Add the overlay to the tree before showing a page")
+	Sfx.play("paper")
 	var page := Newspapers.pick(plan, era)
 	masthead.text = MASTHEAD
 	year.text = str(era)
@@ -124,5 +125,5 @@ func _apply_text_sizes() -> void:
 	masthead.add_theme_font_size_override("font_size", roundi(48.0 * factor))
 	year.add_theme_font_size_override("font_size", roundi(32.0 * factor))
 	headline.add_theme_font_size_override("font_size", roundi(30.0 * factor))
-	story.add_theme_font_size_override("font_size", roundi(19.0 * factor))
+	story.add_theme_font_size_override("font_size", roundi(22.0 * factor))
 	hint.add_theme_font_size_override("font_size", roundi(14.0 * factor))

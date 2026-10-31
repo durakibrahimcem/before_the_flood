@@ -12,6 +12,8 @@ const ROOM_SIZE := Vector2(1920.0, 1080.0)
 const BOWLS_EMPTY_YEAR := 2040.0
 const FIRST_YEAR := 2026.0
 const LAST_YEAR := 2080.0
+const RIPPLE_SLOTS := 8
+const RIPPLE_SECONDS := 1.3
 
 @export var room_name: String = ""
 @export var painting: Texture2D
@@ -26,6 +28,7 @@ var flood_m: float = 0.0
 var _material: ShaderMaterial
 var _object_materials: Array[ShaderMaterial] = []
 var _height_image: Image
+var _ripples: Array[Vector3] = []
 
 
 func _ready() -> void:
@@ -94,6 +97,31 @@ func _update_details(state: WorldState) -> void:
 		var home_stands: bool = state.home_alive.get("own", true)
 		$LampOn.visible = home_stands
 		$LampOff.visible = not home_stands
+
+
+## Starts a ring on the water. The oldest ring gives way once all the slots are taken.
+func add_ripple(point: Vector2) -> void:
+	if _ripples.size() == RIPPLE_SLOTS:
+		_ripples.pop_front()
+	var uv := point / ROOM_SIZE
+	_ripples.append(Vector3(uv.x, uv.y, 0.0))
+
+
+func ripple_count() -> int:
+	return _ripples.size()
+
+
+func _process(delta: float) -> void:
+	var was_active := not _ripples.is_empty()
+	var still_alive: Array[Vector3] = []
+	for ring: Vector3 in _ripples:
+		ring.z += delta / RIPPLE_SECONDS
+		if ring.z < 1.0:
+			still_alive.append(ring)
+	_ripples = still_alive
+	if was_active:
+		_material.set_shader_parameter("ripples", PackedVector3Array(_ripples))
+		_material.set_shader_parameter("ripple_count", _ripples.size())
 
 
 ## Water depth in metres at a room position, matching the flood shader's height_at().

@@ -3,7 +3,12 @@ extends CanvasLayer
 ## Tap T to jump between eras. Hold T to pause the world and scrub the years.
 
 const HOLD_SECONDS := 0.22
-const SCRIBBLE_SECONDS := 0.3
+const SCRIBBLE_SECONDS := 0.34
+const ERA_CRAYONS := {
+	2026: Color(0.96, 0.75, 0.32),
+	2050: Color(0.27, 0.56, 0.6),
+	2080: Color(0.15, 0.3, 0.42),
+}
 
 @onready var bar: Control = $Bar
 @onready var slider: HSlider = $Bar/Slider
@@ -16,6 +21,7 @@ var scrubbing: bool = false
 var _held: float = 0.0
 var _pressed: bool = false
 var _moved: bool = false
+var _scribble_tween: Tween
 
 
 func _ready() -> void:
@@ -81,9 +87,14 @@ func _on_slider_changed(value: float) -> void:
 	WorldClock.scrub(value)
 
 
-func _on_jumped(_to_year: int) -> void:
+func _on_jumped(to_year: int) -> void:
+	Sfx.play("scribble")
+	var strokes := scribble.material as ShaderMaterial
+	strokes.set_shader_parameter("crayon", ERA_CRAYONS[to_year])
+	strokes.set_shader_parameter("progress", 0.0)
 	scribble.show()
-	scribble.modulate.a = 1.0
-	var tween := create_tween()
-	tween.tween_property(scribble, "modulate:a", 0.0, SCRIBBLE_SECONDS)
-	tween.tween_callback(scribble.hide)
+	if _scribble_tween != null and _scribble_tween.is_valid():
+		_scribble_tween.kill()
+	_scribble_tween = create_tween()
+	_scribble_tween.tween_property(strokes, "shader_parameter/progress", 1.0, SCRIBBLE_SECONDS)
+	_scribble_tween.tween_callback(scribble.hide)

@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" path="res://rooms/salon/sofa_cut.png" id="c0"]
 [ext_resource type="Texture2D" path="res://rooms/salon/table_cut.png" id="c1"]
 [ext_resource type="Texture2D" path="res://rooms/salon/counter_cut.png" id="c2"]
+[ext_resource type="Texture2D" path="res://rooms/salon/fridge_cut.png" id="c3"]
 [ext_resource type="Texture2D" path="res://rooms/salon/bowls_full.png" id="o0"]
 [ext_resource type="Texture2D" path="res://rooms/salon/bowls_empty.png" id="o1"]
 [ext_resource type="Texture2D" path="res://rooms/salon/lamp_on.png" id="o2"]
@@ -55,8 +56,17 @@ texture = ExtResource("3")
 centered = false
 offset = Vector2(1248, -200)
 region_enabled = true
-region_rect = Rect2(1248, 420, 657, 383)
+region_rect = Rect2(1248, 420, 568, 347)
 metadata/cut = ExtResource("c2")
+
+[node name="Fridge" type="Sprite2D" parent="."]
+position = Vector2(0, 776)
+texture = ExtResource("3")
+centered = false
+offset = Vector2(1815, -491)
+region_enabled = true
+region_rect = Rect2(1815, 285, 101, 516)
+metadata/cut = ExtResource("c3")
 
 [node name="BowlsFull" type="Sprite2D" parent="."]
 z_index = -1
@@ -100,6 +110,9 @@ polygon = PackedVector2Array(1104.0, 889.6, 1724.0, 889.6, 1744.0, 1029.9, 1088.
 
 [node name="CounterFoot" type="CollisionPolygon2D" parent="Solid"]
 polygon = PackedVector2Array(1264.0, 549.0, 1808.0, 549.0, 1804.0, 619.1, 1264.0, 619.1)
+
+[node name="FridgeFoot" type="CollisionPolygon2D" parent="Solid"]
+polygon = PackedVector2Array(1812.0, 619.1, 1904.0, 619.1, 1904.0, 773.4, 1824.0, 773.4)
 
 [node name="Top" type="CollisionShape2D" parent="Solid"]
 position = Vector2(960.0, 479.0)

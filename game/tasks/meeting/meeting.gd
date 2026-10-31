@@ -170,6 +170,7 @@ func bot_cards_ready() -> bool:
 
 
 func _on_knock() -> void:
+	Sfx.play("knock")
 	_hide_hint()
 	state = State.WORRY
 	worries_asked += 1

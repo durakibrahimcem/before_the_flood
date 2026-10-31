@@ -6,6 +6,9 @@ uniform sampler2D aged_cared : filter_linear, repeat_disable;
 uniform sampler2D aged_damaged : filter_linear, repeat_disable;
 uniform sampler2D cut_mask : hint_default_white, filter_linear, repeat_disable;
 uniform float flood_m = 0.0;
+// Rings around a walker: x and y in uv, z is age from 0 to 1.
+uniform vec3 ripples[8];
+uniform int ripple_count = 0;
 uniform float aged = 0.0;
 uniform float severity = 0.0;
 uniform float floor_line = 0.4805;
@@ -54,6 +57,15 @@ void fragment() {
 		// The paintings end in a paper edge, which must not ripple with the water.
 		vec2 edge = min(uv, 1.0 - uv);
 		ripple *= smoothstep(0.004, 0.03, min(edge.x, edge.y));
+		float rings = 0.0;
+		for (int i = 0; i < ripple_count; i++) {
+			// Flattened, because the water is seen at an angle.
+			vec2 away = (uv - ripples[i].xy) * vec2(1.78, 4.2);
+			float reach = length(away);
+			float ring = (1.0 - smoothstep(0.0, 0.011, abs(reach - ripples[i].z * 0.1))) * (1.0 - ripples[i].z);
+			ripple += away / max(reach, 0.001) * ring * 0.004;
+			rings += ring;
+		}
 		vec3 under = with_age(uv + ripple, texture(TEXTURE, uv + ripple).rgb);
 		float absorb = 1.0 - exp(-depth * 1.5);
 		vec3 water = mix(shallow_color, deep_color, absorb);
@@ -70,6 +82,7 @@ void fragment() {
 			float caustic = pow(0.5 + 0.5 * sin(uv.x * 120.0 + sin(uv.y * 90.0 + TIME) * 2.0 + TIME * 0.8) * sin(uv.y * 150.0 - TIME * 0.9), 6.0);
 			color += caustic * 0.12 * (1.0 - absorb);
 		}
+		color = mix(color, vec3(0.95, 0.98, 0.97), min(rings, 1.0) * 0.4);
 		float foam = 1.0 - smoothstep(0.0, 0.03, depth);
 		float breakup = 0.6 + 0.4 * sin(uv.x * 230.0 + TIME * 2.0) * sin(uv.y * 210.0 - TIME * 1.5);
 		COLOR.rgb = mix(color, vec3(0.95, 0.98, 0.97), foam * breakup * 0.8);

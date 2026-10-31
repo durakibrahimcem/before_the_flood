@@ -1,17 +1,21 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://ui/timeline/time_control.gd" id="1"]
+[ext_resource type="Shader" path="res://ui/timeline/era_scribble.gdshader" id="scribble_shader"]
+
+[sub_resource type="ShaderMaterial" id="scribble_strokes"]
+shader = ExtResource("scribble_shader")
 
 [node name="TimeControl" type="CanvasLayer"]
 layer = 10
 script = ExtResource("1")
 
 [node name="Scribble" type="ColorRect" parent="."]
+material = SubResource("scribble_strokes")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color(0.96, 0.93, 0.85, 1)
 
 [node name="Bar" type="Control" parent="."]
 layout_mode = 3

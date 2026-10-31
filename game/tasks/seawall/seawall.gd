@@ -191,6 +191,7 @@ func _surface_for(x: float) -> float:
 
 
 func _land_on(surface: float) -> void:
+	Sfx.play("block")
 	var block := _falling_block
 	_falling_block = null
 	var offset := block.position.x - WALL_X
