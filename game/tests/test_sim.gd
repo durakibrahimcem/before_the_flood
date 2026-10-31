@@ -41,6 +41,13 @@ func _test_doing_nothing() -> void:
 	var today := Sim.at(Plan.new(), 2026.0)
 	_expect(today.flood_m["salon"] == 0.0 and today.homes == Sim.ALL_HOMES, "every home is dry and standing in 2026")
 	_expect(today.flood_m["street"] == 0.0, "the street is dry in 2026")
+	_expect(today.saplings == 0, "nothing planted leaves the planters empty")
+	var planted := Plan.new()
+	planted.counts["dune"] = 1
+	_expect(Sim.at(planted, 2026.0).saplings == 2, "a day of planting shows at once, in 2026")
+	planted.counts["dune"] = 2
+	planted.counts["meet"] = 3
+	_expect(Sim.at(planted, 2026.0).saplings == 5, "saplings stop at the five planters")
 
 
 func _test_plan_codes() -> void:

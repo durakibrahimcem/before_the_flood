@@ -12,5 +12,7 @@ var dune: float = 0.0
 var wall_state: int = Wall.NONE
 var homes: int = 2
 var neighbours: int = 1
+## Planters in use on the street. Planted today, so they show from the first year.
+var saplings: int = 0
 var home_alive: Dictionary = {}
 var severity: float = 0.0

@@ -5,11 +5,11 @@ extends Node2D
 const INK := Color("4a4a4a")
 const SAPLING := preload("res://rooms/street/sapling.png")
 const SAPLING_SPOTS: Array[Vector2] = [Vector2(168, 226), Vector2(374, 232), Vector2(90, 299), Vector2(256, 300), Vector2(442, 303)]
-## Each planter fills once the dunes reach this share more, because the same care plants both.
-const SAPLING_STEP := 0.07
-const SAPLING_SIZE_MIN := 34.0
+## Ebru's own size. Saplings start here, and the years and the dunes' care raise them.
+const SAPLING_SIZE_MIN := 28.0
 const SAPLING_SIZE_MAX := 100.0
 const SAPLING_FULL_SHARE := 0.6
+const SAPLING_BARE_GROWTH := 0.4
 const SAPLING_DROWNS_M := 1.3
 ## Sorts with the houses, so boards sit on the walls and Arda still walks in front of them.
 const STREET_SORT_Y := 395.0
@@ -97,11 +97,12 @@ func _draw_dune() -> void:
 func _draw_saplings() -> void:
 	if float(state.flood_m.get("street", 0.0)) >= SAPLING_DROWNS_M:
 		return
-	var size := lerpf(SAPLING_SIZE_MIN, SAPLING_SIZE_MAX, clampf(state.dune / SAPLING_FULL_SHARE, 0.0, 1.0))
-	for index: int in SAPLING_SPOTS.size():
-		if state.dune >= SAPLING_STEP * (index + 1):
-			var spot := SAPLING_SPOTS[index]
-			draw_texture_rect(SAPLING, Rect2(spot.x - size * 0.5, spot.y - size, size, size), false)
+	var age := inverse_lerp(Sim.FIRST_YEAR, Sim.LAST_YEAR, state.year)
+	var care := clampf(state.dune / SAPLING_FULL_SHARE, 0.0, 1.0)
+	var size := lerpf(SAPLING_SIZE_MIN, SAPLING_SIZE_MAX, age * lerpf(SAPLING_BARE_GROWTH, 1.0, care))
+	for index: int in mini(state.saplings, SAPLING_SPOTS.size()):
+		var spot := SAPLING_SPOTS[index]
+		draw_texture_rect(SAPLING, Rect2(spot.x - size * 0.5, spot.y - size, size, size), false)
 
 
 func _draw_boards(openings: Array) -> void:

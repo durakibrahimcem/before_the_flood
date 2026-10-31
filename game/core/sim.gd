@@ -50,6 +50,7 @@ static func at(plan: Plan, year: float) -> WorldState:
 	state.homes = alive
 	state.neighbours = 1 if state.home_alive["near"] else 0
 	state.severity = clampf(float(state.flood_m["salon"]) / float(b_cfg["severity_full_m"]), 0.0, 1.0)
+	state.saplings = mini(int(b_cfg["saplings_max"]), int(plan.counts["dune"]) * int(b_cfg["saplings_per_dune"]) + int(plan.counts["meet"]) * int(b_cfg["saplings_per_meet"]))
 	return state
 
 

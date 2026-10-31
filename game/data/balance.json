@@ -28,6 +28,9 @@
   "level_keep": 0.55,
   "light_keep": 0.50,
   "drain_keep": 0.50,
+  "saplings_per_dune": 2,
+  "saplings_per_meet": 1,
+  "saplings_max": 5,
   "tau_grass": 30.0,
   "tau_dune": 14.0,
   "tau_wall": 15.0
