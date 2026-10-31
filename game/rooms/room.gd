@@ -44,6 +44,10 @@ func _ready() -> void:
 	for child: Node in get_children():
 		if child is Polygon2D:
 			child.material = _material
+	if room_name in ["street", "shore"]:
+		var props := WorldProps.new()
+		props.outdoor_room = room_name
+		add_child(props)
 	_height_image = height.get_image()
 	_height_image.decompress()
 	WorldClock.year_changed.connect(_on_year_changed)

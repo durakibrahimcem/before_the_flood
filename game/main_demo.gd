@@ -6,6 +6,7 @@ const MAIN := preload("res://main.tscn")
 
 func _ready() -> void:
 	var main: Main = MAIN.instantiate()
+	main.auto_tasks = true
 	add_child(main)
 	await _frames(3)
 	var time: TimeControl = main.get_node("TimeControl")

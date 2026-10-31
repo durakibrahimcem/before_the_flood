@@ -19,6 +19,9 @@ const TASKS := {
 const FRIDGE := Vector2(1700, 720)
 const FRIDGE_REACH := 260.0
 const HINT_ROOM_NAMES := { "street": "the street", "shore": "the shore", "salon": "the salon" }
+const SHAKE_PIXELS := 18.0
+const SHAKE_STEPS := 8
+const SHAKE_STEP_SECONDS := 0.05
 
 ## Tasks finish at once at normal strength. Used by demos and fast replays.
 @export var auto_tasks: bool = false
@@ -28,6 +31,7 @@ var pending_action: String = ""
 var task: Task
 var final_walk: bool = false
 var _seen_papers: Dictionary = {}
+var _wall_state: int = WorldState.Wall.NONE
 
 @onready var arda: Arda = $Arda
 @onready var time: TimeControl = $TimeControl
@@ -46,6 +50,7 @@ func _ready() -> void:
 	controls.started.connect(_on_controls_started)
 	WorldClock.jumped.connect(_on_jumped)
 	Run.plan_complete.connect(_on_plan_complete)
+	WorldClock.year_changed.connect(_on_year_changed)
 	ending.hide()
 	enter_room("bedroom", Vector2.INF)
 	time.enabled = false
@@ -56,6 +61,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and can_open_calendar():
 		get_viewport().set_input_as_handled()
 		open_calendar()
+	elif event.is_action_pressed("skip") and task != null and is_replay():
+		get_viewport().set_input_as_handled()
+		task.complete(0.0)
+
+
+## Past attempts unlock skipping, so a new plan can be tested in under 2 minutes.
+func is_replay() -> bool:
+	return not Run.ghosts.is_empty()
 
 
 func can_open_calendar() -> bool:
@@ -98,8 +111,15 @@ func new_run() -> void:
 
 
 func _on_controls_started() -> void:
-	time.enabled = true
-	hint.text = "Go to the salon, and open the calendar on the fridge."
+	if is_replay() or auto_tasks:
+		time.enabled = true
+		hint.text = "Go to the salon, and open the calendar on the fridge."
+		return
+	var opening := Opening.new()
+	opening.main = self
+	add_child(opening)
+	opening.finished.connect(opening.queue_free)
+	opening.play()
 
 
 func _on_action_chosen(action: String) -> void:
@@ -116,7 +136,7 @@ func _start_pending_task() -> void:
 	var spec: Dictionary = TASKS[pending_action]
 	if room.room_name != spec["room"] or not is_equal_approx(WorldClock.year, WorldClock.ERAS[0]):
 		return
-	hint.text = ""
+	hint.text = "Tab skips this task." if is_replay() else ""
 	time.enabled = false
 	task = (load(spec["scene"]) as PackedScene).instantiate()
 	task.finished.connect(_on_task_finished)
@@ -126,6 +146,7 @@ func _start_pending_task() -> void:
 
 func _on_task_finished(performance: float) -> void:
 	var action := pending_action
+	hint.text = ""
 	pending_action = ""
 	task.queue_free.call_deferred()
 	task = null
@@ -167,6 +188,23 @@ func _on_paper_dismissed() -> void:
 		_show_era(WorldClock.ERAS[2])
 	else:
 		_finish_run()
+
+
+func _on_year_changed(state: WorldState) -> void:
+	if _wall_state == WorldState.Wall.CRACKED and state.wall_state == WorldState.Wall.BREACHED:
+		_shake()
+	_wall_state = state.wall_state
+
+
+func _shake() -> void:
+	if Settings.calm_storm:
+		return
+	var tween := create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	for step: int in SHAKE_STEPS:
+		var size := SHAKE_PIXELS * (1.0 - float(step) / SHAKE_STEPS)
+		tween.tween_property(self, "position", Vector2(size if step % 2 == 0 else -size, 0.0), SHAKE_STEP_SECONDS)
+	tween.tween_property(self, "position", Vector2.ZERO, SHAKE_STEP_SECONDS)
 
 
 func _finish_run() -> void:
