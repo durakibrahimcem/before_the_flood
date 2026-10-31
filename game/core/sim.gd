@@ -161,7 +161,8 @@ static func _row(plan: Plan, year: int) -> Dictionary:
 		meadow *= 1.0 - float(cfg["wall_harm"]) * _growth(year, float(cfg["tau_wall"]))
 
 	var dune_share: float = _level(plan.strength("dune"), keep) * cover * _growth(year, float(cfg["tau_dune"]))
-	var drains: float = float(cfg["drain_max_m"]) * pow(float(cfg["drain_keep"]), plan.strength("sort"))
+	var clogging := minf(1.0, float(year - FIRST_YEAR) / float(cfg["drain_years"]))
+	var drains: float = float(cfg["drain_max_m"]) * clogging * pow(float(cfg["drain_keep"]), plan.strength("sort"))
 	var level: float = _sea_rise(year, world) + float(cfg["storm_base_m"]) + float(cfg["grass_max_m"]) * (1.0 - meadow) + drains - float(cfg["dune_max_m"]) * dune_share
 
 	if has_wall:

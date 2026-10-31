@@ -1,0 +1,68 @@
+class_name Room
+extends Node2D
+## One painted location. Listens to the clock and sets its own water and ageing.
+
+signal door_used(target_room: String, arrive_at: Vector2)
+
+const SHADER := preload("res://water/flood.gdshader")
+const OBJECT_FULL_M := 2.5
+const FIRST_YEAR := 2026.0
+const LAST_YEAR := 2080.0
+
+@export var room_name: String = ""
+@export var painting: Texture2D
+@export var height: Texture2D
+@export var aged_cared: Texture2D
+@export var aged_damaged: Texture2D
+@export var floor_line: float = 0.48
+@export var wall_m_per_uv: float = 5.4
+@export var spawn: Vector2 = Vector2(960, 700)
+
+var flood_m: float = 0.0
+var _material: ShaderMaterial
+var _height_image: Image
+
+
+func _ready() -> void:
+	_material = ShaderMaterial.new()
+	_material.shader = SHADER
+	_material.set_shader_parameter("height_map", height)
+	_material.set_shader_parameter("floor_line", floor_line)
+	_material.set_shader_parameter("wall_m_per_uv", wall_m_per_uv)
+	_material.set_shader_parameter("aged_cared", aged_cared if aged_cared != null else _blank())
+	_material.set_shader_parameter("aged_damaged", aged_damaged if aged_damaged != null else _blank())
+	var background := Sprite2D.new()
+	background.name = "Painting"
+	background.texture = painting
+	background.centered = false
+	background.z_index = -1
+	background.material = _material
+	add_child(background)
+	for child: Node in get_children():
+		if child is Polygon2D:
+			child.material = _material
+	_height_image = height.get_image()
+	_height_image.decompress()
+	WorldClock.year_changed.connect(_on_year_changed)
+	WorldClock.refresh()
+
+
+func _on_year_changed(state: WorldState) -> void:
+	flood_m = float(state.flood_m.get(room_name, 0.0))
+	_material.set_shader_parameter("flood_m", flood_m)
+	_material.set_shader_parameter("aged", inverse_lerp(FIRST_YEAR, LAST_YEAR, state.year))
+	_material.set_shader_parameter("severity", state.severity)
+
+
+## Water depth in metres at a floor position in the room.
+func depth_at(point: Vector2) -> float:
+	var size := _height_image.get_size()
+	var x := clampi(int(point.x), 0, size.x - 1)
+	var y := clampi(int(point.y), 0, size.y - 1)
+	return maxf(0.0, flood_m - _height_image.get_pixel(x, y).r * OBJECT_FULL_M)
+
+
+static func _blank() -> ImageTexture:
+	var image := Image.create(1, 1, false, Image.FORMAT_RGBA8)
+	image.fill(Color(0, 0, 0, 0))
+	return ImageTexture.create_from_image(image)

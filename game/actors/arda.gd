@@ -1,0 +1,56 @@
+class_name Arda
+extends CharacterBody2D
+## The player, at the age the clock says. Offers `carried` and the "walker" group to tasks.
+
+const WADE_FLOOR := 0.4
+const WADE_FULL_M := 1.2
+const SHOULDER_SHARE := 0.2
+const BOB_HEIGHT := 7.0
+const BOB_SPEED := 9.0
+const AGE_METRES := { 2026: 1.3, 2050: 1.75, 2080: 1.7 }
+
+@export var speed: float = 460.0
+@export var pixels_per_metre: float = 200.0
+
+var carried: String = ""
+var room: Room
+var height_m: float = 1.3
+var _walked: float = 0.0
+
+@onready var body_sprite: Sprite2D = $Sprite
+
+
+func _ready() -> void:
+	add_to_group("walker")
+	WorldClock.year_changed.connect(_on_year_changed)
+	WorldClock.refresh()
+
+
+func _physics_process(delta: float) -> void:
+	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var depth := room.depth_at(global_position) if room != null else 0.0
+	velocity = direction * speed * wade_factor(depth)
+	move_and_slide()
+	_walked += velocity.length() * delta / speed
+	if direction.x != 0.0:
+		body_sprite.flip_h = direction.x < 0.0
+	body_sprite.position.y = -absf(sin(_walked * BOB_SPEED)) * BOB_HEIGHT
+	_set_waterline(depth)
+
+
+func wade_factor(depth: float) -> float:
+	return lerpf(1.0, WADE_FLOOR, clampf(depth / WADE_FULL_M, 0.0, 1.0))
+
+
+func _on_year_changed(_state: WorldState) -> void:
+	height_m = AGE_METRES[WorldClock.nearest_era()]
+	var texture_height := float(body_sprite.texture.get_height())
+	var ratio := height_m * pixels_per_metre / texture_height
+	body_sprite.scale = Vector2(ratio, ratio)
+	if room != null:
+		_set_waterline(room.depth_at(global_position))
+
+
+func _set_waterline(depth: float) -> void:
+	var above := maxf(1.0 - depth / height_m, SHOULDER_SHARE)
+	(body_sprite.material as ShaderMaterial).set_shader_parameter("waterline", above)

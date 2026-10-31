@@ -1,0 +1,70 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://rooms/room.gd" id="1"]
+[ext_resource type="Script" path="res://rooms/door.gd" id="2"]
+[ext_resource type="Texture2D" path="res://rooms/bedroom/bedroom.png" id="3"]
+[ext_resource type="Texture2D" path="res://rooms/bedroom/bedroom_height.png" id="4"]
+
+[sub_resource type="RectangleShape2D" id="door"]
+size = Vector2(220, 60)
+
+[sub_resource type="RectangleShape2D" id="edge_h"]
+size = Vector2(2120, 100)
+
+[sub_resource type="RectangleShape2D" id="edge_v"]
+size = Vector2(100, 1280)
+
+[node name="Bedroom" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1")
+room_name = "bedroom"
+painting = ExtResource("3")
+height = ExtResource("4")
+floor_line = 0.4620
+wall_m_per_uv = 5.2
+spawn = Vector2(1252.6, 605.1)
+
+[node name="Bed" type="Polygon2D" parent="."]
+position = Vector2(0, 585.1)
+texture = ExtResource("3")
+polygon = PackedVector2Array(44.1, -260.5, 130.3, -340.6, 290.6, -250.5, 601.3, -246.5, 645.3, -170.3, 641.3, -4.0, 130.3, 0.0, 60.1, -40.1)
+uv = PackedVector2Array(44.1, 324.6, 130.3, 244.5, 290.6, 334.6, 601.3, 338.6, 645.3, 414.8, 641.3, 581.1, 130.3, 585.1, 60.1, 545.0)
+
+[node name="Wardrobe" type="Polygon2D" parent="."]
+position = Vector2(0, 909.7)
+texture = ExtResource("3")
+polygon = PackedVector2Array(1787.7, -705.3, 1920.0, -715.3, 1920.0, 0.0, 1879.9, -4.0, 1803.8, -244.5)
+uv = PackedVector2Array(1787.7, 204.4, 1920.0, 194.4, 1920.0, 909.7, 1879.9, 905.7, 1803.8, 665.2)
+
+[node name="Solid" type="StaticBody2D" parent="."]
+
+[node name="BedFoot" type="CollisionPolygon2D" parent="Solid"]
+polygon = PackedVector2Array(20.0, 484.9, 645.3, 484.9, 641.3, 585.1, 20.0, 585.1)
+
+[node name="WardrobeFoot" type="CollisionPolygon2D" parent="Solid"]
+polygon = PackedVector2Array(1803.8, 545.0, 1920.0, 545.0, 1920.0, 909.7, 1863.9, 905.7)
+
+[node name="Top" type="CollisionShape2D" parent="Solid"]
+position = Vector2(960.0, 458.9)
+shape = SubResource("edge_h")
+
+[node name="Bottom" type="CollisionShape2D" parent="Solid"]
+position = Vector2(960.0, 1125.0)
+shape = SubResource("edge_h")
+
+[node name="Left" type="CollisionShape2D" parent="Solid"]
+position = Vector2(-45.0, 540.0)
+shape = SubResource("edge_v")
+
+[node name="Right" type="CollisionShape2D" parent="Solid"]
+position = Vector2(1965.0, 540.0)
+shape = SubResource("edge_v")
+
+[node name="ToSalon" type="Area2D" parent="."]
+position = Vector2(1252.6, 529.0)
+script = ExtResource("2")
+target_room = "salon"
+arrive_at = Vector2(820, 600)
+
+[node name="Shape" type="CollisionShape2D" parent="ToSalon"]
+shape = SubResource("door")

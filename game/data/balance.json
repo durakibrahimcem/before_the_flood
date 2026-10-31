@@ -2,6 +2,7 @@
   "storm_base_m": 1.10,
   "grass_max_m": 0.80,
   "drain_max_m": 0.30,
+  "drain_years": 20.0,
   "dune_max_m": 0.50,
   "wall_crest_m": 1.05,
   "wall_extra_m": 0.25,
