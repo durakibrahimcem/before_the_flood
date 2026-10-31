@@ -36,7 +36,7 @@ var _own_walker := false
 var _rng := RandomNumberGenerator.new()
 var _carried_label: Label
 
-@onready var hint: CrayonHint = $Hint
+@onready var hint: SortHint = $Hint
 @onready var hud: SortHud = $Hud
 
 

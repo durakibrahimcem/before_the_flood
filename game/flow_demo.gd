@@ -2,7 +2,7 @@ extends Node
 ## Gate 3: plays a whole run with a scripted bot, from the calendar to the ending, then retries.
 
 const MAIN := preload("res://main.tscn")
-const CHOICES: Array[String] = ["grass", "grass", "dune", "light", "meet", "meet"]
+const CHOICES: Array[String] = ["grass", "grass", "dune", "sort", "meet", "meet"]
 
 
 func _ready() -> void:

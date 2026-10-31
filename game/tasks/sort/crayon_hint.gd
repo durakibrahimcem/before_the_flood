@@ -1,4 +1,4 @@
-class_name CrayonHint
+class_name SortHint
 extends Control
 ## One short crayon hint line, shown by the task and faded by hand or by time.
 
