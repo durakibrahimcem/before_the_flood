@@ -126,6 +126,8 @@ func _check_outdoors(main: Main) -> void:
 	await _frames(2)
 	assert(main.arda.height_m * main.arda.pixels_per_metre < 110.0, "Arda fits the painted door")
 	assert(main.room.has_node("Home") and main.room.has_node("Neighbour"), "the street has the family's home and one neighbour")
+	await get_tree().create_timer(0.3).timeout
+	assert(main.room.get_node("ToShore")._label.modulate.a > 0.5, "the way to the shore is named from anywhere on the street")
 	Input.action_press("move_up")
 	await _physics(30)
 	Input.action_release("move_up")

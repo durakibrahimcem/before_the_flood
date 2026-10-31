@@ -19,11 +19,14 @@ const OUTLINE := Color(0.2, 0.17, 0.14)
 
 var _settling := SETTLE_STEPS
 var _label: Label
+var _always_named := false
 
 
 func _ready() -> void:
 	monitoring = false
 	body_entered.connect(_on_body_entered)
+	# The way out to the next place sits at the edge of the picture, so it stays named.
+	_always_named = target_room in Room.OUTDOOR_ROOMS and (get_parent() as Room).room_name in Room.OUTDOOR_ROOMS
 	_label = Label.new()
 	_label.text = PLACE_NAMES.get(target_room, "")
 	_label.size = LABEL_SIZE
@@ -41,7 +44,7 @@ func _ready() -> void:
 ## Names the place behind this door once Arda is close, because the doors all look alike.
 func _process(delta: float) -> void:
 	var walker := get_tree().get_first_node_in_group("walker") as Node2D
-	var near := walker != null and walker.global_position.distance_to(global_position) <= LABEL_REACH_PX
+	var near := _always_named or (walker != null and walker.global_position.distance_to(global_position) <= LABEL_REACH_PX)
 	_label.modulate.a = move_toward(_label.modulate.a, 1.0 if near else 0.0, LABEL_FADE_PER_SECOND * delta)
 
 

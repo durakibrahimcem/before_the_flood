@@ -44,10 +44,10 @@ position = Vector2(1965.0, 540.0)
 shape = SubResource("edge_v")
 
 [node name="ToStreet" type="Area2D" parent="."]
-position = Vector2(40.0, 800.0)
+position = Vector2(60.0, 800.0)
 script = ExtResource("2")
 target_room = "street"
-arrive_at = Vector2(1770, 800)
+arrive_at = Vector2(1750, 800)
 
 [node name="Shape" type="CollisionShape2D" parent="ToStreet"]
 shape = SubResource("ToStreet")

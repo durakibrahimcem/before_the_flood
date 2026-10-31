@@ -162,7 +162,7 @@ arrive_at = Vector2(284, 660)
 shape = SubResource("ToSalon")
 
 [node name="ToShore" type="Area2D" parent="."]
-position = Vector2(1880.0, 800.0)
+position = Vector2(1860.0, 800.0)
 script = ExtResource("2")
 target_room = "shore"
 arrive_at = Vector2(300, 800)
