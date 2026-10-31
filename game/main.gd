@@ -93,7 +93,7 @@ func enter_room(room_name: String, arrive_at: Vector2) -> void:
 	else:
 		remove_child(arda)
 	room = ROOMS[room_name].instantiate()
-	room.door_used.connect(enter_room, CONNECT_DEFERRED)
+	room.door_used.connect(_on_door_used, CONNECT_DEFERRED)
 	add_child(room)
 	move_child(room, 0)
 	arda.position = room.spawn if arrive_at == Vector2.INF else arrive_at
@@ -101,6 +101,12 @@ func enter_room(room_name: String, arrive_at: Vector2) -> void:
 	arda.room = room
 	WorldClock.refresh()
 	_start_pending_task()
+
+
+## Doors stay shut during a task, so Arda can't walk out of it.
+func _on_door_used(target_room: String, arrive_at: Vector2) -> void:
+	if task == null:
+		enter_room(target_room, arrive_at)
 
 
 func new_run() -> void:

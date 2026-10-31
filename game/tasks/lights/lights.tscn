@@ -1,14 +1,16 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://tasks/lights/lights.gd" id="1"]
+[ext_resource type="Texture2D" path="res://tasks/lights/switch.png" id="2"]
 
 [node name="LightsTask" type="Node2D"]
 script = ExtResource("1")
+switch_texture = ExtResource("2")
+
+[node name="Tint" type="CanvasModulate" parent="."]
 
 [node name="Night" type="CanvasLayer" parent="."]
 layer = 5
-
-[node name="Tint" type="CanvasModulate" parent="Night"]
 
 [node name="Salon" type="Node2D" parent="Night"]
 

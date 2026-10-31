@@ -103,6 +103,12 @@ func _walk_every_door(main: Main) -> void:
 		assert(main.room.room_name == target, "%s leads to %s, got %s" % [leg[1], target, main.room.room_name])
 		await _physics(30)
 		assert(main.room.room_name == target, "Arda stays in %s after arriving, got %s" % [target, main.room.room_name])
+	main.task = Task.new()
+	main.room.get_node("ToStreet")._on_body_entered(main.arda)
+	await _frames(3)
+	assert(main.room.room_name == "shore", "doors stay shut during a task")
+	main.task.free()
+	main.task = null
 
 
 func _frames(count: int) -> void:

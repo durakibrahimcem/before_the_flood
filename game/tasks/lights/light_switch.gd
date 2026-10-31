@@ -1,14 +1,16 @@
 class_name LightSwitch
 extends Node2D
-## One salon light switch, with a soft ring while the walker can reach it.
+## One salon wall switch, with a soft ring while the walker stands close enough.
 
 const PLATE_COLOR := Color(0.95, 0.93, 0.88)
 const PLATE_EDGE := Color(0.55, 0.52, 0.48)
 const NUB_COLOR := Color(0.78, 0.75, 0.7)
 const RING_COLOR := Color(1.0, 0.92, 0.72, 0.75)
+const OFF_TINT := Color(0.55, 0.55, 0.6)
 
 var zone_index: int = -1
 var switch_texture: Texture2D
+var stand: Vector2
 var flipped := false
 var in_reach := false
 
@@ -40,6 +42,7 @@ func set_in_reach(reach: bool) -> void:
 func flip() -> void:
 	flipped = true
 	in_reach = false
+	modulate = OFF_TINT
 	queue_redraw()
 	var tween := create_tween()
 	tween.tween_property(self, "scale", Vector2(1.2, 1.2), 0.07)

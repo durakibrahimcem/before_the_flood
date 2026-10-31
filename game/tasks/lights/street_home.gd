@@ -6,7 +6,9 @@ const BODY_COLOR := Color(0.3, 0.28, 0.34)
 const ROOF_COLOR := Color(0.22, 0.2, 0.28)
 const DOOR_COLOR := Color(0.15, 0.13, 0.19)
 const WINDOW_LIT := Color(1.0, 0.86, 0.6, 0.95)
-const WINDOW_DARK := Color(0.1, 0.12, 0.2, 0.95)
+## Multiplies the lit colour down to night. Tweening a polygon's own colour rebuilds its buffers
+## every frame, which floods WebGL with errors.
+const WINDOW_DARK := Color(0.1, 0.14, 0.33)
 const DARK_SECONDS := 0.7
 const WINDOW_RECTS: Array[Rect2] = [
 	Rect2(-134, -244, 66, 58),
@@ -51,7 +53,7 @@ func go_dark() -> void:
 		_tween.kill()
 	_tween = create_tween().set_parallel(true)
 	for window: Polygon2D in _windows:
-		_tween.tween_property(window, "color", WINDOW_DARK, DARK_SECONDS).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+		_tween.tween_property(window, "modulate", WINDOW_DARK, DARK_SECONDS).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	_tween.tween_property(_body, "modulate", Color(0.8, 0.8, 0.86), DARK_SECONDS).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 
 

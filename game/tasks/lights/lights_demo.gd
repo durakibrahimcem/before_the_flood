@@ -48,9 +48,9 @@ func _physics_process(_delta: float) -> void:
 	if target == null:
 		_release_all()
 		return
-	_axis("move_left", "move_right", target.position.x - walker.position.x)
-	_axis("move_up", "move_down", target.position.y - walker.position.y)
-	if walker.position.distance_to(target.position) <= FLIP_DIST:
+	_axis("move_left", "move_right", target.stand.x - walker.position.x)
+	_axis("move_up", "move_down", target.stand.y - walker.position.y)
+	if walker.position.distance_to(target.stand) <= FLIP_DIST:
 		_pulse_interact()
 	else:
 		interact_hold = 0
@@ -66,7 +66,7 @@ func _pick_target(walker: CharacterBody2D) -> LightSwitch:
 	for light: LightSwitch in targets:
 		if light.flipped or not is_instance_valid(light):
 			continue
-		var distance := walker.position.distance_to(light.position)
+		var distance := walker.position.distance_to(light.stand)
 		if distance < best_distance:
 			best = light
 			best_distance = distance
@@ -205,9 +205,9 @@ func _check_containment() -> void:
 			night = node
 		if node is CanvasModulate:
 			tints.append(node)
-	_check(night != null, "the task keeps its night inside a layer 5 CanvasLayer")
-	_check(tints.size() == 1 and night != null and night.is_ancestor_of(tints[0]),
-		"the only CanvasModulate is inside the night layer")
+	_check(night != null, "the task keeps its glows inside a layer 5 CanvasLayer")
+	_check(tints.size() == 1 and night != null and not night.is_ancestor_of(tints[0]),
+		"the one CanvasModulate darkens the room's own canvas")
 
 
 func _switches_of(root: Node) -> Array[LightSwitch]:

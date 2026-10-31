@@ -1,51 +1,59 @@
 class_name SalonZone
 extends Node2D
-## One lit corner of the salon: a warm window, a soft floor glow, and the dim that lands when it is switched off.
+## One light left on in the salon, as a warm additive glow over the night tint.
 
-const WINDOW_COLOR := Color(1.0, 0.82, 0.5, 0.9)
-const GLOW_COLOR := Color(1.0, 0.82, 0.5, 0.16)
-const DIM_COLOR := Color(0.04, 0.05, 0.12, 0.72)
+const WARM := Color(1.0, 0.8, 0.52)
+const GLOW_ALPHA := 0.34
+const LAMP_ALPHA := 0.5
 const DIM_SECONDS := 0.55
+const SOFT_CIRCLE_SIZE := 256
 ## Fixed per-vertex offsets, so the crayon wobble never changes between runs.
 const WOBBLE := [0.0, 1.6, -1.2, 0.8, -1.5, 1.1, -0.7, 1.3, -1.0, 0.6, -1.4, 0.9]
 
-var zone: Rect2
-var window_rect: Rect2
+var glow_size: Vector2
+var is_lamp := false
 
-var _glow: Polygon2D
-var _window: Polygon2D
-var _dim: Polygon2D
+var _glow: Sprite2D
 var _tween: Tween
 
 
-func setup(zone_rect: Rect2, lit_window: Rect2) -> void:
-	zone = zone_rect
-	window_rect = lit_window
+func setup(center: Vector2, size: Vector2, lamp: bool) -> void:
+	position = center
+	glow_size = size
+	is_lamp = lamp
 
 
 func _ready() -> void:
-	_glow = Polygon2D.new()
-	_glow.polygon = wobbly_rect(window_rect.grow_individual(70, 40, 70, 150), 44.0)
-	_glow.color = GLOW_COLOR
+	_glow = Sprite2D.new()
+	_glow.texture = _soft_circle()
+	_glow.scale = glow_size / SOFT_CIRCLE_SIZE
+	_glow.modulate = Color(WARM, LAMP_ALPHA if is_lamp else GLOW_ALPHA)
+	var additive := CanvasItemMaterial.new()
+	additive.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
+	_glow.material = additive
 	add_child(_glow)
-	_window = Polygon2D.new()
-	_window.polygon = wobbly_rect(window_rect, 36.0)
-	_window.color = WINDOW_COLOR
-	add_child(_window)
-	_dim = Polygon2D.new()
-	_dim.polygon = wobbly_rect(zone, 64.0)
-	_dim.color = Color(DIM_COLOR.r, DIM_COLOR.g, DIM_COLOR.b, 0.0)
-	add_child(_dim)
 
 
 ## One tween for the whole dim, so the property is never tweened twice.
 func dim() -> void:
 	if _tween != null and _tween.is_valid():
 		_tween.kill()
-	_tween = create_tween().set_parallel(true)
-	_tween.tween_property(_window, "color:a", 0.0, DIM_SECONDS).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
-	_tween.tween_property(_glow, "color:a", 0.0, DIM_SECONDS).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
-	_tween.tween_property(_dim, "color:a", DIM_COLOR.a, DIM_SECONDS).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	_tween.tween_property(_glow, "modulate:a", 0.0, DIM_SECONDS)
+
+
+func _soft_circle() -> GradientTexture2D:
+	var fade := Gradient.new()
+	fade.set_color(0, Color.WHITE)
+	fade.set_color(1, Color(1.0, 1.0, 1.0, 0.0))
+	var circle := GradientTexture2D.new()
+	circle.gradient = fade
+	circle.width = SOFT_CIRCLE_SIZE
+	circle.height = SOFT_CIRCLE_SIZE
+	circle.fill = GradientTexture2D.FILL_RADIAL
+	circle.fill_from = Vector2(0.5, 0.5)
+	circle.fill_to = Vector2(1.0, 0.5)
+	return circle
 
 
 ## A rectangle with slightly wobbly edges, as one closed loop of points.
