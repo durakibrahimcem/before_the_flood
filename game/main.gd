@@ -16,7 +16,7 @@ const TASKS := {
 	"meet": { "scene": "res://tasks/meeting/meeting.tscn", "room": "street" },
 	"wall": { "scene": "res://tasks/seawall/seawall.tscn", "room": "shore" },
 }
-const FRIDGE := Vector2(1700, 640)
+const FRIDGE := Vector2(1700, 720)
 const FRIDGE_REACH := 260.0
 const HINT_ROOM_NAMES := { "street": "the street", "shore": "the shore", "salon": "the salon" }
 
