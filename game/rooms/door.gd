@@ -11,4 +11,4 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("walker"):
-		(get_parent() as Room).door_used.emit.call_deferred(target_room, arrive_at)
+		(get_parent() as Room).door_used.emit(target_room, arrive_at)

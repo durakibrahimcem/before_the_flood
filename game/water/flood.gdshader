@@ -4,6 +4,7 @@ shader_type canvas_item;
 uniform sampler2D height_map : filter_linear, repeat_disable;
 uniform sampler2D aged_cared : filter_linear, repeat_disable;
 uniform sampler2D aged_damaged : filter_linear, repeat_disable;
+uniform sampler2D cut_mask : hint_default_white, filter_linear, repeat_disable;
 uniform float flood_m = 0.0;
 uniform float aged = 0.0;
 uniform float severity = 0.0;
@@ -39,6 +40,7 @@ vec3 with_age(vec2 uv, vec3 color) {
 
 void fragment() {
 	vec2 uv = UV;
+	COLOR.a *= texture(cut_mask, uv).a;
 	float active = smoothstep(0.0, 0.03, flood_m);
 	float level = flood_m + waves(uv, TIME) * 0.012 * active;
 	float depth = level - height_at(uv);

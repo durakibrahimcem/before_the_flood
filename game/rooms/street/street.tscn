@@ -46,7 +46,7 @@ shape = SubResource("edge_v")
 position = Vector2(360.0, 450.0)
 script = ExtResource("2")
 target_room = "salon"
-arrive_at = Vector2(300, 600)
+arrive_at = Vector2(300, 680)
 
 [node name="Shape" type="CollisionShape2D" parent="ToSalon"]
 shape = SubResource("door")
@@ -55,7 +55,7 @@ shape = SubResource("door")
 position = Vector2(1860.0, 800.0)
 script = ExtResource("2")
 target_room = "shore"
-arrive_at = Vector2(160, 800)
+arrive_at = Vector2(320, 800)
 
 [node name="Shape" type="CollisionShape2D" parent="ToShore"]
 shape = SubResource("door")

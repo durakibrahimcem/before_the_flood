@@ -58,6 +58,16 @@ func _ready() -> void:
 	assert(main.room.room_name == "salon", "the door leads to the salon")
 	assert(main.arda.get_parent() == main.room, "Arda moved rooms")
 	var dry_x: float = main.arda.position.x
+	assert(main.room.get_node("BowlsFull").visible and not main.room.get_node("BowlsEmpty").visible, "Brian's bowls are full in 2026")
+	assert(main.room.get_node("LampOn").visible, "the lamp is on while the home stands")
+	WorldClock.scrub(2050.0)
+	await _frames(1)
+	assert(main.room.get_node("BowlsEmpty").visible and not main.room.get_node("BowlsFull").visible, "the bowls sit empty in 2050")
+	WorldClock.scrub(2080.0)
+	await _frames(1)
+	assert(main.room.get_node("LampOff").visible and not main.room.get_node("LampOn").visible, "the lamp is off once the home is lost")
+	WorldClock.scrub(2026.0)
+	await _frames(1)
 	assert(dry_x > 0.0 and main.room.has_node("Sofa"), "salon has furniture")
 	main.room.get_node("ToStreet")._on_body_entered(main.arda)
 	await _frames(3)
@@ -68,8 +78,27 @@ func _ready() -> void:
 	assert(main.room.room_name == "shore", "the street leads to the shore")
 	assert(main.room.flood_m > 0.0, "the sea is at the shore")
 	assert(main.room.depth_at(Vector2(960, 300)) > main.room.depth_at(Vector2(960, 1000)), "the sea is deeper than the beach")
+	await _walk_every_door(main)
 	print("DEMO PASS")
 	get_tree().quit()
+
+
+## Touches each door through real physics, as a player does, and checks Arda stays where they land.
+func _walk_every_door(main: Main) -> void:
+	WorldClock.scrub(2026.0)
+	var route: Array[Array] = [
+		["shore", "ToStreet", "street"], ["street", "ToSalon", "salon"], ["salon", "ToBedroom", "bedroom"],
+		["bedroom", "ToSalon", "salon"], ["salon", "ToStreet", "street"], ["street", "ToShore", "shore"],
+	]
+	for leg: Array in route:
+		assert(main.room.room_name == leg[0], "the walk reached %s, got %s" % [leg[0], main.room.room_name])
+		var door: Area2D = main.room.get_node(leg[1])
+		var target: String = leg[2]
+		main.arda.position = door.position
+		await _physics(4)
+		assert(main.room.room_name == target, "%s leads to %s, got %s" % [leg[1], target, main.room.room_name])
+		await _physics(30)
+		assert(main.room.room_name == target, "Arda stays in %s after arriving, got %s" % [target, main.room.room_name])
 
 
 func _frames(count: int) -> void:

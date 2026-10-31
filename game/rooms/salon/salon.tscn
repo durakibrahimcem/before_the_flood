@@ -4,6 +4,13 @@
 [ext_resource type="Script" path="res://rooms/door.gd" id="2"]
 [ext_resource type="Texture2D" path="res://rooms/salon/salon.png" id="3"]
 [ext_resource type="Texture2D" path="res://rooms/salon/salon_height.png" id="4"]
+[ext_resource type="Texture2D" path="res://rooms/salon/sofa_cut.png" id="c0"]
+[ext_resource type="Texture2D" path="res://rooms/salon/table_cut.png" id="c1"]
+[ext_resource type="Texture2D" path="res://rooms/salon/counter_cut.png" id="c2"]
+[ext_resource type="Texture2D" path="res://rooms/salon/bowls_full.png" id="o0"]
+[ext_resource type="Texture2D" path="res://rooms/salon/bowls_empty.png" id="o1"]
+[ext_resource type="Texture2D" path="res://rooms/salon/lamp_on.png" id="o2"]
+[ext_resource type="Texture2D" path="res://rooms/salon/lamp_off.png" id="o3"]
 
 [sub_resource type="RectangleShape2D" id="door"]
 size = Vector2(220, 60)
@@ -24,23 +31,64 @@ floor_line = 0.4805
 wall_m_per_uv = 5.4
 spawn = Vector2(804.0, 619.1)
 
-[node name="Sofa" type="Polygon2D" parent="."]
-position = Vector2(0, 953.8)
+[node name="Sofa" type="Sprite2D" parent="."]
+position = Vector2(0, 1006)
 texture = ExtResource("3")
-polygon = PackedVector2Array(114.0, -254.5, 164.0, -314.6, 164.0, -344.6, 364.0, -354.7, 554.0, -324.6, 594.0, -314.6, 634.0, -224.4, 674.0, -134.2, 664.0, 0.0, 524.0, 0.0, 508.0, -124.2, 154.0, -124.2, 120.0, -110.2, 110.0, -204.4)
-uv = PackedVector2Array(114.0, 699.3, 164.0, 639.2, 164.0, 609.1, 364.0, 599.1, 554.0, 629.2, 594.0, 639.2, 634.0, 729.4, 674.0, 819.5, 664.0, 953.8, 524.0, 953.8, 508.0, 829.5, 154.0, 829.5, 120.0, 843.6, 110.0, 749.4)
+centered = false
+offset = Vector2(112, -407)
+region_enabled = true
+region_rect = Rect2(112, 599, 567, 421)
+metadata/cut = ExtResource("c0")
 
-[node name="Table" type="Polygon2D" parent="."]
-position = Vector2(0, 1035.9)
+[node name="Table" type="Sprite2D" parent="."]
+position = Vector2(0, 1044)
 texture = ExtResource("3")
-polygon = PackedVector2Array(1184.0, -222.4, 1648.0, -226.4, 1740.0, -56.1, 1704.0, 0.0, 1184.0, 0.0, 1090.0, -36.1)
-uv = PackedVector2Array(1184.0, 813.5, 1648.0, 809.5, 1740.0, 979.8, 1704.0, 1035.9, 1184.0, 1035.9, 1090.0, 999.9)
+centered = false
+offset = Vector2(1074, -298)
+region_enabled = true
+region_rect = Rect2(1074, 746, 705, 297)
+metadata/cut = ExtResource("c1")
 
-[node name="Counter" type="Polygon2D" parent="."]
-position = Vector2(0, 619.1)
+[node name="Counter" type="Sprite2D" parent="."]
+position = Vector2(0, 620)
 texture = ExtResource("3")
-polygon = PackedVector2Array(1264.0, -184.3, 1814.0, -176.3, 1804.0, 0.0, 1264.0, 0.0)
-uv = PackedVector2Array(1264.0, 434.8, 1814.0, 442.8, 1804.0, 619.1, 1264.0, 619.1)
+centered = false
+offset = Vector2(1248, -200)
+region_enabled = true
+region_rect = Rect2(1248, 420, 657, 383)
+metadata/cut = ExtResource("c2")
+
+[node name="BowlsFull" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("o0")
+centered = false
+offset = Vector2(12, 520)
+region_enabled = true
+region_rect = Rect2(12, 520, 163, 135)
+
+[node name="BowlsEmpty" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("o1")
+centered = false
+offset = Vector2(12, 520)
+region_enabled = true
+region_rect = Rect2(12, 520, 163, 135)
+
+[node name="LampOn" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("o2")
+centered = false
+offset = Vector2(679, 8)
+region_enabled = true
+region_rect = Rect2(679, 8, 126, 37)
+
+[node name="LampOff" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("o3")
+centered = false
+offset = Vector2(679, 8)
+region_enabled = true
+region_rect = Rect2(679, 8, 126, 37)
 
 [node name="Solid" type="StaticBody2D" parent="."]
 
@@ -73,7 +121,7 @@ shape = SubResource("edge_v")
 position = Vector2(804.0, 549.0)
 script = ExtResource("2")
 target_room = "bedroom"
-arrive_at = Vector2(1260, 600)
+arrive_at = Vector2(1260, 660)
 
 [node name="Shape" type="CollisionShape2D" parent="ToBedroom"]
 shape = SubResource("door")

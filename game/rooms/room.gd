@@ -8,6 +8,8 @@ const SHADER := preload("res://water/flood.gdshader")
 const OBJECT_FULL_M := 2.5
 const CREEP_M := 0.05
 const ROOM_SIZE := Vector2(1920.0, 1080.0)
+## Brian is gone by the time the bowls sit empty.
+const BOWLS_EMPTY_YEAR := 2040.0
 const FIRST_YEAR := 2026.0
 const LAST_YEAR := 2080.0
 
@@ -22,6 +24,7 @@ const LAST_YEAR := 2080.0
 
 var flood_m: float = 0.0
 var _material: ShaderMaterial
+var _object_materials: Array[ShaderMaterial] = []
 var _height_image: Image
 
 
@@ -44,6 +47,17 @@ func _ready() -> void:
 	for child: Node in get_children():
 		if child is Polygon2D:
 			child.material = _material
+		elif child.has_meta("cut"):
+			var cutout := _material.duplicate() as ShaderMaterial
+			cutout.set_shader_parameter("cut_mask", child.get_meta("cut"))
+			child.material = cutout
+			_object_materials.append(cutout)
+	for bowls: String in ["BowlsFull", "BowlsEmpty"]:
+		if has_node(bowls):
+			var layer := _material.duplicate() as ShaderMaterial
+			layer.set_shader_parameter("quality", 0.0)
+			get_node(bowls).material = layer
+			_object_materials.append(layer)
 	if room_name in ["street", "shore"]:
 		var props := WorldProps.new()
 		props.outdoor_room = room_name
@@ -56,9 +70,25 @@ func _ready() -> void:
 
 func _on_year_changed(state: WorldState) -> void:
 	flood_m = float(state.flood_m.get(room_name, 0.0))
+	var aged := inverse_lerp(FIRST_YEAR, LAST_YEAR, state.year)
 	_material.set_shader_parameter("flood_m", flood_m)
-	_material.set_shader_parameter("aged", inverse_lerp(FIRST_YEAR, LAST_YEAR, state.year))
+	_material.set_shader_parameter("aged", aged)
 	_material.set_shader_parameter("severity", state.severity)
+	for object_material: ShaderMaterial in _object_materials:
+		object_material.set_shader_parameter("flood_m", flood_m)
+		object_material.set_shader_parameter("aged", aged)
+		object_material.set_shader_parameter("severity", state.severity)
+	_update_details(state)
+
+
+func _update_details(state: WorldState) -> void:
+	if has_node("BowlsFull"):
+		$BowlsFull.visible = state.year < BOWLS_EMPTY_YEAR
+		$BowlsEmpty.visible = state.year >= BOWLS_EMPTY_YEAR
+	if has_node("LampOn"):
+		var home_stands: bool = state.home_alive.get("own", true)
+		$LampOn.visible = home_stands
+		$LampOff.visible = not home_stands
 
 
 ## Water depth in metres at a room position, matching the flood shader's height_at().

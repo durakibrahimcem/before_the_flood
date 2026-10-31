@@ -86,16 +86,18 @@ func open_calendar() -> void:
 func enter_room(room_name: String, arrive_at: Vector2) -> void:
 	if room != null:
 		room.remove_child(arda)
+		# Leave the tree now, so the old room's doors can't see Arda arrive and fire again.
+		remove_child(room)
 		room.queue_free()
 	else:
 		remove_child(arda)
 	room = ROOMS[room_name].instantiate()
-	room.door_used.connect(enter_room)
+	room.door_used.connect(enter_room, CONNECT_DEFERRED)
 	add_child(room)
 	move_child(room, 0)
+	arda.position = room.spawn if arrive_at == Vector2.INF else arrive_at
 	room.add_child(arda)
 	arda.room = room
-	arda.position = room.spawn if arrive_at == Vector2.INF else arrive_at
 	WorldClock.refresh()
 	_start_pending_task()
 
