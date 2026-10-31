@@ -1,0 +1,94 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/newspaper/newspaper.gd" id="1"]
+[ext_resource type="Script" path="res://ui/newspaper/crayon_picture.gd" id="2"]
+[ext_resource type="Script" path="res://ui/newspaper/ink_rule.gd" id="3"]
+
+[node name="NewspaperOverlay" type="CanvasLayer"]
+layer = 20
+script = ExtResource("1")
+
+[node name="Shade" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.45)
+
+[node name="Center" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Sheet" type="PanelContainer" parent="Center"]
+custom_minimum_size = Vector2(800, 0)
+mouse_filter = 2
+
+[node name="Margins" type="MarginContainer" parent="Center/Sheet"]
+mouse_filter = 2
+theme_override_constants/margin_left = 34
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 34
+theme_override_constants/margin_bottom = 26
+
+[node name="Column" type="VBoxContainer" parent="Center/Sheet/Margins"]
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Masthead" type="Label" parent="Center/Sheet/Margins/Column"]
+layout_mode = 2
+mouse_filter = 2
+horizontal_alignment = 1
+text = "The Bay Herald"
+
+[node name="MastheadRule" type="Control" parent="Center/Sheet/Margins/Column"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 8)
+mouse_filter = 2
+script = ExtResource("3")
+lines = 2
+
+[node name="Year" type="Label" parent="Center/Sheet/Margins/Column"]
+layout_mode = 2
+mouse_filter = 2
+horizontal_alignment = 1
+text = "2050"
+
+[node name="Headline" type="Label" parent="Center/Sheet/Margins/Column"]
+layout_mode = 2
+mouse_filter = 2
+horizontal_alignment = 1
+autowrap_mode = 2
+text = ""
+
+[node name="HeadlineRule" type="Control" parent="Center/Sheet/Margins/Column"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 3)
+mouse_filter = 2
+script = ExtResource("3")
+
+[node name="Story" type="Label" parent="Center/Sheet/Margins/Column"]
+layout_mode = 2
+mouse_filter = 2
+autowrap_mode = 2
+text = ""
+
+[node name="Picture" type="Control" parent="Center/Sheet/Margins/Column"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 200)
+mouse_filter = 2
+script = ExtResource("2")
+
+[node name="HintRule" type="Control" parent="Center/Sheet/Margins/Column"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 8)
+mouse_filter = 2
+script = ExtResource("3")
+lines = 2
+
+[node name="Hint" type="Label" parent="Center/Sheet/Margins/Column"]
+layout_mode = 2
+mouse_filter = 2
+horizontal_alignment = 1
+text = "Press E, Enter or click to continue"
