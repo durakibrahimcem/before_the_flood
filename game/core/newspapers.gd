@@ -35,6 +35,11 @@ static func pick(plan: Plan, era: int) -> Dictionary:
 	return page
 
 
+static func all_papers() -> Array:
+	_load()
+	return _papers
+
+
 static func _load() -> void:
 	if not _papers.is_empty():
 		return

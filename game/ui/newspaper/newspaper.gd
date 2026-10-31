@@ -42,9 +42,12 @@ func _ready() -> void:
 
 ## Puts the front page for an era on screen, replacing any page already up.
 func show_for(plan: Plan, era: int) -> void:
+	show_page(Newspapers.pick(plan, era), era)
+
+
+func show_page(page: Dictionary, era: int) -> void:
 	assert(is_node_ready(), "Add the overlay to the tree before showing a page")
 	Sfx.play("paper")
-	var page := Newspapers.pick(plan, era)
 	masthead.text = MASTHEAD
 	year.text = str(era)
 	headline.text = str(page.get("headline", ""))

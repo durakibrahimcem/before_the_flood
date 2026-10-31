@@ -10,6 +10,8 @@ const ENDING_CAPTIONS := {
 	"partial": "The street survives in part. Arda sits on the step of the home that remains.",
 	"none": "Arda packs the teddy and closes the door. Another future can be drawn.",
 }
+## Earned by filling Brian's bowls on all three days.
+const FED_LINE := " Brian never went hungry."
 const GHOST_CAPTION := "Each mark is a future you tried. The bright one is your newest."
 const GHOST_EMPTY_CAPTION := "No past futures yet. Try again, and the marks begin."
 const FADE_SECONDS := 0.2
@@ -54,7 +56,7 @@ func play(outcome: Dictionary) -> void:
 		return
 	visible = true
 	picture.show_outcome(int(outcome.get("homes", 0)))
-	ending_caption.text = String(ENDING_CAPTIONS.get(picture.variant, ""))
+	ending_caption.text = String(ENDING_CAPTIONS.get(picture.variant, "")) + (FED_LINE if Run.meals >= Run.DAYS else "")
 	rank_card.show_rank()
 	chart.set_depths(Run.ghosts)
 	ghost_caption.text = GHOST_EMPTY_CAPTION if Run.ghosts.is_empty() else GHOST_CAPTION

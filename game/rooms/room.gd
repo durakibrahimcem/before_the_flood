@@ -128,8 +128,9 @@ func _on_year_changed(state: WorldState) -> void:
 
 func _update_details(state: WorldState) -> void:
 	if has_node("BowlsFull"):
-		$BowlsFull.visible = state.year < BOWLS_EMPTY_YEAR
-		$BowlsEmpty.visible = state.year >= BOWLS_EMPTY_YEAR
+		var full := state.year < BOWLS_EMPTY_YEAR and Run.fed_today()
+		$BowlsFull.visible = full
+		$BowlsEmpty.visible = not full
 	if has_node("LampOn"):
 		var home_stands: bool = state.home_alive.get("own", true)
 		$LampOn.visible = home_stands

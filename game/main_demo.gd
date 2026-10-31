@@ -79,7 +79,9 @@ func _ready() -> void:
 	assert(main.room.room_name == "salon", "the door leads to the salon")
 	assert(main.arda.get_parent() == main.room, "Arda moved rooms")
 	var dry_x: float = main.arda.position.x
-	assert(main.room.get_node("BowlsFull").visible and not main.room.get_node("BowlsEmpty").visible, "Brian's bowls are full in 2026")
+	assert(main.room.get_node("BowlsEmpty").visible and not main.room.get_node("BowlsFull").visible, "Brian's bowls wait to be filled")
+	main.feed_brian()
+	assert(main.room.get_node("BowlsFull").visible and not main.room.get_node("BowlsEmpty").visible, "feeding Brian fills his bowls")
 	assert(main.room.get_node("LampOn").visible, "the lamp is on while the home stands")
 	WorldClock.scrub(2050.0)
 	await _frames(1)
@@ -105,6 +107,7 @@ func _ready() -> void:
 	main.auto_tasks = false
 	await _check_characters(main)
 	await _check_planting(main)
+	await _check_bowls(main)
 	await _check_flow(main)
 	await _check_outdoors(main)
 	print("DEMO PASS")
@@ -211,6 +214,30 @@ func _check_planting(main: Main) -> void:
 	await _frames(1)
 	Run.new_run()
 	assert(Run.planted.is_empty(), "a new run starts with empty planters")
+
+
+## Brian's bowls need filling once a day, and they stay empty in the years he is gone.
+func _check_bowls(main: Main) -> void:
+	Run.new_run()
+	WorldClock.scrub(2026.0)
+	main.enter_room("salon", Main.BOWLS_SPOT + Vector2(90, 40))
+	main.newspaper.hide()
+	await _frames(2)
+	assert(main.bowls_in_reach(), "the bowls are in reach")
+	_key(KEY_E)
+	await _frames(2)
+	assert(Run.fed_today() and Run.meals == 1, "E feeds Brian")
+	assert(not main.bowls_in_reach(), "he has eaten today")
+	assert(Run.plan.total() == 0, "feeding uses no calendar slot")
+	Run.day = 2
+	assert(main.bowls_in_reach(), "a new day means empty bowls")
+	WorldClock.scrub(2050.0)
+	await _frames(1)
+	assert(not main.bowls_in_reach(), "there is no one to feed in 2050")
+	assert(main.room.get_node("BowlsEmpty").visible, "the bowls sit empty in 2050")
+	WorldClock.scrub(2026.0)
+	await _frames(1)
+	Run.new_run()
 
 
 ## Keys, the skip rule and a peek at the future must all leave the player able to carry on.

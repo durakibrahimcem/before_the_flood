@@ -25,6 +25,10 @@ const PLANT_PROMPT := "Press E to plant a tree"
 const PLANT_PROMPT_LIFT := Vector2(-150, -130)
 const PLANT_REACH := 125.0
 const PLANT_LINE := "A small tree. It will take years to grow."
+const BOWLS_SPOT := Vector2(90, 585)
+const BOWLS_REACH := 170.0
+const BOWLS_PROMPT := "Press E to feed Brian"
+const BOWLS_LINE := "Brian's bowls are full."
 const PROMPT_FADE_PER_SECOND := 6.0
 ## A judge may only have minutes, so skipping opens up early.
 const SKIP_AFTER_ACTIONS := 2
@@ -80,6 +84,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and can_open_calendar():
 		get_viewport().set_input_as_handled()
 		open_calendar()
+	elif event.is_action_pressed("interact") and bowls_in_reach():
+		get_viewport().set_input_as_handled()
+		feed_brian()
 	elif event.is_action_pressed("interact") and planter_in_reach() >= 0:
 		get_viewport().set_input_as_handled()
 		plant_tree(planter_in_reach())
@@ -101,13 +108,17 @@ func can_skip() -> bool:
 func _process(delta: float) -> void:
 	var at_fridge := can_open_calendar()
 	var at_planter := not at_fridge and planter_in_reach() >= 0
-	if at_fridge:
+	var at_bowls := bowls_in_reach()
+	if at_bowls:
+		_prompt.text = BOWLS_PROMPT
+		_prompt.position = arda.position + PLANT_PROMPT_LIFT
+	elif at_fridge:
 		_prompt.text = FRIDGE_PROMPT
 		_prompt.position = FRIDGE_PROMPT_SPOT
 	elif at_planter:
 		_prompt.text = PLANT_PROMPT
 		_prompt.position = arda.position + PLANT_PROMPT_LIFT
-	var goal := 1.0 if at_fridge or at_planter else 0.0
+	var goal := 1.0 if at_fridge or at_planter or at_bowls else 0.0
 	_prompt.modulate.a = move_toward(_prompt.modulate.a, goal, PROMPT_FADE_PER_SECOND * delta)
 
 
@@ -119,6 +130,19 @@ func _build_prompt() -> void:
 	_prompt.add_theme_color_override("font_outline_color", Door.OUTLINE)
 	_prompt.add_theme_constant_override("outline_size", 10)
 	$Ui.add_child(_prompt)
+
+
+## Today's empty bowls, within reach. By the years they stay empty, there is no one to feed.
+func bowls_in_reach() -> bool:
+	return room.room_name == "salon" and task == null and not final_walk and not Run.fed_today() \
+		and is_equal_approx(WorldClock.year, WorldClock.ERAS[0]) and arda.position.distance_to(BOWLS_SPOT) <= BOWLS_REACH
+
+
+func feed_brian() -> void:
+	Run.feed_brian()
+	Sfx.play("drop")
+	hint.text = BOWLS_LINE
+	WorldClock.refresh()
 
 
 ## The empty planter Arda can reach today, or -1.

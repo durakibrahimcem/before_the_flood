@@ -16,6 +16,9 @@ var slots_left: int = SLOTS_PER_DAY
 var ghosts: Array[float] = []
 ## Planters where the player planted a tree by hand. Free, and it never changes the water.
 var planted: Array[int] = []
+## The last day Arda fed Brian, and how many days he has. The bowls need filling each day.
+var fed_on_day: int = 0
+var meals: int = 0
 
 
 func _ready() -> void:
@@ -27,9 +30,20 @@ func new_run() -> void:
 	day = 1
 	slots_left = SLOTS_PER_DAY
 	planted.clear()
+	fed_on_day = 0
+	meals = 0
 	plan_changed.emit()
 	day_changed.emit(day)
 	WorldClock.scrub(WorldClock.ERAS[0])
+
+
+func fed_today() -> bool:
+	return fed_on_day == day
+
+
+func feed_brian() -> void:
+	fed_on_day = day
+	meals += 1
 
 
 func record(action: String, performance: float) -> void:
