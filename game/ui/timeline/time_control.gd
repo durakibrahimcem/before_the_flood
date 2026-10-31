@@ -13,6 +13,7 @@ const SCRIBBLE_SECONDS := 0.3
 var scrubbing: bool = false
 var _held: float = 0.0
 var _pressed: bool = false
+var _moved: bool = false
 
 
 func _ready() -> void:
@@ -46,6 +47,7 @@ func tap() -> void:
 
 func begin_scrub() -> void:
 	scrubbing = true
+	_moved = false
 	get_tree().paused = true
 	slider.set_value_no_signal(WorldClock.year)
 	year_label.text = str(roundi(WorldClock.year))
@@ -56,10 +58,14 @@ func end_scrub() -> void:
 	scrubbing = false
 	bar.hide()
 	get_tree().paused = false
-	WorldClock.jump(WorldClock.nearest_era())
+	if _moved:
+		WorldClock.jump(WorldClock.nearest_era())
+	else:
+		tap()
 
 
 func _on_slider_changed(value: float) -> void:
+	_moved = true
 	year_label.text = str(roundi(value))
 	WorldClock.scrub(value)
 

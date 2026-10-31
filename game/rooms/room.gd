@@ -6,6 +6,8 @@ signal door_used(target_room: String, arrive_at: Vector2)
 
 const SHADER := preload("res://water/flood.gdshader")
 const OBJECT_FULL_M := 2.5
+const CREEP_M := 0.05
+const ROOM_SIZE := Vector2(1920.0, 1080.0)
 const FIRST_YEAR := 2026.0
 const LAST_YEAR := 2080.0
 
@@ -29,6 +31,7 @@ func _ready() -> void:
 	_material.set_shader_parameter("height_map", height)
 	_material.set_shader_parameter("floor_line", floor_line)
 	_material.set_shader_parameter("wall_m_per_uv", wall_m_per_uv)
+	_material.set_shader_parameter("creep_m", CREEP_M)
 	_material.set_shader_parameter("aged_cared", aged_cared if aged_cared != null else _blank())
 	_material.set_shader_parameter("aged_damaged", aged_damaged if aged_damaged != null else _blank())
 	var background := Sprite2D.new()
@@ -54,12 +57,18 @@ func _on_year_changed(state: WorldState) -> void:
 	_material.set_shader_parameter("severity", state.severity)
 
 
-## Water depth in metres at a floor position in the room.
+## Water depth in metres at a room position, matching the flood shader's height_at().
 func depth_at(point: Vector2) -> float:
+	var uv := (point / ROOM_SIZE).clamp(Vector2.ZERO, Vector2.ONE)
 	var size := _height_image.get_size()
-	var x := clampi(int(point.x), 0, size.x - 1)
-	var y := clampi(int(point.y), 0, size.y - 1)
-	return maxf(0.0, flood_m - _height_image.get_pixel(x, y).r * OBJECT_FULL_M)
+	var pixel := _height_image.get_pixel(mini(int(uv.x * size.x), size.x - 1), mini(int(uv.y * size.y), size.y - 1))
+	var ground: float
+	if pixel.g > 0.5:
+		ground = maxf(floor_line - uv.y, 0.0) * wall_m_per_uv
+	else:
+		var tilt := uv.x * 0.7 + (uv.y - floor_line) * 0.3 + 0.25 * sin(uv.x * 9.0 + uv.y * 7.0)
+		ground = pixel.r * OBJECT_FULL_M + tilt * CREEP_M
+	return maxf(0.0, flood_m - ground)
 
 
 static func _blank() -> ImageTexture:

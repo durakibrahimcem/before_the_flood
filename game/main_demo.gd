@@ -42,8 +42,10 @@ func _ready() -> void:
 	assert(not get_tree().paused, "releasing resumes the world")
 	assert(is_equal_approx(WorldClock.year, 2050.0), "release lands on the nearest era")
 
-	time.tap()
+	time.begin_scrub()
+	time.end_scrub()
 	await _frames(2)
+	assert(is_equal_approx(WorldClock.year, 2080.0), "a hold with no drag acts like a tap")
 	time.tap()
 	await _frames(2)
 	assert(is_equal_approx(WorldClock.year, 2026.0), "tap wraps to 2026")
