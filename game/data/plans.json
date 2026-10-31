@@ -1,0 +1,8318 @@
+[
+  {
+    "breach_year": 0,
+    "code": "3AT",
+    "depth_2050": 0.0,
+    "depth_2080": 0.370938658600911,
+    "homes": 3,
+    "peak_m": 0.370938658600911,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 0,
+      "meet": 2,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 1,
+    "score": 5.53632667674886
+  },
+  {
+    "breach_year": 0,
+    "code": "BFN",
+    "depth_2050": 0.0,
+    "depth_2080": 0.397866785150777,
+    "homes": 3,
+    "peak_m": 0.397866785150777,
+    "plan": {
+      "dune": 2,
+      "grass": 2,
+      "light": 0,
+      "meet": 1,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 2,
+    "score": 5.50266651856153
+  },
+  {
+    "breach_year": 0,
+    "code": "Y3C",
+    "depth_2050": 0.0,
+    "depth_2080": 0.399803283236208,
+    "homes": 3,
+    "peak_m": 0.399803283236208,
+    "plan": {
+      "dune": 2,
+      "grass": 2,
+      "light": 0,
+      "meet": 2,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 3,
+    "score": 5.50024589595474
+  },
+  {
+    "breach_year": 0,
+    "code": "7YW",
+    "depth_2050": 0.0,
+    "depth_2080": 0.415074103368334,
+    "homes": 3,
+    "peak_m": 0.415074103368334,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 0,
+      "meet": 2,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 4,
+    "score": 5.48115737078958
+  },
+  {
+    "breach_year": 0,
+    "code": "95M",
+    "depth_2050": 0.0,
+    "depth_2080": 0.423567745799006,
+    "homes": 3,
+    "peak_m": 0.423567745799006,
+    "plan": {
+      "dune": 1,
+      "grass": 3,
+      "light": 0,
+      "meet": 1,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 5,
+    "score": 5.47054031775124
+  },
+  {
+    "breach_year": 0,
+    "code": "GQ3",
+    "depth_2050": 0.0,
+    "depth_2080": 0.425831854210775,
+    "homes": 3,
+    "peak_m": 0.425831854210775,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 0,
+      "meet": 1,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 6,
+    "score": 5.46771018223653
+  },
+  {
+    "breach_year": 0,
+    "code": "VSB",
+    "depth_2050": 0.0547203862332895,
+    "depth_2080": 0.430039707528242,
+    "homes": 3,
+    "peak_m": 0.430039707528242,
+    "plan": {
+      "dune": 1,
+      "grass": 3,
+      "light": 0,
+      "meet": 2,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 7,
+    "score": 5.4624503655897
+  },
+  {
+    "breach_year": 0,
+    "code": "JDR",
+    "depth_2050": 0.0,
+    "depth_2080": 0.461209478733037,
+    "homes": 3,
+    "peak_m": 0.461209478733037,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 0,
+      "meet": 2,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 8,
+    "score": 5.4234881515837
+  },
+  {
+    "breach_year": 0,
+    "code": "NB5",
+    "depth_2050": 0.0,
+    "depth_2080": 0.463346982263084,
+    "homes": 3,
+    "peak_m": 0.463346982263084,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 0,
+      "meet": 1,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 9,
+    "score": 5.42081627217115
+  },
+  {
+    "breach_year": 0,
+    "code": "KW8",
+    "depth_2050": 0.00296922278235856,
+    "depth_2080": 0.470602676739008,
+    "homes": 3,
+    "peak_m": 0.470602676739008,
+    "plan": {
+      "dune": 2,
+      "grass": 3,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 10,
+    "score": 5.41174665407624
+  },
+  {
+    "breach_year": 0,
+    "code": "G3Q",
+    "depth_2050": 0.0,
+    "depth_2080": 0.481716194280085,
+    "homes": 3,
+    "peak_m": 0.481716194280085,
+    "plan": {
+      "dune": 3,
+      "grass": 1,
+      "light": 0,
+      "meet": 1,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 11,
+    "score": 5.39785475714989
+  },
+  {
+    "breach_year": 0,
+    "code": "P69",
+    "depth_2050": 0.0,
+    "depth_2080": 0.491235997167778,
+    "homes": 3,
+    "peak_m": 0.491235997167778,
+    "plan": {
+      "dune": 3,
+      "grass": 2,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 12,
+    "score": 5.38595500354028
+  },
+  {
+    "breach_year": 0,
+    "code": "8P4",
+    "depth_2050": 0.0,
+    "depth_2080": 0.491834590210775,
+    "homes": 3,
+    "peak_m": 0.491834590210775,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 1,
+      "meet": 1,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 13,
+    "score": 5.38520676223653
+  },
+  {
+    "breach_year": 0,
+    "code": "2QE",
+    "depth_2050": 0.0,
+    "depth_2080": 0.498449646917747,
+    "homes": 3,
+    "peak_m": 0.498449646917747,
+    "plan": {
+      "dune": 3,
+      "grass": 1,
+      "light": 0,
+      "meet": 2,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 14,
+    "score": 5.37693794135282
+  },
+  {
+    "breach_year": 0,
+    "code": "K8W",
+    "depth_2050": 0.0524467222332894,
+    "depth_2080": 0.511941394600912,
+    "homes": 3,
+    "peak_m": 0.511941394600912,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 1,
+      "meet": 2,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 15,
+    "score": 5.36007325674886
+  },
+  {
+    "breach_year": 0,
+    "code": "2BT",
+    "depth_2050": 0.0,
+    "depth_2080": 0.527212214733038,
+    "homes": 3,
+    "peak_m": 0.527212214733038,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 1,
+      "meet": 2,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 16,
+    "score": 5.3409847315837
+  },
+  {
+    "breach_year": 0,
+    "code": "DA6",
+    "depth_2050": 0.0,
+    "depth_2080": 0.529349718263084,
+    "homes": 3,
+    "peak_m": 0.529349718263084,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 1,
+      "meet": 1,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 17,
+    "score": 5.33831285217115
+  },
+  {
+    "breach_year": 0,
+    "code": "3EP",
+    "depth_2050": 0.0116028465966591,
+    "depth_2080": 0.538869521150777,
+    "homes": 3,
+    "peak_m": 0.538869521150777,
+    "plan": {
+      "dune": 2,
+      "grass": 2,
+      "light": 1,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 18,
+    "score": 5.32641309856153
+  },
+  {
+    "breach_year": 0,
+    "code": "QWY",
+    "depth_2050": 0.0248321330773005,
+    "depth_2080": 0.556076839368334,
+    "homes": 3,
+    "peak_m": 0.556076839368334,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 1,
+      "meet": 2,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 19,
+    "score": 5.30490395078958
+  },
+  {
+    "breach_year": 0,
+    "code": "QS2",
+    "depth_2050": 0.0,
+    "depth_2080": 0.557314787323082,
+    "homes": 3,
+    "peak_m": 0.557314787323082,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 1,
+      "meet": 1,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 20,
+    "score": 5.30335651584615
+  },
+  {
+    "breach_year": 0,
+    "code": "14N",
+    "depth_2050": 0.0869395986982961,
+    "depth_2080": 0.564570481799006,
+    "homes": 3,
+    "peak_m": 0.564570481799006,
+    "plan": {
+      "dune": 1,
+      "grass": 3,
+      "light": 1,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 21,
+    "score": 5.29428689775124
+  },
+  {
+    "breach_year": 0,
+    "code": "XQR",
+    "depth_2050": 0.0869259519999999,
+    "depth_2080": 0.582187531627645,
+    "homes": 3,
+    "peak_m": 0.582187531627645,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 1,
+      "meet": 2,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 22,
+    "score": 5.27226558546544
+  },
+  {
+    "breach_year": 0,
+    "code": "6C3",
+    "depth_2050": 0.0937469440000001,
+    "depth_2080": 0.60177969827173,
+    "homes": 3,
+    "peak_m": 0.60177969827173,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 1,
+      "meet": 1,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 23,
+    "score": 5.24777537716034
+  },
+  {
+    "breach_year": 0,
+    "code": "K40",
+    "depth_2050": 0.0296542318143005,
+    "depth_2080": 0.604043806683498,
+    "homes": 3,
+    "peak_m": 0.604043806683498,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 1,
+      "meet": 1,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 24,
+    "score": 5.24494524164563
+  },
+  {
+    "breach_year": 0,
+    "code": "7Q4",
+    "depth_2050": 0.038251157851668,
+    "depth_2080": 0.623317523323082,
+    "homes": 3,
+    "peak_m": 0.623317523323082,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 2,
+      "meet": 1,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 25,
+    "score": 5.22085309584615
+  },
+  {
+    "breach_year": 0,
+    "code": "RM6",
+    "depth_2050": 0.0955732225125965,
+    "depth_2080": 0.632837326210775,
+    "homes": 3,
+    "peak_m": 0.632837326210775,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 2,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 26,
+    "score": 5.20895334223653
+  },
+  {
+    "breach_year": 0,
+    "code": "00S",
+    "depth_2050": 0.0891996159999999,
+    "depth_2080": 0.500285844554976,
+    "homes": 2,
+    "peak_m": 0.500285844554976,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 0,
+      "meet": 2,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 27,
+    "score": 3.37464269430628
+  },
+  {
+    "breach_year": 0,
+    "code": "B7X",
+    "depth_2050": 0.0513098902332896,
+    "depth_2080": 0.507442762600911,
+    "homes": 2,
+    "peak_m": 0.507442762600911,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 0,
+      "meet": 3,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 28,
+    "score": 3.36569654674886
+  },
+  {
+    "breach_year": 0,
+    "code": "DSP",
+    "depth_2050": 0.014199616,
+    "depth_2080": 0.516184795627645,
+    "homes": 2,
+    "peak_m": 0.516184795627645,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 0,
+      "meet": 2,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 29,
+    "score": 3.35476900546544
+  },
+  {
+    "breach_year": 0,
+    "code": "TAV",
+    "depth_2050": 0.0,
+    "depth_2080": 0.522713582733038,
+    "homes": 2,
+    "peak_m": 0.522713582733038,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 0,
+      "meet": 3,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 30,
+    "score": 3.3466080215837
+  },
+  {
+    "breach_year": 0,
+    "code": "ZS1",
+    "depth_2050": 0.0,
+    "depth_2080": 0.528812051323082,
+    "homes": 2,
+    "peak_m": 0.528812051323082,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 0,
+      "meet": 1,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 31,
+    "score": 3.33898493584615
+  },
+  {
+    "breach_year": 0,
+    "code": "V13",
+    "depth_2050": 0.089213262698296,
+    "depth_2080": 0.531072486172533,
+    "homes": 2,
+    "peak_m": 0.531072486172533,
+    "plan": {
+      "dune": 1,
+      "grass": 4,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 32,
+    "score": 3.33615939228433
+  },
+  {
+    "breach_year": 0,
+    "code": "ED2",
+    "depth_2050": 0.0210206079999999,
+    "depth_2080": 0.53577696227173,
+    "homes": 2,
+    "peak_m": 0.53577696227173,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 0,
+      "meet": 1,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 33,
+    "score": 3.33027879716034
+  },
+  {
+    "breach_year": 0,
+    "code": "FVZ",
+    "depth_2050": 0.0236953010773007,
+    "depth_2080": 0.551578207368334,
+    "homes": 2,
+    "peak_m": 0.551578207368334,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 0,
+      "meet": 3,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 34,
+    "score": 3.31052724078958
+  },
+  {
+    "breach_year": 0,
+    "code": "HAF",
+    "depth_2050": 0.0960206079999999,
+    "depth_2080": 0.568281702645257,
+    "homes": 2,
+    "peak_m": 0.568281702645257,
+    "plan": {
+      "dune": 0,
+      "grass": 4,
+      "light": 0,
+      "meet": 1,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 35,
+    "score": 3.28964787169343
+  },
+  {
+    "breach_year": 0,
+    "code": "V5Z",
+    "depth_2050": 0.0,
+    "depth_2080": 0.575541070683498,
+    "homes": 2,
+    "peak_m": 0.575541070683498,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 0,
+      "meet": 1,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 36,
+    "score": 3.28057366164563
+  },
+  {
+    "breach_year": 0,
+    "code": "NPS",
+    "depth_2050": 0.0857891200000001,
+    "depth_2080": 0.577688899627645,
+    "homes": 2,
+    "peak_m": 0.577688899627645,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 0,
+      "meet": 3,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 37,
+    "score": 3.27788887546544
+  },
+  {
+    "breach_year": 0,
+    "code": "82R",
+    "depth_2050": 0.0568465599819654,
+    "depth_2080": 0.622718930280085,
+    "homes": 2,
+    "peak_m": 0.622718930280085,
+    "plan": {
+      "dune": 3,
+      "grass": 1,
+      "light": 1,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 38,
+    "score": 3.22160133714989
+  },
+  {
+    "breach_year": 0,
+    "code": "GYV",
+    "depth_2050": 0.236925952,
+    "depth_2080": 0.641288580554976,
+    "homes": 2,
+    "peak_m": 0.641288580554976,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 1,
+      "meet": 2,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 39,
+    "score": 3.19838927430628
+  },
+  {
+    "breach_year": 0,
+    "code": "332",
+    "depth_2050": 0.1023805678143,
+    "depth_2080": 0.670046542683498,
+    "homes": 2,
+    "peak_m": 0.670046542683498,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 2,
+      "meet": 1,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 40,
+    "score": 3.16244182164563
+  },
+  {
+    "breach_year": 0,
+    "code": "X88",
+    "depth_2050": 0.102007117935731,
+    "depth_2080": 0.670352454263084,
+    "homes": 2,
+    "peak_m": 0.670352454263084,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 2,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 41,
+    "score": 3.16205943217115
+  },
+  {
+    "breach_year": 0,
+    "code": "4NV",
+    "depth_2050": 0.0857749392157019,
+    "depth_2080": 0.672458351759771,
+    "homes": 2,
+    "peak_m": 0.672458351759771,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 1,
+      "meet": 2,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 42,
+    "score": 3.15942706030029
+  },
+  {
+    "breach_year": 0,
+    "code": "ZJ9",
+    "depth_2050": 0.125158877448992,
+    "depth_2080": 0.672713582733038,
+    "homes": 2,
+    "peak_m": 0.672713582733038,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 1,
+      "meet": 3,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 43,
+    "score": 3.1591080215837
+  },
+  {
+    "breach_year": 0,
+    "code": "7K8",
+    "depth_2050": 0.125158877448992,
+    "depth_2080": 0.672713582733038,
+    "homes": 2,
+    "peak_m": 0.672713582733038,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 2,
+      "meet": 2,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 44,
+    "score": 3.1591080215837
+  },
+  {
+    "breach_year": 0,
+    "code": "KCR",
+    "depth_2050": 0.0517816622388516,
+    "depth_2080": 0.683929657300456,
+    "homes": 2,
+    "peak_m": 0.683929657300456,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 1,
+      "meet": 0,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 45,
+    "score": 3.14508792837443
+  },
+  {
+    "breach_year": 0,
+    "code": "E5A",
+    "depth_2050": 0.076049874053006,
+    "depth_2080": 0.698361969618104,
+    "homes": 2,
+    "peak_m": 0.698361969618104,
+    "plan": {
+      "dune": 2,
+      "grass": 2,
+      "light": 1,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 46,
+    "score": 3.12704753797737
+  },
+  {
+    "breach_year": 0,
+    "code": "Q0T",
+    "depth_2050": 0.0555663066054013,
+    "depth_2080": 0.705997379684167,
+    "homes": 2,
+    "peak_m": 0.705997379684167,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 1,
+      "meet": 0,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 47,
+    "score": 3.11750327539479
+  },
+  {
+    "breach_year": 0,
+    "code": "H34",
+    "depth_2050": 0.0730737059951003,
+    "depth_2080": 0.706569239608563,
+    "homes": 2,
+    "peak_m": 0.706569239608563,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 1,
+      "meet": 2,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 48,
+    "score": 3.1167884504893
+  },
+  {
+    "breach_year": 0,
+    "code": "T33",
+    "depth_2050": 0.0848321671533723,
+    "depth_2080": 0.707024003795805,
+    "homes": 2,
+    "peak_m": 0.707024003795805,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 1,
+      "meet": 1,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 49,
+    "score": 3.11621999525524
+  },
+  {
+    "breach_year": 0,
+    "code": "99G",
+    "depth_2050": 0.243746944,
+    "depth_2080": 0.709284438645257,
+    "homes": 2,
+    "peak_m": 0.709284438645257,
+    "plan": {
+      "dune": 0,
+      "grass": 4,
+      "light": 1,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 50,
+    "score": 3.11339445169343
+  },
+  {
+    "breach_year": 0,
+    "code": "6GC",
+    "depth_2050": 0.0477861189158608,
+    "depth_2080": 0.709768258467278,
+    "homes": 2,
+    "peak_m": 0.709768258467278,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 1,
+      "meet": 1,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 51,
+    "score": 3.1127896769159
+  },
+  {
+    "breach_year": 0,
+    "code": "2Z6",
+    "depth_2050": 0.23578912,
+    "depth_2080": 0.727688899627645,
+    "homes": 2,
+    "peak_m": 0.727688899627645,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 2,
+      "meet": 2,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 52,
+    "score": 3.09038887546544
+  },
+  {
+    "breach_year": 0,
+    "code": "915",
+    "depth_2050": 0.120058503153372,
+    "depth_2080": 0.735526739795805,
+    "homes": 2,
+    "peak_m": 0.735526739795805,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 2,
+      "meet": 1,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 53,
+    "score": 3.08059157525524
+  },
+  {
+    "breach_year": 0,
+    "code": "PA5",
+    "depth_2050": 0.24147328,
+    "depth_2080": 0.74278243427173,
+    "homes": 2,
+    "peak_m": 0.74278243427173,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 2,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 54,
+    "score": 3.07152195716034
+  },
+  {
+    "breach_year": 0,
+    "code": "9X9",
+    "depth_2050": 0.159638107215702,
+    "depth_2080": 0.742959719759771,
+    "homes": 2,
+    "peak_m": 0.742959719759771,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 2,
+      "meet": 2,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 55,
+    "score": 3.07130035030029
+  },
+  {
+    "breach_year": 0,
+    "code": "BBS",
+    "depth_2050": 0.124507998238852,
+    "depth_2080": 0.749932393300456,
+    "homes": 2,
+    "peak_m": 0.749932393300456,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 2,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 56,
+    "score": 3.06258450837443
+  },
+  {
+    "breach_year": 0,
+    "code": "TEQ",
+    "depth_2050": 0.104024430791247,
+    "depth_2080": 0.757567803366519,
+    "homes": 2,
+    "peak_m": 0.757567803366519,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 2,
+      "meet": 0,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 57,
+    "score": 3.05304024579185
+  },
+  {
+    "breach_year": 0,
+    "code": "CYJ",
+    "depth_2050": 0.185977493851668,
+    "depth_2080": 0.764320259323082,
+    "homes": 2,
+    "peak_m": 0.764320259323082,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 3,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 58,
+    "score": 3.04459967584615
+  },
+  {
+    "breach_year": 0,
+    "code": "3Y6",
+    "depth_2050": 0.239199616,
+    "depth_2080": 0.600291421465008,
+    "homes": 1,
+    "peak_m": 0.600291421465008,
+    "plan": {
+      "dune": 0,
+      "grass": 4,
+      "light": 0,
+      "meet": 2,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 59,
+    "score": 1.24963572316874
+  },
+  {
+    "breach_year": 0,
+    "code": "TTB",
+    "depth_2050": 0.0330314019073943,
+    "depth_2080": 0.600569260889436,
+    "homes": 1,
+    "peak_m": 0.600569260889436,
+    "plan": {
+      "dune": 4,
+      "grass": 1,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 60,
+    "score": 1.24928842388821
+  },
+  {
+    "breach_year": 0,
+    "code": "GTZ",
+    "depth_2050": 0.00332353805300589,
+    "depth_2080": 0.632359233618104,
+    "homes": 1,
+    "peak_m": 0.632359233618104,
+    "plan": {
+      "dune": 2,
+      "grass": 2,
+      "light": 0,
+      "meet": 0,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 61,
+    "score": 1.20955095797737
+  },
+  {
+    "breach_year": 0,
+    "code": "8XW",
+    "depth_2050": 0.23578912,
+    "depth_2080": 0.636789948554976,
+    "homes": 1,
+    "peak_m": 0.636789948554976,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 0,
+      "meet": 3,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 62,
+    "score": 1.20401256430628
+  },
+  {
+    "breach_year": 0,
+    "code": "152",
+    "depth_2050": 0.000347369995100655,
+    "depth_2080": 0.640566503608563,
+    "homes": 1,
+    "peak_m": 0.640566503608563,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 0,
+      "meet": 2,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 63,
+    "score": 1.1992918704893
+  },
+  {
+    "breach_year": 0,
+    "code": "MQS",
+    "depth_2050": 0.0505486032157021,
+    "depth_2080": 0.643955615759771,
+    "homes": 1,
+    "peak_m": 0.643955615759771,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 2,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 64,
+    "score": 1.19505548030029
+  },
+  {
+    "breach_year": 0,
+    "code": "EGY",
+    "depth_2050": 0.0240712883350342,
+    "depth_2080": 0.647477445764121,
+    "homes": 1,
+    "peak_m": 0.647477445764121,
+    "plan": {
+      "dune": 1,
+      "grass": 3,
+      "light": 0,
+      "meet": 0,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 65,
+    "score": 1.19065319279485
+  },
+  {
+    "breach_year": 0,
+    "code": "PP6",
+    "depth_2050": 0.0195424029906706,
+    "depth_2080": 0.648942047157976,
+    "homes": 1,
+    "peak_m": 0.648942047157976,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 0,
+      "meet": 2,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 66,
+    "score": 1.18882244105253
+  },
+  {
+    "breach_year": 0,
+    "code": "P2D",
+    "depth_2050": 0.0165553262388516,
+    "depth_2080": 0.655426921300456,
+    "homes": 1,
+    "peak_m": 0.655426921300456,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 0,
+      "meet": 0,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 67,
+    "score": 1.18071634837443
+  },
+  {
+    "breach_year": 0,
+    "code": "S7J",
+    "depth_2050": 0.0483395001491886,
+    "depth_2080": 0.661909758081769,
+    "homes": 1,
+    "peak_m": 0.661909758081769,
+    "plan": {
+      "dune": 2,
+      "grass": 3,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 68,
+    "score": 1.17261280239779
+  },
+  {
+    "breach_year": 0,
+    "code": "42F",
+    "depth_2050": 0.00262556096209532,
+    "depth_2080": 0.66213473448428,
+    "homes": 1,
+    "peak_m": 0.66213473448428,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 69,
+    "score": 1.17233158189465
+  },
+  {
+    "breach_year": 0,
+    "code": "WMW",
+    "depth_2050": 0.0846381072157021,
+    "depth_2080": 0.667959719759771,
+    "homes": 1,
+    "peak_m": 0.667959719759771,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 3,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 70,
+    "score": 1.16505035030029
+  },
+  {
+    "breach_year": 2062,
+    "code": "0N5",
+    "depth_2050": 0.0,
+    "depth_2080": 0.670266166056532,
+    "homes": 1,
+    "peak_m": 0.670266166056532,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 0,
+      "meet": 1,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 71,
+    "score": 1.16216729242934
+  },
+  {
+    "breach_year": 0,
+    "code": "MVN",
+    "depth_2050": 0.125158877448992,
+    "depth_2080": 0.672713582733038,
+    "homes": 1,
+    "peak_m": 0.672713582733038,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 0,
+      "meet": 4,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 72,
+    "score": 1.1591080215837
+  },
+  {
+    "breach_year": 0,
+    "code": "VHK",
+    "depth_2050": 0.0504210545507908,
+    "depth_2080": 0.67404700539281,
+    "homes": 1,
+    "peak_m": 0.67404700539281,
+    "plan": {
+      "dune": 3,
+      "grass": 2,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 73,
+    "score": 1.15744124325899
+  },
+  {
+    "breach_year": 0,
+    "code": "TPF",
+    "depth_2050": 0.020339970605401,
+    "depth_2080": 0.677494643684167,
+    "homes": 1,
+    "peak_m": 0.677494643684167,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 74,
+    "score": 1.15313169539479
+  },
+  {
+    "breach_year": 0,
+    "code": "EHB",
+    "depth_2050": 0.0125597829158608,
+    "depth_2080": 0.681265522467278,
+    "homes": 1,
+    "peak_m": 0.681265522467278,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 75,
+    "score": 1.1484180969159
+  },
+  {
+    "breach_year": 0,
+    "code": "NE1",
+    "depth_2050": 0.0299374871031859,
+    "depth_2080": 0.681682415458874,
+    "homes": 1,
+    "peak_m": 0.681682415458874,
+    "plan": {
+      "dune": 3,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 76,
+    "score": 1.14789698067641
+  },
+  {
+    "breach_year": 2062,
+    "code": "597",
+    "depth_2050": 0.0,
+    "depth_2080": 0.68728503082928,
+    "homes": 1,
+    "peak_m": 0.68728503082928,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 0,
+      "meet": 1,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 77,
+    "score": 1.1408937114634
+  },
+  {
+    "breach_year": 2062,
+    "code": "QN6",
+    "depth_2050": 0.0,
+    "depth_2080": 0.691723868458451,
+    "homes": 1,
+    "peak_m": 0.691723868458451,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 0,
+      "meet": 2,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 78,
+    "score": 1.13534516442694
+  },
+  {
+    "breach_year": 0,
+    "code": "9DC",
+    "depth_2050": 0.246020608,
+    "depth_2080": 0.694909309850697,
+    "homes": 1,
+    "peak_m": 0.694909309850697,
+    "plan": {
+      "dune": 0,
+      "grass": 5,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 79,
+    "score": 1.13136336268663
+  },
+  {
+    "breach_year": 0,
+    "code": "242",
+    "depth_2050": 0.0683558311533721,
+    "depth_2080": 0.697271267795806,
+    "homes": 1,
+    "peak_m": 0.697271267795806,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 1,
+      "sort": 4,
+      "wall": 0
+    },
+    "rank": 80,
+    "score": 1.12841091525524
+  },
+  {
+    "breach_year": 0,
+    "code": "1CD",
+    "depth_2050": 0.0825800674879347,
+    "depth_2080": 0.697480234219137,
+    "homes": 1,
+    "peak_m": 0.697480234219137,
+    "plan": {
+      "dune": 1,
+      "grass": 4,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 81,
+    "score": 1.12814970722608
+  },
+  {
+    "breach_year": 0,
+    "code": "BV9",
+    "depth_2050": 0.0967976243350344,
+    "depth_2080": 0.713480181764121,
+    "homes": 1,
+    "peak_m": 0.713480181764121,
+    "plan": {
+      "dune": 1,
+      "grass": 3,
+      "light": 1,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 82,
+    "score": 1.10814977279485
+  },
+  {
+    "breach_year": 0,
+    "code": "TY7",
+    "depth_2050": 0.23578912,
+    "depth_2080": 0.727688899627645,
+    "homes": 1,
+    "peak_m": 0.727688899627645,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 1,
+      "meet": 3,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 83,
+    "score": 1.09038887546544
+  },
+  {
+    "breach_year": 0,
+    "code": "V1G",
+    "depth_2050": 0.0753518969620954,
+    "depth_2080": 0.728137470484279,
+    "homes": 1,
+    "peak_m": 0.728137470484279,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 1,
+      "meet": 1,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 84,
+    "score": 1.08982816189465
+  },
+  {
+    "breach_year": 0,
+    "code": "2FP",
+    "depth_2050": 0.068798094791247,
+    "depth_2080": 0.729065067366519,
+    "homes": 1,
+    "peak_m": 0.729065067366519,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 1,
+      "meet": 0,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 85,
+    "score": 1.08866866579185
+  },
+  {
+    "breach_year": 0,
+    "code": "1WA",
+    "depth_2050": 0.159638107215702,
+    "depth_2080": 0.742959719759771,
+    "homes": 1,
+    "peak_m": 0.742959719759771,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 1,
+      "meet": 3,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 86,
+    "score": 1.07130035030029
+  },
+  {
+    "breach_year": 0,
+    "code": "JSC",
+    "depth_2050": 0.102663823103186,
+    "depth_2080": 0.747685151458873,
+    "homes": 1,
+    "peak_m": 0.747685151458873,
+    "plan": {
+      "dune": 3,
+      "grass": 1,
+      "light": 1,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 87,
+    "score": 1.06539356067641
+  },
+  {
+    "breach_year": 0,
+    "code": "H2Q",
+    "depth_2050": 0.11403723921839,
+    "depth_2080": 0.748603250277488,
+    "homes": 1,
+    "peak_m": 0.748603250277488,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 1,
+      "meet": 0,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 88,
+    "score": 1.06424593715314
+  },
+  {
+    "breach_year": 0,
+    "code": "KD5",
+    "depth_2050": 0.0995372823667915,
+    "depth_2080": 0.752704614973266,
+    "homes": 1,
+    "peak_m": 0.752704614973266,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 1,
+      "meet": 2,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 89,
+    "score": 1.05911923128342
+  },
+  {
+    "breach_year": 0,
+    "code": "XVM",
+    "depth_2050": 0.106521277122207,
+    "depth_2080": 0.756552725813823,
+    "homes": 1,
+    "peak_m": 0.756552725813823,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 1,
+      "meet": 0,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 90,
+    "score": 1.05430909273272
+  },
+  {
+    "breach_year": 0,
+    "code": "FZV",
+    "depth_2050": 0.128292642605401,
+    "depth_2080": 0.772000115684167,
+    "homes": 1,
+    "peak_m": 0.772000115684167,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 2,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 91,
+    "score": 1.03499985539479
+  },
+  {
+    "breach_year": 0,
+    "code": "8TD",
+    "depth_2050": 0.0965301588317984,
+    "depth_2080": 0.775233327527277,
+    "homes": 1,
+    "peak_m": 0.775233327527277,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 1,
+      "meet": 1,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 92,
+    "score": 1.0309583405909
+  },
+  {
+    "breach_year": 0,
+    "code": "PEE",
+    "depth_2050": 0.120512454915861,
+    "depth_2080": 0.775770994467278,
+    "homes": 1,
+    "peak_m": 0.775770994467278,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 2,
+      "meet": 1,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 93,
+    "score": 1.0302862569159
+  },
+  {
+    "breach_year": 2062,
+    "code": "ZP5",
+    "depth_2050": 0.0,
+    "depth_2080": 0.781252835889278,
+    "homes": 1,
+    "peak_m": 0.781252835889278,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 1,
+      "meet": 1,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 94,
+    "score": 1.0234339551384
+  },
+  {
+    "breach_year": 0,
+    "code": "NTN",
+    "depth_2050": 0.141747613122207,
+    "depth_2080": 0.785055461813823,
+    "homes": 1,
+    "peak_m": 0.785055461813823,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 2,
+      "meet": 0,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 95,
+    "score": 1.01868067273272
+  },
+  {
+    "breach_year": 0,
+    "code": "6M8",
+    "depth_2050": 0.167268738990671,
+    "depth_2080": 0.789944783157976,
+    "homes": 1,
+    "peak_m": 0.789944783157976,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 1,
+      "meet": 2,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 96,
+    "score": 1.01256902105253
+  },
+  {
+    "breach_year": 0,
+    "code": "K04",
+    "depth_2050": 0.17254601837129,
+    "depth_2080": 0.798606038732504,
+    "homes": 1,
+    "peak_m": 0.798606038732504,
+    "plan": {
+      "dune": 0,
+      "grass": 4,
+      "light": 1,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 97,
+    "score": 1.00174245158437
+  },
+  {
+    "breach_year": 0,
+    "code": "F8K",
+    "depth_2050": 0.192784839153372,
+    "depth_2080": 0.801529475795806,
+    "homes": 1,
+    "peak_m": 0.801529475795806,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 3,
+      "meet": 1,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 98,
+    "score": 0.998088155255243
+  },
+  {
+    "breach_year": 0,
+    "code": "PHX",
+    "depth_2050": 0.196065836149189,
+    "depth_2080": 0.80291249408177,
+    "homes": 1,
+    "peak_m": 0.80291249408177,
+    "plan": {
+      "dune": 2,
+      "grass": 3,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 99,
+    "score": 0.996359382397788
+  },
+  {
+    "breach_year": 0,
+    "code": "RRF",
+    "depth_2050": 0.131756494831798,
+    "depth_2080": 0.803736063527277,
+    "homes": 1,
+    "peak_m": 0.803736063527277,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 2,
+      "meet": 1,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 100,
+    "score": 0.995329920590904
+  },
+  {
+    "breach_year": 0,
+    "code": "8AG",
+    "depth_2050": 0.2501069038143,
+    "depth_2080": 0.811049278683498,
+    "homes": 1,
+    "peak_m": 0.811049278683498,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 3,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 101,
+    "score": 0.986188401645627
+  },
+  {
+    "breach_year": 0,
+    "code": "81R",
+    "depth_2050": 0.18676357521839,
+    "depth_2080": 0.814605986277488,
+    "homes": 1,
+    "peak_m": 0.814605986277488,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 2,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 102,
+    "score": 0.98174251715314
+  },
+  {
+    "breach_year": 0,
+    "code": "RMK",
+    "depth_2050": 0.173400450366792,
+    "depth_2080": 0.823205982973266,
+    "homes": 1,
+    "peak_m": 0.823205982973266,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 2,
+      "meet": 2,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 103,
+    "score": 0.970992521283417
+  },
+  {
+    "breach_year": 0,
+    "code": "ACS",
+    "depth_2050": 0.176750766791247,
+    "depth_2080": 0.823570539366518,
+    "homes": 1,
+    "peak_m": 0.823570539366518,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 3,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 104,
+    "score": 0.970536825791852
+  },
+  {
+    "breach_year": 0,
+    "code": "WRR",
+    "depth_2050": 0.158764045674602,
+    "depth_2080": 0.830190871879886,
+    "homes": 1,
+    "peak_m": 0.830190871879886,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 2,
+      "meet": 0,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 105,
+    "score": 0.962261410150143
+  },
+  {
+    "breach_year": 0,
+    "code": "64B",
+    "depth_2050": 0.223776210053006,
+    "depth_2080": 0.839364705618104,
+    "homes": 1,
+    "peak_m": 0.839364705618104,
+    "plan": {
+      "dune": 2,
+      "grass": 2,
+      "light": 2,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 106,
+    "score": 0.95079411797737
+  },
+  {
+    "breach_year": 0,
+    "code": "951",
+    "depth_2050": 0.152413429064301,
+    "depth_2080": 0.847246315804282,
+    "homes": 1,
+    "peak_m": 0.847246315804282,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 2,
+      "meet": 0,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 107,
+    "score": 0.940942105244648
+  },
+  {
+    "breach_year": 0,
+    "code": "5RQ",
+    "depth_2050": 0.214473949122207,
+    "depth_2080": 0.851058197813823,
+    "homes": 1,
+    "peak_m": 0.851058197813823,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 3,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 108,
+    "score": 0.936177252732722
+  },
+  {
+    "breach_year": 0,
+    "code": "PAJ",
+    "depth_2050": 0.221936873995101,
+    "depth_2080": 0.852070607608563,
+    "homes": 1,
+    "peak_m": 0.852070607608563,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 2,
+      "meet": 2,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 109,
+    "score": 0.934911740489297
+  },
+  {
+    "breach_year": 0,
+    "code": "3TA",
+    "depth_2050": 0.244523960335034,
+    "depth_2080": 0.854482917764121,
+    "homes": 1,
+    "peak_m": 0.854482917764121,
+    "plan": {
+      "dune": 1,
+      "grass": 3,
+      "light": 2,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 110,
+    "score": 0.931896352794848
+  },
+  {
+    "breach_year": 0,
+    "code": "CPT",
+    "depth_2050": 0.193990381674602,
+    "depth_2080": 0.858693607879885,
+    "homes": 1,
+    "peak_m": 0.858693607879885,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 3,
+      "meet": 0,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 111,
+    "score": 0.926632990150143
+  },
+  {
+    "breach_year": 0,
+    "code": "XZX",
+    "depth_2050": 0.204482830831798,
+    "depth_2080": 0.869738799527277,
+    "homes": 1,
+    "peak_m": 0.869738799527277,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 3,
+      "meet": 1,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 112,
+    "score": 0.912826500590904
+  },
+  {
+    "breach_year": 0,
+    "code": "V9V",
+    "depth_2050": 0.272234334238852,
+    "depth_2080": 0.890935129300456,
+    "homes": 1,
+    "peak_m": 0.890935129300456,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 3,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 113,
+    "score": 0.88633108837443
+  },
+  {
+    "breach_year": 2062,
+    "code": "8J8",
+    "depth_2050": 0.0,
+    "depth_2080": 0.700566299243455,
+    "homes": 0,
+    "peak_m": 0.700566299243455,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 0,
+      "meet": 2,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 114,
+    "score": -0.875707874054319
+  },
+  {
+    "breach_year": 0,
+    "code": "925",
+    "depth_2050": 0.0719368739951005,
+    "depth_2080": 0.702070607608563,
+    "homes": 0,
+    "peak_m": 0.702070607608563,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 0,
+      "meet": 3,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 115,
+    "score": -0.877588259510703
+  },
+  {
+    "breach_year": 0,
+    "code": "YT1",
+    "depth_2050": 0.0515367388875243,
+    "depth_2080": 0.70598780109363,
+    "homes": 0,
+    "peak_m": 0.70598780109363,
+    "plan": {
+      "dune": 4,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 116,
+    "score": -0.882484751367037
+  },
+  {
+    "breach_year": 2062,
+    "code": "FR3",
+    "depth_2050": 0.0,
+    "depth_2080": 0.715250099889279,
+    "homes": 0,
+    "peak_m": 0.715250099889279,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 0,
+      "meet": 1,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 117,
+    "score": -0.894062624861598
+  },
+  {
+    "breach_year": 2062,
+    "code": "VDQ",
+    "depth_2050": 0.0,
+    "depth_2080": 0.717301096996534,
+    "homes": 0,
+    "peak_m": 0.717301096996534,
+    "plan": {
+      "dune": 2,
+      "grass": 2,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 118,
+    "score": -0.896626371245667
+  },
+  {
+    "breach_year": 0,
+    "code": "55B",
+    "depth_2050": 0.0523217587912466,
+    "depth_2080": 0.719312331366519,
+    "homes": 0,
+    "peak_m": 0.719312331366519,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 4,
+      "wall": 0
+    },
+    "rank": 119,
+    "score": -0.899140414208148
+  },
+  {
+    "breach_year": 0,
+    "code": "KRC",
+    "depth_2050": 0.0788109032183897,
+    "depth_2080": 0.720100514277488,
+    "homes": 0,
+    "peak_m": 0.720100514277488,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 0,
+      "meet": 0,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 120,
+    "score": -0.90012564284686
+  },
+  {
+    "breach_year": 2062,
+    "code": "D6A",
+    "depth_2050": 0.0,
+    "depth_2080": 0.720588493093748,
+    "homes": 0,
+    "peak_m": 0.720588493093748,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 0,
+      "meet": 2,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 121,
+    "score": -0.900735616367184
+  },
+  {
+    "breach_year": 0,
+    "code": "3F3",
+    "depth_2050": 0.0643109463667917,
+    "depth_2080": 0.724201878973266,
+    "homes": 0,
+    "peak_m": 0.724201878973266,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 2,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 122,
+    "score": -0.905252348716583
+  },
+  {
+    "breach_year": 0,
+    "code": "G7K",
+    "depth_2050": 0.23578912,
+    "depth_2080": 0.727688899627645,
+    "homes": 0,
+    "peak_m": 0.727688899627645,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 0,
+      "meet": 4,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 123,
+    "score": -0.909611124534556
+  },
+  {
+    "breach_year": 0,
+    "code": "PNS",
+    "depth_2050": 0.09981968237129,
+    "depth_2080": 0.732603302732504,
+    "homes": 0,
+    "peak_m": 0.732603302732504,
+    "plan": {
+      "dune": 0,
+      "grass": 4,
+      "light": 0,
+      "meet": 0,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 124,
+    "score": -0.91575412841563
+  },
+  {
+    "breach_year": 0,
+    "code": "05N",
+    "depth_2050": 0.0895911211769678,
+    "depth_2080": 0.738360689934962,
+    "homes": 0,
+    "peak_m": 0.738360689934962,
+    "plan": {
+      "dune": 4,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 125,
+    "score": -0.922950862418702
+  },
+  {
+    "breach_year": 0,
+    "code": "Q5P",
+    "depth_2050": 0.159638107215702,
+    "depth_2080": 0.742959719759771,
+    "homes": 0,
+    "peak_m": 0.742959719759771,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 4,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 126,
+    "score": -0.928699649699714
+  },
+  {
+    "breach_year": 0,
+    "code": "0H9",
+    "depth_2050": 0.0900449411222068,
+    "depth_2080": 0.746799989813822,
+    "homes": 0,
+    "peak_m": 0.746799989813822,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 0,
+      "meet": 0,
+      "sort": 4,
+      "wall": 0
+    },
+    "rank": 127,
+    "score": -0.933499987267278
+  },
+  {
+    "breach_year": 0,
+    "code": "BC6",
+    "depth_2050": 0.0984004503667917,
+    "depth_2080": 0.748205982973267,
+    "homes": 0,
+    "peak_m": 0.748205982973267,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 3,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 128,
+    "score": -0.935257478716583
+  },
+  {
+    "breach_year": 2062,
+    "code": "S3P",
+    "depth_2050": 0.0,
+    "depth_2080": 0.754275002448521,
+    "homes": 0,
+    "peak_m": 0.754275002448521,
+    "plan": {
+      "dune": 1,
+      "grass": 3,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 129,
+    "score": -0.942843753060651
+  },
+  {
+    "breach_year": 0,
+    "code": "HER",
+    "depth_2050": 0.138849671138234,
+    "depth_2080": 0.762298596110153,
+    "homes": 0,
+    "peak_m": 0.762298596110153,
+    "plan": {
+      "dune": 4,
+      "grass": 0,
+      "light": 0,
+      "meet": 2,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 130,
+    "score": -0.952873245137691
+  },
+  {
+    "breach_year": 0,
+    "code": "GVC",
+    "depth_2050": 0.0800538228317982,
+    "depth_2080": 0.765480591527276,
+    "homes": 0,
+    "peak_m": 0.765480591527276,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 4,
+      "wall": 0
+    },
+    "rank": 131,
+    "score": -0.956850739409095
+  },
+  {
+    "breach_year": 2062,
+    "code": "J14",
+    "depth_2050": 0.0,
+    "depth_2080": 0.770812436270189,
+    "homes": 0,
+    "peak_m": 0.770812436270189,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 0,
+      "meet": 2,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 132,
+    "score": -0.963515545337736
+  },
+  {
+    "breach_year": 0,
+    "code": "VX7",
+    "depth_2050": 0.170437016646974,
+    "depth_2080": 0.778597529856476,
+    "homes": 0,
+    "peak_m": 0.778597529856476,
+    "plan": {
+      "dune": 3,
+      "grass": 3,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 133,
+    "score": -0.973246912320595
+  },
+  {
+    "breach_year": 2062,
+    "code": "Z1S",
+    "depth_2050": 0.0,
+    "depth_2080": 0.780654242846281,
+    "homes": 0,
+    "peak_m": 0.780654242846281,
+    "plan": {
+      "dune": 3,
+      "grass": 1,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 134,
+    "score": -0.975817803557852
+  },
+  {
+    "breach_year": 2062,
+    "code": "B31",
+    "depth_2050": 0.0,
+    "depth_2080": 0.782475382529255,
+    "homes": 0,
+    "peak_m": 0.782475382529255,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 0,
+      "meet": 1,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 135,
+    "score": -0.978094228161569
+  },
+  {
+    "breach_year": 0,
+    "code": "YK9",
+    "depth_2050": 0.166131906990671,
+    "depth_2080": 0.785446151157976,
+    "homes": 0,
+    "peak_m": 0.785446151157976,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 0,
+      "meet": 3,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 136,
+    "score": -0.98180768894747
+  },
+  {
+    "breach_year": 0,
+    "code": "422",
+    "depth_2050": 0.181848279302089,
+    "depth_2080": 0.786912546536785,
+    "homes": 0,
+    "peak_m": 0.786912546536785,
+    "plan": {
+      "dune": 2,
+      "grass": 4,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 137,
+    "score": -0.983640683170982
+  },
+  {
+    "breach_year": 2062,
+    "code": "YB4",
+    "depth_2050": 0.0,
+    "depth_2080": 0.791484218921245,
+    "homes": 0,
+    "peak_m": 0.791484218921245,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 0,
+      "meet": 1,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 138,
+    "score": -0.989355273651556
+  },
+  {
+    "breach_year": 0,
+    "code": "ERP",
+    "depth_2050": 0.165749510905385,
+    "depth_2080": 0.793854836382763,
+    "homes": 0,
+    "peak_m": 0.793854836382763,
+    "plan": {
+      "dune": 0,
+      "grass": 5,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 139,
+    "score": -0.992318545478454
+  },
+  {
+    "breach_year": 0,
+    "code": "9DS",
+    "depth_2050": 0.0915582735620866,
+    "depth_2080": 0.794428615578988,
+    "homes": 0,
+    "peak_m": 0.794428615578988,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 140,
+    "score": -0.993035769473735
+  },
+  {
+    "breach_year": 0,
+    "code": "Y78",
+    "depth_2050": 0.185074688624573,
+    "depth_2080": 0.805725279868899,
+    "homes": 0,
+    "peak_m": 0.805725279868899,
+    "plan": {
+      "dune": 4,
+      "grass": 2,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 141,
+    "score": -1.00715659983612
+  },
+  {
+    "breach_year": 0,
+    "code": "KWN",
+    "depth_2050": 0.100710757064301,
+    "depth_2080": 0.808990843804281,
+    "homes": 0,
+    "peak_m": 0.808990843804281,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 4,
+      "wall": 0
+    },
+    "rank": 142,
+    "score": -1.01123855475535
+  },
+  {
+    "breach_year": 2062,
+    "code": "GK7",
+    "depth_2050": 0.0,
+    "depth_2080": 0.811268902056532,
+    "homes": 0,
+    "peak_m": 0.811268902056532,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 1,
+      "meet": 1,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 143,
+    "score": -1.01408612757066
+  },
+  {
+    "breach_year": 0,
+    "code": "46B",
+    "depth_2050": 0.113711907635868,
+    "depth_2080": 0.813606890055077,
+    "homes": 0,
+    "peak_m": 0.813606890055077,
+    "plan": {
+      "dune": 4,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 144,
+    "score": -1.01700861256885
+  },
+  {
+    "breach_year": 0,
+    "code": "RVY",
+    "depth_2050": 0.198147390550791,
+    "depth_2080": 0.81504974139281,
+    "homes": 0,
+    "peak_m": 0.81504974139281,
+    "plan": {
+      "dune": 3,
+      "grass": 2,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 145,
+    "score": -1.01881217674101
+  },
+  {
+    "breach_year": 0,
+    "code": "H60",
+    "depth_2050": 0.117187093064302,
+    "depth_2080": 0.818743579804282,
+    "homes": 0,
+    "peak_m": 0.818743579804282,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 146,
+    "score": -1.02342947475535
+  },
+  {
+    "breach_year": 0,
+    "code": "7FC",
+    "depth_2050": 0.135186373674602,
+    "depth_2080": 0.820060399879886,
+    "homes": 0,
+    "peak_m": 0.820060399879886,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 5,
+      "wall": 0
+    },
+    "rank": 147,
+    "score": -1.02507549984986
+  },
+  {
+    "breach_year": 0,
+    "code": "4SQ",
+    "depth_2050": 0.142287709674602,
+    "depth_2080": 0.820438135879885,
+    "homes": 0,
+    "peak_m": 0.820438135879885,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 1,
+      "meet": 0,
+      "sort": 4,
+      "wall": 0
+    },
+    "rank": 148,
+    "score": -1.02554766984986
+  },
+  {
+    "breach_year": 0,
+    "code": "6R4",
+    "depth_2050": 0.126784609562087,
+    "depth_2080": 0.822931351578988,
+    "homes": 0,
+    "peak_m": 0.822931351578988,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 149,
+    "score": -1.02866418947373
+  },
+  {
+    "breach_year": 0,
+    "code": "GKM",
+    "depth_2050": 0.173400450366792,
+    "depth_2080": 0.823205982973266,
+    "homes": 0,
+    "peak_m": 0.823205982973266,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 1,
+      "meet": 3,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 150,
+    "score": -1.02900747871658
+  },
+  {
+    "breach_year": 0,
+    "code": "5W0",
+    "depth_2050": 0.173400450366792,
+    "depth_2080": 0.823205982973266,
+    "homes": 0,
+    "peak_m": 0.823205982973266,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 4,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 151,
+    "score": -1.02900747871658
+  },
+  {
+    "breach_year": 2065,
+    "code": "MZH",
+    "depth_2050": 0.0,
+    "depth_2080": 0.825250099889278,
+    "homes": 0,
+    "peak_m": 0.825250099889278,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 0,
+      "meet": 1,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 152,
+    "score": -1.0315626248616
+  },
+  {
+    "breach_year": 2062,
+    "code": "6CG",
+    "depth_2050": 0.0,
+    "depth_2080": 0.827238618939195,
+    "homes": 0,
+    "peak_m": 0.827238618939195,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 0,
+      "meet": 2,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 153,
+    "score": -1.03404827367399
+  },
+  {
+    "breach_year": 2062,
+    "code": "J50",
+    "depth_2050": 0.0,
+    "depth_2080": 0.828227972458451,
+    "homes": 0,
+    "peak_m": 0.828227972458451,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 0,
+      "meet": 3,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 154,
+    "score": -1.03528496557306
+  },
+  {
+    "breach_year": 2062,
+    "code": "N79",
+    "depth_2050": 0.0,
+    "depth_2080": 0.82828776682928,
+    "homes": 0,
+    "peak_m": 0.82828776682928,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 1,
+      "meet": 1,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 155,
+    "score": -1.0353597085366
+  },
+  {
+    "breach_year": 2062,
+    "code": "YFD",
+    "depth_2050": 0.0,
+    "depth_2080": 0.830437637797911,
+    "homes": 0,
+    "peak_m": 0.830437637797911,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 156,
+    "score": -1.03804704724739
+  },
+  {
+    "breach_year": 2062,
+    "code": "WWM",
+    "depth_2050": 0.0,
+    "depth_2080": 0.832726604458452,
+    "homes": 0,
+    "peak_m": 0.832726604458452,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 1,
+      "meet": 2,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 157,
+    "score": -1.04090825557306
+  },
+  {
+    "breach_year": 0,
+    "code": "HEB",
+    "depth_2050": 0.22350989602203,
+    "depth_2080": 0.833731767869396,
+    "homes": 0,
+    "peak_m": 0.833731767869396,
+    "plan": {
+      "dune": 1,
+      "grass": 5,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 158,
+    "score": -1.04216470983675
+  },
+  {
+    "breach_year": 2062,
+    "code": "SZ7",
+    "depth_2050": 0.0,
+    "depth_2080": 0.836970005485185,
+    "homes": 0,
+    "peak_m": 0.836970005485185,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 2,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 159,
+    "score": -1.04621250685648
+  },
+  {
+    "breach_year": 0,
+    "code": "YPR",
+    "depth_2050": 0.230306403487935,
+    "depth_2080": 0.838482970219137,
+    "homes": 0,
+    "peak_m": 0.838482970219137,
+    "plan": {
+      "dune": 1,
+      "grass": 4,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 160,
+    "score": -1.04810371277392
+  },
+  {
+    "breach_year": 2062,
+    "code": "D1E",
+    "depth_2050": 0.0,
+    "depth_2080": 0.838576799287045,
+    "homes": 0,
+    "peak_m": 0.838576799287045,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 0,
+      "meet": 0,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 161,
+    "score": -1.04822099910881
+  },
+  {
+    "breach_year": 0,
+    "code": "9HN",
+    "depth_2050": 0.18718788674651,
+    "depth_2080": 0.838856987728773,
+    "homes": 0,
+    "peak_m": 0.838856987728773,
+    "plan": {
+      "dune": 5,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 162,
+    "score": -1.04857123466097
+  },
+  {
+    "breach_year": 2062,
+    "code": "687",
+    "depth_2050": 0.0,
+    "depth_2080": 0.843175773201941,
+    "homes": 0,
+    "peak_m": 0.843175773201941,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 0,
+      "meet": 2,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 163,
+    "score": -1.05396971650243
+  },
+  {
+    "breach_year": 0,
+    "code": "PT2",
+    "depth_2050": 0.199263074887525,
+    "depth_2080": 0.84699053709363,
+    "homes": 0,
+    "peak_m": 0.84699053709363,
+    "plan": {
+      "dune": 4,
+      "grass": 0,
+      "light": 1,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 164,
+    "score": -1.05873817136704
+  },
+  {
+    "breach_year": 2062,
+    "code": "V23",
+    "depth_2050": 0.0,
+    "depth_2080": 0.848478118529256,
+    "homes": 0,
+    "peak_m": 0.848478118529256,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 1,
+      "meet": 1,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 165,
+    "score": -1.06059764816157
+  },
+  {
+    "breach_year": 2062,
+    "code": "JNG",
+    "depth_2050": 0.0,
+    "depth_2080": 0.848587896212191,
+    "homes": 0,
+    "peak_m": 0.848587896212191,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 166,
+    "score": -1.06073487026524
+  },
+  {
+    "breach_year": 2062,
+    "code": "K0H",
+    "depth_2050": 0.0,
+    "depth_2080": 0.848806849814912,
+    "homes": 0,
+    "peak_m": 0.848806849814912,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 167,
+    "score": -1.06100856226864
+  },
+  {
+    "breach_year": 0,
+    "code": "E9K",
+    "depth_2050": 0.221936873995101,
+    "depth_2080": 0.852070607608563,
+    "homes": 0,
+    "peak_m": 0.852070607608563,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 1,
+      "meet": 3,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 168,
+    "score": -1.0650882595107
+  },
+  {
+    "breach_year": 0,
+    "code": "3JZ",
+    "depth_2050": 0.221936873995101,
+    "depth_2080": 0.852070607608563,
+    "homes": 0,
+    "peak_m": 0.852070607608563,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 0,
+      "meet": 4,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 169,
+    "score": -1.0650882595107
+  },
+  {
+    "breach_year": 2062,
+    "code": "8S0",
+    "depth_2050": 0.0,
+    "depth_2080": 0.853009111604693,
+    "homes": 0,
+    "peak_m": 0.853009111604693,
+    "plan": {
+      "dune": 2,
+      "grass": 2,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 170,
+    "score": -1.06626138950587
+  },
+  {
+    "breach_year": 2065,
+    "code": "5WK",
+    "depth_2050": 0.0,
+    "depth_2080": 0.855266166056532,
+    "homes": 0,
+    "peak_m": 0.855266166056532,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 171,
+    "score": -1.06908270757067
+  },
+  {
+    "breach_year": 0,
+    "code": "P6P",
+    "depth_2050": 0.142067545250147,
+    "depth_2080": 0.860183531486633,
+    "homes": 0,
+    "peak_m": 0.860183531486633,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 5,
+      "wall": 0
+    },
+    "rank": 172,
+    "score": -1.07522941435829
+  },
+  {
+    "breach_year": 0,
+    "code": "KG1",
+    "depth_2050": 0.149168881250147,
+    "depth_2080": 0.860561267486633,
+    "homes": 0,
+    "peak_m": 0.860561267486633,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 4,
+      "wall": 0
+    },
+    "rank": 173,
+    "score": -1.07570158435829
+  },
+  {
+    "breach_year": 2062,
+    "code": "J24",
+    "depth_2050": 0.0,
+    "depth_2080": 0.864959316362002,
+    "homes": 0,
+    "peak_m": 0.864959316362002,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 1,
+      "sort": 3,
+      "wall": 1
+    },
+    "rank": 174,
+    "score": -1.0811991454525
+  },
+  {
+    "breach_year": 0,
+    "code": "BZJ",
+    "depth_2050": 0.223078232962096,
+    "depth_2080": 0.869140206484279,
+    "homes": 0,
+    "peak_m": 0.869140206484279,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 2,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 175,
+    "score": -1.08642525810535
+  },
+  {
+    "breach_year": 0,
+    "code": "BG2",
+    "depth_2050": 0.165645217250147,
+    "depth_2080": 0.870314003486633,
+    "homes": 0,
+    "peak_m": 0.870314003486633,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 2,
+      "meet": 0,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 176,
+    "score": -1.08789250435829
+  },
+  {
+    "breach_year": 2062,
+    "code": "X4C",
+    "depth_2050": 0.0,
+    "depth_2080": 0.871655583894542,
+    "homes": 0,
+    "peak_m": 0.871655583894542,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 3,
+      "wall": 1
+    },
+    "rank": 177,
+    "score": -1.08956947986818
+  },
+  {
+    "breach_year": 2065,
+    "code": "AGN",
+    "depth_2050": 0.0,
+    "depth_2080": 0.87228503082928,
+    "homes": 0,
+    "peak_m": 0.87228503082928,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 178,
+    "score": -1.0903562885366
+  },
+  {
+    "breach_year": 2062,
+    "code": "8PH",
+    "depth_2050": 0.0,
+    "depth_2080": 0.873373994303899,
+    "homes": 0,
+    "peak_m": 0.873373994303899,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 2,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 179,
+    "score": -1.09171749287987
+  },
+  {
+    "breach_year": 2062,
+    "code": "6FZ",
+    "depth_2050": 0.0,
+    "depth_2080": 0.87475846775292,
+    "homes": 0,
+    "peak_m": 0.87475846775292,
+    "plan": {
+      "dune": 1,
+      "grass": 3,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 180,
+    "score": -1.09344808469115
+  },
+  {
+    "breach_year": 2065,
+    "code": "FGB",
+    "depth_2050": 0.0,
+    "depth_2080": 0.876723868458451,
+    "homes": 0,
+    "peak_m": 0.876723868458451,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 0,
+      "meet": 2,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 181,
+    "score": -1.09590483557306
+  },
+  {
+    "breach_year": 0,
+    "code": "2VA",
+    "depth_2050": 0.231150619917548,
+    "depth_2080": 0.878283740896811,
+    "homes": 0,
+    "peak_m": 0.878283740896811,
+    "plan": {
+      "dune": 5,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 182,
+    "score": -1.09785467612101
+  },
+  {
+    "breach_year": 0,
+    "code": "EWZ",
+    "depth_2050": 0.180271406376448,
+    "depth_2080": 0.878529941016925,
+    "homes": 0,
+    "peak_m": 0.878529941016925,
+    "plan": {
+      "dune": 5,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 183,
+    "score": -1.09816242627116
+  },
+  {
+    "breach_year": 0,
+    "code": "XF0",
+    "depth_2050": 0.237317457176968,
+    "depth_2080": 0.879363425934961,
+    "homes": 0,
+    "peak_m": 0.879363425934961,
+    "plan": {
+      "dune": 4,
+      "grass": 1,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 184,
+    "score": -1.0992042824187
+  },
+  {
+    "breach_year": 0,
+    "code": "1GP",
+    "depth_2050": 0.186438243635868,
+    "depth_2080": 0.879609626055076,
+    "homes": 0,
+    "peak_m": 0.879609626055076,
+    "plan": {
+      "dune": 4,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 185,
+    "score": -1.09951203256885
+  },
+  {
+    "breach_year": 0,
+    "code": "ARD",
+    "depth_2050": 0.250390159103186,
+    "depth_2080": 0.888687887458873,
+    "homes": 0,
+    "peak_m": 0.888687887458873,
+    "plan": {
+      "dune": 3,
+      "grass": 1,
+      "light": 2,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 186,
+    "score": -1.11085985932359
+  },
+  {
+    "breach_year": 0,
+    "code": "YQ5",
+    "depth_2050": 0.199510945562086,
+    "depth_2080": 0.888934087578988,
+    "homes": 0,
+    "peak_m": 0.888934087578988,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 2,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 187,
+    "score": -1.11116760947373
+  },
+  {
+    "breach_year": 2062,
+    "code": "DE2",
+    "depth_2050": 0.0,
+    "depth_2080": 0.890275667986897,
+    "homes": 0,
+    "peak_m": 0.890275667986897,
+    "plan": {
+      "dune": 3,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 188,
+    "score": -1.11284458498362
+  },
+  {
+    "breach_year": 2065,
+    "code": "GBF",
+    "depth_2050": 0.0,
+    "depth_2080": 0.892475382529255,
+    "homes": 0,
+    "peak_m": 0.892475382529255,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 0,
+      "meet": 1,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 189,
+    "score": -1.11559422816157
+  },
+  {
+    "breach_year": 0,
+    "code": "E0V",
+    "depth_2050": 0.309638107215702,
+    "depth_2080": 0.892959719759771,
+    "homes": 0,
+    "peak_m": 0.892959719759771,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 1,
+      "meet": 4,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 190,
+    "score": -1.11619964969971
+  },
+  {
+    "breach_year": 0,
+    "code": "SQF",
+    "depth_2050": 0.309638107215702,
+    "depth_2080": 0.892959719759771,
+    "homes": 0,
+    "peak_m": 0.892959719759771,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 2,
+      "meet": 3,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 191,
+    "score": -1.11619964969971
+  },
+  {
+    "breach_year": 0,
+    "code": "1MJ",
+    "depth_2050": 0.309638107215702,
+    "depth_2080": 0.892959719759771,
+    "homes": 0,
+    "peak_m": 0.892959719759771,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 5,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 192,
+    "score": -1.11619964969971
+  },
+  {
+    "breach_year": 0,
+    "code": "1RE",
+    "depth_2050": 0.309638107215702,
+    "depth_2080": 0.892959719759771,
+    "homes": 0,
+    "peak_m": 0.892959719759771,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 3,
+      "meet": 2,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 193,
+    "score": -1.11619964969971
+  },
+  {
+    "breach_year": 2062,
+    "code": "106",
+    "depth_2050": 0.0,
+    "depth_2080": 0.893462052362002,
+    "homes": 0,
+    "peak_m": 0.893462052362002,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 1,
+      "meet": 1,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 194,
+    "score": -1.1168275654525
+  },
+  {
+    "breach_year": 2062,
+    "code": "0SE",
+    "depth_2050": 0.0,
+    "depth_2080": 0.895902706857909,
+    "homes": 0,
+    "peak_m": 0.895902706857909,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 3,
+      "wall": 1
+    },
+    "rank": 195,
+    "score": -1.11987838357239
+  },
+  {
+    "breach_year": 2062,
+    "code": "EDF",
+    "depth_2050": 0.0,
+    "depth_2080": 0.896440373797911,
+    "homes": 0,
+    "peak_m": 0.896440373797911,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 1,
+      "meet": 1,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 196,
+    "score": -1.12055046724739
+  },
+  {
+    "breach_year": 2062,
+    "code": "MF1",
+    "depth_2050": 0.0,
+    "depth_2080": 0.898474109485185,
+    "homes": 0,
+    "peak_m": 0.898474109485185,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 3,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 197,
+    "score": -1.12309263685648
+  },
+  {
+    "breach_year": 0,
+    "code": "VE4",
+    "depth_2050": 0.200871553250147,
+    "depth_2080": 0.898816739486634,
+    "homes": 0,
+    "peak_m": 0.898816739486634,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 3,
+      "meet": 0,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 198,
+    "score": -1.12352092435829
+  },
+  {
+    "breach_year": 2062,
+    "code": "N3D",
+    "depth_2050": 0.0,
+    "depth_2080": 0.900158319894542,
+    "homes": 0,
+    "peak_m": 0.900158319894542,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 1,
+      "meet": 0,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 199,
+    "score": -1.12519789986818
+  },
+  {
+    "breach_year": 2062,
+    "code": "Z6N",
+    "depth_2050": 0.0,
+    "depth_2080": 0.902972741485186,
+    "homes": 0,
+    "peak_m": 0.902972741485186,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 1,
+      "meet": 2,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 200,
+    "score": -1.12871592685648
+  },
+  {
+    "breach_year": 2062,
+    "code": "50F",
+    "depth_2050": 0.0,
+    "depth_2080": 0.904579535287044,
+    "homes": 0,
+    "peak_m": 0.904579535287044,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 1,
+      "meet": 0,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 201,
+    "score": -1.13072441910881
+  },
+  {
+    "breach_year": 2062,
+    "code": "18H",
+    "depth_2050": 0.0,
+    "depth_2080": 0.905189078936839,
+    "homes": 0,
+    "peak_m": 0.905189078936839,
+    "plan": {
+      "dune": 0,
+      "grass": 4,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 202,
+    "score": -1.13148634867105
+  },
+  {
+    "breach_year": 2062,
+    "code": "DHY",
+    "depth_2050": 0.0,
+    "depth_2080": 0.907316540270189,
+    "homes": 0,
+    "peak_m": 0.907316540270189,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 0,
+      "meet": 3,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 203,
+    "score": -1.13414567533774
+  },
+  {
+    "breach_year": 2062,
+    "code": "BQD",
+    "depth_2050": 0.0,
+    "depth_2080": 0.909881536266287,
+    "homes": 0,
+    "peak_m": 0.909881536266287,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 0,
+      "meet": 0,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 204,
+    "score": -1.13735192033286
+  },
+  {
+    "breach_year": 2062,
+    "code": "VXM",
+    "depth_2050": 0.0,
+    "depth_2080": 0.910614162488608,
+    "homes": 0,
+    "peak_m": 0.910614162488608,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 0,
+      "meet": 2,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 205,
+    "score": -1.13826770311076
+  },
+  {
+    "breach_year": 2062,
+    "code": "RGA",
+    "depth_2050": 0.0,
+    "depth_2080": 0.911199867800411,
+    "homes": 0,
+    "peak_m": 0.911199867800411,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 0,
+      "meet": 0,
+      "sort": 3,
+      "wall": 1
+    },
+    "rank": 206,
+    "score": -1.13899983475051
+  },
+  {
+    "breach_year": 2062,
+    "code": "R8J",
+    "depth_2050": 0.0,
+    "depth_2080": 0.911815172270189,
+    "homes": 0,
+    "peak_m": 0.911815172270189,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 1,
+      "meet": 2,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 207,
+    "score": -1.13976896533774
+  },
+  {
+    "breach_year": 0,
+    "code": "ZXX",
+    "depth_2050": 0.276018978605401,
+    "depth_2080": 0.913002851684167,
+    "homes": 0,
+    "peak_m": 0.913002851684167,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 3,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 208,
+    "score": -1.14125356460521
+  },
+  {
+    "breach_year": 0,
+    "code": "S43",
+    "depth_2050": 0.225139765064301,
+    "depth_2080": 0.913249051804282,
+    "homes": 0,
+    "peak_m": 0.913249051804282,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 3,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 209,
+    "score": -1.14156131475535
+  },
+  {
+    "breach_year": 2062,
+    "code": "AMH",
+    "depth_2050": 0.0,
+    "depth_2080": 0.91459063221219,
+    "homes": 0,
+    "peak_m": 0.91459063221219,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 1,
+      "meet": 0,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 210,
+    "score": -1.14323829026524
+  },
+  {
+    "breach_year": 0,
+    "code": "VNW",
+    "depth_2050": 0.268238790915861,
+    "depth_2080": 0.916773730467278,
+    "homes": 0,
+    "peak_m": 0.916773730467278,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 3,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 211,
+    "score": -1.1459671630841
+  },
+  {
+    "breach_year": 2062,
+    "code": "4XK",
+    "depth_2050": 0.0,
+    "depth_2080": 0.922255571889279,
+    "homes": 0,
+    "peak_m": 0.922255571889279,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 2,
+      "meet": 1,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 212,
+    "score": -1.1528194648616
+  },
+  {
+    "breach_year": 2062,
+    "code": "GQG",
+    "depth_2050": 0.0,
+    "depth_2080": 0.924405442857909,
+    "homes": 0,
+    "peak_m": 0.924405442857909,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 1,
+      "meet": 1,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 213,
+    "score": -1.15550680357239
+  },
+  {
+    "breach_year": 0,
+    "code": "HY8",
+    "depth_2050": 0.266716717674602,
+    "depth_2080": 0.924696343879886,
+    "homes": 0,
+    "peak_m": 0.924696343879886,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 4,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 214,
+    "score": -1.15587042984986
+  },
+  {
+    "breach_year": 0,
+    "code": "DJB",
+    "depth_2050": 0.230040176133502,
+    "depth_2080": 0.925698016,
+    "homes": 0,
+    "peak_m": 0.925698016,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 2,
+      "sort": 4,
+      "wall": 0
+    },
+    "rank": 215,
+    "score": -1.15712252
+  },
+  {
+    "breach_year": 0,
+    "code": "NFE",
+    "depth_2050": 0.245379680133502,
+    "depth_2080": 0.93095212,
+    "homes": 0,
+    "peak_m": 0.93095212,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 3,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 216,
+    "score": -1.16369015
+  },
+  {
+    "breach_year": 2062,
+    "code": "E96",
+    "depth_2050": 0.0,
+    "depth_2080": 0.932486954921245,
+    "homes": 0,
+    "peak_m": 0.932486954921245,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 1,
+      "meet": 1,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 217,
+    "score": -1.16560869365156
+  },
+  {
+    "breach_year": 0,
+    "code": "C21",
+    "depth_2050": 0.313475846905386,
+    "depth_2080": 0.934857572382763,
+    "homes": 0,
+    "peak_m": 0.934857572382763,
+    "plan": {
+      "dune": 0,
+      "grass": 5,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 218,
+    "score": -1.16857196547845
+  },
+  {
+    "breach_year": 2062,
+    "code": "37B",
+    "depth_2050": 0.0,
+    "depth_2080": 0.934878098303899,
+    "homes": 0,
+    "peak_m": 0.934878098303899,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 3,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 219,
+    "score": -1.16859762287987
+  },
+  {
+    "breach_year": 0,
+    "code": "XGD",
+    "depth_2050": 0.246516512133502,
+    "depth_2080": 0.935450752,
+    "homes": 0,
+    "peak_m": 0.935450752,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 2,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 220,
+    "score": -1.16931344
+  },
+  {
+    "breach_year": 0,
+    "code": "M30",
+    "depth_2050": 0.310760916599138,
+    "depth_2080": 0.936293179890405,
+    "homes": 0,
+    "peak_m": 0.936293179890405,
+    "plan": {
+      "dune": 0,
+      "grass": 6,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 221,
+    "score": -1.17036647486301
+  },
+  {
+    "breach_year": 2065,
+    "code": "Q9J",
+    "depth_2050": 0.0,
+    "depth_2080": 0.937459316362003,
+    "homes": 0,
+    "peak_m": 0.937459316362003,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 1,
+      "sort": 2,
+      "wall": 2
+    },
+    "rank": 222,
+    "score": -1.1718241454525
+  },
+  {
+    "breach_year": 2062,
+    "code": "DXZ",
+    "depth_2050": 0.0,
+    "depth_2080": 0.939376730303899,
+    "homes": 0,
+    "peak_m": 0.939376730303899,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 1,
+      "meet": 2,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 223,
+    "score": -1.17422091287987
+  },
+  {
+    "breach_year": 2062,
+    "code": "BVP",
+    "depth_2050": 0.0,
+    "depth_2080": 0.939412959134914,
+    "homes": 0,
+    "peak_m": 0.939412959134914,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 3,
+      "wall": 1
+    },
+    "rank": 224,
+    "score": -1.17426619891864
+  },
+  {
+    "breach_year": 0,
+    "code": "BZ5",
+    "depth_2050": 0.32027235437129,
+    "depth_2080": 0.939608774732504,
+    "homes": 0,
+    "peak_m": 0.939608774732504,
+    "plan": {
+      "dune": 0,
+      "grass": 4,
+      "light": 2,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 225,
+    "score": -1.17451096841563
+  },
+  {
+    "breach_year": 2062,
+    "code": "GFB",
+    "depth_2050": 0.0,
+    "depth_2080": 0.939702603800411,
+    "homes": 0,
+    "peak_m": 0.939702603800411,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 1,
+      "meet": 0,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 226,
+    "score": -1.17462825475051
+  },
+  {
+    "breach_year": 2065,
+    "code": "3PV",
+    "depth_2050": 0.0,
+    "depth_2080": 0.94043763779791,
+    "homes": 0,
+    "peak_m": 0.94043763779791,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 227,
+    "score": -1.17554704724739
+  },
+  {
+    "breach_year": 0,
+    "code": "73R",
+    "depth_2050": 0.340511175153372,
+    "depth_2080": 0.942532211795805,
+    "homes": 0,
+    "peak_m": 0.942532211795805,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 4,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 228,
+    "score": -1.17816526474476
+  },
+  {
+    "breach_year": 0,
+    "code": "TYM",
+    "depth_2050": 0.227486168133502,
+    "depth_2080": 0.943314808,
+    "homes": 0,
+    "peak_m": 0.943314808,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 5,
+      "wall": 0
+    },
+    "rank": 229,
+    "score": -1.17914351
+  },
+  {
+    "breach_year": 2062,
+    "code": "1CT",
+    "depth_2050": 0.0,
+    "depth_2080": 0.943600730909621,
+    "homes": 0,
+    "peak_m": 0.943600730909621,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 230,
+    "score": -1.17950091363703
+  },
+  {
+    "breach_year": 0,
+    "code": "JXN",
+    "depth_2050": 0.234587504133502,
+    "depth_2080": 0.943692544,
+    "homes": 0,
+    "peak_m": 0.943692544,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 1,
+      "sort": 4,
+      "wall": 0
+    },
+    "rank": 231,
+    "score": -1.17961568
+  },
+  {
+    "breach_year": 2065,
+    "code": "D2E",
+    "depth_2050": 0.0,
+    "depth_2080": 0.944155583894543,
+    "homes": 0,
+    "peak_m": 0.944155583894543,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 2,
+      "wall": 2
+    },
+    "rank": 232,
+    "score": -1.18019447986818
+  },
+  {
+    "breach_year": 2065,
+    "code": "HTC",
+    "depth_2050": 0.0,
+    "depth_2080": 0.946970005485185,
+    "homes": 0,
+    "peak_m": 0.946970005485185,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 2,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 233,
+    "score": -1.18371250685648
+  },
+  {
+    "breach_year": 2065,
+    "code": "XZG",
+    "depth_2050": 0.0,
+    "depth_2080": 0.948576799287044,
+    "homes": 0,
+    "peak_m": 0.948576799287044,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 234,
+    "score": -1.18572099910881
+  },
+  {
+    "breach_year": 0,
+    "code": "2VQ",
+    "depth_2050": 0.251063840133502,
+    "depth_2080": 0.95344528,
+    "homes": 0,
+    "peak_m": 0.95344528,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 2,
+      "meet": 1,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 235,
+    "score": -1.1918066
+  },
+  {
+    "breach_year": 0,
+    "code": "RZT",
+    "depth_2050": 0.33448991121839,
+    "depth_2080": 0.955608722277488,
+    "homes": 0,
+    "peak_m": 0.955608722277488,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 3,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 236,
+    "score": -1.19451090284686
+  },
+  {
+    "breach_year": 2065,
+    "code": "AW9",
+    "depth_2050": 0.0,
+    "depth_2080": 0.955812436270189,
+    "homes": 0,
+    "peak_m": 0.955812436270189,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 0,
+      "meet": 2,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 237,
+    "score": -1.19476554533774
+  },
+  {
+    "breach_year": 2065,
+    "code": "2KJ",
+    "depth_2050": 0.0,
+    "depth_2080": 0.95858789621219,
+    "homes": 0,
+    "peak_m": 0.95858789621219,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 238,
+    "score": -1.19823487026524
+  },
+  {
+    "breach_year": 2062,
+    "code": "77M",
+    "depth_2050": 0.0,
+    "depth_2080": 0.959464788362002,
+    "homes": 0,
+    "peak_m": 0.959464788362002,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 2,
+      "meet": 1,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 239,
+    "score": -1.1993309854525
+  },
+  {
+    "breach_year": 0,
+    "code": "XM9",
+    "depth_2050": 0.232033496133502,
+    "depth_2080": 0.961309336,
+    "homes": 0,
+    "peak_m": 0.961309336,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 5,
+      "wall": 0
+    },
+    "rank": 240,
+    "score": -1.20163667
+  },
+  {
+    "breach_year": 0,
+    "code": "NKA",
+    "depth_2050": 0.239134832133502,
+    "depth_2080": 0.961687072,
+    "homes": 0,
+    "peak_m": 0.961687072,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 2,
+      "meet": 0,
+      "sort": 4,
+      "wall": 0
+    },
+    "rank": 241,
+    "score": -1.20210884
+  },
+  {
+    "breach_year": 2062,
+    "code": "ZED",
+    "depth_2050": 0.0,
+    "depth_2080": 0.963028652407909,
+    "homes": 0,
+    "peak_m": 0.963028652407909,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 4,
+      "wall": 1
+    },
+    "rank": 242,
+    "score": -1.20378581550989
+  },
+  {
+    "breach_year": 2062,
+    "code": "EMT",
+    "depth_2050": 0.0,
+    "depth_2080": 0.963531453922519,
+    "homes": 0,
+    "peak_m": 0.963531453922519,
+    "plan": {
+      "dune": 0,
+      "grass": 4,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 243,
+    "score": -1.20441431740315
+  },
+  {
+    "breach_year": 2062,
+    "code": "0XA",
+    "depth_2050": 0.0,
+    "depth_2080": 0.963742722939195,
+    "homes": 0,
+    "peak_m": 0.963742722939195,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 0,
+      "meet": 3,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 244,
+    "score": -1.20467840367399
+  },
+  {
+    "breach_year": 2062,
+    "code": "H6K",
+    "depth_2050": 0.0,
+    "depth_2080": 0.964190780070568,
+    "homes": 0,
+    "peak_m": 0.964190780070568,
+    "plan": {
+      "dune": 2,
+      "grass": 3,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 245,
+    "score": -1.20523847508821
+  },
+  {
+    "breach_year": 0,
+    "code": "FM7",
+    "depth_2050": 0.324477102791247,
+    "depth_2080": 0.964573275366519,
+    "homes": 0,
+    "peak_m": 0.964573275366519,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 4,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 246,
+    "score": -1.20571659420815
+  },
+  {
+    "breach_year": 0,
+    "code": "0NJ",
+    "depth_2050": 0.273597889250147,
+    "depth_2080": 0.964819475486633,
+    "homes": 0,
+    "peak_m": 0.964819475486633,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 4,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 247,
+    "score": -1.20602434435829
+  },
+  {
+    "breach_year": 0,
+    "code": "09Y",
+    "depth_2050": 0.229619660133502,
+    "depth_2080": 0.9656191,
+    "homes": 0,
+    "peak_m": 0.9656191,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 6,
+      "wall": 0
+    },
+    "rank": 248,
+    "score": -1.207023875
+  },
+  {
+    "breach_year": 2062,
+    "code": "41F",
+    "depth_2050": 0.0,
+    "depth_2080": 0.966161055894542,
+    "homes": 0,
+    "peak_m": 0.966161055894542,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 2,
+      "meet": 0,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 249,
+    "score": -1.20770131986818
+  },
+  {
+    "breach_year": 2065,
+    "code": "T6Z",
+    "depth_2050": 0.0,
+    "depth_2080": 0.966252835889278,
+    "homes": 0,
+    "peak_m": 0.966252835889278,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 1,
+      "meet": 1,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 250,
+    "score": -1.2078160448616
+  },
+  {
+    "breach_year": 2062,
+    "code": "ES3",
+    "depth_2050": 0.0,
+    "depth_2080": 0.967659916424262,
+    "homes": 0,
+    "peak_m": 0.967659916424262,
+    "plan": {
+      "dune": 4,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 251,
+    "score": -1.20957489553033
+  },
+  {
+    "breach_year": 2062,
+    "code": "3TQ",
+    "depth_2050": 0.0,
+    "depth_2080": 0.967915695134914,
+    "homes": 0,
+    "peak_m": 0.967915695134914,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 252,
+    "score": -1.20989461891864
+  },
+  {
+    "breach_year": 2062,
+    "code": "BKY",
+    "depth_2050": 0.0,
+    "depth_2080": 0.968241354939195,
+    "homes": 0,
+    "peak_m": 0.968241354939195,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 1,
+      "meet": 2,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 253,
+    "score": -1.21030169367399
+  },
+  {
+    "breach_year": 2065,
+    "code": "50W",
+    "depth_2050": 0.0,
+    "depth_2080": 0.968402706857909,
+    "homes": 0,
+    "peak_m": 0.968402706857909,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 2,
+      "wall": 2
+    },
+    "rank": 254,
+    "score": -1.21050338357239
+  },
+  {
+    "breach_year": 0,
+    "code": "2QV",
+    "depth_2050": 0.282879680133502,
+    "depth_2080": 0.96845212,
+    "homes": 0,
+    "peak_m": 0.96845212,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 2,
+      "meet": 2,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 255,
+    "score": -1.21056515
+  },
+  {
+    "breach_year": 0,
+    "code": "TPW",
+    "depth_2050": 0.282879680133502,
+    "depth_2080": 0.96845212,
+    "homes": 0,
+    "peak_m": 0.96845212,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 3,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 256,
+    "score": -1.21056515
+  },
+  {
+    "breach_year": 0,
+    "code": "F08",
+    "depth_2050": 0.282879680133502,
+    "depth_2080": 0.96845212,
+    "homes": 0,
+    "peak_m": 0.96845212,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 4,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 257,
+    "score": -1.21056515
+  },
+  {
+    "breach_year": 2062,
+    "code": "KGM",
+    "depth_2050": 0.0,
+    "depth_2080": 0.969696883379399,
+    "homes": 0,
+    "peak_m": 0.969696883379399,
+    "plan": {
+      "dune": 3,
+      "grass": 2,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 258,
+    "score": -1.21212110422425
+  },
+  {
+    "breach_year": 0,
+    "code": "5HC",
+    "depth_2050": 0.255611168133502,
+    "depth_2080": 0.971439808,
+    "homes": 0,
+    "peak_m": 0.971439808,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 3,
+      "meet": 0,
+      "sort": 3,
+      "wall": 0
+    },
+    "rank": 259,
+    "score": -1.21429976
+  },
+  {
+    "breach_year": 2062,
+    "code": "QDE",
+    "depth_2050": 0.0,
+    "depth_2080": 0.972781388407909,
+    "homes": 0,
+    "peak_m": 0.972781388407909,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 1,
+      "meet": 0,
+      "sort": 3,
+      "wall": 1
+    },
+    "rank": 260,
+    "score": -1.21597673550989
+  },
+  {
+    "breach_year": 0,
+    "code": "GFR",
+    "depth_2050": 0.323400450366792,
+    "depth_2080": 0.973205982973266,
+    "homes": 0,
+    "peak_m": 0.973205982973266,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 3,
+      "meet": 2,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 261,
+    "score": -1.21650747871658
+  },
+  {
+    "breach_year": 0,
+    "code": "8ES",
+    "depth_2050": 0.323400450366792,
+    "depth_2080": 0.973205982973266,
+    "homes": 0,
+    "peak_m": 0.973205982973266,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 2,
+      "meet": 3,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 262,
+    "score": -1.21650747871658
+  },
+  {
+    "breach_year": 0,
+    "code": "XR5",
+    "depth_2050": 0.323400450366792,
+    "depth_2080": 0.973205982973266,
+    "homes": 0,
+    "peak_m": 0.973205982973266,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 1,
+      "meet": 4,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 263,
+    "score": -1.21650747871658
+  },
+  {
+    "breach_year": 0,
+    "code": "GBW",
+    "depth_2050": 0.323400450366792,
+    "depth_2080": 0.973205982973266,
+    "homes": 0,
+    "peak_m": 0.973205982973266,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 5,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 264,
+    "score": -1.21650747871658
+  },
+  {
+    "breach_year": 2062,
+    "code": "3PE",
+    "depth_2050": 0.0,
+    "depth_2080": 0.975884272266287,
+    "homes": 0,
+    "peak_m": 0.975884272266287,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 1,
+      "meet": 0,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 265,
+    "score": -1.21985534033286
+  },
+  {
+    "breach_year": 2065,
+    "code": "3JJ",
+    "depth_2050": 0.0,
+    "depth_2080": 0.976484218921245,
+    "homes": 0,
+    "peak_m": 0.976484218921245,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 266,
+    "score": -1.22060527365156
+  },
+  {
+    "breach_year": 2062,
+    "code": "E5Q",
+    "depth_2050": 0.0,
+    "depth_2080": 0.981230646817266,
+    "homes": 0,
+    "peak_m": 0.981230646817266,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 4,
+      "wall": 1
+    },
+    "rank": 267,
+    "score": -1.22653830852158
+  },
+  {
+    "breach_year": 0,
+    "code": "835",
+    "depth_2050": 0.286290176133502,
+    "depth_2080": 0.981948016,
+    "homes": 0,
+    "peak_m": 0.981948016,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 3,
+      "meet": 1,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 268,
+    "score": -1.22743502
+  },
+  {
+    "breach_year": 2065,
+    "code": "0HP",
+    "depth_2050": 0.0,
+    "depth_2080": 0.983373994303899,
+    "homes": 0,
+    "peak_m": 0.983373994303899,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 2,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 269,
+    "score": -1.22921749287987
+  },
+  {
+    "breach_year": 2065,
+    "code": "8EC",
+    "depth_2050": 0.0,
+    "depth_2080": 0.983699867800411,
+    "homes": 0,
+    "peak_m": 0.983699867800411,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 0,
+      "meet": 0,
+      "sort": 2,
+      "wall": 2
+    },
+    "rank": 270,
+    "score": -1.22962483475051
+  },
+  {
+    "breach_year": 2062,
+    "code": "09H",
+    "depth_2050": 0.0,
+    "depth_2080": 0.989480854529255,
+    "homes": 0,
+    "peak_m": 0.989480854529255,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 2,
+      "meet": 1,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 271,
+    "score": -1.23685106816157
+  },
+  {
+    "breach_year": 2062,
+    "code": "3YK",
+    "depth_2050": 0.0,
+    "depth_2080": 0.989809585814912,
+    "homes": 0,
+    "peak_m": 0.989809585814912,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 1,
+      "meet": 1,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 272,
+    "score": -1.23726198226864
+  },
+  {
+    "breach_year": 2062,
+    "code": "NYY",
+    "depth_2050": 0.0,
+    "depth_2080": 0.990408178857909,
+    "homes": 0,
+    "peak_m": 0.990408178857909,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 2,
+      "meet": 1,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 273,
+    "score": -1.23801022357239
+  },
+  {
+    "breach_year": 2062,
+    "code": "64R",
+    "depth_2050": 0.0,
+    "depth_2080": 0.990983382817266,
+    "homes": 0,
+    "peak_m": 0.990983382817266,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 3,
+      "wall": 1
+    },
+    "rank": 274,
+    "score": -1.23872922852158
+  },
+  {
+    "breach_year": 0,
+    "code": "A05",
+    "depth_2050": 0.362200285122207,
+    "depth_2080": 0.992060933813822,
+    "homes": 0,
+    "peak_m": 0.992060933813822,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 4,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 275,
+    "score": -1.24007616726728
+  },
+  {
+    "breach_year": 2062,
+    "code": "0R1",
+    "depth_2050": 0.0,
+    "depth_2080": 0.994011847604692,
+    "homes": 0,
+    "peak_m": 0.994011847604692,
+    "plan": {
+      "dune": 2,
+      "grass": 2,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 276,
+    "score": -1.24251480950587
+  },
+  {
+    "breach_year": 0,
+    "code": "ART",
+    "depth_2050": 0.290837504133502,
+    "depth_2080": 0.999942544,
+    "homes": 0,
+    "peak_m": 0.999942544,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 4,
+      "meet": 0,
+      "sort": 2,
+      "wall": 0
+    },
+    "rank": 277,
+    "score": -1.24992818
+  },
+  {
+    "breach_year": 2062,
+    "code": "W5C",
+    "depth_2050": 0.0,
+    "depth_2080": 1.00027900538571,
+    "homes": 0,
+    "peak_m": 1.00027900538571,
+    "plan": {
+      "dune": 4,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 278,
+    "score": -1.25034875673214
+  },
+  {
+    "breach_year": 2062,
+    "code": "7BG",
+    "depth_2050": 0.0,
+    "depth_2080": 1.00128412440791,
+    "homes": 0,
+    "peak_m": 1.00128412440791,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 2,
+      "meet": 0,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 279,
+    "score": -1.25160515550989
+  },
+  {
+    "breach_year": 2062,
+    "code": "SBE",
+    "depth_2050": 0.0,
+    "depth_2080": 1.00340838540915,
+    "homes": 0,
+    "peak_m": 1.00340838540915,
+    "plan": {
+      "dune": 1,
+      "grass": 4,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 280,
+    "score": -1.25426048176144
+  },
+  {
+    "breach_year": 2065,
+    "code": "WG0",
+    "depth_2050": 0.0,
+    "depth_2080": 1.003462052362,
+    "homes": 0,
+    "peak_m": 1.003462052362,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 1,
+      "meet": 1,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 281,
+    "score": -1.2543275654525
+  },
+  {
+    "breach_year": 2062,
+    "code": "0DD",
+    "depth_2050": 0.0,
+    "depth_2080": 1.00570533980041,
+    "homes": 0,
+    "peak_m": 1.00570533980041,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 2,
+      "meet": 0,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 282,
+    "score": -1.25713167475051
+  },
+  {
+    "breach_year": 2062,
+    "code": "SBV",
+    "depth_2050": 0.0,
+    "depth_2080": 1.00960346690962,
+    "homes": 0,
+    "peak_m": 1.00960346690962,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 283,
+    "score": -1.26200433363703
+  },
+  {
+    "breach_year": 2065,
+    "code": "W0G",
+    "depth_2050": 0.0,
+    "depth_2080": 1.01015831989454,
+    "homes": 0,
+    "peak_m": 1.01015831989454,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 1,
+      "meet": 0,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 284,
+    "score": -1.26269789986818
+  },
+  {
+    "breach_year": 2068,
+    "code": "CTP",
+    "depth_2050": 0.0,
+    "depth_2080": 1.01025009988928,
+    "homes": 0,
+    "peak_m": 1.01025009988928,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 285,
+    "score": -1.2628126248616
+  },
+  {
+    "breach_year": 0,
+    "code": "NV2",
+    "depth_2050": 0.352209166831798,
+    "depth_2080": 1.01074153552728,
+    "homes": 0,
+    "peak_m": 1.01074153552728,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 4,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 286,
+    "score": -1.2634269194091
+  },
+  {
+    "breach_year": 2065,
+    "code": "VSR",
+    "depth_2050": 0.0,
+    "depth_2080": 1.01191295913491,
+    "homes": 0,
+    "peak_m": 1.01191295913491,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 2,
+      "wall": 2
+    },
+    "rank": 287,
+    "score": -1.26489119891864
+  },
+  {
+    "breach_year": 2065,
+    "code": "Y7N",
+    "depth_2050": 0.0,
+    "depth_2080": 1.01223861893919,
+    "homes": 0,
+    "peak_m": 1.01223861893919,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 0,
+      "meet": 2,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 288,
+    "score": -1.26529827367399
+  },
+  {
+    "breach_year": 2062,
+    "code": "YE0",
+    "depth_2050": 0.0,
+    "depth_2080": 1.01576120375292,
+    "homes": 0,
+    "peak_m": 1.01576120375292,
+    "plan": {
+      "dune": 1,
+      "grass": 3,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 289,
+    "score": -1.26970150469115
+  },
+  {
+    "breach_year": 2065,
+    "code": "FCF",
+    "depth_2050": 0.0,
+    "depth_2080": 1.01677865240791,
+    "homes": 0,
+    "peak_m": 1.01677865240791,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 3,
+      "wall": 2
+    },
+    "rank": 290,
+    "score": -1.27097331550989
+  },
+  {
+    "breach_year": 2062,
+    "code": "P2T",
+    "depth_2050": 0.0,
+    "depth_2080": 1.01948611881727,
+    "homes": 0,
+    "peak_m": 1.01948611881727,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 2,
+      "meet": 0,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 291,
+    "score": -1.27435764852158
+  },
+  {
+    "breach_year": 0,
+    "code": "C7A",
+    "depth_2050": 0.327997742376448,
+    "depth_2080": 1.01953267701693,
+    "homes": 0,
+    "peak_m": 1.01953267701693,
+    "plan": {
+      "dune": 5,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 292,
+    "score": -1.27441584627116
+  },
+  {
+    "breach_year": 2065,
+    "code": "VNF",
+    "depth_2050": 0.0,
+    "depth_2080": 1.01988153626629,
+    "homes": 0,
+    "peak_m": 1.01988153626629,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 293,
+    "score": -1.27485192033286
+  },
+  {
+    "breach_year": 0,
+    "code": "SFQ",
+    "depth_2050": 0.334164579635868,
+    "depth_2080": 1.02061236205508,
+    "homes": 0,
+    "peak_m": 1.02061236205508,
+    "plan": {
+      "dune": 4,
+      "grass": 0,
+      "light": 2,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 294,
+    "score": -1.27576545256885
+  },
+  {
+    "breach_year": 2062,
+    "code": "R4P",
+    "depth_2050": 0.0,
+    "depth_2080": 1.02195394246299,
+    "homes": 0,
+    "peak_m": 1.02195394246299,
+    "plan": {
+      "dune": 4,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 295,
+    "score": -1.27744242807873
+  },
+  {
+    "breach_year": 0,
+    "code": "HJM",
+    "depth_2050": 0.325629130683767,
+    "depth_2080": 1.02298761904594,
+    "homes": 0,
+    "peak_m": 1.02298761904594,
+    "plan": {
+      "dune": 6,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 296,
+    "score": -1.27873452380743
+  },
+  {
+    "breach_year": 0,
+    "code": "EN7",
+    "depth_2050": 0.347237281562087,
+    "depth_2080": 1.02993682357899,
+    "homes": 0,
+    "peak_m": 1.02993682357899,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 3,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 297,
+    "score": -1.28742102947373
+  },
+  {
+    "breach_year": 2062,
+    "code": "5D3",
+    "depth_2050": 0.0,
+    "depth_2080": 1.0312784039869,
+    "homes": 0,
+    "peak_m": 1.0312784039869,
+    "plan": {
+      "dune": 3,
+      "grass": 1,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 298,
+    "score": -1.28909800498362
+  },
+  {
+    "breach_year": 2065,
+    "code": "NJX",
+    "depth_2050": 0.0,
+    "depth_2080": 1.03347811852926,
+    "homes": 0,
+    "peak_m": 1.03347811852926,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 1,
+      "meet": 1,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 299,
+    "score": -1.29184764816157
+  },
+  {
+    "breach_year": 2065,
+    "code": "S7Z",
+    "depth_2050": 0.0,
+    "depth_2080": 1.03380684981491,
+    "homes": 0,
+    "peak_m": 1.03380684981491,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 300,
+    "score": -1.29225856226864
+  },
+  {
+    "breach_year": 2062,
+    "code": "KRS",
+    "depth_2050": 0.0,
+    "depth_2080": 1.03391843113491,
+    "homes": 0,
+    "peak_m": 1.03391843113491,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 2,
+      "meet": 0,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 301,
+    "score": -1.29239803891864
+  },
+  {
+    "breach_year": 2065,
+    "code": "B8A",
+    "depth_2050": 0.0,
+    "depth_2080": 1.03440544285791,
+    "homes": 0,
+    "peak_m": 1.03440544285791,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 1,
+      "meet": 1,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 302,
+    "score": -1.29300680357239
+  },
+  {
+    "breach_year": 2065,
+    "code": "Y3S",
+    "depth_2050": 0.0,
+    "depth_2080": 1.03498064681727,
+    "homes": 0,
+    "peak_m": 1.03498064681727,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 3,
+      "wall": 2
+    },
+    "rank": 303,
+    "score": -1.29372580852158
+  },
+  {
+    "breach_year": 2062,
+    "code": "KMX",
+    "depth_2050": 0.0,
+    "depth_2080": 1.03744310979791,
+    "homes": 0,
+    "peak_m": 1.03744310979791,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 2,
+      "meet": 1,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 304,
+    "score": -1.29680388724739
+  },
+  {
+    "breach_year": 2065,
+    "code": "RR2",
+    "depth_2050": 0.0,
+    "depth_2080": 1.03800911160469,
+    "homes": 0,
+    "peak_m": 1.03800911160469,
+    "plan": {
+      "dune": 2,
+      "grass": 2,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 305,
+    "score": -1.29751138950587
+  },
+  {
+    "breach_year": 0,
+    "code": "TF4",
+    "depth_2050": 0.357879680133502,
+    "depth_2080": 1.04345212,
+    "homes": 0,
+    "peak_m": 1.04345212,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 5,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 306,
+    "score": -1.30431515
+  },
+  {
+    "breach_year": 0,
+    "code": "7VD",
+    "depth_2050": 0.357879680133502,
+    "depth_2080": 1.04345212,
+    "homes": 0,
+    "peak_m": 1.04345212,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 4,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 307,
+    "score": -1.30431515
+  },
+  {
+    "breach_year": 0,
+    "code": "TJ0",
+    "depth_2050": 0.357879680133502,
+    "depth_2080": 1.04345212,
+    "homes": 0,
+    "peak_m": 1.04345212,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 3,
+      "meet": 2,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 308,
+    "score": -1.30431515
+  },
+  {
+    "breach_year": 0,
+    "code": "JH1",
+    "depth_2050": 0.357879680133502,
+    "depth_2080": 1.04345212,
+    "homes": 0,
+    "peak_m": 1.04345212,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 2,
+      "meet": 3,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 309,
+    "score": -1.30431515
+  },
+  {
+    "breach_year": 2065,
+    "code": "ZAH",
+    "depth_2050": 0.0,
+    "depth_2080": 1.04528138840791,
+    "homes": 0,
+    "peak_m": 1.04528138840791,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 1,
+      "meet": 0,
+      "sort": 2,
+      "wall": 2
+    },
+    "rank": 310,
+    "score": -1.30660173550989
+  },
+  {
+    "breach_year": 2062,
+    "code": "NYH",
+    "depth_2050": 0.0,
+    "depth_2080": 1.04558227128704,
+    "homes": 0,
+    "peak_m": 1.04558227128704,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 2,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 311,
+    "score": -1.30697783910881
+  },
+  {
+    "breach_year": 2068,
+    "code": "F4Q",
+    "depth_2050": 0.0,
+    "depth_2080": 1.047459316362,
+    "homes": 0,
+    "peak_m": 1.047459316362,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 1,
+      "sort": 1,
+      "wall": 3
+    },
+    "rank": 312,
+    "score": -1.3093241454525
+  },
+  {
+    "breach_year": 0,
+    "code": "ZYA",
+    "depth_2050": 0.359016512133502,
+    "depth_2080": 1.047950752,
+    "homes": 0,
+    "peak_m": 1.047950752,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 4,
+      "meet": 1,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 313,
+    "score": -1.30993844
+  },
+  {
+    "breach_year": 2062,
+    "code": "CB6",
+    "depth_2050": 0.0,
+    "depth_2080": 1.04847410948519,
+    "homes": 0,
+    "peak_m": 1.04847410948519,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 1,
+      "meet": 3,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 314,
+    "score": -1.31059263685648
+  },
+  {
+    "breach_year": 2062,
+    "code": "YYX",
+    "depth_2050": 0.0,
+    "depth_2080": 1.04847410948519,
+    "homes": 0,
+    "peak_m": 1.04847410948519,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 4,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 315,
+    "score": -1.31059263685648
+  },
+  {
+    "breach_year": 2062,
+    "code": "P1T",
+    "depth_2050": 0.0,
+    "depth_2080": 1.04847410948519,
+    "homes": 0,
+    "peak_m": 1.04847410948519,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 2,
+      "meet": 2,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 316,
+    "score": -1.31059263685648
+  },
+  {
+    "breach_year": 2065,
+    "code": "RCE",
+    "depth_2050": 0.0,
+    "depth_2080": 1.04970260380041,
+    "homes": 0,
+    "peak_m": 1.04970260380041,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 1,
+      "meet": 0,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 317,
+    "score": -1.31212825475051
+  },
+  {
+    "breach_year": 2065,
+    "code": "HAW",
+    "depth_2050": 0.0,
+    "depth_2080": 1.05360073090962,
+    "homes": 0,
+    "peak_m": 1.05360073090962,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 318,
+    "score": -1.31700091363703
+  },
+  {
+    "breach_year": 2068,
+    "code": "J9W",
+    "depth_2050": 0.0,
+    "depth_2080": 1.05415558389454,
+    "homes": 0,
+    "peak_m": 1.05415558389454,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 3
+    },
+    "rank": 319,
+    "score": -1.31769447986818
+  },
+  {
+    "breach_year": 0,
+    "code": "YBH",
+    "depth_2050": 0.372866101064302,
+    "depth_2080": 1.05425178780428,
+    "homes": 0,
+    "peak_m": 1.05425178780428,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 4,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 320,
+    "score": -1.31781473475535
+  },
+  {
+    "breach_year": 2062,
+    "code": "TJK",
+    "depth_2050": 0.0,
+    "depth_2080": 1.05559336821219,
+    "homes": 0,
+    "peak_m": 1.05559336821219,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 2,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 321,
+    "score": -1.31949171026524
+  },
+  {
+    "breach_year": 2062,
+    "code": "JSS",
+    "depth_2050": 0.0,
+    "depth_2080": 1.05612013133063,
+    "homes": 0,
+    "peak_m": 1.05612013133063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 2,
+      "sort": 3,
+      "wall": 1
+    },
+    "rank": 322,
+    "score": -1.32015016416329
+  },
+  {
+    "breach_year": 2065,
+    "code": "PD1",
+    "depth_2050": 0.0,
+    "depth_2080": 1.05975846775292,
+    "homes": 0,
+    "peak_m": 1.05975846775292,
+    "plan": {
+      "dune": 1,
+      "grass": 3,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 323,
+    "score": -1.32469808469115
+  },
+  {
+    "breach_year": 2065,
+    "code": "D1V",
+    "depth_2050": 0.0,
+    "depth_2080": 1.06348338281727,
+    "homes": 0,
+    "peak_m": 1.06348338281727,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 2,
+      "wall": 2
+    },
+    "rank": 324,
+    "score": -1.32935422852158
+  },
+  {
+    "breach_year": 2062,
+    "code": "AWP",
+    "depth_2050": 0.0,
+    "depth_2080": 1.06436192333063,
+    "homes": 0,
+    "peak_m": 1.06436192333063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 4,
+      "wall": 1
+    },
+    "rank": 325,
+    "score": -1.33045240416329
+  },
+  {
+    "breach_year": 0,
+    "code": "9SD",
+    "depth_2050": 0.414443053674602,
+    "depth_2080": 1.06569907987989,
+    "homes": 0,
+    "peak_m": 1.06569907987989,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 5,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 326,
+    "score": -1.33212384984986
+  },
+  {
+    "breach_year": 0,
+    "code": "2KZ",
+    "depth_2050": 0.363563840133502,
+    "depth_2080": 1.06594528,
+    "homes": 0,
+    "peak_m": 1.06594528,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 5,
+      "meet": 0,
+      "sort": 1,
+      "wall": 0
+    },
+    "rank": 327,
+    "score": -1.3324316
+  },
+  {
+    "breach_year": 2062,
+    "code": "CJY",
+    "depth_2050": 0.0,
+    "depth_2080": 1.06728686040791,
+    "homes": 0,
+    "peak_m": 1.06728686040791,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 3,
+      "meet": 0,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 328,
+    "score": -1.33410857550989
+  },
+  {
+    "breach_year": 2062,
+    "code": "TTR",
+    "depth_2050": 0.0,
+    "depth_2080": 1.07411465933063,
+    "homes": 0,
+    "peak_m": 1.07411465933063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 1,
+      "sort": 3,
+      "wall": 1
+    },
+    "rank": 329,
+    "score": -1.34264332416329
+  },
+  {
+    "breach_year": 2065,
+    "code": "XC4",
+    "depth_2050": 0.0,
+    "depth_2080": 1.0752756679869,
+    "homes": 0,
+    "peak_m": 1.0752756679869,
+    "plan": {
+      "dune": 3,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 330,
+    "score": -1.34409458498362
+  },
+  {
+    "breach_year": 2068,
+    "code": "86M",
+    "depth_2050": 0.0,
+    "depth_2080": 1.07747538252926,
+    "homes": 0,
+    "peak_m": 1.07747538252926,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 331,
+    "score": -1.34684422816157
+  },
+  {
+    "breach_year": 2065,
+    "code": "BQT",
+    "depth_2050": 0.0,
+    "depth_2080": 1.07791569513491,
+    "homes": 0,
+    "peak_m": 1.07791569513491,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 332,
+    "score": -1.34739461891864
+  },
+  {
+    "breach_year": 2068,
+    "code": "XV1",
+    "depth_2050": 0.0,
+    "depth_2080": 1.07840270685791,
+    "homes": 0,
+    "peak_m": 1.07840270685791,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 1,
+      "wall": 3
+    },
+    "rank": 333,
+    "score": -1.34800338357239
+  },
+  {
+    "breach_year": 2062,
+    "code": "DAK",
+    "depth_2050": 0.0,
+    "depth_2080": 1.08012423533063,
+    "homes": 0,
+    "peak_m": 1.08012423533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 3,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 334,
+    "score": -1.35015529416329
+  },
+  {
+    "breach_year": 2065,
+    "code": "8Y9",
+    "depth_2050": 0.0,
+    "depth_2080": 1.08144037379791,
+    "homes": 0,
+    "peak_m": 1.08144037379791,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 1,
+      "meet": 1,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 335,
+    "score": -1.35180046724739
+  },
+  {
+    "breach_year": 2062,
+    "code": "R8Z",
+    "depth_2050": 0.0,
+    "depth_2080": 1.08197871533063,
+    "homes": 0,
+    "peak_m": 1.08197871533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 5,
+      "wall": 1
+    },
+    "rank": 336,
+    "score": -1.35247339416329
+  },
+  {
+    "breach_year": 2062,
+    "code": "G70",
+    "depth_2050": 0.0,
+    "depth_2080": 1.08235645133063,
+    "homes": 0,
+    "peak_m": 1.08235645133063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 4,
+      "wall": 1
+    },
+    "rank": 337,
+    "score": -1.35294556416329
+  },
+  {
+    "breach_year": 2065,
+    "code": "W98",
+    "depth_2050": 0.0,
+    "depth_2080": 1.08347410948518,
+    "homes": 0,
+    "peak_m": 1.08347410948518,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 3,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 338,
+    "score": -1.35434263685648
+  },
+  {
+    "breach_year": 2062,
+    "code": "Q17",
+    "depth_2050": 0.0,
+    "depth_2080": 1.08462286733063,
+    "homes": 0,
+    "peak_m": 1.08462286733063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 2,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 339,
+    "score": -1.35577858416329
+  },
+  {
+    "breach_year": 2062,
+    "code": "5S4",
+    "depth_2050": 0.0,
+    "depth_2080": 1.0848780983039,
+    "homes": 0,
+    "peak_m": 1.0848780983039,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 2,
+      "meet": 2,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 340,
+    "score": -1.35609762287987
+  },
+  {
+    "breach_year": 2062,
+    "code": "V2G",
+    "depth_2050": 0.0,
+    "depth_2080": 1.0848780983039,
+    "homes": 0,
+    "peak_m": 1.0848780983039,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 1,
+      "meet": 3,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 341,
+    "score": -1.35609762287987
+  },
+  {
+    "breach_year": 2062,
+    "code": "DP7",
+    "depth_2050": 0.0,
+    "depth_2080": 1.0848780983039,
+    "homes": 0,
+    "peak_m": 1.0848780983039,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 4,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 342,
+    "score": -1.35609762287987
+  },
+  {
+    "breach_year": 2062,
+    "code": "VA8",
+    "depth_2050": 0.0,
+    "depth_2080": 1.08548885481727,
+    "homes": 0,
+    "peak_m": 1.08548885481727,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 3,
+      "meet": 0,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 343,
+    "score": -1.35686106852158
+  },
+  {
+    "breach_year": 2065,
+    "code": "9NH",
+    "depth_2050": 0.0,
+    "depth_2080": 1.08797274148519,
+    "homes": 0,
+    "peak_m": 1.08797274148519,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 1,
+      "meet": 2,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 344,
+    "score": -1.35996592685648
+  },
+  {
+    "breach_year": 2068,
+    "code": "MKX",
+    "depth_2050": 0.0,
+    "depth_2080": 1.08927865240791,
+    "homes": 0,
+    "peak_m": 1.08927865240791,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 2,
+      "wall": 3
+    },
+    "rank": 345,
+    "score": -1.36159831550989
+  },
+  {
+    "breach_year": 2065,
+    "code": "DXJ",
+    "depth_2050": 0.0,
+    "depth_2080": 1.08957953528704,
+    "homes": 0,
+    "peak_m": 1.08957953528704,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 346,
+    "score": -1.36197441910881
+  },
+  {
+    "breach_year": 2062,
+    "code": "062",
+    "depth_2050": 0.0,
+    "depth_2080": 1.09210918733063,
+    "homes": 0,
+    "peak_m": 1.09210918733063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 2,
+      "meet": 0,
+      "sort": 3,
+      "wall": 1
+    },
+    "rank": 347,
+    "score": -1.36513648416329
+  },
+  {
+    "breach_year": 2068,
+    "code": "DNT",
+    "depth_2050": 0.0,
+    "depth_2080": 1.09369986780041,
+    "homes": 0,
+    "peak_m": 1.09369986780041,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 3
+    },
+    "rank": 348,
+    "score": -1.36712483475051
+  },
+  {
+    "breach_year": 2065,
+    "code": "JHM",
+    "depth_2050": 0.0,
+    "depth_2080": 1.09959063221219,
+    "homes": 0,
+    "peak_m": 1.09959063221219,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 349,
+    "score": -1.37448829026524
+  },
+  {
+    "breach_year": 2062,
+    "code": "Z2S",
+    "depth_2050": 0.0,
+    "depth_2080": 1.100467524362,
+    "homes": 0,
+    "peak_m": 1.100467524362,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 3,
+      "meet": 1,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 350,
+    "score": -1.3755844054525
+  },
+  {
+    "breach_year": 2062,
+    "code": "6QQ",
+    "depth_2050": 0.0,
+    "depth_2080": 1.10178890863345,
+    "homes": 0,
+    "peak_m": 1.10178890863345,
+    "plan": {
+      "dune": 0,
+      "grass": 5,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 351,
+    "score": -1.37723613579181
+  },
+  {
+    "breach_year": 2062,
+    "code": "026",
+    "depth_2050": 0.0,
+    "depth_2080": 1.10261739533063,
+    "homes": 0,
+    "peak_m": 1.10261739533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 2,
+      "meet": 1,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 352,
+    "score": -1.37827174416329
+  },
+  {
+    "breach_year": 2062,
+    "code": "6KV",
+    "depth_2050": 0.0,
+    "depth_2080": 1.10453418992252,
+    "homes": 0,
+    "peak_m": 1.10453418992252,
+    "plan": {
+      "dune": 0,
+      "grass": 4,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 353,
+    "score": -1.38066773740315
+  },
+  {
+    "breach_year": 0,
+    "code": "RGQ",
+    "depth_2050": 0.421324225250147,
+    "depth_2080": 1.10582221148663,
+    "homes": 0,
+    "peak_m": 1.10582221148663,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 5,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 354,
+    "score": -1.38227776435829
+  },
+  {
+    "breach_year": 2062,
+    "code": "A8X",
+    "depth_2050": 0.0,
+    "depth_2080": 1.10716379189454,
+    "homes": 0,
+    "peak_m": 1.10716379189454,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 3,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 355,
+    "score": -1.38395473986818
+  },
+  {
+    "breach_year": 2068,
+    "code": "3B7",
+    "depth_2050": 0.0,
+    "depth_2080": 1.10748064681727,
+    "homes": 0,
+    "peak_m": 1.10748064681727,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 2,
+      "wall": 3
+    },
+    "rank": 356,
+    "score": -1.38435080852158
+  },
+  {
+    "breach_year": 2065,
+    "code": "4HZ",
+    "depth_2050": 0.0,
+    "depth_2080": 1.11128412440791,
+    "homes": 0,
+    "peak_m": 1.11128412440791,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 2,
+      "meet": 0,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 357,
+    "score": -1.38910515550989
+  },
+  {
+    "breach_year": 2062,
+    "code": "KMG",
+    "depth_2050": 0.0,
+    "depth_2080": 1.11688700826629,
+    "homes": 0,
+    "peak_m": 1.11688700826629,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 2,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 358,
+    "score": -1.39610876033286
+  },
+  {
+    "breach_year": 2065,
+    "code": "G44",
+    "depth_2050": 0.0,
+    "depth_2080": 1.11811192333063,
+    "homes": 0,
+    "peak_m": 1.11811192333063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 3,
+      "wall": 2
+    },
+    "rank": 359,
+    "score": -1.39763990416329
+  },
+  {
+    "breach_year": 2065,
+    "code": "A0J",
+    "depth_2050": 0.0,
+    "depth_2080": 1.1198780983039,
+    "homes": 0,
+    "peak_m": 1.1198780983039,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 3,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 360,
+    "score": -1.39984762287987
+  },
+  {
+    "breach_year": 2062,
+    "code": "5DG",
+    "depth_2050": 0.0,
+    "depth_2080": 1.12061192333063,
+    "homes": 0,
+    "peak_m": 1.12061192333063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 3,
+      "meet": 0,
+      "sort": 2,
+      "wall": 1
+    },
+    "rank": 361,
+    "score": -1.40076490416329
+  },
+  {
+    "breach_year": 2068,
+    "code": "016",
+    "depth_2050": 0.0,
+    "depth_2080": 1.12191295913491,
+    "homes": 0,
+    "peak_m": 1.12191295913491,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 3
+    },
+    "rank": 362,
+    "score": -1.40239119891864
+  },
+  {
+    "breach_year": 2065,
+    "code": "RCV",
+    "depth_2050": 0.0,
+    "depth_2080": 1.1243767303039,
+    "homes": 0,
+    "peak_m": 1.1243767303039,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 1,
+      "meet": 2,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 363,
+    "score": -1.40547091287987
+  },
+  {
+    "breach_year": 2068,
+    "code": "VH0",
+    "depth_2050": 0.0,
+    "depth_2080": 1.12543763779791,
+    "homes": 0,
+    "peak_m": 1.12543763779791,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 364,
+    "score": -1.40679704724739
+  },
+  {
+    "breach_year": 2065,
+    "code": "861",
+    "depth_2050": 0.0,
+    "depth_2080": 1.12635371533063,
+    "homes": 0,
+    "peak_m": 1.12635371533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 4,
+      "wall": 2
+    },
+    "rank": 365,
+    "score": -1.40794214416329
+  },
+  {
+    "breach_year": 2065,
+    "code": "AMY",
+    "depth_2050": 0.0,
+    "depth_2080": 1.12862013133063,
+    "homes": 0,
+    "peak_m": 1.12862013133063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 2,
+      "sort": 2,
+      "wall": 2
+    },
+    "rank": 366,
+    "score": -1.41077516416329
+  },
+  {
+    "breach_year": 2065,
+    "code": "K99",
+    "depth_2050": 0.0,
+    "depth_2080": 1.12948611881727,
+    "homes": 0,
+    "peak_m": 1.12948611881727,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 2,
+      "meet": 0,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 367,
+    "score": -1.41185764852158
+  },
+  {
+    "breach_year": 2062,
+    "code": "DT3",
+    "depth_2050": 0.0,
+    "depth_2080": 1.13141091485791,
+    "homes": 0,
+    "peak_m": 1.13141091485791,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 3,
+      "meet": 1,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 368,
+    "score": -1.41426364357239
+  },
+  {
+    "breach_year": 2068,
+    "code": "SKK",
+    "depth_2050": 0.0,
+    "depth_2080": 1.13197000548518,
+    "homes": 0,
+    "peak_m": 1.13197000548518,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 2,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 369,
+    "score": -1.41496250685648
+  },
+  {
+    "breach_year": 2068,
+    "code": "36Y",
+    "depth_2050": 0.0,
+    "depth_2080": 1.13357679928704,
+    "homes": 0,
+    "peak_m": 1.13357679928704,
+    "plan": {
+      "dune": 1,
+      "grass": 2,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 370,
+    "score": -1.41697099910881
+  },
+  {
+    "breach_year": 2065,
+    "code": "R53",
+    "depth_2050": 0.0,
+    "depth_2080": 1.13610645133063,
+    "homes": 0,
+    "peak_m": 1.13610645133063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 3,
+      "wall": 2
+    },
+    "rank": 371,
+    "score": -1.42013306416329
+  },
+  {
+    "breach_year": 2062,
+    "code": "6V0",
+    "depth_2050": 0.0,
+    "depth_2080": 1.14020205634756,
+    "homes": 0,
+    "peak_m": 1.14020205634756,
+    "plan": {
+      "dune": 5,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 372,
+    "score": -1.42525257043445
+  },
+  {
+    "breach_year": 2062,
+    "code": "M4D",
+    "depth_2050": 0.0,
+    "depth_2080": 1.14128174138571,
+    "homes": 0,
+    "peak_m": 1.14128174138571,
+    "plan": {
+      "dune": 4,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 373,
+    "score": -1.42660217673214
+  },
+  {
+    "breach_year": 2068,
+    "code": "7T0",
+    "depth_2050": 0.0,
+    "depth_2080": 1.14358789621219,
+    "homes": 0,
+    "peak_m": 1.14358789621219,
+    "plan": {
+      "dune": 2,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 374,
+    "score": -1.42948487026524
+  },
+  {
+    "breach_year": 2065,
+    "code": "MC5",
+    "depth_2050": 0.0,
+    "depth_2080": 1.144464788362,
+    "homes": 0,
+    "peak_m": 1.144464788362,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 2,
+      "meet": 1,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 375,
+    "score": -1.4305809854525
+  },
+  {
+    "breach_year": 2065,
+    "code": "NBJ",
+    "depth_2050": 0.0,
+    "depth_2080": 1.14661465933063,
+    "homes": 0,
+    "peak_m": 1.14661465933063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 1,
+      "sort": 2,
+      "wall": 2
+    },
+    "rank": 376,
+    "score": -1.43326832416329
+  },
+  {
+    "breach_year": 2062,
+    "code": "5MV",
+    "depth_2050": 0.0,
+    "depth_2080": 1.14670807580041,
+    "homes": 0,
+    "peak_m": 1.14670807580041,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 3,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 377,
+    "score": -1.43338509475051
+  },
+  {
+    "breach_year": 2065,
+    "code": "YJW",
+    "depth_2050": 0.0,
+    "depth_2080": 1.14853145392252,
+    "homes": 0,
+    "peak_m": 1.14853145392252,
+    "plan": {
+      "dune": 0,
+      "grass": 4,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 378,
+    "score": -1.43566431740315
+  },
+  {
+    "breach_year": 2062,
+    "code": "99X",
+    "depth_2050": 0.0,
+    "depth_2080": 1.15060620290962,
+    "homes": 0,
+    "peak_m": 1.15060620290962,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 2,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 379,
+    "score": -1.43825775363703
+  },
+  {
+    "breach_year": 2065,
+    "code": "27Y",
+    "depth_2050": 0.0,
+    "depth_2080": 1.15116105589454,
+    "homes": 0,
+    "peak_m": 1.15116105589454,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 2,
+      "meet": 0,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 380,
+    "score": -1.43895131986818
+  },
+  {
+    "breach_year": 2062,
+    "code": "QSF",
+    "depth_2050": 0.0,
+    "depth_2080": 1.15512423533063,
+    "homes": 0,
+    "peak_m": 1.15512423533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 4,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 381,
+    "score": -1.44390529416329
+  },
+  {
+    "breach_year": 2062,
+    "code": "55R",
+    "depth_2050": 0.0,
+    "depth_2080": 1.15512423533063,
+    "homes": 0,
+    "peak_m": 1.15512423533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 3,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 382,
+    "score": -1.44390529416329
+  },
+  {
+    "breach_year": 2062,
+    "code": "FWC",
+    "depth_2050": 0.0,
+    "depth_2080": 1.15512423533063,
+    "homes": 0,
+    "peak_m": 1.15512423533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 2,
+      "meet": 2,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 383,
+    "score": -1.44390529416329
+  },
+  {
+    "breach_year": 2068,
+    "code": "SVB",
+    "depth_2050": 0.0,
+    "depth_2080": 1.15528138840791,
+    "homes": 0,
+    "peak_m": 1.15528138840791,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 1,
+      "meet": 0,
+      "sort": 1,
+      "wall": 3
+    },
+    "rank": 384,
+    "score": -1.44410173550989
+  },
+  {
+    "breach_year": 2065,
+    "code": "BKH",
+    "depth_2050": 0.0,
+    "depth_2080": 1.16088427226629,
+    "homes": 0,
+    "peak_m": 1.16088427226629,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 385,
+    "score": -1.45110534033286
+  },
+  {
+    "breach_year": 2065,
+    "code": "XCH",
+    "depth_2050": 0.0,
+    "depth_2080": 1.16460918733063,
+    "homes": 0,
+    "peak_m": 1.16460918733063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 2,
+      "meet": 0,
+      "sort": 2,
+      "wall": 2
+    },
+    "rank": 386,
+    "score": -1.45576148416329
+  },
+  {
+    "breach_year": 2068,
+    "code": "8AX",
+    "depth_2050": 0.0,
+    "depth_2080": 1.1683739943039,
+    "homes": 0,
+    "peak_m": 1.1683739943039,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 2,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 387,
+    "score": -1.46046749287987
+  },
+  {
+    "breach_year": 2062,
+    "code": "QXB",
+    "depth_2050": 0.0,
+    "depth_2080": 1.16862013133063,
+    "homes": 0,
+    "peak_m": 1.16862013133063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 3,
+      "meet": 1,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 388,
+    "score": -1.46077516416329
+  },
+  {
+    "breach_year": 2068,
+    "code": "8JN",
+    "depth_2050": 0.0,
+    "depth_2080": 1.17348338281727,
+    "homes": 0,
+    "peak_m": 1.17348338281727,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 1,
+      "wall": 3
+    },
+    "rank": 389,
+    "score": -1.46685422852158
+  },
+  {
+    "breach_year": 2062,
+    "code": "R07",
+    "depth_2050": 0.0,
+    "depth_2080": 1.17492116713491,
+    "homes": 0,
+    "peak_m": 1.17492116713491,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 3,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 390,
+    "score": -1.46865145891864
+  },
+  {
+    "breach_year": 2065,
+    "code": "33F",
+    "depth_2050": 0.0,
+    "depth_2080": 1.17540817885791,
+    "homes": 0,
+    "peak_m": 1.17540817885791,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 2,
+      "meet": 1,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 391,
+    "score": -1.46926022357239
+  },
+  {
+    "breach_year": 2068,
+    "code": "DEF",
+    "depth_2050": 0.0,
+    "depth_2080": 1.18010371533063,
+    "homes": 0,
+    "peak_m": 1.18010371533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 3,
+      "wall": 3
+    },
+    "rank": 392,
+    "score": -1.47512964416329
+  },
+  {
+    "breach_year": 2065,
+    "code": "C3E",
+    "depth_2050": 0.0,
+    "depth_2080": 1.18527900538571,
+    "homes": 0,
+    "peak_m": 1.18527900538571,
+    "plan": {
+      "dune": 4,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 393,
+    "score": -1.48159875673214
+  },
+  {
+    "breach_year": 2062,
+    "code": "X8N",
+    "depth_2050": 0.0,
+    "depth_2080": 1.18661465933063,
+    "homes": 0,
+    "peak_m": 1.18661465933063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 4,
+      "meet": 0,
+      "sort": 1,
+      "wall": 1
+    },
+    "rank": 394,
+    "score": -1.48326832416329
+  },
+  {
+    "breach_year": 2068,
+    "code": "6ZW",
+    "depth_2050": 0.0,
+    "depth_2080": 1.188462052362,
+    "homes": 0,
+    "peak_m": 1.188462052362,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 1,
+      "meet": 1,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 395,
+    "score": -1.4855775654525
+  },
+  {
+    "breach_year": 2065,
+    "code": "N3T",
+    "depth_2050": 0.0,
+    "depth_2080": 1.19012423533063,
+    "homes": 0,
+    "peak_m": 1.19012423533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 3,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 396,
+    "score": -1.48765529416329
+  },
+  {
+    "breach_year": 2068,
+    "code": "7Z9",
+    "depth_2050": 0.0,
+    "depth_2080": 1.19061192333063,
+    "homes": 0,
+    "peak_m": 1.19061192333063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 2,
+      "wall": 3
+    },
+    "rank": 397,
+    "score": -1.48826490416329
+  },
+  {
+    "breach_year": 2065,
+    "code": "XKW",
+    "depth_2050": 0.0,
+    "depth_2080": 1.19070533980041,
+    "homes": 0,
+    "peak_m": 1.19070533980041,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 2,
+      "meet": 0,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 398,
+    "score": -1.48838167475051
+  },
+  {
+    "breach_year": 0,
+    "code": "7QH",
+    "depth_2050": 0.507879680133502,
+    "depth_2080": 1.19345212,
+    "homes": 0,
+    "peak_m": 1.19345212,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 5,
+      "meet": 1,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 399,
+    "score": -1.49181515
+  },
+  {
+    "breach_year": 0,
+    "code": "2C7",
+    "depth_2050": 0.507879680133502,
+    "depth_2080": 1.19345212,
+    "homes": 0,
+    "peak_m": 1.19345212,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 4,
+      "meet": 2,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 400,
+    "score": -1.49181515
+  },
+  {
+    "breach_year": 0,
+    "code": "TB8",
+    "depth_2050": 0.507879680133502,
+    "depth_2080": 1.19345212,
+    "homes": 0,
+    "peak_m": 1.19345212,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 3,
+      "meet": 3,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 401,
+    "score": -1.49181515
+  },
+  {
+    "breach_year": 0,
+    "code": "FMM",
+    "depth_2050": 0.507879680133502,
+    "depth_2080": 1.19345212,
+    "homes": 0,
+    "peak_m": 1.19345212,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 2,
+      "meet": 4,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 402,
+    "score": -1.49181515
+  },
+  {
+    "breach_year": 0,
+    "code": "28B",
+    "depth_2050": 0.507879680133502,
+    "depth_2080": 1.19345212,
+    "homes": 0,
+    "peak_m": 1.19345212,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 5,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 403,
+    "score": -1.49181515
+  },
+  {
+    "breach_year": 0,
+    "code": "J6D",
+    "depth_2050": 0.507879680133502,
+    "depth_2080": 1.19345212,
+    "homes": 0,
+    "peak_m": 1.19345212,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 6,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 404,
+    "score": -1.49181515
+  },
+  {
+    "breach_year": 2065,
+    "code": "18Y",
+    "depth_2050": 0.0,
+    "depth_2080": 1.19460346690962,
+    "homes": 0,
+    "peak_m": 1.19460346690962,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 405,
+    "score": -1.49325433363702
+  },
+  {
+    "breach_year": 2065,
+    "code": "2G3",
+    "depth_2050": 0.0,
+    "depth_2080": 1.19462286733063,
+    "homes": 0,
+    "peak_m": 1.19462286733063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 2,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 406,
+    "score": -1.49327858416329
+  },
+  {
+    "breach_year": 2068,
+    "code": "QHA",
+    "depth_2050": 0.0,
+    "depth_2080": 1.19515831989454,
+    "homes": 0,
+    "peak_m": 1.19515831989454,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 407,
+    "score": -1.49394789986818
+  },
+  {
+    "breach_year": 2071,
+    "code": "CF2",
+    "depth_2050": 0.0,
+    "depth_2080": 1.19927865240791,
+    "homes": 0,
+    "peak_m": 1.19927865240791,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 4
+    },
+    "rank": 408,
+    "score": -1.49909831550989
+  },
+  {
+    "breach_year": 2068,
+    "code": "0WX",
+    "depth_2050": 0.0,
+    "depth_2080": 1.20488153626629,
+    "homes": 0,
+    "peak_m": 1.20488153626629,
+    "plan": {
+      "dune": 0,
+      "grass": 3,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 409,
+    "score": -1.50610192033286
+  },
+  {
+    "breach_year": 0,
+    "code": "AD6",
+    "depth_2050": 0.511290176133502,
+    "depth_2080": 1.206948016,
+    "homes": 0,
+    "peak_m": 1.206948016,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 6,
+      "meet": 0,
+      "sort": 0,
+      "wall": 0
+    },
+    "rank": 410,
+    "score": -1.50868502
+  },
+  {
+    "breach_year": 2062,
+    "code": "4E3",
+    "depth_2050": 0.0,
+    "depth_2080": 1.20828959640791,
+    "homes": 0,
+    "peak_m": 1.20828959640791,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 4,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 411,
+    "score": -1.51036199550989
+  },
+  {
+    "breach_year": 2068,
+    "code": "JNX",
+    "depth_2050": 0.0,
+    "depth_2080": 1.20860645133063,
+    "homes": 0,
+    "peak_m": 1.20860645133063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 2,
+      "wall": 3
+    },
+    "rank": 412,
+    "score": -1.51075806416329
+  },
+  {
+    "breach_year": 2065,
+    "code": "D6Q",
+    "depth_2050": 0.0,
+    "depth_2080": 1.21261739533063,
+    "homes": 0,
+    "peak_m": 1.21261739533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 2,
+      "meet": 1,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 413,
+    "score": -1.51577174416329
+  },
+  {
+    "breach_year": 2071,
+    "code": "V6C",
+    "depth_2050": 0.0,
+    "depth_2080": 1.21748064681727,
+    "homes": 0,
+    "peak_m": 1.21748064681727,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 4
+    },
+    "rank": 414,
+    "score": -1.52185080852158
+  },
+  {
+    "breach_year": 2065,
+    "code": "GZ8",
+    "depth_2050": 0.0,
+    "depth_2080": 1.21891843113491,
+    "homes": 0,
+    "peak_m": 1.21891843113491,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 2,
+      "meet": 0,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 415,
+    "score": -1.52364803891864
+  },
+  {
+    "breach_year": 2068,
+    "code": "NQ6",
+    "depth_2050": 0.0,
+    "depth_2080": 1.21940544285791,
+    "homes": 0,
+    "peak_m": 1.21940544285791,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 1,
+      "meet": 1,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 416,
+    "score": -1.52425680357239
+  },
+  {
+    "breach_year": 2062,
+    "code": "K5D",
+    "depth_2050": 0.0,
+    "depth_2080": 1.22649159081727,
+    "homes": 0,
+    "peak_m": 1.22649159081727,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 4,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 417,
+    "score": -1.53311448852158
+  },
+  {
+    "breach_year": 2065,
+    "code": "N7P",
+    "depth_2050": 0.0,
+    "depth_2080": 1.23061192333063,
+    "homes": 0,
+    "peak_m": 1.23061192333063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 3,
+      "meet": 0,
+      "sort": 1,
+      "wall": 2
+    },
+    "rank": 418,
+    "score": -1.53826490416329
+  },
+  {
+    "breach_year": 2071,
+    "code": "PXY",
+    "depth_2050": 0.0,
+    "depth_2080": 1.232459316362,
+    "homes": 0,
+    "peak_m": 1.232459316362,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 4
+    },
+    "rank": 419,
+    "score": -1.5405741454525
+  },
+  {
+    "breach_year": 2068,
+    "code": "JX8",
+    "depth_2050": 0.0,
+    "depth_2080": 1.23470260380041,
+    "homes": 0,
+    "peak_m": 1.23470260380041,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 420,
+    "score": -1.54337825475051
+  },
+  {
+    "breach_year": 2068,
+    "code": "PJA",
+    "depth_2050": 0.0,
+    "depth_2080": 1.23860073090962,
+    "homes": 0,
+    "peak_m": 1.23860073090962,
+    "plan": {
+      "dune": 3,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 421,
+    "score": -1.54825091363703
+  },
+  {
+    "breach_year": 2068,
+    "code": "JE5",
+    "depth_2050": 0.0,
+    "depth_2080": 1.23862013133063,
+    "homes": 0,
+    "peak_m": 1.23862013133063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 2,
+      "sort": 1,
+      "wall": 3
+    },
+    "rank": 422,
+    "score": -1.54827516416329
+  },
+  {
+    "breach_year": 2071,
+    "code": "A41",
+    "depth_2050": 0.0,
+    "depth_2080": 1.23915558389454,
+    "homes": 0,
+    "peak_m": 1.23915558389454,
+    "plan": {
+      "dune": 1,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 4
+    },
+    "rank": 423,
+    "score": -1.54894447986818
+  },
+  {
+    "breach_year": 2065,
+    "code": "WD4",
+    "depth_2050": 0.0,
+    "depth_2080": 1.25228686040791,
+    "homes": 0,
+    "peak_m": 1.25228686040791,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 3,
+      "meet": 0,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 424,
+    "score": -1.56535857550989
+  },
+  {
+    "breach_year": 2071,
+    "code": "59M",
+    "depth_2050": 0.0,
+    "depth_2080": 1.25260371533063,
+    "homes": 0,
+    "peak_m": 1.25260371533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 2,
+      "wall": 4
+    },
+    "rank": 425,
+    "score": -1.56575464416329
+  },
+  {
+    "breach_year": 2068,
+    "code": "ZTE",
+    "depth_2050": 0.0,
+    "depth_2080": 1.25661465933063,
+    "homes": 0,
+    "peak_m": 1.25661465933063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 1,
+      "sort": 1,
+      "wall": 3
+    },
+    "rank": 426,
+    "score": -1.57076832416329
+  },
+  {
+    "breach_year": 2068,
+    "code": "68M",
+    "depth_2050": 0.0,
+    "depth_2080": 1.26291569513491,
+    "homes": 0,
+    "peak_m": 1.26291569513491,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 427,
+    "score": -1.57864461891864
+  },
+  {
+    "breach_year": 2071,
+    "code": "5N8",
+    "depth_2050": 0.0,
+    "depth_2080": 1.26340270685791,
+    "homes": 0,
+    "peak_m": 1.26340270685791,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 4
+    },
+    "rank": 428,
+    "score": -1.57925338357239
+  },
+  {
+    "breach_year": 2065,
+    "code": "B4E",
+    "depth_2050": 0.0,
+    "depth_2080": 1.27048885481727,
+    "homes": 0,
+    "peak_m": 1.27048885481727,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 3,
+      "meet": 0,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 429,
+    "score": -1.58811106852158
+  },
+  {
+    "breach_year": 2068,
+    "code": "AH2",
+    "depth_2050": 0.0,
+    "depth_2080": 1.27460918733063,
+    "homes": 0,
+    "peak_m": 1.27460918733063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 2,
+      "meet": 0,
+      "sort": 1,
+      "wall": 3
+    },
+    "rank": 430,
+    "score": -1.59326148416329
+  },
+  {
+    "breach_year": 2071,
+    "code": "5GZ",
+    "depth_2050": 0.0,
+    "depth_2080": 1.27869986780041,
+    "homes": 0,
+    "peak_m": 1.27869986780041,
+    "plan": {
+      "dune": 0,
+      "grass": 2,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 4
+    },
+    "rank": 431,
+    "score": -1.59837483475051
+  },
+  {
+    "breach_year": 2068,
+    "code": "HPG",
+    "depth_2050": 0.0,
+    "depth_2080": 1.29628412440791,
+    "homes": 0,
+    "peak_m": 1.29628412440791,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 2,
+      "meet": 0,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 432,
+    "score": -1.62035515550989
+  },
+  {
+    "breach_year": 2071,
+    "code": "FRG",
+    "depth_2050": 0.0,
+    "depth_2080": 1.30061192333063,
+    "homes": 0,
+    "peak_m": 1.30061192333063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 1,
+      "wall": 4
+    },
+    "rank": 433,
+    "score": -1.62576490416329
+  },
+  {
+    "breach_year": 2062,
+    "code": "FGR",
+    "depth_2050": 0.0,
+    "depth_2080": 1.30512423533063,
+    "homes": 0,
+    "peak_m": 1.30512423533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 5,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 434,
+    "score": -1.63140529416329
+  },
+  {
+    "breach_year": 2062,
+    "code": "ZJP",
+    "depth_2050": 0.0,
+    "depth_2080": 1.30512423533063,
+    "homes": 0,
+    "peak_m": 1.30512423533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 4,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 435,
+    "score": -1.63140529416329
+  },
+  {
+    "breach_year": 2062,
+    "code": "CYZ",
+    "depth_2050": 0.0,
+    "depth_2080": 1.30512423533063,
+    "homes": 0,
+    "peak_m": 1.30512423533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 2,
+      "meet": 3,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 436,
+    "score": -1.63140529416329
+  },
+  {
+    "breach_year": 2062,
+    "code": "QNK",
+    "depth_2050": 0.0,
+    "depth_2080": 1.30512423533063,
+    "homes": 0,
+    "peak_m": 1.30512423533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 3,
+      "meet": 2,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 437,
+    "score": -1.63140529416329
+  },
+  {
+    "breach_year": 2071,
+    "code": "RWB",
+    "depth_2050": 0.0,
+    "depth_2080": 1.30691295913491,
+    "homes": 0,
+    "peak_m": 1.30691295913491,
+    "plan": {
+      "dune": 2,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 4
+    },
+    "rank": 438,
+    "score": -1.63364119891864
+  },
+  {
+    "breach_year": 2062,
+    "code": "ZPJ",
+    "depth_2050": 0.0,
+    "depth_2080": 1.30962286733063,
+    "homes": 0,
+    "peak_m": 1.30962286733063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 4,
+      "meet": 1,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 439,
+    "score": -1.63702858416329
+  },
+  {
+    "breach_year": 2068,
+    "code": "0DT",
+    "depth_2050": 0.0,
+    "depth_2080": 1.31448611881727,
+    "homes": 0,
+    "peak_m": 1.31448611881727,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 2,
+      "meet": 0,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 440,
+    "score": -1.64310764852158
+  },
+  {
+    "breach_year": 2071,
+    "code": "X4S",
+    "depth_2050": 0.0,
+    "depth_2080": 1.31860645133063,
+    "homes": 0,
+    "peak_m": 1.31860645133063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 1,
+      "wall": 4
+    },
+    "rank": 441,
+    "score": -1.64825806416329
+  },
+  {
+    "breach_year": 2062,
+    "code": "41W",
+    "depth_2050": 0.0,
+    "depth_2080": 1.32761739533063,
+    "homes": 0,
+    "peak_m": 1.32761739533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 5,
+      "meet": 0,
+      "sort": 0,
+      "wall": 1
+    },
+    "rank": 442,
+    "score": -1.65952174416329
+  },
+  {
+    "breach_year": 2065,
+    "code": "A9A",
+    "depth_2050": 0.0,
+    "depth_2080": 1.34012423533063,
+    "homes": 0,
+    "peak_m": 1.34012423533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 2,
+      "meet": 2,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 443,
+    "score": -1.67515529416329
+  },
+  {
+    "breach_year": 2065,
+    "code": "CV3",
+    "depth_2050": 0.0,
+    "depth_2080": 1.34012423533063,
+    "homes": 0,
+    "peak_m": 1.34012423533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 4,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 444,
+    "score": -1.67515529416329
+  },
+  {
+    "breach_year": 2065,
+    "code": "WW1",
+    "depth_2050": 0.0,
+    "depth_2080": 1.34012423533063,
+    "homes": 0,
+    "peak_m": 1.34012423533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 3,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 445,
+    "score": -1.67515529416329
+  },
+  {
+    "breach_year": 2071,
+    "code": "4A7",
+    "depth_2050": 0.0,
+    "depth_2080": 1.34028138840791,
+    "homes": 0,
+    "peak_m": 1.34028138840791,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 4
+    },
+    "rank": 446,
+    "score": -1.67535173550989
+  },
+  {
+    "breach_year": 2065,
+    "code": "MZY",
+    "depth_2050": 0.0,
+    "depth_2080": 1.35362013133063,
+    "homes": 0,
+    "peak_m": 1.35362013133063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 3,
+      "meet": 1,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 447,
+    "score": -1.69202516416329
+  },
+  {
+    "breach_year": 2071,
+    "code": "J1H",
+    "depth_2050": 0.0,
+    "depth_2080": 1.35848338281727,
+    "homes": 0,
+    "peak_m": 1.35848338281727,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 4
+    },
+    "rank": 448,
+    "score": -1.69810422852158
+  },
+  {
+    "breach_year": 2074,
+    "code": "D2V",
+    "depth_2050": 0.0,
+    "depth_2080": 1.36260371533063,
+    "homes": 0,
+    "peak_m": 1.36260371533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 1,
+      "wall": 5
+    },
+    "rank": 449,
+    "score": -1.70325464416329
+  },
+  {
+    "breach_year": 2065,
+    "code": "W0X",
+    "depth_2050": 0.0,
+    "depth_2080": 1.37161465933063,
+    "homes": 0,
+    "peak_m": 1.37161465933063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 4,
+      "meet": 0,
+      "sort": 0,
+      "wall": 2
+    },
+    "rank": 450,
+    "score": -1.71451832416329
+  },
+  {
+    "breach_year": 2068,
+    "code": "A5E",
+    "depth_2050": 0.0,
+    "depth_2080": 1.37512423533063,
+    "homes": 0,
+    "peak_m": 1.37512423533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 3,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 451,
+    "score": -1.71890529416329
+  },
+  {
+    "breach_year": 2068,
+    "code": "T7C",
+    "depth_2050": 0.0,
+    "depth_2080": 1.37962286733063,
+    "homes": 0,
+    "peak_m": 1.37962286733063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 2,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 452,
+    "score": -1.72452858416329
+  },
+  {
+    "breach_year": 2074,
+    "code": "M89",
+    "depth_2050": 0.0,
+    "depth_2080": 1.38427865240791,
+    "homes": 0,
+    "peak_m": 1.38427865240791,
+    "plan": {
+      "dune": 0,
+      "grass": 1,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 5
+    },
+    "rank": 453,
+    "score": -1.73034831550989
+  },
+  {
+    "breach_year": 2068,
+    "code": "7KN",
+    "depth_2050": 0.0,
+    "depth_2080": 1.39761739533063,
+    "homes": 0,
+    "peak_m": 1.39761739533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 2,
+      "meet": 1,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 454,
+    "score": -1.74702174416329
+  },
+  {
+    "breach_year": 2074,
+    "code": "2ZK",
+    "depth_2050": 0.0,
+    "depth_2080": 1.40248064681727,
+    "homes": 0,
+    "peak_m": 1.40248064681727,
+    "plan": {
+      "dune": 1,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 5
+    },
+    "rank": 455,
+    "score": -1.75310080852158
+  },
+  {
+    "breach_year": 2068,
+    "code": "JA9",
+    "depth_2050": 0.0,
+    "depth_2080": 1.41561192333063,
+    "homes": 0,
+    "peak_m": 1.41561192333063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 3,
+      "meet": 0,
+      "sort": 0,
+      "wall": 3
+    },
+    "rank": 456,
+    "score": -1.76951490416329
+  },
+  {
+    "breach_year": 2071,
+    "code": "7FS",
+    "depth_2050": 0.0,
+    "depth_2080": 1.42362013133063,
+    "homes": 0,
+    "peak_m": 1.42362013133063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 2,
+      "sort": 0,
+      "wall": 4
+    },
+    "rank": 457,
+    "score": -1.77952516416329
+  },
+  {
+    "breach_year": 2071,
+    "code": "QHQ",
+    "depth_2050": 0.0,
+    "depth_2080": 1.44161465933063,
+    "homes": 0,
+    "peak_m": 1.44161465933063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 1,
+      "sort": 0,
+      "wall": 4
+    },
+    "rank": 458,
+    "score": -1.80201832416329
+  },
+  {
+    "breach_year": 2071,
+    "code": "4X0",
+    "depth_2050": 0.0,
+    "depth_2080": 1.45960918733063,
+    "homes": 0,
+    "peak_m": 1.45960918733063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 2,
+      "meet": 0,
+      "sort": 0,
+      "wall": 4
+    },
+    "rank": 459,
+    "score": -1.82451148416329
+  },
+  {
+    "breach_year": 2074,
+    "code": "4T4",
+    "depth_2050": 0.0,
+    "depth_2080": 1.48561192333063,
+    "homes": 0,
+    "peak_m": 1.48561192333063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 1,
+      "sort": 0,
+      "wall": 5
+    },
+    "rank": 460,
+    "score": -1.85701490416329
+  },
+  {
+    "breach_year": 2074,
+    "code": "MW2",
+    "depth_2050": 0.0,
+    "depth_2080": 1.50360645133063,
+    "homes": 0,
+    "peak_m": 1.50360645133063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 1,
+      "meet": 0,
+      "sort": 0,
+      "wall": 5
+    },
+    "rank": 461,
+    "score": -1.87950806416329
+  },
+  {
+    "breach_year": 2074,
+    "code": "24F",
+    "depth_2050": 0.0,
+    "depth_2080": 1.54760371533063,
+    "homes": 0,
+    "peak_m": 1.54760371533063,
+    "plan": {
+      "dune": 0,
+      "grass": 0,
+      "light": 0,
+      "meet": 0,
+      "sort": 0,
+      "wall": 6
+    },
+    "rank": 462,
+    "score": -1.93450464416329
+  }
+]

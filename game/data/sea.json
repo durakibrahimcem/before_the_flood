@@ -1,0 +1,5 @@
+{
+  "note": "Sea rise curves t = year - 2005, rise = a*t + b*t*t, fitted through IPCC AR6 medians for 2050 and 2100.",
+  "high": { "scenario": "SSP5-8.5", "a": 0.002415, "b": 0.0000599 },
+  "low": { "scenario": "SSP1-1.9", "a": 0.004, "b": 0.0 }
+}
