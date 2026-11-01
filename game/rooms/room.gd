@@ -10,6 +10,8 @@ const CREEP_M := 0.05
 const ROOM_SIZE := Vector2(1920.0, 1080.0)
 ## Brian is gone by the time the bowls sit empty.
 const BOWLS_EMPTY_YEAR := 2040.0
+## People and Brian are drawn larger than the painted scale, so they read at a glance.
+const CHARACTER_SIZES := { "bedroom": 1.2, "aylin": 1.2, "salon": 1.2, "street": 1.8, "shore": 1.35 }
 const FIRST_YEAR := 2026.0
 const LAST_YEAR := 2080.0
 const RIPPLE_SLOTS := 8
@@ -115,6 +117,10 @@ func _ready() -> void:
 		brian.name = "Brian"
 		brian.room = self
 		add_child(brian)
+
+
+func character_size() -> float:
+	return CHARACTER_SIZES.get(room_name, 1.0)
 
 
 func _on_year_changed(state: WorldState) -> void:

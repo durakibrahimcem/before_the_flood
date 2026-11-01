@@ -32,8 +32,10 @@ var room: Room:
 		room = value
 		if room != null:
 			pixels_per_metre = room.px_per_m
+			character_size = room.character_size()
 			$Foot.scale = Vector2.ONE * minf(1.0, room.px_per_m / FOOT_PX_PER_M)
 var pixels_per_metre: float = 200.0
+var character_size: float = 1.0
 var height_m: float = 1.3
 var _walked: float = 0.0
 var _walk_pose := 0
@@ -85,7 +87,7 @@ func _step(depth: float) -> void:
 		Sfx.play("step_dry")
 		return
 	Sfx.play("step_wet")
-	var wet_m := minf(depth, height_m * (1.0 - SHOULDER_SHARE))
+	var wet_m := minf(depth, _drawn_height_m() * (1.0 - SHOULDER_SHARE))
 	room.add_ripple(position - Vector2(0.0, wet_m * pixels_per_metre))
 
 
@@ -103,7 +105,7 @@ func _current_pose() -> Texture2D:
 func _show_pose(pose: Texture2D) -> void:
 	body_sprite.texture = pose
 	body_sprite.offset = Vector2(-pose.get_width() * 0.5, -pose.get_height())
-	body_sprite.scale = Vector2.ONE * height_m * pixels_per_metre / pose.get_height()
+	body_sprite.scale = Vector2.ONE * _drawn_height_m() * pixels_per_metre / pose.get_height()
 
 
 func _on_year_changed(_state: WorldState) -> void:
@@ -114,5 +116,9 @@ func _on_year_changed(_state: WorldState) -> void:
 
 
 func _set_waterline(depth: float) -> void:
-	var above := maxf(1.0 - depth / height_m, SHOULDER_SHARE)
+	var above := maxf(1.0 - depth / _drawn_height_m(), SHOULDER_SHARE)
 	(body_sprite.material as ShaderMaterial).set_shader_parameter("waterline", above)
+
+
+func _drawn_height_m() -> float:
+	return height_m * character_size

@@ -118,6 +118,7 @@ func _ready() -> void:
 	await _check_characters(main)
 	await _check_planting(main)
 	await _check_bowls(main)
+	await _check_character_size(main)
 	await _check_doors(main)
 	await _check_paper_delay(main)
 	await _check_large_text(main)
@@ -248,13 +249,13 @@ func _check_characters(main: Main) -> void:
 	await _frames(1)
 	assert(main.arda.body_sprite.texture == Arda.ADULT_IDLE, "Arda is grown up in 2050")
 	var grown: float = main.arda.body_sprite.scale.y * Arda.ADULT_IDLE.get_height()
-	assert(is_equal_approx(grown, 1.75 * main.room.px_per_m), "Arda stands at their grown height, got %f" % grown)
+	assert(is_equal_approx(grown, 1.75 * main.room.px_per_m * main.room.character_size()), "Arda stands at their grown height, got %f" % grown)
 	await _check_grown_walk(main, "move_right", Arda.ADULT_WALK, Arda.ADULT_IDLE, 1.75)
 	WorldClock.scrub(2080.0)
 	await _frames(1)
 	assert(main.arda.body_sprite.texture == Arda.OLD_IDLE, "Arda is old in 2080")
 	var old: float = main.arda.body_sprite.scale.y * Arda.OLD_IDLE.get_height()
-	assert(is_equal_approx(old, 1.7 * main.room.px_per_m), "Arda stands at their old height, got %f" % old)
+	assert(is_equal_approx(old, 1.7 * main.room.px_per_m * main.room.character_size()), "Arda stands at their old height, got %f" % old)
 	await _check_grown_walk(main, "move_left", Arda.OLD_WALK, Arda.OLD_IDLE, 1.7)
 	WorldClock.scrub(2026.0)
 	await _physics(2)
@@ -364,6 +365,29 @@ func _check_doors(main: Main) -> void:
 
 
 ## Brian's bowls need filling once a day, and they stay empty in the years he is gone.
+## Everyone grows together, the water still meets the wall at the right height, and the feet stay put.
+func _check_character_size(main: Main) -> void:
+	WorldClock.scrub(2026.0)
+	main.enter_room("salon", Vector2(1000, 690))
+	await _frames(2)
+	assert(main.room.character_size() > 1.0, "people are drawn larger than the painted scale")
+	var ayla: Ayla = main.room.get_node("Ayla")
+	var arda_tall: float = main.arda.body_sprite.scale.y * main.arda.body_sprite.texture.get_height()
+	var ayla_sprite: Sprite2D = ayla.get_child(0)
+	var ayla_tall: float = ayla_sprite.scale.y * ayla_sprite.texture.get_height()
+	assert(is_equal_approx(ayla_tall / arda_tall, 1.65 / 1.3), "Ayla keeps her height next to Arda")
+	var foot: Vector2 = main.arda.get_node("Foot").scale
+	assert(is_equal_approx(foot.x, 1.0), "a bigger Arda keeps the same feet, so no path changes")
+	WorldClock.scrub(2080.0)
+	await _physics(2)
+	var depth: float = main.room.depth_at(main.arda.global_position)
+	var drawn_m: float = main.arda.height_m * main.room.character_size()
+	var line: float = (main.arda.body_sprite.material as ShaderMaterial).get_shader_parameter("waterline")
+	assert(is_equal_approx(line, 1.0 - depth / drawn_m), "the waterline follows the drawn size, got %f" % line)
+	WorldClock.scrub(2026.0)
+	await _frames(1)
+
+
 func _check_grown_walk(main: Node, action: String, walk: Array[Texture2D], idle: Texture2D, height_m: float) -> void:
 	var poses := {}
 	Input.action_press(action)
@@ -371,7 +395,7 @@ func _check_grown_walk(main: Node, action: String, walk: Array[Texture2D], idle:
 		await _physics(1)
 		poses[main.arda.body_sprite.texture] = true
 		var tall: float = main.arda.body_sprite.scale.y * main.arda.body_sprite.texture.get_height()
-		assert(is_equal_approx(tall, height_m * main.room.px_per_m), "Arda keeps their height mid-stride, got %f" % tall)
+		assert(is_equal_approx(tall, height_m * main.room.px_per_m * main.room.character_size()), "Arda keeps their height mid-stride, got %f" % tall)
 	Input.action_release(action)
 	assert(poses.has(walk[0]) and poses.has(walk[1]), "the grown walk poses swap")
 	await _physics(3)
@@ -495,7 +519,7 @@ func _check_outdoors(main: Main) -> void:
 	WorldClock.scrub(2026.0)
 	main.enter_room("street", Vector2(702, 460))
 	await _frames(2)
-	assert(main.arda.height_m * main.arda.pixels_per_metre < 110.0, "Arda fits the painted door")
+	assert(main.arda.body_sprite.scale.y * main.arda.body_sprite.texture.get_height() > 150.0, "Arda reads clearly on the street")
 	assert(main.room.has_node("Home") and main.room.has_node("Neighbour"), "the street has the family's home and one neighbour")
 	await get_tree().create_timer(0.3).timeout
 	assert(main.room.get_node("ToShore")._label.modulate.a > 0.5, "the way to the shore is named from anywhere on the street")

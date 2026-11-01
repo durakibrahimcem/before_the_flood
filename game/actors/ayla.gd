@@ -23,7 +23,7 @@ func _ready() -> void:
 	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	sprite.centered = false
 	sprite.offset = Vector2(-ART.get_width() * 0.5, -ART.get_height())
-	sprite.scale = Vector2.ONE * HEIGHT_M * room.px_per_m / ART.get_height()
+	sprite.scale = Vector2.ONE * HEIGHT_M * room.character_size() * room.px_per_m / ART.get_height()
 	_material = ShaderMaterial.new()
 	_material.shader = ACTOR_SHADER
 	sprite.material = _material
@@ -42,5 +42,5 @@ func _ready() -> void:
 func _on_year_changed(state: WorldState) -> void:
 	visible = WorldClock.nearest_era() <= LAST_ERA and state.home_alive.get("own", true)
 	_foot.set_deferred("disabled", not visible)
-	var above := maxf(1.0 - room.depth_at(position) / HEIGHT_M, SHOULDER_SHARE)
+	var above := maxf(1.0 - room.depth_at(position) / (HEIGHT_M * room.character_size()), SHOULDER_SHARE)
 	_material.set_shader_parameter("waterline", above)

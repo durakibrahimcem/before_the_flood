@@ -24,7 +24,7 @@ func _ready() -> void:
 	_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	_sprite.centered = false
 	_sprite.offset = Vector2(-IDLE.get_width() * 0.5, -IDLE.get_height())
-	_sprite.scale = Vector2.ONE * HEIGHT_M * room.px_per_m / IDLE.get_height()
+	_sprite.scale = Vector2.ONE * HEIGHT_M * room.character_size() * room.px_per_m / IDLE.get_height()
 	_material = ShaderMaterial.new()
 	_material.shader = ACTOR_SHADER
 	_sprite.material = _material
@@ -41,5 +41,5 @@ func _on_year_changed(state: WorldState) -> void:
 	visible = state.year < Room.BOWLS_EMPTY_YEAR
 	_sprite.texture = HAPPY if Run.fed_today() else IDLE
 	_sprite.position.y = -HAPPY_LIFT * _sprite.scale.y if is_happy() else 0.0
-	var above := maxf(1.0 - room.depth_at(position) / HEIGHT_M, SHOULDER_SHARE)
+	var above := maxf(1.0 - room.depth_at(position) / (HEIGHT_M * room.character_size()), SHOULDER_SHARE)
 	_material.set_shader_parameter("waterline", above)
