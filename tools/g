@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Runs Godot 4.7.2 with settings private to this worktree, so parallel missions never collide.
+# Runs Godot 4.7.2 with settings private to this worktree, so parallel runs never collide.
 root=$(git rev-parse --show-toplevel)
 export XDG_CONFIG_HOME="$root/.xdg/config" XDG_DATA_HOME="$root/.xdg/data" XDG_CACHE_HOME="$root/.xdg/cache"
 mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME/godot"

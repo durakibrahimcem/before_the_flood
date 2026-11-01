@@ -20,7 +20,7 @@ The future isn't scripted. It is computed from your plan and the year, and the w
 | Six seawalls | 1.19 m |
 | Best plan: seagrass ×2, meetings ×2, dunes, sorting | 3 cm, and both homes stand |
 
-The coast is fictional and the model is simplified. It shows how choices connect, not what will happen anywhere real. Sea-level curves come from IPCC AR6 data, and the sources are in the game's end screens and the presentation.
+The coast is fictional and the model is simplified. It shows how choices connect, not what will happen anywhere real. Sea-level curves come from IPCC AR6 data, and the sources are in the game's end screens.
 
 ## Controls
 
@@ -41,7 +41,6 @@ To work on the source, install [Godot 4.7.2](https://godotengine.org/), then run
 ```bash
 tools/gate.sh             # runs every check and test scene
 tools/release.sh          # builds the Web and Windows zips into build/release
-tools/film.sh out.mp4     # films the trailer from the real game
 ```
 
 The game is in `game/`. It uses GDScript and the Compatibility renderer, and the Web build is single-threaded.

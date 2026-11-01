@@ -2,9 +2,5 @@
 .xdg/
 build/
 
-# Addons fetched by tools/install_addons.sh
-lab/addons/
-lab/.godot/
-lab/LICENSE*
 game/override.cfg
 tools/__pycache__/
