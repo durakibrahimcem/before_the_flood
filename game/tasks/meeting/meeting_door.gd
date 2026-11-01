@@ -104,7 +104,7 @@ func _build_bubble() -> void:
 	name_label.text = TITLE
 	name_label.position = Vector2(18.0, 10.0)
 	name_label.size = Vector2(BUBBLE_SIZE.x - 36.0, 30.0)
-	name_label.add_theme_font_size_override("font_size", 22)
+	name_label.add_theme_font_size_override("font_size", Settings.sized(22))
 	name_label.add_theme_color_override("font_color", TINT.darkened(0.25))
 	name_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_bubble.add_child(name_label)
@@ -112,7 +112,7 @@ func _build_bubble() -> void:
 	_speech.position = Vector2(18.0, 44.0)
 	_speech.size = Vector2(BUBBLE_SIZE.x - 36.0, BUBBLE_SIZE.y - 58.0)
 	_speech.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_speech.add_theme_font_size_override("font_size", 34)
+	_speech.add_theme_font_size_override("font_size", Settings.sized(34))
 	_speech.add_theme_color_override("font_color", INK)
 	_speech.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_bubble.add_child(_speech)

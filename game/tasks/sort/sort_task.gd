@@ -289,7 +289,7 @@ func _show_verdict(bin: SortBin, correct: bool) -> void:
 	label.pivot_offset = Vector2(LABEL_WIDTH * 0.5, 17.0)
 	label.position = bin.position + VERDICT_LIFT
 	var settings := LabelSettings.new()
-	settings.font_size = 34
+	settings.font_size = Settings.sized(34)
 	settings.font_color = VERDICT_RIGHT if correct else VERDICT_WRONG
 	settings.outline_size = 10
 	settings.outline_color = Color(0.13, 0.11, 0.09, 0.9)
@@ -311,7 +311,7 @@ func _build_carried_label() -> void:
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.custom_minimum_size = Vector2(LABEL_WIDTH, 34.0)
 	var settings := LabelSettings.new()
-	settings.font_size = 26
+	settings.font_size = Settings.sized(26)
 	settings.font_color = Color.WHITE
 	settings.outline_size = 10
 	settings.outline_color = Color(0.13, 0.11, 0.09, 0.9)

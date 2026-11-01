@@ -84,7 +84,7 @@ func _build_card(index: int, x: float) -> void:
 	badge_label.size = badge_panel.size
 	badge_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	badge_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	badge_label.add_theme_font_size_override("font_size", 20)
+	badge_label.add_theme_font_size_override("font_size", Settings.sized(20))
 	badge_label.add_theme_color_override("font_color", INK)
 	badge_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	badge_panel.add_child(badge_label)
@@ -92,7 +92,7 @@ func _build_card(index: int, x: float) -> void:
 	text_label.position = Vector2(20.0, 44.0)
 	text_label.size = Vector2(CARD_SIZE.x - 40.0, CARD_SIZE.y - 58.0)
 	text_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	text_label.add_theme_font_size_override("font_size", 28)
+	text_label.add_theme_font_size_override("font_size", Settings.sized(28))
 	text_label.add_theme_color_override("font_color", INK)
 	text_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	button.add_child(text_label)

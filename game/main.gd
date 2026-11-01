@@ -37,6 +37,7 @@ const SKIP_AFTER_ACTIONS := 2
 const HINT_ROOM_NAMES := { "street": "the street", "shore": "the shore", "salon": "the salon" }
 ## Long enough to see the water before the paper covers it.
 const PAPER_DELAY := 2.0
+const HINT_FONT := 40
 const SHAKE_PIXELS := 18.0
 const SHAKE_STEPS := 8
 const SHAKE_STEP_SECONDS := 0.05
@@ -83,6 +84,7 @@ func _ready() -> void:
 	_verdict = TaskVerdict.new()
 	add_child(_verdict)
 	_build_prompt()
+	Settings.size_text(hint, HINT_FONT)
 	enter_room("bedroom", Vector2.INF)
 	time.enabled = false
 	controls.open()
@@ -145,7 +147,7 @@ func prompt_text() -> String:
 func _build_prompt() -> void:
 	_prompt = Label.new()
 	_prompt.modulate.a = 0.0
-	_prompt.add_theme_font_size_override("font_size", 36)
+	Settings.size_text(_prompt, 36)
 	_prompt.add_theme_color_override("font_color", Door.INK)
 	_prompt.add_theme_color_override("font_outline_color", Door.OUTLINE)
 	_prompt.add_theme_constant_override("outline_size", 10)

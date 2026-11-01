@@ -43,7 +43,7 @@ func _build_line() -> void:
 	var label := Label.new()
 	label.text = line
 	var settings := LabelSettings.new()
-	settings.font_size = 34
+	settings.font_size = Settings.sized(34)
 	settings.font_color = Color.WHITE
 	settings.outline_size = 10
 	settings.outline_color = Color(0.13, 0.11, 0.09, 0.9)

@@ -27,6 +27,7 @@ func _ready() -> void:
 	add_child(_wide_label("Title", "Your plan code", EndPalette.TITLE_SIZE, EndPalette.INK, 150, 226))
 	_code = _wide_label("Code", "-", EndPalette.CODE_SIZE, EndPalette.INK, 258, 392)
 	_line = _wide_label("Line", SHARE_LINE, 28, EndPalette.INK, 420, 470)
+	Settings.size_text(_line, 28)
 	add_child(_code)
 	add_child(_line)
 	var band := CenterContainer.new()
@@ -41,6 +42,7 @@ func _ready() -> void:
 	row.add_theme_constant_override("separation", 18)
 	row.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var friend := _label("FriendLabel", "A friend's code", EndPalette.BODY_SIZE, EndPalette.INK)
+	Settings.size_text(friend, EndPalette.BODY_SIZE)
 	_edit = LineEdit.new()
 	_edit.name = "Edit"
 	_edit.placeholder_text = "code"
@@ -61,6 +63,7 @@ func _ready() -> void:
 	add_child(band)
 	_message = _wide_label("Message", "", EndPalette.BODY_SIZE, EndPalette.INK, 740, 806)
 	_message.visible = false
+	Settings.size_text(_message, EndPalette.BODY_SIZE)
 	add_child(_message)
 
 

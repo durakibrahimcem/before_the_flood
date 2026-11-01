@@ -103,6 +103,7 @@ func _begin() -> void:
 	_carriage_dir = 1.0
 	_gantry.set_carriage_x(_carriage_x)
 	_guide.setup(goal, _block_h, BLOCK_HALF_W, _gantry.rail_bottom_y() + 30.0)
+	_hint.get_node("HintLabel").add_theme_font_size_override("font_size", Settings.sized(34))
 	_hint.show_hint()
 	_spawn_hanging()
 	_state = State.SLIDING

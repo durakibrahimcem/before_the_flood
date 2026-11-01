@@ -57,6 +57,7 @@ func show_result(performance: float, detail: String) -> void:
 	_word.add_theme_color_override("font_color", entry["ink"])
 	_detail.text = detail
 	_detail.visible = detail != ""
+	_fit_card()
 	if _tween != null and _tween.is_valid():
 		_tween.kill()
 	_card.show()
@@ -69,6 +70,13 @@ func show_result(performance: float, detail: String) -> void:
 	_tween.tween_callback(_card.hide)
 
 
+## Larger text may need a larger card, and it stays centred.
+func _fit_card() -> void:
+	_card.size = CARD_SIZE.max(_card.get_combined_minimum_size())
+	_card.position.x = (Room.ROOM_SIZE.x - _card.size.x) * 0.5
+	_card.pivot_offset = _card.size * 0.5
+
+
 func word() -> String:
 	return _word.text if _card.visible else ""
 
@@ -76,6 +84,6 @@ func word() -> String:
 func _line(font_size: int) -> Label:
 	var label := Label.new()
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.add_theme_font_size_override("font_size", font_size)
+	Settings.size_text(label, font_size)
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	return label

@@ -133,7 +133,7 @@ func _show_hint() -> void:
 	hint.pivot_offset = hint.size * 0.5
 	hint.rotation_degrees = -2.0
 	hint.position = Vector2(960.0 - hint.size.x * 0.5, 120.0)
-	hint.add_theme_font_size_override("font_size", 40)
+	hint.add_theme_font_size_override("font_size", Settings.sized(40))
 	hint.add_theme_color_override("font_color", Color(0.45, 0.33, 0.22))
 	hint.add_theme_color_override("font_outline_color", Color(0.99, 0.96, 0.88))
 	hint.add_theme_constant_override("outline_size", 10)

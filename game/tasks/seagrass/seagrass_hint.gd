@@ -34,7 +34,7 @@ func _ready() -> void:
 func _add_label() -> void:
 	var label := Label.new()
 	label.text = "Plant between the waves."
-	label.add_theme_font_size_override("font_size", 44)
+	label.add_theme_font_size_override("font_size", Settings.sized(44))
 	label.add_theme_color_override("font_color", WARM_BROWN)
 	label.add_theme_color_override("font_shadow_color", Color(1.0, 1.0, 0.95, 0.45))
 	label.add_theme_constant_override("shadow_offset_x", 2)

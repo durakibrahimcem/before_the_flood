@@ -18,7 +18,7 @@ func _ready() -> void:
 	assert(screen.title_label.text == "Before the Flood", "the title is right")
 	assert(screen.hint_walk.text == "walk, or use the arrow keys", "walk hint")
 	assert(screen.hint_use.text == "use", "use hint")
-	assert(screen.hint_time.text == "tap to jump through time, hold and move the mouse to scrub", "time hint")
+	assert(screen.hint_time.text == "tap to jump in time, hold to scrub the years", "time hint")
 	assert(screen.hint_pause.text == "pause", "pause hint")
 	var keycaps: Array[Label] = screen.keycap_labels
 	assert(keycaps[0].text == "W" and keycaps[1].text == "A", "W and A keycaps")

@@ -270,7 +270,7 @@ func _build_scene() -> void:
 	_hint.rotation = deg_to_rad(-2.0)
 	_hint.modulate.a = 0.0
 	_hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_hint.add_theme_font_size_override("font_size", 34)
+	_hint.add_theme_font_size_override("font_size", Settings.sized(34))
 	_hint.add_theme_color_override("font_color", CRAYON)
 	add_child(_hint)
 	_close_label = Label.new()
@@ -280,7 +280,7 @@ func _build_scene() -> void:
 	_close_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_close_label.visible = false
 	_close_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_close_label.add_theme_font_size_override("font_size", 34)
+	_close_label.add_theme_font_size_override("font_size", Settings.sized(34))
 	_close_label.add_theme_color_override("font_color", AMBER)
 	add_child(_close_label)
 	_claim_walker()

@@ -120,6 +120,7 @@ func _ready() -> void:
 	await _check_bowls(main)
 	await _check_doors(main)
 	await _check_paper_delay(main)
+	await _check_large_text(main)
 	await _check_pause_over_scrub(main)
 	await _check_ayla_blocks(main)
 	await _check_flow(main)
@@ -164,6 +165,26 @@ func _check_verdicts() -> void:
 	assert(TaskVerdict.entry_for(0.8)["word"] == "Great job!", "a strong task is great")
 	assert(TaskVerdict.entry_for(0.5)["word"] == "Good work.", "half is good")
 	assert(TaskVerdict.entry_for(0.0)["word"] == "That went badly.", "nothing done is bad")
+
+
+## Larger text reaches the hint line, the prompts, door names and the verdict card.
+func _check_large_text(main: Main) -> void:
+	main.enter_room("salon", Vector2(900, 700))
+	await _frames(1)
+	var door: Label = main.room.get_node("ToStreet")._label
+	var normal_door := door.get_theme_font_size("font_size")
+	Settings.set_options(false, true)
+	await _frames(1)
+	assert(main.hint.get_theme_font_size("font_size") > Main.HINT_FONT, "the hint line grows")
+	assert(door.get_theme_font_size("font_size") > normal_door, "door names grow")
+	main._verdict.show_result(0.3, "2 of 8 sorted")
+	await _frames(2)
+	var card: PanelContainer = main._verdict._card
+	assert(card.get_rect().get_center().x > 950.0 and card.get_rect().get_center().x < 970.0, "the verdict card stays centred")
+	assert(card.size.x <= Room.ROOM_SIZE.x, "the verdict card fits")
+	Settings.set_options(false, false)
+	await _frames(1)
+	assert(door.get_theme_font_size("font_size") == normal_door, "door names shrink back")
 
 
 ## Esc during a scrub leaves a pause menu that stays open.

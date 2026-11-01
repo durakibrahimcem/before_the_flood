@@ -39,7 +39,7 @@ func _build_label() -> void:
 	_label = Label.new()
 	_label.text = "Sorted 0 / 0"
 	var settings := LabelSettings.new()
-	settings.font_size = 26
+	settings.font_size = Settings.sized(26)
 	settings.font_color = Color.WHITE
 	settings.outline_size = 8
 	settings.outline_color = Color(0.13, 0.11, 0.09, 0.9)

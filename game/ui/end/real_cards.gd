@@ -37,7 +37,7 @@ func _ready() -> void:
 	var link := LinkButton.new()
 	link.name = "Link"
 	link.text = LINK_TEXT
-	link.add_theme_font_size_override("font_size", EndPalette.BODY_SIZE)
+	Settings.size_text(link, EndPalette.BODY_SIZE)
 	link.add_theme_color_override("font_color", EndPalette.CRAYON)
 	link.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	link.pressed.connect(func() -> void: OS.shell_open(LEARN_URL))
@@ -68,6 +68,8 @@ func _make_card(index: int) -> PanelContainer:
 	inner.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var title := _label("Title", String(CARD_TITLES[index]), EndPalette.CARD_TITLE_SIZE, EndPalette.INK)
 	var body := _label("Body", String(CARD_BODIES[index]), 28, EndPalette.INK)
+	Settings.size_text(title, EndPalette.CARD_TITLE_SIZE)
+	Settings.size_text(body, 28)
 	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	inner.add_child(title)

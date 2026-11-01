@@ -33,7 +33,7 @@ func _ready() -> void:
 	_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_label.z_index = 2
 	_label.modulate.a = 0.0
-	_label.add_theme_font_size_override("font_size", 36)
+	Settings.size_text(_label, 36)
 	_label.add_theme_color_override("font_color", INK)
 	_label.add_theme_color_override("font_outline_color", OUTLINE)
 	_label.add_theme_constant_override("outline_size", 10)

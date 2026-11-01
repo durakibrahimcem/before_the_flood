@@ -21,6 +21,8 @@ func _ready() -> void:
 	_number = _wide_label("Number", "-", EndPalette.RANK_SIZE, EndPalette.INK, 255, 440)
 	_caption = _wide_label("Caption", "", EndPalette.BODY_SIZE, EndPalette.INK, 650, 710)
 	_sub = _wide_label("Sub", SUB_LINE, 28, EndPalette.FADED, 452, 500)
+	Settings.size_text(_caption, EndPalette.BODY_SIZE)
+	Settings.size_text(_sub, 28)
 	add_child(_number)
 	add_child(_sub)
 	add_child(_caption)

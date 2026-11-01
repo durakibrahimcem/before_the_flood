@@ -96,7 +96,7 @@ theme_override_constants/separation = 10
 
 [node name="hint_time" type="Label" parent="Sheet/Center/Column/Rows/TimeRow"]
 layout_mode = 2
-text = "tap to jump through time, hold and move the mouse to scrub"
+text = "tap to jump in time, hold to scrub the years"
 vertical_alignment = 1
 
 [node name="PauseRow" type="HBoxContainer" parent="Sheet/Center/Column/Rows"]
