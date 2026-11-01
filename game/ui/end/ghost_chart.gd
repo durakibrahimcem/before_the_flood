@@ -11,10 +11,15 @@ const TICK_LABELS := ["0", "0.5", "1", "1.5", "2 m"]
 const CHILD_MARKS := [[0.95, "3"], [1.30, "8"]]
 const WAVE_AMPLITUDE := 2.5
 const WAVE_STEP := 12.0
+## One mark's own arrival, and the quiet gap before the next one.
+const MARK_SECONDS := 0.3
+const MARK_STAGGER := 0.08
 
 var depths: Array[float] = []
 
+var _reveal := 0.0
 var _card: StyleBoxFlat
+var _entrance: Tween
 
 
 func _init() -> void:
@@ -31,6 +36,35 @@ func _ready() -> void:
 
 func set_depths(values: Array[float]) -> void:
 	depths.assign(values)
+	_reveal = float(depths.size())
+	queue_redraw()
+
+
+## Every mark back at once, so a skip or a calm storm leaves nothing half drawn.
+func rest_marks() -> void:
+	_reveal = float(depths.size())
+	queue_redraw()
+
+
+func marks_fully_shown() -> bool:
+	return _reveal >= float(depths.size())
+
+
+## The marks arrive one by one, oldest first, the bright newest one last.
+func reveal_marks(delay := 0.0) -> Tween:
+	if _entrance != null and _entrance.is_valid():
+		_entrance.kill()
+	_reveal = 0.0
+	queue_redraw()
+	var count := float(depths.size())
+	_entrance = create_tween()
+	_entrance.tween_method(_set_reveal, 0.0, count, MARK_SECONDS + MARK_STAGGER * maxf(count - 1.0, 0.0)) \
+		.set_delay(delay)
+	return _entrance
+
+
+func _set_reveal(value: float) -> void:
+	_reveal = value
 	queue_redraw()
 
 
@@ -55,12 +89,15 @@ func _draw() -> void:
 		draw_string(font, Vector2(axis_x + 20.0, mark_y + 5.0), String(mark[1]), HORIZONTAL_ALIGNMENT_LEFT, -1.0, 20, EndPalette.FADED)
 	var newest := newest_index()
 	for i: int in depths.size():
+		var arrival := smoothstep(0.0, 1.0, clampf(_reveal - float(i), 0.0, 1.0))
+		if arrival <= 0.0:
+			continue
 		var line := _wave(_y(depths[i]))
 		if i == newest:
-			draw_polyline(line, EndPalette.CRAYON, 4.0)
-			draw_string(font, Vector2(size.x - PAD_RIGHT - 84.0, _y(depths[i]) - 10.0), "%.2f m" % depths[i], HORIZONTAL_ALIGNMENT_RIGHT, 80.0, 20, EndPalette.CRAYON)
+			draw_polyline(line, Color(EndPalette.CRAYON, arrival), 4.0)
+			draw_string(font, Vector2(size.x - PAD_RIGHT - 84.0, _y(depths[i]) - 10.0), "%.2f m" % depths[i], HORIZONTAL_ALIGNMENT_RIGHT, 80.0, 20, Color(EndPalette.CRAYON, arrival))
 		else:
-			draw_polyline(line, EndPalette.TEAL_OLD, 2.0)
+			draw_polyline(line, Color(EndPalette.TEAL_OLD, arrival), 2.0)
 
 
 func _y(metres: float) -> float:

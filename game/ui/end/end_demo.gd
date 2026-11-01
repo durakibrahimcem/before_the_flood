@@ -31,9 +31,14 @@ var retry_count := 0
 var loaded_codes: Array[String] = []
 var seq: EndSequence
 var _plans: Array = []
+var _calm_before := false
+var _large_before := false
 
 
 func _ready() -> void:
+	_calm_before = Settings.calm_storm
+	_large_before = Settings.large_text
+	Settings.set_options(false, false)
 	seq = SEQUENCE.instantiate()
 	add_child(seq)
 	seq.retry_requested.connect(_on_retry)
@@ -74,6 +79,7 @@ func _ready() -> void:
 		return
 
 	seq.next.pressed.emit()
+	check(not seq.chart.marks_fully_shown(), "the chart marks arrive one by one")
 	await _frames(2)
 	check(seq.step_index() == 2, "Next advances to the ghost step")
 	check(seq.steps[2].visible, "the ghost step is visible")
@@ -208,6 +214,61 @@ func _ready() -> void:
 		_finish()
 		return
 
+	## Each step has its own small entrance, right after it appears.
+	Run.plan = Plan.from_code("3AT")
+	Run.ghosts.assign([0.9, 1.3, 0.371])
+	seq.play(Sim.outcome(Run.plan))
+	seq.click.pressed.emit()
+	check(is_equal_approx(seq.rank_card.scale.x, RankCard.SETTLE_FROM), "the rank card starts its settle a touch small")
+	check(seq.steps[1].modulate.a == 0.0, "the rank step still fades in from hidden")
+	seq.click.pressed.emit()
+	check(not seq.chart.marks_fully_shown(), "the chart holds its marks back at first")
+	check(seq.ghost_caption.modulate.a == 0.0, "the ghost caption waits with the marks")
+	seq.click.pressed.emit()
+	var staggered_card := seq.get_node("Steps/RealStep/Box/Grid/Card0") as Control
+	check(staggered_card != null and staggered_card.modulate.a == 0.0, "the real cards stagger in from hidden")
+	seq.click.pressed.emit()
+	var settle_code := seq.get_node("Steps/ShareStep/Code") as Control
+	check(settle_code != null and settle_code.modulate.a == 0.0, "the plan code fades in")
+	check(settle_code != null and is_equal_approx(settle_code.scale.x, ShareCard.CODE_SETTLE_FROM), "the plan code settles a touch small")
+	seq.click.pressed.emit()
+	check(seq.retry_button.modulate.a == 0.0, "the retry button arrives last")
+	if failed:
+		_finish()
+		return
+
+	## Calm storm keeps every entrance a plain fade.
+	Settings.set_options(true, false)
+	seq.play(Sim.outcome(Run.plan))
+	seq.click.pressed.emit()
+	check(seq.rank_card.scale == Vector2.ONE, "calm storm keeps the rank from settling smaller")
+	check(seq.steps[1].modulate.a == 0.0, "the calm rank step still fades in from hidden")
+	seq.click.pressed.emit()
+	check(seq.chart.marks_fully_shown(), "calm storm shows every mark at once")
+	seq.click.pressed.emit()
+	var calm_card := seq.get_node("Steps/RealStep/Box/Grid/Card0") as Control
+	check(calm_card != null and calm_card.modulate.a == 1.0, "calm storm keeps the cards plainly visible")
+	if failed:
+		_finish()
+		return
+
+	## Larger text must not break the sequence or its layout.
+	Settings.set_options(false, true)
+	seq.play(Sim.outcome(Run.plan))
+	await _frames(2)
+	check(seq.ending_caption.get_theme_font_size("font_size") == Settings.sized(38), "the ending caption grows under larger text")
+	seq.click.pressed.emit()
+	await _frames(2)
+	check(seq.step_index() == 1, "larger text still reaches the rank step")
+	var big_caption := seq.get_node("Steps/RankStep/Caption") as Label
+	var big_number := seq.get_node("Steps/RankStep/Number") as Label
+	check(big_caption != null and big_caption.get_theme_font_size("font_size") == Settings.sized(EndPalette.BODY_SIZE), "the rank caption grows under larger text")
+	check(big_number != null and big_number.text == "1", "the rank number still reads 1 under larger text")
+	Settings.set_options(false, false)
+	if failed:
+		_finish()
+		return
+
 	Run.plan = Plan.from_code("3AT")
 	Run.ghosts.assign([0.9, 1.3])
 	seq.play(Sim.outcome(Run.plan))
@@ -227,6 +288,7 @@ func check(condition: bool, msg: String) -> void:
 
 
 func _finish() -> void:
+	Settings.set_options(_calm_before, _large_before)
 	if failed:
 		print("DEMO FAIL: %d checks failed" % fail_count)
 		get_tree().quit(1)

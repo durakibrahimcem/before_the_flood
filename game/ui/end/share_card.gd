@@ -9,12 +9,19 @@ const NO_CODE_LINE := "Finish all six choices to get a code of your own."
 const BAD_CODE_MESSAGE := "That code doesn't match a plan. Check the three letters."
 const LOADED_MESSAGE := "Loaded. Their future is ready."
 const FADE_SECONDS := 0.35
+## The code settles like the rank does; the rest follows it a breath later.
+const ARRIVE_SECONDS := 0.32
+const CODE_SETTLE_FROM := 0.98
+const CODE_SETTLE_SECONDS := 0.45
+const FOLLOW_STAGGER := 0.08
 
 var _code: Label
 var _line: Label
 var _message: Label
 var _edit: LineEdit
 var _fade: Tween
+var _enter_order: Array[Control] = []
+var _entrance: Tween
 # Plan.from_code is slow, so the codes are warmed one per frame and every
 # answer is cached. Uncached text still validates through Plan.from_code.
 var _cache: Dictionary = {}
@@ -24,12 +31,14 @@ var _warm_index := 0
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(_wide_label("Title", "Your plan code", EndPalette.TITLE_SIZE, EndPalette.INK, 150, 226))
+	var title := _wide_label("Title", "Your plan code", EndPalette.TITLE_SIZE, EndPalette.INK, 150, 226)
+	add_child(title)
 	_code = _wide_label("Code", "-", EndPalette.CODE_SIZE, EndPalette.INK, 258, 392)
 	_line = _wide_label("Line", SHARE_LINE, 28, EndPalette.INK, 420, 470)
 	Settings.size_text(_line, 34)
 	add_child(_code)
 	add_child(_line)
+	_enter_order = [title, _code, _line]
 	var band := CenterContainer.new()
 	band.name = "RowCenter"
 	band.anchor_left = 0.0
@@ -61,10 +70,41 @@ func _ready() -> void:
 	row.add_child(load_button)
 	band.add_child(row)
 	add_child(band)
+	_enter_order.append(band)
 	_message = _wide_label("Message", "", EndPalette.BODY_SIZE, EndPalette.INK, 740, 806)
 	_message.visible = false
 	Settings.size_text(_message, EndPalette.BODY_SIZE)
 	add_child(_message)
+
+
+## Back to rest, so a quick skip leaves the card whole.
+func rest_entrance() -> void:
+	for node: Control in _enter_order:
+		node.modulate.a = 1.0
+	_code.scale = Vector2.ONE
+
+
+## The title opens, the code settles, then the line and the friend's box follow.
+func play_entrance() -> Tween:
+	if _entrance != null and _entrance.is_valid():
+		_entrance.kill()
+	for node: Control in _enter_order:
+		node.modulate.a = 0.0
+	_code.pivot_offset = _code.size * 0.5
+	_code.scale = Vector2.ONE * CODE_SETTLE_FROM
+	_entrance = create_tween()
+	_entrance.set_parallel(true)
+	_entrance.tween_property(_enter_order[0], "modulate:a", 1.0, ARRIVE_SECONDS) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	_entrance.tween_property(_code, "modulate:a", 1.0, ARRIVE_SECONDS).set_delay(FOLLOW_STAGGER) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	_entrance.tween_property(_code, "scale", Vector2.ONE, CODE_SETTLE_SECONDS).set_delay(FOLLOW_STAGGER) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	_entrance.tween_property(_line, "modulate:a", 1.0, ARRIVE_SECONDS).set_delay(FOLLOW_STAGGER * 2.0) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	_entrance.tween_property(_enter_order[3], "modulate:a", 1.0, ARRIVE_SECONDS).set_delay(FOLLOW_STAGGER * 3.0) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	return _entrance
 
 
 func set_code(code: String) -> void:

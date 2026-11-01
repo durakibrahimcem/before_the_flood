@@ -14,6 +14,12 @@ const CARD_BODIES: Array[String] = [
 	"Well-built walls can protect dense cities. Ours failed because it was built fast and then neglected. Its harm to the meadow is a simplified game rule.",
 	"The country is fictional and the model is simplified. It shows how choices connect, not what will happen anywhere real. COP 31 topics: seas, resilient cities, zero waste, climate education.",
 ]
+## The cards stagger in, one breath apart, in reading order.
+const ARRIVE_SECONDS := 0.3
+const ARRIVE_STAGGER := 0.06
+
+var _enter_order: Array[Control] = []
+var _entrance: Tween
 
 
 func _ready() -> void:
@@ -33,7 +39,9 @@ func _ready() -> void:
 	grid.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	grid.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	for i: int in CARD_TITLES.size():
-		grid.add_child(_make_card(i))
+		var card := _make_card(i)
+		grid.add_child(card)
+		_enter_order.append(card)
 	var link := LinkButton.new()
 	link.name = "Link"
 	link.text = LINK_TEXT
@@ -49,6 +57,29 @@ func _ready() -> void:
 	box.add_child(link)
 	box.add_child(credits)
 	add_child(box)
+	_enter_order.push_front(heading)
+	_enter_order.append(link)
+	_enter_order.append(credits)
+
+
+## Back to rest, so a quick skip leaves every card whole.
+func rest_entrance() -> void:
+	for node: Control in _enter_order:
+		node.modulate.a = 1.0
+
+
+func play_entrance() -> Tween:
+	if _entrance != null and _entrance.is_valid():
+		_entrance.kill()
+	for node: Control in _enter_order:
+		node.modulate.a = 0.0
+	_entrance = create_tween()
+	_entrance.set_parallel(true)
+	for i: int in _enter_order.size():
+		_entrance.tween_property(_enter_order[i], "modulate:a", 1.0, ARRIVE_SECONDS) \
+			.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE) \
+			.set_delay(float(i) * ARRIVE_STAGGER)
+	return _entrance
 
 
 func _make_card(index: int) -> PanelContainer:
