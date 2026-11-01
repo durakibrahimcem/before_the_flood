@@ -8,6 +8,7 @@ const CHOICES: Array[String] = ["grass", "grass", "dune", "sort", "meet", "meet"
 func _ready() -> void:
 	var main: Main = MAIN.instantiate()
 	main.auto_tasks = true
+	main.paper_delay = 0.0
 	add_child(main)
 	await _frames(3)
 	main.controls.started.emit()

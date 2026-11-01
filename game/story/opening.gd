@@ -8,6 +8,8 @@ const DRAW_SPOT := Vector2(722, 560)
 const DRAW_REACH := 240.0
 const GREETING_SECONDS := 2.5
 const CAPTION_SECONDS := 1.2
+const SKIP_NOTE := "Press Tab to skip this."
+const TODAY_LINE := "Go to the salon, and open the calendar on the fridge."
 
 var main: Main
 var _can_draw: bool = false
@@ -16,9 +18,9 @@ var _drew: bool = false
 
 func play() -> void:
 	main.time.enabled = false
-	main.hint.text = "Morning, Arda! Brian wants to play."
+	_say("Morning, Arda! Brian wants to play.")
 	await get_tree().create_timer(GREETING_SECONDS).timeout
-	main.hint.text = "Walk to the crayon sun, and press E to draw."
+	_say("Walk to the crayon sun, and press E to draw.")
 	_can_draw = true
 	while not _drew:
 		await get_tree().process_frame
@@ -32,7 +34,18 @@ func play() -> void:
 	main.hint.text = "This is what happens if nothing changes. Hold T, and drag back to today."
 	while not is_equal_approx(WorldClock.year, WorldClock.ERAS[0]) or main.time.scrubbing:
 		await get_tree().process_frame
-	main.hint.text = "It isn't too late. Go to the salon, and open the calendar on the fridge."
+	main.hint.text = "It isn't too late. %s" % TODAY_LINE
+	finished.emit()
+
+
+## Someone back for another go shouldn't have to sit through the morning again.
+func _say(line: String) -> void:
+	main.hint.text = "%s %s" % [line, SKIP_NOTE] if main.is_replay() else line
+
+
+func skip() -> void:
+	main.hint.text = TODAY_LINE
+	main.time.enabled = true
 	finished.emit()
 
 
@@ -42,6 +55,9 @@ func draw_now() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if _can_draw and event.is_action_pressed("interact") and main.arda.position.distance_to(DRAW_SPOT) <= DRAW_REACH:
+	if not _drew and event.is_action_pressed("skip") and main.is_replay():
+		get_viewport().set_input_as_handled()
+		skip()
+	elif _can_draw and event.is_action_pressed("interact") and main.arda.position.distance_to(DRAW_SPOT) <= DRAW_REACH:
 		get_viewport().set_input_as_handled()
 		draw_now()

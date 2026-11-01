@@ -34,6 +34,7 @@ var height_m: float = 1.3
 var _walked: float = 0.0
 var _walk_pose := 0
 var _stepped_at: float = -STRIDE
+var _up_latched := false
 
 @onready var body_sprite: Sprite2D = $Sprite
 
@@ -45,7 +46,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var direction := Vector2.ZERO if frozen else Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var direction := _walk_direction()
 	var depth := room.depth_at(global_position) if room != null else 0.0
 	velocity = direction * speed * wade_factor(depth)
 	move_and_slide()
@@ -59,6 +60,20 @@ func _physics_process(delta: float) -> void:
 		body_sprite.flip_h = direction.x < 0.0
 	body_sprite.position.y = -absf(sin(_walked * BOB_SPEED)) * BOB_HEIGHT * pixels_per_metre / FOOT_PX_PER_M
 	_set_waterline(depth)
+
+
+## Ignores a W still held from the last door, so it can't walk Arda straight back through.
+func latch_up() -> void:
+	_up_latched = Input.is_action_pressed("move_up")
+
+
+func _walk_direction() -> Vector2:
+	_up_latched = _up_latched and Input.is_action_pressed("move_up")
+	if frozen:
+		return Vector2.ZERO
+	if _up_latched:
+		return Vector2(Input.get_axis("move_left", "move_right"), Input.get_action_strength("move_down")).limit_length()
+	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 
 func _step(depth: float) -> void:

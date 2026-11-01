@@ -2,11 +2,21 @@ extends Node
 ## Gate 2: walks through the rooms and time controls with a scripted bot.
 
 const MAIN := preload("res://main.tscn")
+## Every door walked through with W: from, to, and where the door stands.
+const UP_DOORS: Array[Array] = [
+	["bedroom", "salon", Vector2(1253, 535)],
+	["aylin", "salon", Vector2(312, 535)],
+	["salon", "bedroom", Vector2(804, 549)],
+	["salon", "aylin", Vector2(1152, 549)],
+	["salon", "street", Vector2(284, 549)],
+	["street", "salon", Vector2(702, 392)],
+]
 
 
 func _ready() -> void:
 	var main: Main = MAIN.instantiate()
 	main.auto_tasks = true
+	main.paper_delay = 0.0
 	add_child(main)
 	await _frames(3)
 	var time: TimeControl = main.get_node("TimeControl")
@@ -108,6 +118,8 @@ func _ready() -> void:
 	await _check_characters(main)
 	await _check_planting(main)
 	await _check_bowls(main)
+	await _check_doors(main)
+	await _check_paper_delay(main)
 	await _check_flow(main)
 	await _check_outdoors(main)
 	print("DEMO PASS")
@@ -214,6 +226,69 @@ func _check_planting(main: Main) -> void:
 	await _frames(1)
 	Run.new_run()
 	assert(Run.planted.is_empty(), "a new run starts with empty planters")
+
+
+## The flood gets a moment on screen before the newspaper covers it.
+func _check_paper_delay(main: Main) -> void:
+	Run.new_run()
+	WorldClock.scrub(2026.0)
+	main.newspaper.hide()
+	main.paper_delay = Main.PAPER_DELAY
+	main.time.enabled = true
+	main._seen_papers.clear()
+	WorldClock.jump(2080)
+	await get_tree().create_timer(1.0).timeout
+	assert(not main.newspaper.visible, "no paper yet at 1 second")
+	assert(main.arda.frozen and not main.time.enabled, "Arda and the clock wait for the paper")
+	await get_tree().create_timer(Main.PAPER_DELAY - 1.0 + 0.3).timeout
+	assert(main.newspaper.visible, "the paper arrives after the delay")
+	main.newspaper._close()
+	await _frames(2)
+	assert(not main.arda.frozen and main.time.enabled, "dismissing frees Arda and the clock")
+	main.paper_delay = 0.0
+	WorldClock.scrub(2026.0)
+	await _frames(1)
+	Run.new_run()
+
+
+## A key still held after a door must not walk Arda back through it, and S must work at once.
+func _check_doors(main: Main) -> void:
+	Run.new_run()
+	WorldClock.scrub(2026.0)
+	main.newspaper.hide()
+	for door_way: Array in UP_DOORS:
+		var from: String = door_way[0]
+		var to: String = door_way[1]
+		var door: Vector2 = door_way[2]
+		main.enter_room(from, door + Vector2(0, 110))
+		await _ticks(4)
+		Input.action_press("move_up")
+		var changes := 0
+		var last: String = main.room.room_name
+		for tick: int in 60:
+			await get_tree().physics_frame
+			if main.room.room_name != last:
+				last = main.room.room_name
+				changes += 1
+		assert(changes == 1 and last == to, "W held from %s changed rooms %d times, ending in %s" % [from, changes, last])
+		var stopped: float = main.arda.position.y
+		await _ticks(10)
+		assert(is_equal_approx(main.arda.position.y, stopped), "a held W does nothing after a door")
+		Input.action_press("move_down")
+		await _ticks(6)
+		assert(main.arda.position.y > stopped, "S moves Arda away while W is still held, from %s" % from)
+		Input.action_release("move_down")
+		Input.action_release("move_up")
+		await _ticks(2)
+		Input.action_press("move_up")
+		for tick: int in 40:
+			await get_tree().physics_frame
+			if main.room.room_name == from:
+				break
+		Input.action_release("move_up")
+		assert(main.room.room_name == from, "pressing W again goes back through the door to %s" % from)
+		await _ticks(2)
+	Run.new_run()
 
 
 ## Brian's bowls need filling once a day, and they stay empty in the years he is gone.
@@ -387,6 +462,11 @@ func _check_outdoors(main: Main) -> void:
 func _leave_task(main: Main) -> void:
 	main.task.complete(0.0)
 	await _frames(3)
+
+
+func _ticks(count: int) -> void:
+	for i: int in count:
+		await get_tree().physics_frame
 
 
 func _frames(count: int) -> void:

@@ -35,6 +35,8 @@ const PROMPT_FADE_PER_SECOND := 6.0
 ## A judge may only have minutes, so skipping opens up early.
 const SKIP_AFTER_ACTIONS := 2
 const HINT_ROOM_NAMES := { "street": "the street", "shore": "the shore", "salon": "the salon" }
+## Long enough to see the water before the paper covers it.
+const PAPER_DELAY := 2.0
 const SHAKE_PIXELS := 18.0
 const SHAKE_STEPS := 8
 const SHAKE_STEP_SECONDS := 0.05
@@ -42,6 +44,8 @@ const SHAKE_STEP_SECONDS := 0.05
 ## Tasks finish at once at normal strength. Used by demos and fast replays.
 @export var auto_tasks: bool = false
 
+## Demos set this to zero to keep their pace.
+var paper_delay := PAPER_DELAY
 var room: Room
 var pending_action: String = ""
 var task: Task
@@ -216,6 +220,7 @@ func enter_room(room_name: String, arrive_at: Vector2) -> void:
 func _on_door_used(target_room: String, arrive_at: Vector2) -> void:
 	if task == null:
 		Sfx.play("door")
+		arda.latch_up()
 		enter_room(target_room, arrive_at)
 
 
@@ -230,7 +235,7 @@ func new_run() -> void:
 
 
 func _on_controls_started() -> void:
-	if is_replay() or auto_tasks:
+	if auto_tasks:
 		time.enabled = true
 		hint.text = "Go to the salon, and open the calendar on the fridge."
 		return
@@ -307,10 +312,14 @@ func _on_jumped(era: int) -> void:
 func _open_paper(era: int) -> void:
 	_seen_papers["%s/%d" % [Run.plan.cache_key(), era]] = true
 	time.enabled = false
+	if paper_delay > 0.0:
+		arda.frozen = true
+		await get_tree().create_timer(paper_delay, false).timeout
 	newspaper.show_for(Run.plan, era)
 
 
 func _on_paper_dismissed() -> void:
+	arda.frozen = false
 	if not final_walk:
 		time.enabled = true
 	elif WorldClock.nearest_era() == WorldClock.ERAS[1]:
