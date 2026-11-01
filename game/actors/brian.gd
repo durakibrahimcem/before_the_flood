@@ -5,7 +5,8 @@ extends Node2D
 const IDLE := preload("res://actors/art/brian_idle.png")
 const HAPPY := preload("res://actors/art/brian_happy.png")
 const ACTOR_SHADER := preload("res://water/actor.gdshader")
-const SPOT := Vector2(168, 604)
+## Against the wall behind the bowls, so Arda coming to feed him doesn't stand in front of him.
+const SPOT := Vector2(75, 536)
 const HEIGHT_M := 0.7
 const SHOULDER_SHARE := 0.2
 ## The idle tail hangs below his paws, so the happy pose lifts to keep the paws on the same spot. In art pixels.
