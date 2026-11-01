@@ -156,7 +156,7 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 30
 text = "Try again"
 
-[node name="Skip" type="Button" parent="."]
+[node name="Next" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -176.0
@@ -165,4 +165,4 @@ offset_right = -40.0
 offset_bottom = 104.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 28
-text = "Skip"
+text = "Next"

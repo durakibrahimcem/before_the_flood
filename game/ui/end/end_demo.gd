@@ -41,6 +41,7 @@ func _ready() -> void:
 	seq.code_loaded.connect(_on_code)
 	await _frames(2)
 
+	_check_retry_lines()
 	Run.plan = Plan.from_code("3AT")
 	Run.ghosts.clear()
 	Run.ghosts.append(0.9)
@@ -73,9 +74,9 @@ func _ready() -> void:
 		_finish()
 		return
 
-	seq.skip.pressed.emit()
+	seq.next.pressed.emit()
 	await _frames(2)
-	check(seq.step_index() == 2, "Skip advances to the ghost step")
+	check(seq.step_index() == 2, "Next advances to the ghost step")
 	check(seq.steps[2].visible, "the ghost step is visible")
 	check(seq.chart.depths == [0.9, 1.3, 0.371], "the chart holds the run ghosts, got %s" % str(seq.chart.depths))
 	check(seq.chart.newest_index() == 2, "the newest ghost is the last one")
@@ -250,6 +251,21 @@ func _tap() -> void:
 func _frames(count: int) -> void:
 	for i: int in count:
 		await get_tree().process_frame
+
+
+## A loss says what to try next. A plan that saved everyone gets no advice.
+func _check_retry_lines() -> void:
+	for plan: Plan in Plan.all_plans():
+		var fix := Sim.best_fix(plan)
+		if fix == "" or int(Sim.outcome(plan)["homes"]) >= Sim.ALL_HOMES:
+			continue
+		Run.plan = plan
+		seq.play(Sim.outcome(plan))
+		check(seq.retry_body.text.ends_with(String(EndSequence.TRY_LINES[fix])), "a loss gets a tip, got '%s'" % seq.retry_body.text)
+		break
+	Run.plan = Plan.from_code("3AT")
+	seq.play(Sim.outcome(Run.plan))
+	check(seq.retry_body.text == EndSequence.RETRY_LINE, "a full save gets the plain line, got '%s'" % seq.retry_body.text)
 
 
 func _rank_of(code: String) -> int:

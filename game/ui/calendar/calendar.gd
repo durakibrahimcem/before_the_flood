@@ -25,8 +25,10 @@ const TIPS := {
 const BASE_TITLE_FONT := 46
 const BASE_HINT_FONT := 24
 const BASE_DAY_FONT := 24
-const BASE_CAPTION_FONT := 20
-const BASE_BADGE_FONT := 15
+const BASE_CAPTION_FONT := 26
+const BASE_TIP_FONT := 21
+const BASE_BADGE_FONT := 20
+const PICK_LINE := "Pick a drawing for today. Press 1 to 6, or click. E closes."
 ## Presses that travel further than this count as drags, not clicks.
 const CLICK_SLOP := 12.0
 
@@ -144,7 +146,7 @@ func _build() -> void:
 			var day_slot := DaySlot.new()
 			day_slot.name = "Slot%d" % (day * Run.SLOTS_PER_DAY + index + 1)
 			day_slot.setup(day * Run.SLOTS_PER_DAY + index + 1)
-			day_slot.custom_minimum_size = Vector2(0.0, 210.0)
+			day_slot.custom_minimum_size = Vector2(0.0, 176.0)
 			day_slot.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			day_column.add_child(day_slot)
 			_slots.append(day_slot)
@@ -156,10 +158,10 @@ func _build() -> void:
 	for action: String in Plan.ACTIONS:
 		var card := ActionDrawing.new()
 		card.name = "Drawing%s" % action.capitalize()
-		card.custom_minimum_size = Vector2(0.0, 216.0)
+		card.custom_minimum_size = Vector2(0.0, 284.0)
 		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		tray.add_child(card)
-		card.setup(action, _art_for(action), NAMES[action], TIPS[action])
+		card.setup(action, _art_for(action), NAMES[action], TIPS[action], Plan.ACTIONS.find(action) + 1)
 		card.gui_input.connect(_on_drawing_input.bind(card))
 		_drawings[action] = card
 
@@ -246,7 +248,7 @@ func _refresh() -> void:
 		if card != null:
 			card.count = int(Run.plan.counts.get(action, 0))
 
-	hint_label.text = "Pick a drawing for today." if open_position >= 0 else "The week is full."
+	hint_label.text = PICK_LINE if open_position >= 0 else "The week is full."
 
 
 func _art_for(action: String) -> Texture2D:
@@ -267,7 +269,7 @@ func _apply_text_size() -> void:
 	for action: String in Plan.ACTIONS:
 		var card := _drawings.get(action) as ActionDrawing
 		if card != null:
-			card.set_font_size(Crayon.font_size(BASE_CAPTION_FONT, large), Crayon.font_size(BASE_BADGE_FONT, large))
+			card.set_font_size(Crayon.font_size(BASE_CAPTION_FONT, large), Crayon.font_size(BASE_TIP_FONT, large), Crayon.font_size(BASE_BADGE_FONT, large))
 
 
 func _on_settings_changed() -> void:

@@ -40,7 +40,7 @@ func _ready() -> void:
 		var landed := get_viewport().get_mouse_position().distance_to(target)
 		assert(landed < 0.5, "synthetic motion lands on target for %s" % action)
 		assert(card.hovered, "hovering %s highlights it" % action)
-		assert(card.tooltip_text != "", "%s has a hover tip" % action)
+		assert(card.tip_text() != "", "%s says what it does" % action)
 
 	# 3. Click Seagrass.
 	await _click(calendar.drawing("grass").get_global_rect().get_center())
@@ -85,6 +85,9 @@ func _ready() -> void:
 		assert(calendar.slot(i / 2 + 1, i % 2 + 1).action == week[i], "slot %d shows %s" % [i + 1, week[i]])
 	assert(calendar.open_slot() == null, "no open slot when the week is full")
 	assert(calendar.hint_label.text == "The week is full.", "the hint says the week is full")
+	for action: String in Plan.ACTIONS:
+		assert(calendar.drawing(action).tip_text() == Calendar.TIPS[action], "the card for %s says what it does" % action)
+		assert(calendar.drawing(action).key_number == Plan.ACTIONS.find(action) + 1, "the card for %s shows its key" % action)
 	assert(calendar.drawing("grass").count == 2, "the tray shows the grass repeat count")
 
 	# 7. A full plan ignores picks.

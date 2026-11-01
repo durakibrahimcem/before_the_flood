@@ -215,10 +215,14 @@ func _check_planting(main: Main) -> void:
 	await _frames(2)
 	assert(main.planter_in_reach() == 0, "a planter is in reach")
 	var level := Sim.at(Run.plan, 2080).water_m
+	main.hint.text = "Go to the street."
 	main.plant_tree(main.planter_in_reach())
+	assert(main.hint.text == Main.PLANT_LINE, "planting says so")
 	assert(Run.planted == [0] and Run.plan.total() == 0, "planting uses no calendar slot")
 	assert(Sim.at(Run.plan, 2080).water_m == level, "planting does not change the water")
 	assert(main.planter_in_reach() != 0, "a planted planter is full")
+	await get_tree().create_timer(Main.ASIDE_SECONDS + 0.2).timeout
+	assert(main.hint.text == "Go to the street.", "the objective comes back after planting")
 	WorldClock.scrub(2050.0)
 	await _frames(1)
 	assert(main.planter_in_reach() == -1, "trees are planted today, not in the future")

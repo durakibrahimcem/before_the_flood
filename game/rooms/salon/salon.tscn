@@ -146,6 +146,7 @@ position = Vector2(804.0, 549.0)
 script = ExtResource("2")
 target_room = "bedroom"
 arrive_at = Vector2(1260, 660)
+label_lift = 300.0
 
 [node name="Shape" type="CollisionShape2D" parent="ToBedroom"]
 shape = SubResource("ToBedroom")
@@ -155,6 +156,7 @@ position = Vector2(1152.0, 549.0)
 script = ExtResource("2")
 target_room = "aylin"
 arrive_at = Vector2(312, 640)
+label_lift = 300.0
 
 [node name="Shape" type="CollisionShape2D" parent="ToAylin"]
 shape = SubResource("ToAylin")
@@ -164,6 +166,7 @@ position = Vector2(284.0, 549.0)
 script = ExtResource("2")
 target_room = "street"
 arrive_at = Vector2(702, 460)
+label_lift = 300.0
 
 [node name="Shape" type="CollisionShape2D" parent="ToStreet"]
 shape = SubResource("ToStreet")

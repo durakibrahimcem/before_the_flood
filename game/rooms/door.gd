@@ -8,30 +8,28 @@ const SETTLE_STEPS := 2
 const PLACE_NAMES := {
 	"bedroom": "Arda's room", "aylin": "Ayla's room", "salon": "Salon", "street": "Street", "shore": "Shore",
 }
-const LABEL_REACH_PX := 230.0
 const LABEL_FADE_PER_SECOND := 6.0
 const LABEL_SIZE := Vector2(260, 56)
-const LABEL_OFFSET := Vector2(-130, -92)
+const LABEL_LEFT := -130.0
 const INK := Color(0.97, 0.95, 0.88)
 const OUTLINE := Color(0.2, 0.17, 0.14)
 
 @export var target_room: String = ""
 @export var arrive_at: Vector2 = Vector2.ZERO
+## How far above the door's foot its name sits. High enough to clear a person standing there.
+@export var label_lift := 92.0
 
 var _settling := SETTLE_STEPS
 var _label: Label
-var _always_named := false
 
 
 func _ready() -> void:
 	monitoring = false
 	body_entered.connect(_on_body_entered)
-	# The way out to the next place sits at the edge of the picture, so it stays named.
-	_always_named = target_room in Room.OUTDOOR_ROOMS and (get_parent() as Room).room_name in Room.OUTDOOR_ROOMS
 	_label = Label.new()
 	_label.text = PLACE_NAMES.get(target_room, "")
 	_label.size = LABEL_SIZE
-	_label.position = LABEL_OFFSET
+	_label.position = Vector2(LABEL_LEFT, -label_lift)
 	_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_label.z_index = 2
 	_label.modulate.a = 0.0
@@ -42,11 +40,10 @@ func _ready() -> void:
 	add_child(_label)
 
 
-## Names the place behind this door once Arda is close, because the doors all look alike.
+## Every door stays named, because the doors all look alike. Tasks get the room to themselves.
 func _process(delta: float) -> void:
-	var walker := get_tree().get_first_node_in_group("walker") as Node2D
-	var near := _always_named or (walker != null and walker.global_position.distance_to(global_position) <= LABEL_REACH_PX)
-	_label.modulate.a = move_toward(_label.modulate.a, 1.0 if near else 0.0, LABEL_FADE_PER_SECOND * delta)
+	var goal := 0.0 if (get_parent() as Room).hold_view else 1.0
+	_label.modulate.a = move_toward(_label.modulate.a, goal, LABEL_FADE_PER_SECOND * delta)
 
 
 func _physics_process(_delta: float) -> void:

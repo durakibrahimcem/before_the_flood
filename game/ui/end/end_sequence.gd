@@ -1,6 +1,6 @@
 class_name EndSequence
 extends CanvasLayer
-## The end-of-run sequence. Six quiet steps, advanced by interact, Skip or a click.
+## The end-of-run sequence. Six quiet steps, advanced by interact, Next or a click.
 
 signal retry_requested
 signal code_loaded(code: String)
@@ -12,12 +12,22 @@ const ENDING_CAPTIONS := {
 }
 ## Earned by filling Brian's bowls on all three days.
 const FED_LINE := " Brian never went hungry."
+const RETRY_LINE := "Go back to 2026 and draw a different future."
+## What the sim says would have helped most, so a loss always leaves something to try.
+const TRY_LINES := {
+	"grass": "Next time, plant more seagrass.",
+	"dune": "Next time, plant more of the dunes.",
+	"sort": "Next time, sort more waste.",
+	"light": "Next time, switch off more lights.",
+	"meet": "Next time, talk to more neighbours.",
+	"wall": "Next time, build more of the seawall.",
+}
 const GHOST_CAPTION := "Each mark is a future you tried. The bright one is your newest."
 const GHOST_EMPTY_CAPTION := "No past futures yet. Try again, and the marks begin."
 const FADE_SECONDS := 0.2
 
 @onready var click: Button = $ClickCatch
-@onready var skip: Button = $Skip
+@onready var next: Button = $Next
 @onready var picture: EndingPicture = $Steps/EndingStep/Picture
 @onready var ending_caption: Label = $Steps/EndingStep/Caption
 @onready var rank_card: RankCard = $Steps/RankStep
@@ -25,6 +35,7 @@ const FADE_SECONDS := 0.2
 @onready var ghost_caption: Label = $Steps/GhostStep/Caption
 @onready var share_card: ShareCard = $Steps/ShareStep
 @onready var retry_button: Button = $Steps/RetryStep/Retry
+@onready var retry_body: Label = $Steps/RetryStep/Body
 @onready var steps: Array[Control] = [
 	$Steps/EndingStep,
 	$Steps/RankStep,
@@ -43,7 +54,7 @@ func _ready() -> void:
 	for state: String in ["normal", "hover", "pressed", "disabled", "focus"]:
 		click.add_theme_stylebox_override(state, empty)
 	click.pressed.connect(advance)
-	skip.pressed.connect(advance)
+	next.pressed.connect(advance)
 	retry_button.pressed.connect(_on_retry_pressed)
 	share_card.loaded.connect(_on_code_loaded)
 	for step: Control in steps:
@@ -58,10 +69,18 @@ func play(outcome: Dictionary) -> void:
 	picture.show_outcome(int(outcome.get("homes", 0)))
 	ending_caption.text = String(ENDING_CAPTIONS.get(picture.variant, "")) + (FED_LINE if Run.meals >= Run.DAYS else "")
 	rank_card.show_rank()
+	retry_body.text = _retry_line(int(outcome.get("homes", 0)))
 	chart.set_depths(Run.ghosts)
 	ghost_caption.text = GHOST_EMPTY_CAPTION if Run.ghosts.is_empty() else GHOST_CAPTION
 	share_card.set_code(Run.plan.code())
 	_show(0)
+
+
+func _retry_line(homes: int) -> String:
+	var tip: String = TRY_LINES.get(Sim.best_fix(Run.plan), "")
+	if homes >= Sim.ALL_HOMES or tip == "":
+		return RETRY_LINE
+	return "%s %s" % [RETRY_LINE, tip]
 
 
 func step_index() -> int:

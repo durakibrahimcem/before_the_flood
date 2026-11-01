@@ -109,6 +109,7 @@ position = Vector2(312.0, 535.0)
 script = ExtResource("2")
 target_room = "salon"
 arrive_at = Vector2(1153, 680)
+label_lift = 300.0
 
 [node name="Shape" type="CollisionShape2D" parent="ToSalon"]
 shape = SubResource("ToSalon")

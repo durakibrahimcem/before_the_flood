@@ -3,8 +3,8 @@ extends Control
 ## Where your plan ranks among the 462 possible plans.
 
 const PLANS_PATH := "res://data/plans.json"
-const TITLE := "Your plan"
-const SUB_LINE := "of 462 possible plans"
+const TITLE := "Your plan ranks"
+const SUB_LINE := "of 462 possible plans. 1 is the best."
 const KEEPER_CAPTION := "All 462 futures were tested. Yours is one of the %d that keep every home."
 const OTHER_CAPTION := "All 462 futures were tested. %d keep every home. Yours can be one of them."
 const EMPTY_CAPTION := "Finish all six choices to earn a rank."

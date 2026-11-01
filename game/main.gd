@@ -20,7 +20,7 @@ const TASKS := {
 const FRIDGE := Vector2(1700, 720)
 const FRIDGE_REACH := 260.0
 const FRIDGE_PROMPT := "Press E for the calendar"
-const FRIDGE_PROMPT_SPOT := Vector2(1420, 470)
+const FRIDGE_PROMPT_SPOT := Vector2(1480, 340)
 const PLANT_PROMPT := "Press E to plant a tree"
 const PLANT_PROMPT_LIFT := Vector2(-150, -130)
 const PLANT_REACH := 125.0
@@ -29,7 +29,7 @@ const BOWLS_SPOT := Vector2(90, 585)
 const BOWLS_REACH := 170.0
 const BOWLS_PROMPT := "Press E to feed Brian"
 const BOWLS_LINE := "Brian's bowls are full."
-const BOWLS_PROMPT_SPOT := Vector2(30, 300)
+const BOWLS_PROMPT_SPOT := Vector2(30, 322)
 const ASIDE_SECONDS := 2.5
 const PROMPT_FADE_PER_SECOND := 6.0
 ## A judge may only have minutes, so skipping opens up early.
@@ -55,6 +55,7 @@ var _wall_state: int = WorldState.Wall.NONE
 var _skipping := false
 var _verdict: TaskVerdict
 var _prompt: Label
+var _prompt_offered := false
 
 @onready var arda: Arda = $Arda
 @onready var time: TimeControl = $TimeControl
@@ -124,8 +125,20 @@ func _process(delta: float) -> void:
 	elif at_planter:
 		_prompt.text = PLANT_PROMPT
 		_prompt.position = arda.position + PLANT_PROMPT_LIFT
-	var goal := 1.0 if at_fridge or at_planter or at_bowls else 0.0
+	var goal := 1.0 if at_fridge or at_planter or at_bowls or _prompt_offered else 0.0
+	_prompt_offered = false
 	_prompt.modulate.a = move_toward(_prompt.modulate.a, goal, PROMPT_FADE_PER_SECOND * delta)
+
+
+## Lets the opening use the same prompt as the fridge. Call it each frame the prompt applies.
+func offer_prompt(text: String, spot: Vector2) -> void:
+	_prompt.text = text
+	_prompt.position = spot
+	_prompt_offered = true
+
+
+func prompt_text() -> String:
+	return _prompt.text if _prompt.modulate.a > 0.0 else ""
 
 
 func _build_prompt() -> void:
@@ -174,8 +187,8 @@ func planter_in_reach() -> int:
 func plant_tree(index: int) -> void:
 	Run.planted.append(index)
 	Sfx.play("plant")
-	hint.text = PLANT_LINE
 	WorldClock.refresh()
+	_aside(PLANT_LINE)
 
 
 func can_open_calendar() -> bool:
