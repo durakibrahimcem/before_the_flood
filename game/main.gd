@@ -29,6 +29,8 @@ const BOWLS_SPOT := Vector2(90, 585)
 const BOWLS_REACH := 170.0
 const BOWLS_PROMPT := "Press E to feed Brian"
 const BOWLS_LINE := "Brian's bowls are full."
+const BOWLS_PROMPT_SPOT := Vector2(30, 300)
+const ASIDE_SECONDS := 2.5
 const PROMPT_FADE_PER_SECOND := 6.0
 ## A judge may only have minutes, so skipping opens up early.
 const SKIP_AFTER_ACTIONS := 2
@@ -111,7 +113,7 @@ func _process(delta: float) -> void:
 	var at_bowls := bowls_in_reach()
 	if at_bowls:
 		_prompt.text = BOWLS_PROMPT
-		_prompt.position = arda.position + PLANT_PROMPT_LIFT
+		_prompt.position = BOWLS_PROMPT_SPOT
 	elif at_fridge:
 		_prompt.text = FRIDGE_PROMPT
 		_prompt.position = FRIDGE_PROMPT_SPOT
@@ -141,8 +143,17 @@ func bowls_in_reach() -> bool:
 func feed_brian() -> void:
 	Run.feed_brian()
 	Sfx.play("drop")
-	hint.text = BOWLS_LINE
 	WorldClock.refresh()
+	_aside(BOWLS_LINE)
+
+
+## A short remark on the hint line, which then hands the line back to the objective.
+func _aside(line: String) -> void:
+	var objective := hint.text
+	hint.text = line
+	await get_tree().create_timer(ASIDE_SECONDS).timeout
+	if hint.text == line:
+		hint.text = objective
 
 
 ## The empty planter Arda can reach today, or -1.

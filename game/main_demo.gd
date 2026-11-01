@@ -224,9 +224,13 @@ func _check_bowls(main: Main) -> void:
 	main.newspaper.hide()
 	await _frames(2)
 	assert(main.bowls_in_reach(), "the bowls are in reach")
+	main.hint.text = "Open the calendar on the fridge."
 	_key(KEY_E)
 	await _frames(2)
 	assert(Run.fed_today() and Run.meals == 1, "E feeds Brian")
+	assert(main.hint.text == Main.BOWLS_LINE, "feeding says so")
+	await get_tree().create_timer(Main.ASIDE_SECONDS + 0.2).timeout
+	assert(main.hint.text == "Open the calendar on the fridge.", "the objective comes back")
 	assert(not main.bowls_in_reach(), "he has eaten today")
 	assert(Run.plan.total() == 0, "feeding uses no calendar slot")
 	Run.day = 2
