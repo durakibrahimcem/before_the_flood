@@ -9,6 +9,9 @@ const ACTOR_SHADER := preload("res://water/actor.gdshader")
 const SPOT := Vector2(75, 536)
 const HEIGHT_M := 0.7
 const SHOULDER_SHARE := 0.2
+## Dogs breathe faster than people.
+const BREATH_SPEED := 3.6
+const BREATH_PHASE := 3.1
 ## The idle tail hangs below his paws, so the happy pose lifts to keep the paws on the same spot. In art pixels.
 const HAPPY_LIFT := 20.0
 
@@ -27,6 +30,8 @@ func _ready() -> void:
 	_sprite.scale = Vector2.ONE * HEIGHT_M * room.character_size() * room.px_per_m / IDLE.get_height()
 	_material = ShaderMaterial.new()
 	_material.shader = ACTOR_SHADER
+	_material.set_shader_parameter("breath_speed", BREATH_SPEED)
+	_material.set_shader_parameter("breath_phase", BREATH_PHASE)
 	_sprite.material = _material
 	add_child(_sprite)
 	WorldClock.year_changed.connect(_on_year_changed)

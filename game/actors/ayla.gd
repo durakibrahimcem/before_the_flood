@@ -8,6 +8,7 @@ const SPOT := Vector2(1400, 650)
 const HEIGHT_M := 1.65
 const LAST_ERA := 2050
 const SHOULDER_SHARE := 0.2
+const BREATH_PHASE := 1.7
 ## Her feet. Round, so Arda slides past her instead of stopping dead on the way to the fridge.
 const FOOT_RADIUS := 26.0
 
@@ -26,6 +27,7 @@ func _ready() -> void:
 	sprite.scale = Vector2.ONE * HEIGHT_M * room.character_size() * room.px_per_m / ART.get_height()
 	_material = ShaderMaterial.new()
 	_material.shader = ACTOR_SHADER
+	_material.set_shader_parameter("breath_phase", BREATH_PHASE)
 	sprite.material = _material
 	add_child(sprite)
 	var body := StaticBody2D.new()

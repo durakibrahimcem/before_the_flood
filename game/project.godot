@@ -15,6 +15,7 @@ WorldClock="*res://core/world_clock.gd"
 Run="*res://core/run.gd"
 Settings="*res://core/settings.gd"
 Sfx="*res://audio/sfx.gd"
+UiMotion="*res://ui/ui_motion.gd"
 
 [display]
 
@@ -27,6 +28,7 @@ window/stretch/aspect="keep"
 
 [gui]
 
+theme/custom="res://ui/paper_theme.tres"
 theme/custom_font="res://ui/fonts/Caveat.ttf"
 
 [input]

@@ -38,15 +38,22 @@ const HINT_ROOM_NAMES := { "street": "the street", "shore": "the shore", "salon"
 ## Long enough to see the water before the paper covers it.
 const PAPER_DELAY := 2.0
 const HINT_FONT := 40
-const SHAKE_PIXELS := 18.0
-const SHAKE_STEPS := 8
-const SHAKE_STEP_SECONDS := 0.05
+## A new room arrives through a moment of paper, so doors never cut.
+const VEIL_SECONDS := 0.2
+const VEIL_PAPER := Color(0.96, 0.93, 0.85)
+## The wall's breach: trauma falls from 1 to 0, and the kick follows its square, so it dies away softly.
+const SHAKE_PIXELS := 34.0
+const SHAKE_SECONDS := 0.55
+const SHAKE_NOISE_RANGE := 260.0
 
 ## Tasks finish at once at normal strength. Used by demos and fast replays.
 @export var auto_tasks: bool = false
 
 ## Demos set this to zero to keep their pace.
 var paper_delay := PAPER_DELAY
+var veil: ColorRect
+var _shake_noise := FastNoiseLite.new()
+var _veil_tween: Tween
 var room: Room
 var pending_action: String = ""
 var task: Task
@@ -84,6 +91,7 @@ func _ready() -> void:
 	_verdict = TaskVerdict.new()
 	add_child(_verdict)
 	_build_prompt()
+	_build_veil()
 	Settings.size_text(hint, HINT_FONT)
 	enter_room("bedroom", Vector2.INF)
 	time.enabled = false
@@ -142,6 +150,25 @@ func offer_prompt(text: String, spot: Vector2) -> void:
 
 func prompt_text() -> String:
 	return _prompt.text if _prompt.modulate.a > 0.0 else ""
+
+
+## Sits under the panel and hints, so only the room itself fades in.
+func _build_veil() -> void:
+	veil = ColorRect.new()
+	veil.name = "Veil"
+	veil.color = Color(VEIL_PAPER, 0.0)
+	veil.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	veil.set_anchors_preset(Control.PRESET_FULL_RECT)
+	$Ui.add_child(veil)
+	$Ui.move_child(veil, 0)
+
+
+func _reveal_room() -> void:
+	if _veil_tween != null:
+		_veil_tween.kill()
+	veil.color.a = 1.0
+	_veil_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	_veil_tween.tween_property(veil, "color:a", 0.0, VEIL_SECONDS)
 
 
 func _build_prompt() -> void:
@@ -229,6 +256,7 @@ func enter_room(room_name: String, arrive_at: Vector2) -> void:
 	arda.room = room
 	$Storm.outdoors = room_name in Room.OUTDOOR_ROOMS
 	WorldClock.refresh()
+	_reveal_room()
 	_start_pending_task()
 
 
@@ -358,10 +386,13 @@ func _shake() -> void:
 		return
 	var tween := create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-	for step: int in SHAKE_STEPS:
-		var size := SHAKE_PIXELS * (1.0 - float(step) / SHAKE_STEPS)
-		tween.tween_property(self, "position", Vector2(size if step % 2 == 0 else -size, 0.0), SHAKE_STEP_SECONDS)
-	tween.tween_property(self, "position", Vector2.ZERO, SHAKE_STEP_SECONDS)
+	tween.tween_method(_shake_step, 1.0, 0.0, SHAKE_SECONDS)
+
+
+func _shake_step(trauma: float) -> void:
+	var along := (1.0 - trauma) * SHAKE_NOISE_RANGE
+	var kick := Vector2(_shake_noise.get_noise_2d(along, 0.0), _shake_noise.get_noise_2d(0.0, along))
+	position = kick * trauma * trauma * SHAKE_PIXELS
 
 
 func _finish_run() -> void:

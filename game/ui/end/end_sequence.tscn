@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://ui/end/ghost_chart.gd" id="4_ghost"]
 [ext_resource type="Script" path="res://ui/end/real_cards.gd" id="5_real"]
 [ext_resource type="Script" path="res://ui/end/share_card.gd" id="6_share"]
+[ext_resource type="Texture2D" path="res://ui/end/art/ending_full.png" id="end_full"]
+[ext_resource type="Texture2D" path="res://ui/end/art/ending_partial.png" id="end_partial"]
+[ext_resource type="Texture2D" path="res://ui/end/art/ending_none.png" id="end_none"]
 
 [node name="EndSequence" type="CanvasLayer"]
 layer = 20
@@ -47,6 +50,9 @@ offset_right = 1560.0
 offset_bottom = 690.0
 mouse_filter = 2
 script = ExtResource("2_pic")
+art_full = ExtResource("end_full")
+art_partial = ExtResource("end_partial")
+art_none = ExtResource("end_none")
 
 [node name="Caption" type="Label" parent="Steps/EndingStep"]
 anchor_left = 0.0

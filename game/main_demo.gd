@@ -119,6 +119,7 @@ func _ready() -> void:
 	await _check_planting(main)
 	await _check_bowls(main)
 	await _check_character_size(main)
+	await _check_feel(main)
 	await _check_doors(main)
 	await _check_paper_delay(main)
 	await _check_large_text(main)
@@ -386,6 +387,53 @@ func _check_character_size(main: Main) -> void:
 	assert(is_equal_approx(line, 1.0 - depth / drawn_m), "the waterline follows the drawn size, got %f" % line)
 	WorldClock.scrub(2026.0)
 	await _frames(1)
+
+
+## Sounds vary, rooms arrive through paper, and every button answers a press.
+func _check_feel(main: Main) -> void:
+	var pitches := {}
+	for i: int in 16:
+		Sfx.play("drop")
+	for player: AudioStreamPlayer in Sfx.get_children():
+		assert(absf(player.pitch_scale - 1.0) <= Sfx.PITCH_SPREAD + 0.001, "pitch stays close, got %f" % player.pitch_scale)
+		pitches[player.pitch_scale] = true
+	assert(pitches.size() > 3, "a repeated sound never plays the same way")
+	Sfx.play("paper")
+	await _frames(1)
+	var steady := 0
+	for player: AudioStreamPlayer in Sfx.get_children():
+		steady += 1 if player.stream == Sfx._streams["paper"] and is_equal_approx(player.pitch_scale, 1.0) else 0
+	assert(steady == 1, "paper keeps its voice")
+
+	main.enter_room("salon", Vector2(1000, 690))
+	assert(main.veil.color.a > 0.9, "a new room starts behind paper")
+	await get_tree().create_timer(Main.VEIL_SECONDS + 0.1).timeout
+	assert(main.veil.color.a < 0.01, "the paper clears quickly")
+
+	var button := Button.new()
+	button.size = Vector2(100, 40)
+	main.add_child(button)
+	await _frames(1)
+	button.button_down.emit()
+	await get_tree().create_timer(UiMotion.PRESS_SECONDS + 0.05).timeout
+	assert(button.scale.x < 1.0, "a pressed button gives way")
+	assert(is_equal_approx(button.pivot_offset.x, button.size.x * 0.5), "it presses from its centre")
+	button.button_up.emit()
+	await get_tree().create_timer(UiMotion.RELEASE_SECONDS + 0.05).timeout
+	assert(is_equal_approx(button.scale.x, 1.0), "it springs back")
+	button.queue_free()
+
+	main._shake_step(0.8)
+	assert(main.position != Vector2.ZERO, "trauma moves the world")
+	assert(main.position.length() < Main.SHAKE_PIXELS, "the kick stays small")
+	main._shake_step(0.0)
+	assert(main.position == Vector2.ZERO, "the shake always comes to rest")
+	assert(main.ending.picture.art_full != null and main.ending.picture.art_partial != null and main.ending.picture.art_none != null,
+		"every ending has real art, not stick figures")
+
+	var breath: float = (main.arda.body_sprite.material as ShaderMaterial).shader.get_shader_uniform_list().filter(
+		func(u: Dictionary) -> bool: return u["name"] == "breath").size()
+	assert(breath == 1.0, "characters breathe through the shared shader")
 
 
 func _check_grown_walk(main: Node, action: String, walk: Array[Texture2D], idle: Texture2D, height_m: float) -> void:
