@@ -1,8 +1,9 @@
 extends Sprite2D
-## One heavy concrete block. Code-drawn placeholder until art drops in.
+## One heavy stone block. Code-drawn placeholder until art drops in.
 
 const TEXTURE_W := 220
 const TEXTURE_H := 96
+const BlockStones := preload("res://tasks/seawall/block_stones.gd")
 
 @export var block_texture: Texture2D
 
@@ -19,6 +20,11 @@ func _ready() -> void:
 	if block_texture == null:
 		block_texture = _placeholder_texture()
 	texture = block_texture
+	# The stone joints ride the block's own transform, so they stay on its face.
+	var stones := BlockStones.new()
+	stones.name = "Stones"
+	stones.skin = int(get_instance_id()) % 997
+	add_child(stones)
 
 
 ## Repeats need more blocks under the same crane, so the blocks get shorter.
@@ -81,9 +87,9 @@ static func _placeholder_texture() -> ImageTexture:
 	if _placeholder_cache != null:
 		return _placeholder_cache
 	var img := Image.create_empty(TEXTURE_W, TEXTURE_H, false, Image.FORMAT_RGBA8)
-	img.fill(Color(0.72, 0.70, 0.66))
+	img.fill(Color(0.80, 0.76, 0.70))
 	img.fill_rect(Rect2i(0, 0, TEXTURE_W, 9), Color(0.87, 0.85, 0.80))
-	img.fill_rect(Rect2i(0, TEXTURE_H - 11, TEXTURE_W, 11), Color(0.52, 0.50, 0.46))
+	img.fill_rect(Rect2i(0, TEXTURE_H - 11, TEXTURE_W, 11), Color(0.55, 0.51, 0.45))
 	var crack := Color(0.35, 0.33, 0.30)
 	for i: int in 18:
 		img.set_pixel(54 + i, 14 + int(i * 0.5), crack)

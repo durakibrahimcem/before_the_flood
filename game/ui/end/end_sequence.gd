@@ -26,6 +26,13 @@ const GHOST_CAPTION := "Each mark is a future you tried. The bright one is your 
 ## The chart only means something once there is a past future to compare with.
 const GHOSTS_TO_COMPARE := 2
 const FADE_SECONDS := 0.2
+## Small entrances. Gentle eases, short arrivals, nothing that overshoots.
+const PICTURE_SECONDS := 0.4
+const STEP_SECONDS := 0.35
+const CAPTION_SECONDS := 0.35
+const CAPTION_LAG := 0.18
+const MARKS_LAG := 0.2
+const RETRY_STAGGER := 0.09
 
 @onready var click: Button = $ClickCatch
 @onready var next: Button = $Next
@@ -36,6 +43,8 @@ const FADE_SECONDS := 0.2
 @onready var ghost_step: Control = $Steps/GhostStep
 @onready var ghost_caption: Label = $Steps/GhostStep/Caption
 @onready var share_card: ShareCard = $Steps/ShareStep
+@onready var real_cards: RealCards = $Steps/RealStep
+@onready var retry_title: Label = $Steps/RetryStep/Title
 @onready var retry_button: Button = $Steps/RetryStep/Retry
 @onready var retry_body: Label = $Steps/RetryStep/Body
 @onready var steps: Array[Control] = [
@@ -49,6 +58,7 @@ const FADE_SECONDS := 0.2
 
 var _current := -1
 var _fade: Tween
+var _entrances: Array[Tween] = []
 
 
 func _ready() -> void:
@@ -110,15 +120,89 @@ func _show(index: int) -> void:
 	_current = index
 	for step: Control in steps:
 		step.hide()
-	var step := steps[index]
 	if _fade != null:
 		_fade.kill()
+	for tween: Tween in _entrances:
+		tween.kill()
+	_entrances.clear()
 	if is_inside_tree():
 		get_viewport().gui_release_focus()
-	step.modulate.a = 0.0
+	_rest_all()
+	var step := steps[index]
 	step.show()
-	_fade = create_tween()
-	_fade.tween_property(step, "modulate:a", 1.0, FADE_SECONDS)
+	if Settings.calm_storm:
+		step.modulate.a = 0.0
+		_fade = create_tween()
+		_fade.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+		_fade.tween_property(step, "modulate:a", 1.0, FADE_SECONDS)
+		return
+	match index:
+		0:
+			_entrances = _enter_ending(step)
+		1:
+			_entrances = [rank_card.play_entrance()]
+		2:
+			_entrances = _enter_ghost(step)
+		3:
+			_entrances = [real_cards.play_entrance()]
+		4:
+			_entrances = [share_card.play_entrance()]
+		5:
+			_entrances = _enter_retry(step)
+
+
+## Every step back to its resting state, so a skip or a calm storm leaves nothing half arrived.
+func _rest_all() -> void:
+	for step: Control in steps:
+		step.modulate.a = 1.0
+		step.scale = Vector2.ONE
+	ending_caption.modulate.a = 1.0
+	ghost_caption.modulate.a = 1.0
+	retry_title.modulate.a = 1.0
+	retry_body.modulate.a = 1.0
+	retry_button.modulate.a = 1.0
+	rank_card.rest_entrance()
+	chart.rest_marks()
+	real_cards.rest_entrance()
+	share_card.rest_entrance()
+
+
+## The picture opens first; the words join it. Only modulate touches Ebru's art.
+func _enter_ending(step: Control) -> Array[Tween]:
+	step.modulate.a = 0.0
+	ending_caption.modulate.a = 0.0
+	var entrance := create_tween()
+	entrance.set_parallel(true)
+	entrance.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	entrance.tween_property(step, "modulate:a", 1.0, PICTURE_SECONDS)
+	entrance.tween_property(ending_caption, "modulate:a", 1.0, CAPTION_SECONDS).set_delay(CAPTION_LAG)
+	return [entrance]
+
+
+## The chart card settles, then its marks arrive one by one.
+func _enter_ghost(step: Control) -> Array[Tween]:
+	step.modulate.a = 0.0
+	ghost_caption.modulate.a = 0.0
+	var entrance := create_tween()
+	entrance.set_parallel(true)
+	entrance.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	entrance.tween_property(step, "modulate:a", 1.0, STEP_SECONDS)
+	entrance.tween_property(ghost_caption, "modulate:a", 1.0, CAPTION_SECONDS).set_delay(CAPTION_LAG * 2.0)
+	return [entrance, chart.reveal_marks(MARKS_LAG)]
+
+
+## The invitation reads first, then the door appears.
+func _enter_retry(step: Control) -> Array[Tween]:
+	retry_title.modulate.a = 0.0
+	retry_body.modulate.a = 0.0
+	retry_button.modulate.a = 0.0
+	var entrance := create_tween()
+	entrance.set_parallel(true)
+	entrance.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	entrance.tween_property(retry_title, "modulate:a", 1.0, CAPTION_SECONDS)
+	entrance.tween_property(retry_body, "modulate:a", 1.0, CAPTION_SECONDS).set_delay(RETRY_STAGGER)
+	entrance.tween_property(retry_button, "modulate:a", 1.0, CAPTION_SECONDS).set_delay(RETRY_STAGGER * 2.0)
+	return [entrance]
 
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -3,6 +3,7 @@ extends Node2D
 ## and the real results are checked. Prints DEMO PASS or DEMO FAIL lines, then quits.
 
 const SEAWALL := preload("res://tasks/seawall/seawall.tscn")
+const BLOCK := preload("res://tasks/seawall/wall_block.gd")
 
 const TIGHT_WINDOW := 26.0
 const MISS_LINE := 170.0
@@ -99,6 +100,25 @@ func _scenario_contract() -> void:
 	again.start(2, false)
 	_check(again.goal == 9, "repeat 2 sets goal 9 (got %d)" % again.goal)
 	again.queue_free()
+	await _wait_frames(3)
+	await _scenario_stone_skin()
+
+
+## Every block carries a code-drawn stone skin, so the stack reads as stone.
+func _scenario_stone_skin() -> void:
+	print("scenario 1b: stone skin")
+	var block: Node2D = BLOCK.new()
+	add_child(block)
+	var skin: Node2D = block.get_node_or_null("Stones")
+	_check(skin != null, "a block carries its stone joints")
+	_check(block.texture != null, "a block without art falls back to a placeholder")
+	_check(skin != null and skin.skin >= 0 and skin.skin < 997, "each block lays its joints a little differently")
+	var second: Node2D = BLOCK.new()
+	add_child(second)
+	var second_skin: Node2D = second.get_node_or_null("Stones")
+	_check(second_skin != null and second_skin.skin >= 0 and second_skin.skin < 997, "a second block finds its own placing")
+	block.queue_free()
+	second.queue_free()
 	await _wait_frames(3)
 
 

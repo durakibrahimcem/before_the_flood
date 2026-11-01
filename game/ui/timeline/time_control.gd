@@ -49,10 +49,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# Debug Web builds report state in the tab title, so browser tests can read it without touching the page.
 	if OS.is_debug_build() and OS.has_feature("web"):
-		var main := get_parent() as Main
-		var where := "%s %d %d" % [main.room.room_name, main.arda.position.x, main.arda.position.y] if main.room != null else "none 0 0"
-		var task := main.task.action + " " + main.task.debug_note() if main.task != null else "none"
-		JavaScriptBridge.eval("document.title = 'YEAR %.1f SCRUB %s ROOM %s TASK %s'" % [WorldClock.year, scrubbing, where, task])
+		JavaScriptBridge.eval("document.title = '%s'" % _debug_title())
 	if not enabled or (get_tree().paused and not scrubbing):
 		_pressed = false
 		_held = 0.0
@@ -77,6 +74,76 @@ func _input(event: InputEvent) -> void:
 	var motion := event as InputEventMouseMotion
 	if scrubbing and motion != null and motion.button_mask == 0:
 		_scrub_by(motion.relative.x * YEARS_PER_PIXEL)
+
+
+## The tab title is the debug protocol for browser tests: one line with the visible
+## screens, the plan, the settings and whatever sits under the mouse. Debug Web only.
+func _debug_title() -> String:
+	var main := get_parent() as Main
+	var where := "none 0 0"
+	var task := "none"
+	var pause := false
+	var pause_menu := main.get_node_or_null("Pause")
+	if pause_menu != null:
+		pause = pause_menu.visible
+	if main.room != null:
+		where = "%s %d %d" % [main.room.room_name, main.arda.position.x, main.arda.position.y]
+	if main.task != null:
+		task = "%s %s" % [main.task.action, main.task.debug_note()]
+	var counts: PackedStringArray = []
+	for action: String in Plan.ACTIONS:
+		counts.append(str(Run.plan.counts[action]))
+	var hover := "none"
+	var rect := "0,0,0,0"
+	var hovered := get_viewport().gui_get_hovered_control()
+	if hovered != null:
+		hover = hovered.name
+		var box := hovered.get_global_rect()
+		rect = "%d,%d,%d,%d" % [box.position.x, box.position.y, box.size.x, box.size.y]
+	var focus := "none"
+	var focused := get_viewport().gui_get_focus_owner()
+	if focused != null:
+		focus = focused.name
+	return format_title({
+		"year": WorldClock.year, "scrub": scrubbing, "where": where, "task": task,
+		"cal": main.calendar.visible, "news": main.newspaper.visible, "pause": pause,
+		"ctrl": main.controls.visible, "end": main.ending.visible,
+		"step": main.ending.step_index(), "verdict": main._verdict.word() != "",
+		"day": Run.day, "plan": ",".join(counts), "ghosts": Run.ghosts.size(),
+		"fed": Run.fed_today(), "final": main.final_walk, "frozen": main.arda.frozen,
+		"calm": Settings.calm_storm, "large": Settings.large_text, "vol": Settings.volume,
+		"hover": hover, "rect": rect, "focus": focus,
+	})
+
+
+## The one format every browser test parses. Bool values must be cast to int,
+## because GDScript's %d rejects a bool and the whole title would go out raw.
+static func format_title(v: Dictionary) -> String:
+	return "YEAR %.1f SCRUB %d ROOM %s TASK %s | CAL %d NEWS %d PAUSE %d CTRL %d END %d STEP %d VERDICT %d DAY %d PLAN %s GHOSTS %d FED %d FINAL %d FROZEN %d CALM %d LARGE %d VOL %.2f HOVER %s RECT %s FOCUS %s" % [
+		v["year"],
+		int(v["scrub"]),
+		v["where"],
+		v["task"],
+		int(v["cal"]),
+		int(v["news"]),
+		int(v["pause"]),
+		int(v["ctrl"]),
+		int(v["end"]),
+		v["step"],
+		int(v["verdict"]),
+		v["day"],
+		v["plan"],
+		v["ghosts"],
+		int(v["fed"]),
+		int(v["final"]),
+		int(v["frozen"]),
+		int(v["calm"]),
+		int(v["large"]),
+		v["vol"],
+		v["hover"],
+		v["rect"],
+		v["focus"],
+	]
 
 
 func _scrub_by(years: float) -> void:

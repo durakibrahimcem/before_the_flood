@@ -8,11 +8,16 @@ const SUB_LINE := "of 462 possible plans. 1 is the best."
 const KEEPER_CAPTION := "All 462 futures were tested. Yours is one of the %d that keep every home."
 const OTHER_CAPTION := "All 462 futures were tested. %d keep every home. Yours can be one of them."
 const EMPTY_CAPTION := "Finish all six choices to earn a rank."
+## The rank arrives by settling, a touch small at first. No bounce.
+const ARRIVE_SECONDS := 0.3
+const SETTLE_FROM := 0.98
+const SETTLE_SECONDS := 0.45
 
 var _entries: Array = []
 var _number: Label
 var _sub: Label
 var _caption: Label
+var _entrance: Tween
 
 
 func _ready() -> void:
@@ -51,6 +56,27 @@ func show_rank() -> int:
 		_sub.visible = false
 		_caption.text = EMPTY_CAPTION
 	return rank
+
+
+## Back to rest, so a quick skip leaves the card whole.
+func rest_entrance() -> void:
+	scale = Vector2.ONE
+	modulate.a = 1.0
+
+
+func play_entrance() -> Tween:
+	if _entrance != null and _entrance.is_valid():
+		_entrance.kill()
+	pivot_offset = size * 0.5
+	scale = Vector2.ONE * SETTLE_FROM
+	modulate.a = 0.0
+	_entrance = create_tween()
+	_entrance.set_parallel(true)
+	_entrance.tween_property(self, "modulate:a", 1.0, ARRIVE_SECONDS) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	_entrance.tween_property(self, "scale", Vector2.ONE, SETTLE_SECONDS) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	return _entrance
 
 
 func _load() -> Array:
