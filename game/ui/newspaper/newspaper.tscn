@@ -35,9 +35,9 @@ expand_mode = 1
 
 [node name="Band" type="VBoxContainer" parent="Sheet"]
 layout_mode = 0
-offset_left = 210.0
+offset_left = 140.0
 offset_top = 244.0
-offset_right = 1430.0
+offset_right = 1500.0
 offset_bottom = 456.0
 mouse_filter = 2
 theme_override_constants/separation = 4

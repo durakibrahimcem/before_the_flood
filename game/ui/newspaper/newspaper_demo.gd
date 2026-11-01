@@ -25,7 +25,7 @@ func _ready() -> void:
 	assert((overlay.get_node("Sheet/Page") as TextureRect).texture != null, "Ebru's page shows")
 	assert(_label(overlay, "Year").text == "2050", "the year label shows the era")
 	assert(_label(overlay, "Headline").text == str(page.get("headline", "")), "the headline matches the page")
-	assert(_label(overlay, "Story").text == str(page.get("story", "")), "the story matches the page")
+	assert(_label(overlay, "Story").text.replace("\n", " ") == str(page.get("story", "")), "the story matches the page")
 	await _check_every_story_fits(overlay)
 	overlay.show_for(plan, 2050)
 	await _frames(1)
@@ -118,6 +118,9 @@ func _check_every_story_fits(overlay: NewspaperOverlay) -> void:
 			var label := _label(overlay, label_name)
 			used += label.get_line_count() * label.get_line_height()
 		assert(used <= NewspaperOverlay.BAND_HEIGHT, "the longest story fits, large %s, needs %f" % [large, used])
+		for paper: Dictionary in Newspapers.all_papers():
+			var lines := overlay.balanced(paper["story"]).split("\n")
+			assert(lines[-1].length() * 2 >= lines[0].length(), "no word is left alone: %s" % paper["story"])
 	Settings.set_options(false, false)
 
 

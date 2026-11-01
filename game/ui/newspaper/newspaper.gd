@@ -12,6 +12,9 @@ const SHADE_ALPHA := 0.45
 ## Ebru's page leaves one band for text, so large text grows less here than elsewhere.
 const LARGE_SCALE := 1.2
 const BAND_HEIGHT := 212.0
+const BAND_WIDTH := 1360.0
+## Room left on each line, because a balanced break rarely falls exactly in the middle.
+const LINE_SLACK := 0.96
 const SHEET_SPOT := Vector2(140, 110)
 const DROP_FROM := Vector2(0, -36)
 const DROP_TURN := -0.02
@@ -51,9 +54,32 @@ func show_page(page: Dictionary, era: int) -> void:
 	Sfx.play("paper")
 	year.text = str(era)
 	headline.text = str(page.get("headline", ""))
-	story.text = str(page.get("story", ""))
+	story.text = balanced(str(page.get("story", "")))
 	visible = true
 	_play_show()
+
+
+## Breaks a story into even lines, so no word is left alone on the last one.
+func balanced(text: String) -> String:
+	var wide := _serif.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, story.get_theme_font_size("font_size")).x
+	var lines := ceili(wide / (BAND_WIDTH * LINE_SLACK))
+	if lines < 2:
+		return text
+	var result := text
+	for line: int in range(1, lines):
+		var goal := roundi(float(text.length()) * line / lines)
+		var space := _nearest_space(text, goal)
+		result[space] = "\n"
+	return result
+
+
+func _nearest_space(text: String, goal: int) -> int:
+	for reach: int in text.length():
+		if goal + reach < text.length() and text[goal + reach] == " ":
+			return goal + reach
+		if goal - reach >= 0 and text[goal - reach] == " ":
+			return goal - reach
+	return goal
 
 
 func _close() -> void:
