@@ -8,8 +8,10 @@ const SHOULDER_SHARE := 0.2
 const BOB_HEIGHT := 7.0
 const IDLE := preload("res://actors/art/arda_idle.png")
 const WALK: Array[Texture2D] = [preload("res://actors/art/arda_walk1.png"), preload("res://actors/art/arda_walk2.png")]
-## Grown up. Ebru has drawn this pose so far, so he glides on the bob, and 2080 borrows it too.
+## Ebru has drawn one pose for each grown age so far, so Arda glides on the bob.
 const ADULT_IDLE := preload("res://actors/art/arda_adult_idle.png")
+const OLD_IDLE := preload("res://actors/art/arda_old_idle.png")
+const GROWN_POSES := { 2050: ADULT_IDLE, 2080: OLD_IDLE }
 const BOB_SPEED := 9.0
 const AGE_METRES := { 2026: 1.3, 2050: 1.75, 2080: 1.7 }
 const STRIDE := 0.35
@@ -55,7 +57,7 @@ func _physics_process(delta: float) -> void:
 		_stepped_at = _walked
 		_walk_pose = 1 - _walk_pose
 		_step(depth)
-	_show_pose(ADULT_IDLE if height_m > AGE_METRES[2026] else (IDLE if velocity == Vector2.ZERO else WALK[_walk_pose]))
+	_show_pose(_current_pose())
 	if direction.x != 0.0:
 		body_sprite.flip_h = direction.x < 0.0
 	body_sprite.position.y = -absf(sin(_walked * BOB_SPEED)) * BOB_HEIGHT * pixels_per_metre / FOOT_PX_PER_M
@@ -89,6 +91,13 @@ func wade_factor(depth: float) -> float:
 	return lerpf(1.0, WADE_FLOOR, clampf(depth / WADE_FULL_M, 0.0, 1.0))
 
 
+func _current_pose() -> Texture2D:
+	var era := WorldClock.nearest_era()
+	if GROWN_POSES.has(era):
+		return GROWN_POSES[era]
+	return IDLE if velocity == Vector2.ZERO else WALK[_walk_pose]
+
+
 func _show_pose(pose: Texture2D) -> void:
 	body_sprite.texture = pose
 	body_sprite.offset = Vector2(-pose.get_width() * 0.5, -pose.get_height())
@@ -97,7 +106,7 @@ func _show_pose(pose: Texture2D) -> void:
 
 func _on_year_changed(_state: WorldState) -> void:
 	height_m = AGE_METRES[WorldClock.nearest_era()]
-	_show_pose(ADULT_IDLE if height_m > AGE_METRES[2026] else IDLE)
+	_show_pose(_current_pose())
 	if room != null:
 		_set_waterline(room.depth_at(global_position))
 
