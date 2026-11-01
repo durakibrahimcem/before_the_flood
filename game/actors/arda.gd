@@ -27,7 +27,7 @@ const TURN_RECOVER := 6.0
 const PUFF_COUNT := 3
 const PUFF_LIFETIME := 0.42
 const SPLASH_TINT := Color("d7eaee")
-const GROUND_TINTS := { "shore": Color("e6d6a2"), "street": Color("d3ccbc") }
+const GROUND_TINTS := { "shore": Color("e6d6a2"), "street": Color("efeade") }
 ## The scale the foot shape was made for.
 const FOOT_PX_PER_M := 200.0
 
@@ -147,12 +147,22 @@ func _build_puffs() -> void:
 	var fade := Gradient.new()
 	fade.set_color(0, Color.WHITE)
 	fade.set_color(1, Color(1.0, 1.0, 1.0, 0.0))
+	var speck := GradientTexture2D.new()
+	speck.width = 24
+	speck.height = 24
+	speck.fill = GradientTexture2D.FILL_RADIAL
+	speck.fill_from = Vector2(0.5, 0.5)
+	speck.fill_to = Vector2(1.0, 0.5)
+	var soft_edge := Gradient.new()
+	soft_edge.offsets = PackedFloat32Array([0.0, 0.6, 1.0])
+	soft_edge.colors = PackedColorArray([Color.WHITE, Color.WHITE, Color(1.0, 1.0, 1.0, 0.0)])
+	speck.gradient = soft_edge
 	for i: int in PUFF_COUNT:
 		var puff := CPUParticles2D.new()
 		puff.one_shot = true
 		puff.emitting = false
 		puff.local_coords = false
-		puff.amount = 7
+		puff.amount = 9
 		puff.lifetime = PUFF_LIFETIME
 		puff.explosiveness = 1.0
 		puff.direction = Vector2.UP
@@ -160,8 +170,9 @@ func _build_puffs() -> void:
 		puff.initial_velocity_min = 40.0
 		puff.initial_velocity_max = 95.0
 		puff.gravity = Vector2(0.0, 220.0)
-		puff.scale_amount_min = 3.0
-		puff.scale_amount_max = 6.0
+		puff.texture = speck
+		puff.scale_amount_min = 0.25
+		puff.scale_amount_max = 0.55
 		puff.color_ramp = fade
 		add_child(puff)
 		puffs.append(puff)
