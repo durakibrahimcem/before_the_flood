@@ -88,7 +88,7 @@ func _physics_process(delta: float) -> void:
 	_turn = move_toward(_turn, 0.0, TURN_RECOVER * delta)
 	body_sprite.rotation = lerpf(body_sprite.rotation, LEAN_RADIANS * velocity.x / speed, 1.0 - exp(-LEAN_EASE * delta))
 	body_sprite.position.y = -absf(sin(_walked * BOB_SPEED)) * BOB_HEIGHT * pixels_per_metre / FOOT_PX_PER_M
-	_set_waterline(depth)
+	_set_waterline(depth + _drawn_offset())
 
 
 func _look_around(delta: float) -> void:
@@ -150,7 +150,16 @@ func _on_year_changed(_state: WorldState) -> void:
 	height_m = AGE_METRES[WorldClock.nearest_era()]
 	_show_pose(_current_pose())
 	if room != null:
-		_set_waterline(room.depth_at(global_position))
+		_set_waterline(room.depth_at(global_position) + _drawn_offset())
+
+
+## The waterline tint is part of the picture, so it follows the water the
+## painting is drawing, which an eased arrival holds back for a beat; wading
+## keeps the true level, which is already at its final height.
+func _drawn_offset() -> float:
+	if room == null:
+		return 0.0
+	return room.drawn_flood_m() - room.flood_m
 
 
 func _set_waterline(depth: float) -> void:

@@ -217,6 +217,8 @@ func _process(delta: float) -> void:
 
 
 ## Water depth in metres at a room position, matching the flood shader's height_at().
+## Reads the true level at once, so wading, ripples and keepsakes never wait
+## for the picture; things that sit on the drawn water add drawn_flood_m().
 func depth_at(point: Vector2) -> float:
 	var uv := (point / ROOM_SIZE).clamp(Vector2.ZERO, Vector2.ONE)
 	var size := _height_image.get_size()
