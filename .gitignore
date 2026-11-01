@@ -6,3 +6,5 @@ build/
 lab/addons/
 lab/.godot/
 lab/LICENSE*
+game/override.cfg
+tools/__pycache__/
