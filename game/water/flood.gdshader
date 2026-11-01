@@ -25,6 +25,10 @@ uniform vec3 shallow_color = vec3(0.45, 0.70, 0.71);
 uniform vec3 deep_color = vec3(0.1, 0.34, 0.42);
 
 const float OBJECT_FULL_M = 2.5;
+// Below this the home is dry, the same line the notebook uses. Thinner water would be all
+// foam on the tilted floor, broken into patches, so it fades in from here instead.
+const float DRY_M = 0.05;
+const float WET_FADE_M = 0.03;
 
 // flood.gdshader's waves(): flotsam_item.gd copies these numbers so the keeps
 // ride the very surface this draws. If one changes, both must.
@@ -56,11 +60,11 @@ vec3 with_age(vec2 uv, vec3 color) {
 void fragment() {
 	vec2 uv = UV;
 	COLOR.a *= texture(cut_mask, uv).a;
-	float active = smoothstep(0.0, 0.03, flood_m);
+	float active = smoothstep(DRY_M, DRY_M + WET_FADE_M, flood_m);
 	float level = flood_m + waves(uv, TIME) * 0.012 * active * (1.0 + 8.0 * surge);
 	float depth = level - height_at(uv);
 	vec3 base = with_age(uv, texture(TEXTURE, uv).rgb);
-	if (depth <= 0.0 || flood_m <= 0.001) {
+	if (depth <= 0.0 || flood_m <= DRY_M) {
 		float damp = 1.0 - smoothstep(0.0, 0.09, -depth);
 		COLOR.rgb = base * (1.0 - 0.2 * damp * active);
 	} else {
@@ -97,6 +101,6 @@ void fragment() {
 		color = mix(color, vec3(0.95, 0.98, 0.97), min(rings, 1.0) * 0.4);
 		float foam = 1.0 - smoothstep(0.0, 0.03 + 0.05 * surge, depth);
 		float breakup = 0.6 + 0.4 * sin(uv.x * 230.0 + TIME * 2.0) * sin(uv.y * 210.0 - TIME * 1.5);
-		COLOR.rgb = mix(color, vec3(0.95, 0.98, 0.97), foam * breakup * 0.8);
+		COLOR.rgb = mix(base, mix(color, vec3(0.95, 0.98, 0.97), foam * breakup * 0.8), active);
 	}
 }

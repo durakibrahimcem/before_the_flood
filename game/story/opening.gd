@@ -19,6 +19,7 @@ const SKIP_NOTE := "Press Tab to skip this."
 const TODAY_LINE := "Go to the salon, and open the calendar on the fridge."
 
 var main: Main
+var sketch_seconds := SKETCH_SECONDS
 var _can_draw: bool = false
 var _drew: bool = false
 
@@ -82,7 +83,7 @@ func _show_drawing() -> Control:
 	card.add_child(art)
 	if art.art == null:
 		art.progress = 0.0
-		art.create_tween().tween_property(art, "progress", 1.0, SKETCH_SECONDS)
+		art.create_tween().tween_property(art, "progress", 1.0, sketch_seconds)
 	var layer := main.get_node("Ui")
 	layer.add_child(card)
 	layer.move_child(card, 0)

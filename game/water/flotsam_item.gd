@@ -26,6 +26,8 @@ const PAPER := Color("F4EDDC")
 const INK := Color("4E3B2E")
 const SEA := Color("5B93A0")
 const SUN := Color("F2C94C")
+## The salon sofa, so the cushion reads as one of its own.
+const SOFA := Color("8F4E62")
 
 # The keep's art rides in Sprite2D's own texture; the placeholder fills it in
 # while Ebru's is missing.
@@ -180,7 +182,7 @@ static func _cushion(image: Image) -> void:
 			var q := p.abs() - (half - Vector2(18.0, 18.0))
 			var d := Vector2(maxf(q.x, 0.0), maxf(q.y, 0.0)).length() + minf(maxf(q.x, q.y), 0.0) - 18.0
 			if d < -3.0:
-				image.set_pixel(x, y, PAPER)
+				image.set_pixel(x, y, SOFA)
 			elif d < 0.0:
 				image.set_pixel(x, y, INK)
 	for y: int in range(int(half.y) - 3, int(half.y) + 4):
