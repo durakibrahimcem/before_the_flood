@@ -25,6 +25,11 @@ func _ready() -> void:
 		var player := AudioStreamPlayer.new()
 		add_child(player)
 		_pool.append(player)
+	# The time wash rides along in every scene, silent until the years move. It sits
+	# in the tree root, not in the pool, so nothing that walks Sfx's children sees it.
+	var wash := ScrubWash.new()
+	wash.name = "ScrubWash"
+	get_tree().root.add_child.call_deferred(wash)
 
 
 func play(sound: String) -> void:

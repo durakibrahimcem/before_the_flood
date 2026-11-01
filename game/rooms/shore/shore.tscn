@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" path="res://rooms/shore/shore_height.png" id="4"]
 [ext_resource type="Texture2D" path="res://rooms/shore/shore_plate.png" id="5"]
 [ext_resource type="Texture2D" path="res://rooms/shore/shore_plate_height.png" id="6"]
+[ext_resource type="Script" path="res://rooms/flood_arrival.gd" id="fa"]
 
 [sub_resource type="RectangleShape2D" id="ToStreet"]
 size = Vector2(80, 500)
@@ -55,3 +56,6 @@ arrive_at = Vector2(1750, 800)
 
 [node name="Shape" type="CollisionShape2D" parent="ToStreet"]
 shape = SubResource("ToStreet")
+
+[node name="FloodArrival" type="Node" parent="."]
+script = ExtResource("fa")
