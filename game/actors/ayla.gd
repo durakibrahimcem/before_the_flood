@@ -4,12 +4,12 @@ extends Node2D
 
 const ART := preload("res://actors/art/ayla_idle.png")
 const ACTOR_SHADER := preload("res://water/actor.gdshader")
-const SPOT := Vector2(1400, 668)
+const SPOT := Vector2(1400, 650)
 const HEIGHT_M := 1.65
 const LAST_ERA := 2050
 const SHOULDER_SHARE := 0.2
-## Her feet, so Arda walks around her and not through her.
-const FOOT_SIZE := Vector2(90, 36)
+## Her feet. Round, so Arda slides past her instead of stopping dead on the way to the fridge.
+const FOOT_RADIUS := 26.0
 
 var room: Room
 var _material: ShaderMaterial
@@ -30,9 +30,9 @@ func _ready() -> void:
 	add_child(sprite)
 	var body := StaticBody2D.new()
 	_foot = CollisionShape2D.new()
-	var box := RectangleShape2D.new()
-	box.size = FOOT_SIZE
-	_foot.shape = box
+	var round_foot := CircleShape2D.new()
+	round_foot.radius = FOOT_RADIUS
+	_foot.shape = round_foot
 	body.add_child(_foot)
 	add_child(body)
 	WorldClock.year_changed.connect(_on_year_changed)

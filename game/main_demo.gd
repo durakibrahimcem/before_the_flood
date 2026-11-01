@@ -208,17 +208,25 @@ func _check_pause_over_scrub(main: Main) -> void:
 	await _frames(1)
 
 
-## Arda walks around Ayla, not through her, while she is there.
+## Arda walks around Ayla, not through her, and the way to the fridge stays a straight walk.
 func _check_ayla_blocks(main: Main) -> void:
 	WorldClock.scrub(2026.0)
 	main.newspaper.hide()
-	main.enter_room("salon", Ayla.SPOT + Vector2(-140, 0))
+	main.enter_room("salon", Ayla.SPOT + Vector2(0, 120))
 	await _ticks(4)
-	Input.action_press("move_right")
+	Input.action_press("move_up")
 	await _ticks(30)
-	Input.action_release("move_right")
-	assert(main.arda.position.x < Ayla.SPOT.x - 20.0, "Ayla stops Arda, who reached x %f" % main.arda.position.x)
+	Input.action_release("move_up")
+	assert(main.arda.position.y > Ayla.SPOT.y + 30.0, "Ayla stops Arda, who reached y %f" % main.arda.position.y)
 	await _ticks(2)
+	for walk_y: float in [680.0, 700.0, 730.0]:
+		main.enter_room("salon", Vector2(1200, walk_y))
+		await _ticks(4)
+		Input.action_press("move_right")
+		await _ticks(40)
+		Input.action_release("move_right")
+		assert(main.arda.position.x > Ayla.SPOT.x + 60.0, "Arda slides past Ayla at y %f, reaching x %f" % [walk_y, main.arda.position.x])
+		await _ticks(2)
 
 
 ## Ebru's poses swap as Arda walks, and Ayla shares the salon's water.
