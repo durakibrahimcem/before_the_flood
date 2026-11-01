@@ -105,12 +105,16 @@ func _ready() -> void:
 	_material.set_shader_parameter("height_map", plate_height)
 	WorldClock.year_changed.connect(_on_year_changed)
 	WorldClock.refresh()
-	# After the room's own hook, so she always reads this year's water.
+	# After the room's own hook, so they always read this year's water.
 	if room_name == "salon":
 		var ayla := Ayla.new()
 		ayla.name = "Ayla"
 		ayla.room = self
 		add_child(ayla)
+		var brian := Brian.new()
+		brian.name = "Brian"
+		brian.room = self
+		add_child(brian)
 
 
 func _on_year_changed(state: WorldState) -> void:

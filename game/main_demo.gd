@@ -385,10 +385,13 @@ func _check_bowls(main: Main) -> void:
 	main.newspaper.hide()
 	await _frames(2)
 	assert(main.bowls_in_reach(), "the bowls are in reach")
+	var brian: Brian = main.room.get_node("Brian")
+	assert(brian.visible and not brian.is_happy(), "Brian waits by the bowls")
 	main.hint.text = "Open the calendar on the fridge."
 	_key(KEY_E)
 	await _frames(2)
 	assert(Run.fed_today() and Run.meals == 1, "E feeds Brian")
+	assert(brian.is_happy(), "a fed Brian is happy")
 	assert(main.hint.text == Main.BOWLS_LINE, "feeding says so")
 	await get_tree().create_timer(Main.ASIDE_SECONDS + 0.2).timeout
 	assert(main.hint.text == "Open the calendar on the fridge.", "the objective comes back")
@@ -396,8 +399,12 @@ func _check_bowls(main: Main) -> void:
 	assert(Run.plan.total() == 0, "feeding uses no calendar slot")
 	Run.day = 2
 	assert(main.bowls_in_reach(), "a new day means empty bowls")
+	WorldClock.refresh()
+	await _frames(1)
+	assert(brian.visible and not brian.is_happy(), "Brian waits again on a new day")
 	WorldClock.scrub(2050.0)
 	await _frames(1)
+	assert(not brian.visible, "Brian is gone by 2050")
 	assert(not main.bowls_in_reach(), "there is no one to feed in 2050")
 	assert(main.room.get_node("BowlsEmpty").visible, "the bowls sit empty in 2050")
 	WorldClock.scrub(2026.0)
