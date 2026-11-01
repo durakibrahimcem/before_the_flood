@@ -75,6 +75,7 @@ func _ready() -> void:
 	ending.retry_requested.connect(new_run)
 	ending.code_loaded.connect(_on_code_loaded)
 	controls.started.connect(_on_controls_started)
+	$Pause.opening.connect(time.stop_scrub)
 	WorldClock.jumped.connect(_on_jumped)
 	Run.plan_complete.connect(_on_plan_complete)
 	WorldClock.year_changed.connect(_on_year_changed)

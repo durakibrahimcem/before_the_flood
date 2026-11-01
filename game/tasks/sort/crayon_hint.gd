@@ -1,6 +1,6 @@
 class_name SortHint
 extends Control
-## One short crayon hint line, shown by the task and faded by hand or by time.
+## One short crayon hint line. It settles down by itself, and only leaves when told to.
 
 const HOLD_SECONDS := 4.0
 const FADE_SECONDS := 0.5
@@ -27,8 +27,7 @@ func show_hint() -> void:
 	show()
 	_tween = create_tween()
 	_tween.tween_interval(HOLD_SECONDS)
-	_tween.tween_property(self, "modulate:a", 0.0, FADE_SECONDS)
-	_tween.tween_callback(hide)
+	_tween.tween_property(self, "modulate:a", Task.REMINDER_ALPHA, FADE_SECONDS)
 
 
 func fade_out() -> void:

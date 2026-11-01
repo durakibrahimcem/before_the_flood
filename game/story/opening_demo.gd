@@ -25,7 +25,11 @@ func _ready() -> void:
 	await get_tree().create_timer(0.4).timeout
 	assert(main.prompt_text() == Opening.DRAW_PROMPT, "the crayon sun gets a prompt, got '%s'" % main.prompt_text())
 	opening.draw_now()
+	await _frames(3)
+	assert(main.get_node("Ui/Drawing").visible, "Arda's drawing is on screen")
+	assert(main.arda.frozen, "Arda waits while the drawing shows")
 	await get_tree().create_timer(Opening.CAPTION_SECONDS + 0.3).timeout
+	assert(not main.has_node("Ui/Drawing"), "the drawing makes way for the flood")
 	await _frames(3)
 	assert(is_equal_approx(WorldClock.year, 2080.0), "the drawing opens 2080")
 	assert(main.room.flood_m > 0.5, "the bedroom is flooded")

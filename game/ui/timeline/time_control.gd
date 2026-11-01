@@ -93,6 +93,12 @@ func end_scrub() -> void:
 	WorldClock.jump(WorldClock.nearest_era())
 
 
+## Esc during a scrub lands on the nearest era first, so releasing T can't close the pause menu.
+func stop_scrub() -> void:
+	if scrubbing:
+		end_scrub()
+
+
 func _on_slider_changed(value: float) -> void:
 	year_label.text = str(roundi(value))
 	WorldClock.scrub(value)

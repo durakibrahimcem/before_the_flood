@@ -23,7 +23,8 @@ const TRY_LINES := {
 	"wall": "Next time, build more of the seawall.",
 }
 const GHOST_CAPTION := "Each mark is a future you tried. The bright one is your newest."
-const GHOST_EMPTY_CAPTION := "No past futures yet. Try again, and the marks begin."
+## The chart only means something once there is a past future to compare with.
+const GHOSTS_TO_COMPARE := 2
 const FADE_SECONDS := 0.2
 
 @onready var click: Button = $ClickCatch
@@ -32,6 +33,7 @@ const FADE_SECONDS := 0.2
 @onready var ending_caption: Label = $Steps/EndingStep/Caption
 @onready var rank_card: RankCard = $Steps/RankStep
 @onready var chart: GhostChart = $Steps/GhostStep/Chart
+@onready var ghost_step: Control = $Steps/GhostStep
 @onready var ghost_caption: Label = $Steps/GhostStep/Caption
 @onready var share_card: ShareCard = $Steps/ShareStep
 @onready var retry_button: Button = $Steps/RetryStep/Retry
@@ -71,7 +73,7 @@ func play(outcome: Dictionary) -> void:
 	rank_card.show_rank()
 	retry_body.text = _retry_line(int(outcome.get("homes", 0)))
 	chart.set_depths(Run.ghosts)
-	ghost_caption.text = GHOST_EMPTY_CAPTION if Run.ghosts.is_empty() else GHOST_CAPTION
+	ghost_caption.text = GHOST_CAPTION
 	share_card.set_code(Run.plan.code())
 	_show(0)
 
@@ -93,7 +95,10 @@ func advance() -> void:
 	if _current >= steps.size() - 1:
 		retry_requested.emit()
 		return
-	_show(_current + 1)
+	var step_after := _current + 1
+	if steps[step_after] == ghost_step and Run.ghosts.size() < GHOSTS_TO_COMPARE:
+		step_after += 1
+	_show(step_after)
 
 
 func _show(index: int) -> void:

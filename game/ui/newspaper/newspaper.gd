@@ -129,4 +129,4 @@ func _apply_text_sizes() -> void:
 	year.add_theme_font_size_override("font_size", roundi(32.0 * factor))
 	headline.add_theme_font_size_override("font_size", roundi(30.0 * factor))
 	story.add_theme_font_size_override("font_size", roundi(22.0 * factor))
-	hint.add_theme_font_size_override("font_size", roundi(14.0 * factor))
+	hint.add_theme_font_size_override("font_size", roundi(20.0 * factor))

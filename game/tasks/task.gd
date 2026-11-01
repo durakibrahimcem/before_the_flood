@@ -5,6 +5,8 @@ extends Node2D
 signal finished(performance: float)
 
 const REPEAT_GROWTH := 0.25
+## How strongly a task's instruction stays on screen once it has been read.
+const REMINDER_ALPHA := 0.7
 
 @export var action: String = ""
 
@@ -47,6 +49,11 @@ func _begin() -> void:
 ## The score in words, for the verdict card, such as "6 of 8 sorted".
 func result_text() -> String:
 	return ""
+
+
+## The instruction on screen. It stays readable for the whole task.
+func instruction() -> CanvasItem:
+	return null
 
 
 ## Progress for browser tests, reported in debug Web builds only.

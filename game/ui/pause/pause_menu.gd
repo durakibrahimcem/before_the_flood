@@ -4,6 +4,8 @@ extends CanvasLayer
 
 signal resumed
 signal opened
+## Sent before the world pauses, so a scrub can end and leave the pause to this menu.
+signal opening
 
 const LARGE_SCALE := 1.4
 const ICON_BASE := 32
@@ -52,6 +54,7 @@ func _input(event: InputEvent) -> void:
 		if visible:
 			resume()
 		else:
+			opening.emit()
 			open()
 		get_viewport().set_input_as_handled()
 

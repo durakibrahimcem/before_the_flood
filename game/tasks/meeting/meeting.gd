@@ -154,6 +154,10 @@ func result_text() -> String:
 	return "%d of %d worries answered" % [right_answers, goal]
 
 
+func instruction() -> CanvasItem:
+	return _hint
+
+
 func debug_note() -> String:
 	return "%d %d %d %d" % [right_answers, worries_asked, state, _right_card if _cards_shown else -1]
 
@@ -300,7 +304,7 @@ func _show_hint() -> void:
 	_hint_tween = create_tween().bind_node(self)
 	_hint_tween.tween_property(_hint, "modulate:a", 1.0, 0.4)
 	_hint_tween.tween_interval(HINT_FADE_AT - 0.4)
-	_hint_tween.tween_property(_hint, "modulate:a", 0.0, 0.8)
+	_hint_tween.tween_property(_hint, "modulate:a", Task.REMINDER_ALPHA, 0.8)
 
 
 func _hide_hint() -> void:

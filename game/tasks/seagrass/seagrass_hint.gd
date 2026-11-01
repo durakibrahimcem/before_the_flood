@@ -1,6 +1,6 @@
 class_name SeagrassHint
 extends Node2D
-## One short crayon hint, shown once when the task begins.
+## One short crayon hint. It settles down after a few seconds, and stays as a reminder.
 
 const WARM_BROWN := Color(0.48, 0.35, 0.24)
 const FADE_OUT_AT := 5.1
@@ -28,8 +28,7 @@ func _ready() -> void:
 	tween.tween_property(self, "modulate:a", 1.0, 0.4)
 	tween.set_ease(Tween.EASE_IN)
 	tween.tween_interval(FADE_OUT_AT)
-	tween.tween_property(self, "modulate:a", 0.0, 0.6)
-	tween.tween_callback(queue_free)
+	tween.tween_property(self, "modulate:a", Task.REMINDER_ALPHA, 0.6)
 
 
 func _add_label() -> void:

@@ -132,8 +132,10 @@ func _run_poor() -> void:
 				assert(String(walker.get("carried")) == "", "a wrong bin empties the hands")
 				assert(task.sorted_correct == CORRECT_FIRST,
 					"a wrong deposit keeps the score at %d, got %d" % [CORRECT_FIRST, task.sorted_correct])
-				assert(get_tree().get_nodes_in_group("sort_item").size() == 4,
-					"the lost item is gone from the group")
+				assert(get_tree().get_nodes_in_group("sort_item").size() == 5,
+					"the item goes back to the field")
+				# Going on would only repeat the same mistake until the timer ran out.
+				task.time_left = 0.1
 	assert(is_equal_approx(_performance, 3.0 / 8.0),
 		"a poor run scores 3 of 8, got %f" % _performance)
 	await _free_task(task)

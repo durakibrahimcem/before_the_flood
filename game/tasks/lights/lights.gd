@@ -38,6 +38,7 @@ const ZONES: Array[Dictionary] = [
 @export var switch_texture: Texture2D
 @export var walker_texture: Texture2D = preload("res://actors/art/arda_idle.png")
 
+var _hint: CrayonHint
 var walker: CharacterBody2D
 var switches_done := 0
 var switches_total := 0
@@ -118,10 +119,11 @@ func _build_salon() -> void:
 	_timer_bar.color = Color(1.0, 0.92, 0.72, 0.85)
 	_timer_bar.position = Vector2(800, 70)
 	_salon.add_child(_timer_bar)
-	var hint := CrayonHint.new()
-	hint.text = HINT_TEXT
-	hint.position = Vector2(960, 150)
-	_salon.add_child(hint)
+	_hint = CrayonHint.new()
+	_hint.text = HINT_TEXT
+	_hint.auto_fade_after = 0.0
+	_hint.position = Vector2(960, 150)
+	_salon.add_child(_hint)
 
 
 ## Use the walker the room already has, or spawn our own inside the night layer.
@@ -272,6 +274,10 @@ func _build_street() -> void:
 	_caption.auto_fade_after = 0.0
 	_caption.position = Vector2(960, 140)
 	_street.add_child(_caption)
+
+
+func instruction() -> CanvasItem:
+	return _hint
 
 
 func result_text() -> String:

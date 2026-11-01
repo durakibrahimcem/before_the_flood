@@ -41,6 +41,8 @@ var sorted_correct := 0
 var time_left := 0.0
 var running := false
 
+var _carried_art: Texture2D
+var _returning := 0
 var _walker: CharacterBody2D
 var _own_walker := false
 var _rng := RandomNumberGenerator.new()
@@ -91,8 +93,12 @@ func _physics_process(delta: float) -> void:
 		clampf(_walker.global_position.x, WALKER_MIN.x, WALKER_MAX.x),
 		clampf(_walker.global_position.y, WALKER_MIN.y, WALKER_MAX.y))
 	time_left = maxf(time_left - delta, 0.0)
-	if time_left <= 0.0 or (_items_left() == 0 and _carried() == ""):
+	if time_left <= 0.0 or (_items_left() == 0 and _returning == 0 and _carried() == ""):
 		_end()
+
+
+func instruction() -> CanvasItem:
+	return hint
 
 
 func result_text() -> String:
@@ -179,17 +185,35 @@ func _make_walker_shape() -> CollisionShape2D:
 func _spawn_items() -> void:
 	var placed := PackedVector2Array()
 	for i: int in total_items:
-		var item := ITEM_SCENE.instantiate() as SortItem
-		item.kind = KINDS[i % KINDS.size()]
-		var pictures: Array = ITEM_ART[item.kind]
-		item.art = pictures[i / KINDS.size() % pictures.size()]
-		item.flipped = _rng.randf() < 0.5
-		item.rotation = _rng.randf_range(-ITEM_TILT, ITEM_TILT)
-		item.position = _item_spot(placed)
-		placed.append(item.position)
-		item.add_to_group(ITEM_GROUP)
-		item.touched.connect(_on_item_touched.bind(item))
-		add_child(item)
+		var kind := KINDS[i % KINDS.size()]
+		var pictures: Array = ITEM_ART[kind]
+		var spot := _item_spot(placed)
+		placed.append(spot)
+		_add_item(kind, pictures[i / KINDS.size() % pictures.size()], spot)
+
+
+func _add_item(kind: String, art: Texture2D, spot: Vector2) -> void:
+	var item := ITEM_SCENE.instantiate() as SortItem
+	item.kind = kind
+	item.art = art
+	item.flipped = _rng.randf() < 0.5
+	item.rotation = _rng.randf_range(-ITEM_TILT, ITEM_TILT)
+	item.position = spot
+	item.add_to_group(ITEM_GROUP)
+	item.touched.connect(_on_item_touched.bind(item))
+	add_child(item)
+
+
+## A slip costs the walk, not the item.
+func _put_back(kind: String, art: Texture2D) -> void:
+	_returning -= 1
+	if not running:
+		return
+	var placed := PackedVector2Array()
+	for node: Node in get_tree().get_nodes_in_group(ITEM_GROUP):
+		if is_ancestor_of(node) and not node.is_queued_for_deletion():
+			placed.append((node as SortItem).position)
+	_add_item(kind, art, _item_spot(placed))
 
 
 ## Rejection sampling with a bounded loop, so placement always finishes.
@@ -229,13 +253,14 @@ func _on_item_touched(_body: Node2D, item: SortItem) -> void:
 	if _carried() != "":
 		return
 	_set_carried(item.kind)
+	_carried_art = item.art
 	Sfx.play("pickup")
 	item.queue_free()
 	_update_carried_label()
 	_pop_carried_label()
 
 
-## Deposit: the right bin counts, any bin clears the hands, a wrong bin loses the item.
+## Deposit: the right bin counts, any bin clears the hands, a wrong bin sends the item back.
 func _on_bin_touched(_body: Node2D, bin: SortBin) -> void:
 	if not running:
 		return
@@ -245,6 +270,10 @@ func _on_bin_touched(_body: Node2D, bin: SortBin) -> void:
 	var correct := carried == bin.kind
 	if correct:
 		sorted_correct += 1
+	else:
+		# Physics objects can't be added while the physics server reports this touch.
+		_returning += 1
+		_put_back.call_deferred(carried, _carried_art)
 	Sfx.play("drop" if correct else "knock")
 	_set_carried("")
 	_update_carried_label()

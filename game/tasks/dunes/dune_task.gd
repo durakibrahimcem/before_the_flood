@@ -17,6 +17,7 @@ const SPOT_POOL: Array[Vector2] = [
 ## The real run lasts about 25 seconds; demos shorten it for a quick poor run.
 @export var time_limit := 40.0
 
+var _hint: Label
 var walker: CharacterBody2D
 var spots: Array[DuneSpot] = []
 var planted_count := 0
@@ -39,6 +40,10 @@ func complete(performance: float) -> void:
 
 func result_text() -> String:
 	return "%d of %d spots planted" % [planted_count, _total]
+
+
+func instruction() -> CanvasItem:
+	return _hint
 
 
 func debug_note() -> String:
@@ -121,6 +126,7 @@ func _claim_walker() -> void:
 
 func _show_hint() -> void:
 	var hint := Label.new()
+	_hint = hint
 	hint.text = HINT
 	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	hint.size = Vector2(1200, 64)
@@ -134,5 +140,4 @@ func _show_hint() -> void:
 	add_child(hint)
 	var fade := create_tween()
 	fade.tween_interval(5.0)
-	fade.tween_property(hint, "modulate:a", 0.0, 1.0)
-	fade.tween_callback(hint.queue_free)
+	fade.tween_property(hint, "modulate:a", Task.REMINDER_ALPHA, 1.0)

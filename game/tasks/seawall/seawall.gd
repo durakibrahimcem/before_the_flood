@@ -130,6 +130,10 @@ func _physics_process(delta: float) -> void:
 	_update_shake(delta)
 
 
+func instruction() -> CanvasItem:
+	return _hint
+
+
 func result_text() -> String:
 	return "%d of %d blocks straight" % [aligned_blocks, goal]
 

@@ -9,7 +9,11 @@ const DRAW_REACH := 240.0
 const DRAW_PROMPT := "Press E to draw"
 const DRAW_PROMPT_SPOT := Vector2(600, 270)
 const GREETING_SECONDS := 2.5
-const CAPTION_SECONDS := 1.2
+const CAPTION_SECONDS := 2.7
+## Ebru's drawing drops in here. Until then the crayon house from the start screen stands in.
+const DRAWING_PATH := "res://ui/my_house.png"
+const DRAWING_SIZE := Vector2(760, 640)
+const DRAWING_FADE_SECONDS := 0.3
 const SKIP_NOTE := "Press Tab to skip this."
 const TODAY_LINE := "Go to the salon, and open the calendar on the fridge."
 
@@ -28,7 +32,11 @@ func play() -> void:
 		await get_tree().process_frame
 	_can_draw = false
 	main.hint.text = "\"My house when I'm big.\""
+	main.arda.frozen = true
+	var drawing := _show_drawing()
 	await get_tree().create_timer(CAPTION_SECONDS).timeout
+	drawing.queue_free()
+	main.arda.frozen = false
 	main.hint.text = ""
 	main.time.enabled = true
 	WorldClock.jump(WorldClock.ERAS[2])
@@ -58,6 +66,25 @@ func _process(_delta: float) -> void:
 
 func _in_reach() -> bool:
 	return main.arda.position.distance_to(DRAW_SPOT) <= DRAW_REACH
+
+
+func _show_drawing() -> Control:
+	var card := PanelContainer.new()
+	card.name = "Drawing"
+	card.add_theme_stylebox_override("panel", CrayonUI.style_panel())
+	card.size = DRAWING_SIZE
+	card.position = Vector2((Room.ROOM_SIZE.x - DRAWING_SIZE.x) * 0.5, 170.0)
+	card.rotation_degrees = -1.5
+	var art := CrayonArt.new()
+	if ResourceLoader.exists(DRAWING_PATH):
+		art.art = load(DRAWING_PATH)
+	card.add_child(art)
+	var layer := main.get_node("Ui")
+	layer.add_child(card)
+	layer.move_child(card, 0)
+	card.modulate.a = 0.0
+	card.create_tween().tween_property(card, "modulate:a", 1.0, DRAWING_FADE_SECONDS)
+	return card
 
 
 func draw_now() -> void:

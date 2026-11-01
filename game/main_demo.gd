@@ -120,6 +120,8 @@ func _ready() -> void:
 	await _check_bowls(main)
 	await _check_doors(main)
 	await _check_paper_delay(main)
+	await _check_pause_over_scrub(main)
+	await _check_ayla_blocks(main)
 	await _check_flow(main)
 	await _check_outdoors(main)
 	print("DEMO PASS")
@@ -162,6 +164,40 @@ func _check_verdicts() -> void:
 	assert(TaskVerdict.entry_for(0.8)["word"] == "Great job!", "a strong task is great")
 	assert(TaskVerdict.entry_for(0.5)["word"] == "Good work.", "half is good")
 	assert(TaskVerdict.entry_for(0.0)["word"] == "That went badly.", "nothing done is bad")
+
+
+## Esc during a scrub leaves a pause menu that stays open.
+func _check_pause_over_scrub(main: Main) -> void:
+	var time: TimeControl = main.get_node("TimeControl")
+	var menu: PauseMenu = main.get_node("Pause")
+	WorldClock.scrub(2026.0)
+	main.newspaper.hide()
+	time.begin_scrub()
+	await _frames(1)
+	_key(KEY_ESCAPE)
+	await _frames(3)
+	assert(menu.visible and not time.scrubbing, "Esc ends the scrub and opens the menu")
+	assert(get_tree().paused, "the menu holds the pause")
+	await _frames(5)
+	assert(menu.visible, "the menu stays open")
+	menu.resume()
+	await _frames(2)
+	assert(not get_tree().paused, "resuming frees the world")
+	WorldClock.scrub(2026.0)
+	await _frames(1)
+
+
+## Arda walks around Ayla, not through her, while she is there.
+func _check_ayla_blocks(main: Main) -> void:
+	WorldClock.scrub(2026.0)
+	main.newspaper.hide()
+	main.enter_room("salon", Ayla.SPOT + Vector2(-140, 0))
+	await _ticks(4)
+	Input.action_press("move_right")
+	await _ticks(30)
+	Input.action_release("move_right")
+	assert(main.arda.position.x < Ayla.SPOT.x - 20.0, "Ayla stops Arda, who reached x %f" % main.arda.position.x)
+	await _ticks(2)
 
 
 ## Ebru's poses swap as Arda walks, and Ayla shares the salon's water.

@@ -11,7 +11,6 @@ const KEYCAP_TILT: Array[float] = [-2.5, 1.5, -1.0, 2.0, -1.5, 1.0, -2.0, 2.5]
 const WALK_KEYS: Array[String] = ["W", "A", "S", "D"]
 const USE_KEYS: Array[String] = ["E"]
 const TIME_KEYS: Array[String] = ["T"]
-const SCRUB_KEYS: Array[String] = ["T"]
 const PAUSE_KEYS: Array[String] = ["Esc"]
 
 @onready var _sheet: Control = $Sheet
@@ -22,15 +21,13 @@ const PAUSE_KEYS: Array[String] = ["Esc"]
 @onready var hint_walk: Label = $Sheet/Center/Column/Rows/WalkRow/hint_walk
 @onready var hint_use: Label = $Sheet/Center/Column/Rows/UseRow/hint_use
 @onready var hint_time: Label = $Sheet/Center/Column/Rows/TimeRow/hint_time
-@onready var hint_scrub: Label = $Sheet/Center/Column/Rows/ScrubRow/hint_scrub
 @onready var hint_pause: Label = $Sheet/Center/Column/Rows/PauseRow/hint_pause
 @onready var _walk_keys: HBoxContainer = $Sheet/Center/Column/Rows/WalkRow/WalkKeys
 @onready var _use_keys: HBoxContainer = $Sheet/Center/Column/Rows/UseRow/UseKeys
 @onready var _time_keys: HBoxContainer = $Sheet/Center/Column/Rows/TimeRow/TimeKeys
-@onready var _scrub_keys: HBoxContainer = $Sheet/Center/Column/Rows/ScrubRow/ScrubKeys
 @onready var _pause_keys: HBoxContainer = $Sheet/Center/Column/Rows/PauseRow/PauseKeys
 
-## Keycap letters in order: W A S D, E, T, T, Esc.
+## Keycap letters in order: W A S D, E, T, Esc.
 var keycap_labels: Array[Label] = []
 var _armed: bool = true
 var _sized: Array[Control] = []
@@ -44,15 +41,13 @@ func _ready() -> void:
 	_fill_keys(_walk_keys, WALK_KEYS)
 	_fill_keys(_use_keys, USE_KEYS)
 	_fill_keys(_time_keys, TIME_KEYS)
-	_fill_keys(_scrub_keys, SCRUB_KEYS)
 	_fill_keys(_pause_keys, PAUSE_KEYS)
-	_track(title_label, 64)
+	_track(title_label, 84)
 	_track(subtitle_label, 24)
-	_track(hint_walk, 26)
-	_track(hint_use, 26)
-	_track(hint_time, 26)
-	_track(hint_scrub, 26)
-	_track(hint_pause, 26)
+	_track(hint_walk, 30)
+	_track(hint_use, 30)
+	_track(hint_time, 30)
+	_track(hint_pause, 30)
 	_track(begin_button, 30)
 	Settings.changed.connect(_apply_text_sizes)
 	begin_button.pressed.connect(_on_begin_pressed)

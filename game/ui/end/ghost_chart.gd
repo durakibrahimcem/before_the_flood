@@ -48,11 +48,11 @@ func _draw() -> void:
 	for i: int in TICK_LABELS.size():
 		var tick_y := _y(float(i) * 0.5)
 		draw_line(Vector2(axis_x - 6.0, tick_y), Vector2(axis_x + 6.0, tick_y), EndPalette.INK, 1.5)
-		draw_string(font, Vector2(10.0, tick_y + 5.0), String(TICK_LABELS[i]), HORIZONTAL_ALIGNMENT_RIGHT, 44.0, 16, EndPalette.FADED)
+		draw_string(font, Vector2(10.0, tick_y + 5.0), String(TICK_LABELS[i]), HORIZONTAL_ALIGNMENT_RIGHT, 44.0, 20, EndPalette.FADED)
 	for mark: Array in CHILD_MARKS:
 		var mark_y := _y(float(mark[0]))
 		draw_line(Vector2(axis_x + 6.0, mark_y), Vector2(axis_x + 16.0, mark_y), EndPalette.FADED, 2.0)
-		draw_string(font, Vector2(axis_x + 20.0, mark_y + 5.0), String(mark[1]), HORIZONTAL_ALIGNMENT_LEFT, -1.0, 18, EndPalette.FADED)
+		draw_string(font, Vector2(axis_x + 20.0, mark_y + 5.0), String(mark[1]), HORIZONTAL_ALIGNMENT_LEFT, -1.0, 20, EndPalette.FADED)
 	var newest := newest_index()
 	for i: int in depths.size():
 		var line := _wave(_y(depths[i]))

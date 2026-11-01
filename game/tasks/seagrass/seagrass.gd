@@ -25,6 +25,7 @@ const ANCHORS := [
 @export var hint_texture: Texture2D
 @export var walker_figure: Texture2D
 
+var _hint: SeagrassHint
 var goal := 0
 var rooted := 0
 var elapsed := 0.0
@@ -56,6 +57,10 @@ func result_text() -> String:
 	return "%d of %d shoots rooted" % [rooted, goal]
 
 
+func instruction() -> CanvasItem:
+	return _hint
+
+
 func debug_note() -> String:
 	return "%d %d %d" % [rooted, goal, 1 if is_calm() else 0]
 
@@ -72,10 +77,10 @@ func _begin() -> void:
 		spot.position = ANCHORS[i]
 		add_child(spot)
 		spots.append(spot)
-	var hint := SeagrassHint.new()
-	hint.hint_texture = hint_texture
-	hint.position = Vector2(960.0, 150.0)
-	add_child(hint)
+	_hint = SeagrassHint.new()
+	_hint.hint_texture = hint_texture
+	_hint.position = Vector2(960.0, 150.0)
+	add_child(_hint)
 	_acquire_walker()
 	if walker != null:
 		walker.set("carried", "shoot")

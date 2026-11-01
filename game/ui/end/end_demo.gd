@@ -8,7 +8,6 @@ const FULL_CAPTION := "Old Arda plants seagrass in a thriving meadow. The crayon
 const PARTIAL_CAPTION := "The street survives in part. Arda sits on the step of the home that remains."
 const NONE_CAPTION := "Arda packs the teddy and closes the door. Another future can be drawn."
 const GHOST_CAPTION := "Each mark is a future you tried. The bright one is your newest."
-const GHOST_EMPTY_CAPTION := "No past futures yet. Try again, and the marks begin."
 const KEEPER_CAPTION := "All 462 futures were tested. Yours is one of the %d that keep every home."
 const NOT_FOUND_CAPTION := "Finish all six choices to earn a rank."
 const BAD_CODE_MESSAGE := "That code doesn't match a plan. Check the three letters."
@@ -163,10 +162,9 @@ func _ready() -> void:
 	var rank_number := seq.get_node("Steps/RankStep/Number") as Label
 	check(rank_number != null and rank_number.text == "1", "the rank still shows 1")
 	await _tap()
-	check(seq.step_index() == 2, "at the ghost step with cleared ghosts")
+	check(seq.step_index() == 3, "with nothing to compare, the ghost chart is skipped")
 	check(seq.chart.depths.is_empty(), "cleared ghosts empty the chart")
 	check(seq.chart.newest_index() == -1, "no newest ghost when the chart is empty")
-	check(seq.ghost_caption.text == GHOST_EMPTY_CAPTION, "empty ghost caption, got '%s'" % seq.ghost_caption.text)
 	if failed:
 		_finish()
 		return
@@ -180,7 +178,6 @@ func _ready() -> void:
 	var empty_caption := seq.get_node("Steps/RankStep/Caption") as Label
 	check(empty_number != null and empty_number.text == "-", "without a code the rank shows a dash")
 	check(empty_caption != null and empty_caption.text == NOT_FOUND_CAPTION, "without a code the rank caption guides gently")
-	await _tap()
 	await _tap()
 	await _tap()
 	check(seq.step_index() == 4, "at the share step without a code")
@@ -212,6 +209,7 @@ func _ready() -> void:
 		return
 
 	Run.plan = Plan.from_code("3AT")
+	Run.ghosts.assign([0.9, 1.3])
 	seq.play(Sim.outcome(Run.plan))
 	await _frames(2)
 	for expected: int in 6:

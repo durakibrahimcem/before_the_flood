@@ -1,5 +1,5 @@
 extends Node2D
-## One quiet hint: a short label and a wobbly crayon arrow.
+## One quiet hint: a short label and a wobbly crayon arrow. It stays as a reminder.
 
 const CRAYON := Color(0.55, 0.42, 0.28)
 
@@ -19,8 +19,7 @@ func show_hint() -> void:
 		_tween.kill()
 	_tween = create_tween()
 	_tween.tween_interval(3.5)
-	_tween.tween_property(self, "modulate:a", 0.0, 0.5)
-	_tween.tween_callback(hide)
+	_tween.tween_property(self, "modulate:a", Task.REMINDER_ALPHA, 0.5)
 
 
 func _draw() -> void:

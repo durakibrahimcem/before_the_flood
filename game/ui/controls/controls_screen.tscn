@@ -96,21 +96,7 @@ theme_override_constants/separation = 10
 
 [node name="hint_time" type="Label" parent="Sheet/Center/Column/Rows/TimeRow"]
 layout_mode = 2
-text = "tap to jump through time"
-vertical_alignment = 1
-
-[node name="ScrubRow" type="HBoxContainer" parent="Sheet/Center/Column/Rows"]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="ScrubKeys" type="HBoxContainer" parent="Sheet/Center/Column/Rows/ScrubRow"]
-layout_mode = 2
-custom_minimum_size = Vector2(282, 0)
-theme_override_constants/separation = 10
-
-[node name="hint_scrub" type="Label" parent="Sheet/Center/Column/Rows/ScrubRow"]
-layout_mode = 2
-text = "hold to scrub the years"
+text = "tap to jump through time, hold and move the mouse to scrub"
 vertical_alignment = 1
 
 [node name="PauseRow" type="HBoxContainer" parent="Sheet/Center/Column/Rows"]
