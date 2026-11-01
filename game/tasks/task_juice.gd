@@ -1,7 +1,7 @@
 class_name TaskJuice
 extends RefCounted
-## One shared feel for the six tasks: a sound that never doubles, a small paper
-## pop and a few settling sparks. Under Calm Storm the sound and pop stay.
+## One shared feel for the six tasks: a small paper pop and a few settling
+## sparks. Under Calm Storm the pop stays.
 
 const POP_OVERSHOOT := 1.10
 const POP_SECONDS := 0.18
@@ -17,21 +17,8 @@ const SPARK_Z := 2
 
 const _POP_TWEEN := "task_juice_pop_tween"
 const _POP_REST := "task_juice_pop_rest"
-const _SFX_FOLDER := "res://audio/sfx/%s.ogg"
 
 static var _spark_ramp: Gradient
-
-
-## Plays a short sound, unless the same one is still sounding, so a quick
-## repeat answers once instead of doubling up.
-static func play(sound: String) -> void:
-	var path := _SFX_FOLDER % sound
-	for child: Node in Sfx.get_children():
-		var player := child as AudioStreamPlayer
-		if player != null and player.playing and player.stream != null \
-				and player.stream.resource_path == path:
-			return
-	Sfx.play(sound)
 
 
 ## A small pop with a back ease: ten percent up, then settled, in 180 ms.

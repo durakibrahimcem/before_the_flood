@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://ui/end/ghost_chart.gd" id="4_ghost"]
 [ext_resource type="Script" path="res://ui/end/real_cards.gd" id="5_real"]
 [ext_resource type="Script" path="res://ui/end/share_card.gd" id="6_share"]
-[ext_resource type="Texture2D" path="res://ui/end/art/ending_full.png" id="end_full"]
+[ext_resource type="Texture2D" path="res://ui/logo.png" id="end_full"]
 [ext_resource type="Texture2D" path="res://ui/end/art/ending_partial.png" id="end_partial"]
 [ext_resource type="Texture2D" path="res://ui/end/art/ending_none.png" id="end_none"]
 

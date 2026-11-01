@@ -6,7 +6,7 @@ signal retry_requested
 signal code_loaded(code: String)
 
 const ENDING_CAPTIONS := {
-	"full": "Old Arda plants seagrass in a thriving meadow. The crayon child plants beside them.",
+	"full": "Old Arda and the child they once were plant dune grass side by side. The homes still stand.",
 	"partial": "The street survives in part. Arda sits on the step of the home that remains.",
 	"none": "Arda packs the teddy and closes the door. Another future can be drawn.",
 }

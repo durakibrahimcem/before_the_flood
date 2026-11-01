@@ -4,7 +4,7 @@ extends Node
 const SEQUENCE := preload("res://ui/end/end_sequence.tscn")
 const PLANS_PATH := "res://data/plans.json"
 
-const FULL_CAPTION := "Old Arda plants seagrass in a thriving meadow. The crayon child plants beside them."
+const FULL_CAPTION := "Old Arda and the child they once were plant dune grass side by side. The homes still stand."
 const PARTIAL_CAPTION := "The street survives in part. Arda sits on the step of the home that remains."
 const NONE_CAPTION := "Arda packs the teddy and closes the door. Another future can be drawn."
 const GHOST_CAPTION := "Each mark is a future you tried. The bright one is your newest."

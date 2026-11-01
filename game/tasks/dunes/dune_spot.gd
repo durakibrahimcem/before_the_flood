@@ -42,7 +42,7 @@ func _ready() -> void:
 
 func plant() -> void:
 	is_planted = true
-	TaskJuice.play("plant")
+	Sfx.play("plant")
 	particles.emitting = false
 	queue_redraw()
 	TaskJuice.pop(self)

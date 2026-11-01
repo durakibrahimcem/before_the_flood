@@ -279,7 +279,7 @@ func _on_bin_touched(_body: Node2D, bin: SortBin) -> void:
 		# Physics objects can't be added while the physics server reports this touch.
 		_returning += 1
 		_put_back.call_deferred(carried, _carried_art)
-	TaskJuice.play("drop" if correct else "knock")
+	Sfx.play("drop" if correct else "knock")
 	_set_carried("")
 	_update_carried_label()
 	_show_verdict(bin, correct)
