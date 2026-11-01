@@ -39,7 +39,6 @@ Download the Windows build from the itch.io page, unzip it, and run `BeforeTheFl
 To work on the source, install [Godot 4.7.2](https://godotengine.org/), then run these from the repo root:
 
 ```bash
-tools/install_addons.sh   # fetches the addons
 tools/gate.sh             # runs every check and test scene
 tools/release.sh          # builds the Web and Windows zips into build/release
 tools/film.sh out.mp4     # films the trailer from the real game
