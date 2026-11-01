@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" path="res://rooms/aylin/bed_cut.png" id="c2"]
 [ext_resource type="Texture2D" path="res://rooms/aylin/lamp_on.png" id="o0"]
 [ext_resource type="Texture2D" path="res://rooms/aylin/lamp_off.png" id="o1"]
+[ext_resource type="Script" path="res://rooms/flood_arrival.gd" id="fa"]
 
 [sub_resource type="RectangleShape2D" id="ToSalon"]
 size = Vector2(220, 60)
@@ -113,3 +114,6 @@ label_lift = 300.0
 
 [node name="Shape" type="CollisionShape2D" parent="ToSalon"]
 shape = SubResource("ToSalon")
+
+[node name="FloodArrival" type="Node" parent="."]
+script = ExtResource("fa")
