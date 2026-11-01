@@ -8,10 +8,12 @@ const SHOULDER_SHARE := 0.2
 const BOB_HEIGHT := 7.0
 const IDLE := preload("res://actors/art/arda_idle.png")
 const WALK: Array[Texture2D] = [preload("res://actors/art/arda_walk1.png"), preload("res://actors/art/arda_walk2.png")]
-## Ebru has drawn one pose for each grown age so far, so Arda glides on the bob.
 const ADULT_IDLE := preload("res://actors/art/arda_adult_idle.png")
+const ADULT_WALK: Array[Texture2D] = [preload("res://actors/art/arda_adult_walk1.png"), preload("res://actors/art/arda_adult_walk2.png")]
 const OLD_IDLE := preload("res://actors/art/arda_old_idle.png")
-const GROWN_POSES := { 2050: ADULT_IDLE, 2080: OLD_IDLE }
+const OLD_WALK: Array[Texture2D] = [preload("res://actors/art/arda_old_walk1.png"), preload("res://actors/art/arda_old_walk2.png")]
+const IDLES := { 2026: IDLE, 2050: ADULT_IDLE, 2080: OLD_IDLE }
+const WALKS := { 2026: WALK, 2050: ADULT_WALK, 2080: OLD_WALK }
 const BOB_SPEED := 9.0
 const AGE_METRES := { 2026: 1.3, 2050: 1.75, 2080: 1.7 }
 const STRIDE := 0.35
@@ -93,9 +95,9 @@ func wade_factor(depth: float) -> float:
 
 func _current_pose() -> Texture2D:
 	var era := WorldClock.nearest_era()
-	if GROWN_POSES.has(era):
-		return GROWN_POSES[era]
-	return IDLE if velocity == Vector2.ZERO else WALK[_walk_pose]
+	if velocity == Vector2.ZERO:
+		return IDLES[era]
+	return WALKS[era][_walk_pose]
 
 
 func _show_pose(pose: Texture2D) -> void:
