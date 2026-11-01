@@ -120,6 +120,7 @@ func _ready() -> void:
 	await _check_bowls(main)
 	await _check_character_size(main)
 	await _check_feel(main)
+	await _check_motion(main)
 	await _check_doors(main)
 	await _check_paper_delay(main)
 	await _check_large_text(main)
@@ -389,6 +390,42 @@ func _check_character_size(main: Main) -> void:
 	await _frames(1)
 
 
+## Arda leans and kicks up the ground, years land with a stamp, and cards arrive one by one.
+func _check_motion(main: Main) -> void:
+	WorldClock.scrub(2026.0)
+	await _frames(1)
+	main.enter_room("salon", Vector2(700, 700))
+	await _physics(2)
+	Input.action_press("move_right")
+	await _physics(14)
+	assert(main.arda.body_sprite.rotation > 0.01, "Arda leans into the walk, got %f" % main.arda.body_sprite.rotation)
+	Input.action_release("move_right")
+	await _physics(50)
+	assert(absf(main.arda.body_sprite.rotation) < 0.005, "Arda stands straight again")
+	main.enter_room("street", Vector2(700, 860))
+	await _physics(2)
+	Input.action_press("move_right")
+	await _physics(40)
+	Input.action_release("move_right")
+	var emitting := main.arda.puffs.filter(func(puff: CPUParticles2D) -> bool: return puff.emitting)
+	assert(not emitting.is_empty(), "steps kick up the ground outdoors")
+	await _physics(2)
+	main.time._on_jumped(2050)
+	await _frames(2)
+	assert(main.time.stamp.text == "2050", "a time jump stamps the year")
+	assert(main.time.stamp.modulate.a > 0.0, "the stamp shows")
+	main.enter_room("salon", Vector2(1000, 690))
+	main.calendar.open()
+	await _frames(1)
+	assert(main.calendar.drawing("wall").modulate.a < 1.0, "the last card is still on its way")
+	await get_tree().create_timer(Calendar.CARD_DELAY * 6.0 + Calendar.CARD_SECONDS + 0.1).timeout
+	assert(is_equal_approx(main.calendar.drawing("wall").modulate.a, 1.0), "every card arrives")
+	main.calendar.close()
+	var drawing := CrayonArt.new()
+	assert(is_equal_approx(drawing.progress, 1.0), "a drawing is finished unless it is being drawn")
+	drawing.free()
+
+
 ## Sounds vary, rooms arrive through paper, and every button answers a press.
 func _check_feel(main: Main) -> void:
 	var pitches := {}
@@ -464,6 +501,7 @@ func _check_bowls(main: Main) -> void:
 	await _frames(2)
 	assert(Run.fed_today() and Run.meals == 1, "E feeds Brian")
 	assert(brian.is_happy(), "a fed Brian is happy")
+	assert(brian.position.y < Brian.SPOT.y, "a fed Brian hops")
 	assert(main.hint.text == Main.BOWLS_LINE, "feeding says so")
 	await get_tree().create_timer(Main.ASIDE_SECONDS + 0.2).timeout
 	assert(main.hint.text == "Open the calendar on the fridge.", "the objective comes back")

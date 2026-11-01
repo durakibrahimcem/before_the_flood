@@ -7,6 +7,13 @@ const SCRIBBLE_SECONDS := 0.34
 ## While T is held, the mouse or the walking keys scrub, with no need to grab the slider.
 const YEARS_PER_PIXEL := 54.0 / 1620.0
 const YEARS_PER_SECOND := 30.0
+## The year lands big after a jump, in that era's crayon.
+const STAMP_SPOT := Vector2(0, 300)
+const STAMP_SIZE := Vector2(1920, 260)
+const STAMP_FONT := preload("res://ui/fonts/Caveat.ttf")
+const STAMP_LAND_SECONDS := 0.3
+const STAMP_HOLD_SECONDS := 0.65
+const STAMP_FADE_SECONDS := 0.45
 const ERA_CRAYONS := {
 	2026: Color(0.96, 0.75, 0.32),
 	2050: Color(0.27, 0.56, 0.6),
@@ -24,6 +31,8 @@ var scrubbing: bool = false
 var _held: float = 0.0
 var _pressed: bool = false
 var _scribble_tween: Tween
+var stamp: Label
+var _stamp_tween: Tween
 
 
 func _ready() -> void:
@@ -33,6 +42,7 @@ func _ready() -> void:
 	slider.min_value = WorldClock.ERAS[0]
 	slider.max_value = WorldClock.ERAS[-1]
 	slider.value_changed.connect(_on_slider_changed)
+	_build_stamp()
 	WorldClock.jumped.connect(_on_jumped)
 
 
@@ -106,6 +116,7 @@ func _on_slider_changed(value: float) -> void:
 
 func _on_jumped(to_year: int) -> void:
 	Sfx.play("scribble")
+	_stamp_year(to_year)
 	var strokes := scribble.material as ShaderMaterial
 	strokes.set_shader_parameter("crayon", ERA_CRAYONS[to_year])
 	strokes.set_shader_parameter("progress", 0.0)
@@ -115,3 +126,34 @@ func _on_jumped(to_year: int) -> void:
 	_scribble_tween = create_tween()
 	_scribble_tween.tween_property(strokes, "shader_parameter/progress", 1.0, SCRIBBLE_SECONDS)
 	_scribble_tween.tween_callback(scribble.hide)
+
+
+func _build_stamp() -> void:
+	stamp = Label.new()
+	stamp.name = "Stamp"
+	stamp.position = STAMP_SPOT
+	stamp.size = STAMP_SIZE
+	stamp.pivot_offset = STAMP_SIZE * 0.5
+	stamp.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	stamp.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	stamp.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	stamp.add_theme_font_override("font", STAMP_FONT)
+	stamp.add_theme_font_size_override("font_size", 190)
+	stamp.add_theme_color_override("font_outline_color", Color(0.98, 0.95, 0.88))
+	stamp.add_theme_constant_override("outline_size", 22)
+	stamp.modulate.a = 0.0
+	add_child(stamp)
+
+
+func _stamp_year(to_year: int) -> void:
+	if _stamp_tween != null and _stamp_tween.is_valid():
+		_stamp_tween.kill()
+	stamp.text = str(to_year)
+	stamp.add_theme_color_override("font_color", ERA_CRAYONS[to_year])
+	stamp.modulate.a = 0.0
+	stamp.scale = Vector2(1.3, 1.3)
+	_stamp_tween = create_tween().set_parallel().set_ease(Tween.EASE_OUT)
+	_stamp_tween.tween_property(stamp, "modulate:a", 1.0, STAMP_LAND_SECONDS * 0.5)
+	_stamp_tween.tween_property(stamp, "scale", Vector2.ONE, STAMP_LAND_SECONDS).set_trans(Tween.TRANS_BACK)
+	_stamp_tween.chain().tween_interval(STAMP_HOLD_SECONDS)
+	_stamp_tween.chain().tween_property(stamp, "modulate:a", 0.0, STAMP_FADE_SECONDS)

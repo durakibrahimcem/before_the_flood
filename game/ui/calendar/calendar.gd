@@ -22,6 +22,9 @@ const TIPS := {
 	"meet": "Talk with the neighbours.",
 	"wall": "Stack the big blocks.",
 }
+## The drawings deal in one by one when the calendar opens.
+const CARD_DELAY := 0.05
+const CARD_SECONDS := 0.22
 const BASE_TITLE_FONT := 46
 const BASE_HINT_FONT := 31
 const BASE_DAY_FONT := 31
@@ -74,6 +77,18 @@ func open() -> void:
 	_refresh()
 	_apply_text_size()
 	show()
+	_deal_cards()
+
+
+func _deal_cards() -> void:
+	for index: int in Plan.ACTIONS.size():
+		var card := drawing(Plan.ACTIONS[index])
+		card.pivot_offset = card.size * 0.5
+		card.modulate.a = 0.0
+		card.scale = Vector2(0.94, 0.94)
+		var tween := card.create_tween().set_parallel().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+		tween.tween_property(card, "modulate:a", 1.0, CARD_SECONDS).set_delay(index * CARD_DELAY)
+		tween.tween_property(card, "scale", Vector2.ONE, CARD_SECONDS).set_delay(index * CARD_DELAY)
 
 
 func close() -> void:

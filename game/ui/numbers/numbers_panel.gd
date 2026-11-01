@@ -14,6 +14,9 @@ const ROW_HEIGHT := 36.0
 const LARGE_SCALE := 1.3
 const DRY_BELOW_M := 0.05
 const PULSE_SECONDS := 0.22
+## A new year sets the notebook swinging a little on its rings.
+const SWING_RADIANS := -0.03
+const SWING_SECONDS := 0.5
 const INK := Color(0.15, 0.125, 0.10)
 const FADED := Color(0.15, 0.125, 0.10, 0.72)
 
@@ -60,6 +63,12 @@ func _on_year_changed(state: WorldState) -> void:
 ## Arriving at an era pulses the ink; plain updates and scrub ticks stay quiet.
 func _on_jumped(_to_year: int) -> void:
 	_pulse_next = true
+	if Settings.calm_storm:
+		return
+	pivot_offset = Vector2(size.x * 0.5, 0.0)
+	rotation = SWING_RADIANS
+	var swing := create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	swing.tween_property(self, "rotation", 0.0, SWING_SECONDS)
 
 
 func _fill(state: WorldState) -> void:

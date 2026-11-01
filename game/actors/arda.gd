@@ -18,6 +18,16 @@ const BOB_SPEED := 9.0
 const AGE_METRES := { 2026: 1.3, 2050: 1.75, 2080: 1.7 }
 const STRIDE := 0.35
 const RIPPLE_MIN_DEPTH_M := 0.03
+## A small lean into the walk, far less than the real angle, which eases out through a reversal.
+const LEAN_RADIANS := 0.045
+const LEAN_EASE := 9.0
+## Turning round squeezes the sprite for a moment, so the flip isn't a hard cut.
+const TURN_SQUEEZE := 0.16
+const TURN_RECOVER := 6.0
+const PUFF_COUNT := 3
+const PUFF_LIFETIME := 0.42
+const SPLASH_TINT := Color("d7eaee")
+const GROUND_TINTS := { "shore": Color("e6d6a2"), "street": Color("d3ccbc") }
 ## The scale the foot shape was made for.
 const FOOT_PX_PER_M := 200.0
 
@@ -41,12 +51,17 @@ var _walked: float = 0.0
 var _walk_pose := 0
 var _stepped_at: float = -STRIDE
 var _up_latched := false
+var _turn := 0.0
+var _next_puff := 0
+## A few reused bursts, one for each footfall.
+var puffs: Array[CPUParticles2D] = []
 
 @onready var body_sprite: Sprite2D = $Sprite
 
 
 func _ready() -> void:
 	add_to_group("walker")
+	_build_puffs()
 	WorldClock.year_changed.connect(_on_year_changed)
 	WorldClock.refresh()
 
@@ -63,7 +78,11 @@ func _physics_process(delta: float) -> void:
 		_step(depth)
 	_show_pose(_current_pose())
 	if direction.x != 0.0:
-		body_sprite.flip_h = direction.x < 0.0
+		var faces_left := direction.x < 0.0
+		_turn = 1.0 if faces_left != body_sprite.flip_h else _turn
+		body_sprite.flip_h = faces_left
+	_turn = move_toward(_turn, 0.0, TURN_RECOVER * delta)
+	body_sprite.rotation = lerpf(body_sprite.rotation, LEAN_RADIANS * velocity.x / speed, 1.0 - exp(-LEAN_EASE * delta))
 	body_sprite.position.y = -absf(sin(_walked * BOB_SPEED)) * BOB_HEIGHT * pixels_per_metre / FOOT_PX_PER_M
 	_set_waterline(depth)
 
@@ -85,10 +104,13 @@ func _walk_direction() -> Vector2:
 func _step(depth: float) -> void:
 	if depth <= RIPPLE_MIN_DEPTH_M:
 		Sfx.play("step_dry")
+		if room != null and GROUND_TINTS.has(room.room_name):
+			_puff(global_position, GROUND_TINTS[room.room_name])
 		return
 	Sfx.play("step_wet")
 	var wet_m := minf(depth, _drawn_height_m() * (1.0 - SHOULDER_SHARE))
 	room.add_ripple(position - Vector2(0.0, wet_m * pixels_per_metre))
+	_puff(global_position - Vector2(0.0, wet_m * pixels_per_metre), SPLASH_TINT)
 
 
 func wade_factor(depth: float) -> float:
@@ -106,6 +128,7 @@ func _show_pose(pose: Texture2D) -> void:
 	body_sprite.texture = pose
 	body_sprite.offset = Vector2(-pose.get_width() * 0.5, -pose.get_height())
 	body_sprite.scale = Vector2.ONE * _drawn_height_m() * pixels_per_metre / pose.get_height()
+	body_sprite.scale.x *= 1.0 - TURN_SQUEEZE * _turn
 
 
 func _on_year_changed(_state: WorldState) -> void:
@@ -118,6 +141,40 @@ func _on_year_changed(_state: WorldState) -> void:
 func _set_waterline(depth: float) -> void:
 	var above := maxf(1.0 - depth / _drawn_height_m(), SHOULDER_SHARE)
 	(body_sprite.material as ShaderMaterial).set_shader_parameter("waterline", above)
+
+
+func _build_puffs() -> void:
+	var fade := Gradient.new()
+	fade.set_color(0, Color.WHITE)
+	fade.set_color(1, Color(1.0, 1.0, 1.0, 0.0))
+	for i: int in PUFF_COUNT:
+		var puff := CPUParticles2D.new()
+		puff.one_shot = true
+		puff.emitting = false
+		puff.local_coords = false
+		puff.amount = 7
+		puff.lifetime = PUFF_LIFETIME
+		puff.explosiveness = 1.0
+		puff.direction = Vector2.UP
+		puff.spread = 70.0
+		puff.initial_velocity_min = 40.0
+		puff.initial_velocity_max = 95.0
+		puff.gravity = Vector2(0.0, 220.0)
+		puff.scale_amount_min = 3.0
+		puff.scale_amount_max = 6.0
+		puff.color_ramp = fade
+		add_child(puff)
+		puffs.append(puff)
+
+
+func _puff(at: Vector2, tint: Color) -> void:
+	if Settings.calm_storm:
+		return
+	var puff := puffs[_next_puff]
+	_next_puff = (_next_puff + 1) % puffs.size()
+	puff.global_position = at
+	puff.color = tint
+	puff.restart()
 
 
 func _drawn_height_m() -> float:

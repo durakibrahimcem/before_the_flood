@@ -9,7 +9,8 @@ const DRAW_REACH := 240.0
 const DRAW_PROMPT := "Press E to draw"
 const DRAW_PROMPT_SPOT := Vector2(600, 270)
 const GREETING_SECONDS := 2.5
-const CAPTION_SECONDS := 2.7
+const CAPTION_SECONDS := 3.3
+const SKETCH_SECONDS := 2.1
 ## Ebru's drawing drops in here. Until then the crayon house from the start screen stands in.
 const DRAWING_PATH := "res://ui/my_house.png"
 const DRAWING_SIZE := Vector2(760, 640)
@@ -79,6 +80,9 @@ func _show_drawing() -> Control:
 	if ResourceLoader.exists(DRAWING_PATH):
 		art.art = load(DRAWING_PATH)
 	card.add_child(art)
+	if art.art == null:
+		art.progress = 0.0
+		art.create_tween().tween_property(art, "progress", 1.0, SKETCH_SECONDS)
 	var layer := main.get_node("Ui")
 	layer.add_child(card)
 	layer.move_child(card, 0)

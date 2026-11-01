@@ -3,8 +3,16 @@ extends Control
 ## A code-drawn house by the sea. Real art drops straight into the export.
 
 const DESIGN := Vector2(420, 360)
+## Every crayon stroke in the drawing, so it can draw itself a stroke at a time.
+const STROKES := 21
 
 @export var art: Texture2D
+## How much of the drawing is on the paper, from 0 to 1.
+var progress := 1.0:
+	set(value):
+		progress = value
+		queue_redraw()
+var _stroke := 0
 
 
 func _draw() -> void:
@@ -14,6 +22,7 @@ func _draw() -> void:
 		return
 	var zoom := minf(area.x / DESIGN.x, area.y / DESIGN.y)
 	var origin := (area - DESIGN * zoom) * 0.5
+	_stroke = 0
 	_house(origin, zoom)
 	_sun(origin, zoom)
 	_water(origin, zoom)
@@ -34,7 +43,8 @@ func _house(origin: Vector2, zoom: float) -> void:
 
 
 func _sun(origin: Vector2, zoom: float) -> void:
-	draw_circle(origin + Vector2(330, 70) * zoom, 24.0 * zoom, Color(CrayonUI.CRAYON.r, CrayonUI.CRAYON.g, CrayonUI.CRAYON.b, 0.85))
+	if float(_stroke) / STROKES <= progress:
+		draw_circle(origin + Vector2(330, 70) * zoom, 24.0 * zoom, Color(CrayonUI.CRAYON.r, CrayonUI.CRAYON.g, CrayonUI.CRAYON.b, 0.85))
 	for i: int in 8:
 		var angle := TAU * i / 8.0
 		var direction := Vector2(cos(angle), sin(angle))
@@ -47,4 +57,7 @@ func _water(origin: Vector2, zoom: float) -> void:
 
 
 func _line(origin: Vector2, zoom: float, from: Vector2, to: Vector2, color: Color, width: float, stroke_seed: int) -> void:
+	_stroke += 1
+	if float(_stroke) / STROKES > progress:
+		return
 	CrayonUI.draw_crayon_line(self, origin + from * zoom, origin + to * zoom, color, width * zoom, stroke_seed)

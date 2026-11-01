@@ -7,6 +7,7 @@ signal opened
 ## Sent before the world pauses, so a scrub can end and leave the pause to this menu.
 signal opening
 
+const EASE_IN_SECONDS := 0.14
 const LARGE_SCALE := 1.4
 const ICON_BASE := 32
 
@@ -88,7 +89,18 @@ func open() -> void:
 		get_tree().paused = true
 	_sync_boxes()
 	resume_button.grab_focus()
+	_ease_in()
 	opened.emit()
+
+
+func _ease_in() -> void:
+	panel.pivot_offset = panel.size * 0.5
+	panel.modulate.a = 0.0
+	panel.scale = Vector2(0.96, 0.96)
+	var tween := create_tween().set_parallel().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(panel, "modulate:a", 1.0, EASE_IN_SECONDS)
+	tween.tween_property(panel, "scale", Vector2.ONE, EASE_IN_SECONDS)
 
 
 func resume() -> void:
