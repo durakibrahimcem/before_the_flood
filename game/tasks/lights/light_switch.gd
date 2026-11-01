@@ -44,9 +44,7 @@ func flip() -> void:
 	in_reach = false
 	modulate = OFF_TINT
 	queue_redraw()
-	var tween := create_tween()
-	tween.tween_property(self, "scale", Vector2(1.2, 1.2), 0.07)
-	tween.tween_property(self, "scale", Vector2.ONE, 0.14)
+	TaskJuice.pop(self)
 
 
 func _draw() -> void:

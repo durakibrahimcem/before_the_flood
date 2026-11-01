@@ -49,6 +49,13 @@ func press(index: int) -> void:
 	_buttons[index].pressed.emit()
 
 
+## One card lifts in the shared task feel; the pop pivots on the card's middle.
+func pop_card(index: int) -> void:
+	var button := _buttons[index]
+	button.pivot_offset = button.size * 0.5
+	TaskJuice.pop(button)
+
+
 func _build_card(index: int, x: float) -> void:
 	var button := Button.new()
 	button.position = Vector2(x, CARD_Y)

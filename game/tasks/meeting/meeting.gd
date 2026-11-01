@@ -105,6 +105,8 @@ func choose(index: int) -> void:
 	_cards.hide_cards()
 	if index == _right_card:
 		right_answers += 1
+		TaskJuice.play("chime")
+		_cards.pop_card(index)
 		_door.light_up()
 		_door.reply(_worry["right_reply"])
 	else:

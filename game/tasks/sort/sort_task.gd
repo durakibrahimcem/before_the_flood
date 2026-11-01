@@ -29,6 +29,11 @@ const LABEL_LIFT := Vector2(-100.0, -195.0)
 const VERDICT_LIFT := Vector2(-100.0, -120.0)
 const VERDICT_RIGHT := Color(0.72, 0.95, 0.6)
 const VERDICT_WRONG := Color(1.0, 0.72, 0.6)
+## Spark tints sampled from Ebru's painted bins, one per kind.
+const SPARK_TINTS := {
+	"plastic": Color("d8d86c"), "paper": Color("6b87b9"), "glass": Color("95ca7b"), "metal": Color("86857c"),
+}
+const PAINTED_BIN_META := "sort_painted_bin_pop"
 
 @export var seconds := 40.0
 ## 0 randomizes the layout each run; a nonzero seed makes it repeatable.
@@ -274,10 +279,59 @@ func _on_bin_touched(_body: Node2D, bin: SortBin) -> void:
 		# Physics objects can't be added while the physics server reports this touch.
 		_returning += 1
 		_put_back.call_deferred(carried, _carried_art)
-	Sfx.play("drop" if correct else "knock")
+	TaskJuice.play("drop" if correct else "knock")
 	_set_carried("")
 	_update_carried_label()
 	_show_verdict(bin, correct)
+	if correct:
+		_pop_painted_bin(bin)
+		TaskJuice.sparks(self, bin.position, SPARK_TINTS[bin.kind])
+
+
+## Ebru's painted bin behind this touch area, when the street room is in play.
+## The bare demo scene has none, so its invisible area stands in there.
+func _painted_bin(bin: SortBin) -> Sprite2D:
+	if _walker != null and _walker is Arda:
+		var room: Room = (_walker as Arda).room
+		if room != null:
+			var painted := "Bin" + bin.kind.capitalize()
+			if room.has_node(painted):
+				return room.get_node(painted) as Sprite2D
+	return null
+
+
+## The bin answers a right deposit with the shared pop. The painted bins are
+## uncentered, so the offset travels with the scale to keep the bin on its
+## foot while it lifts.
+func _pop_painted_bin(bin: SortBin) -> void:
+	var sprite := _painted_bin(bin)
+	if sprite == null:
+		TaskJuice.pop(bin)
+		return
+	var size := sprite.region_rect.size if sprite.region_enabled else sprite.texture.get_size()
+	var state := { "scale": sprite.scale, "offset": sprite.offset, "tween": null }
+	if sprite.has_meta(PAINTED_BIN_META):
+		state = sprite.get_meta(PAINTED_BIN_META)
+		var old := state["tween"] as Tween
+		if old != null and old.is_valid():
+			old.kill()
+	else:
+		sprite.set_meta(PAINTED_BIN_META, state)
+	var rest_scale: Vector2 = state["scale"]
+	var rest_offset: Vector2 = state["offset"]
+	sprite.scale = rest_scale
+	sprite.offset = rest_offset
+	var lifted_scale := rest_scale * TaskJuice.POP_OVERSHOOT
+	var lifted_offset := (rest_offset + size * 0.5) / TaskJuice.POP_OVERSHOOT - size * 0.5
+	var tween := sprite.create_tween()
+	tween.bind_node(sprite)
+	state["tween"] = tween
+	var half := TaskJuice.POP_SECONDS * 0.5
+	tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(sprite, "scale", lifted_scale, half)
+	tween.parallel().tween_property(sprite, "offset", lifted_offset, half)
+	tween.tween_property(sprite, "scale", rest_scale, half)
+	tween.parallel().tween_property(sprite, "offset", rest_offset, half)
 
 
 ## The painted bins cannot react, so a short word rises from the bin that was used.

@@ -59,7 +59,11 @@ func release() -> void:
 	_kill_tween()
 	_tween = create_tween()
 	_tween.tween_property(self, "scale", _base_scale, 0.16)
-	if _release_mode == 1:
+	if _release_mode == 0:
+		# Only an aligned block answers with the shared pop, once its squash
+		# has recovered.
+		_tween.tween_callback(func() -> void: TaskJuice.pop(self))
+	elif _release_mode == 1:
 		if _tilt != 0.0:
 			_tween.tween_property(self, "rotation", _tilt, 0.22)
 	elif _release_mode == 2:
