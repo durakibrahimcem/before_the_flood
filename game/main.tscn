@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" path="res://ui/controls/controls_screen.tscn" id="8"]
 [ext_resource type="PackedScene" path="res://ui/pause/pause_menu.tscn" id="9"]
 [ext_resource type="Script" path="res://audio/music_director.gd" id="10"]
+[ext_resource type="Script" path="res://ui/written_label.gd" id="written"]
 [ext_resource type="PackedScene" path="res://water/storm.tscn" id="11"]
 
 [node name="Main" type="Node2D"]
@@ -30,6 +31,7 @@ layer = 5
 [node name="Numbers" parent="Ui" instance=ExtResource("5")]
 
 [node name="Hint" type="Label" parent="Ui"]
+script = ExtResource("written")
 offset_left = 40.0
 offset_top = 860.0
 offset_right = 1880.0

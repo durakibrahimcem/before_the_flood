@@ -11,10 +11,14 @@ const SHOULDER_SHARE := 0.2
 const BREATH_PHASE := 1.7
 ## Her feet. Round, so Arda slides past her instead of stopping dead on the way to the fridge.
 const FOOT_RADIUS := 26.0
+## She turns to Arda only once they are clearly past her, so she doesn't flicker as they stand close.
+const LOOK_MARGIN := 70.0
 
 var room: Room
 var _material: ShaderMaterial
 var _foot: CollisionShape2D
+var _sprite: Sprite2D
+var _walker: Node2D
 
 
 func _ready() -> void:
@@ -30,6 +34,7 @@ func _ready() -> void:
 	_material.set_shader_parameter("breath_phase", BREATH_PHASE)
 	sprite.material = _material
 	add_child(sprite)
+	_sprite = sprite
 	var body := StaticBody2D.new()
 	_foot = CollisionShape2D.new()
 	var round_foot := CircleShape2D.new()
@@ -39,6 +44,20 @@ func _ready() -> void:
 	add_child(body)
 	WorldClock.year_changed.connect(_on_year_changed)
 	WorldClock.refresh()
+
+
+func _process(_delta: float) -> void:
+	# Arda joins the room after she does.
+	if _walker == null:
+		_walker = get_tree().get_first_node_in_group("walker") as Node2D
+		return
+	var away := _walker.global_position.x - global_position.x
+	if absf(away) > LOOK_MARGIN:
+		_sprite.flip_h = away > 0.0
+
+
+func looks_right() -> bool:
+	return _sprite.flip_h
 
 
 func _on_year_changed(state: WorldState) -> void:

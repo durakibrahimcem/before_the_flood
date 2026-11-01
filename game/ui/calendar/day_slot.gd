@@ -3,12 +3,17 @@ extends Control
 ## One slot of one day. Passive display: the Calendar fills it in.
 
 const BASE_BADGE_FONT := 19
+const POP_SCALE := 1.12
+const POP_SECONDS := 0.2
 
 var action: String = "":
 	set(value):
 		if action != value:
+			var filled := action.is_empty() and not value.is_empty()
 			action = value
 			queue_redraw()
+			if filled and is_visible_in_tree():
+				_pop()
 var art: Texture2D = null:
 	set(value):
 		if art != value:
@@ -37,6 +42,15 @@ var drag_over: bool = false:
 
 var _grain: int = 5
 var _badge_font: int = BASE_BADGE_FONT
+
+
+func _pop() -> void:
+	if Settings.calm_storm:
+		return
+	pivot_offset = size * 0.5
+	scale = Vector2.ONE * POP_SCALE
+	var settle := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	settle.tween_property(self, "scale", Vector2.ONE, POP_SECONDS)
 
 
 ## A different wobble for every slot, so the boxes feel hand drawn.

@@ -8,8 +8,8 @@ const SCRIBBLE_SECONDS := 0.34
 const YEARS_PER_PIXEL := 54.0 / 1620.0
 const YEARS_PER_SECOND := 30.0
 ## The year lands big after a jump, in that era's crayon.
-const STAMP_SPOT := Vector2(0, 300)
-const STAMP_SIZE := Vector2(1920, 260)
+const STAMP_SPOT := Vector2(0, 20)
+const STAMP_SIZE := Vector2(1920, 240)
 const STAMP_FONT := preload("res://ui/fonts/Caveat.ttf")
 const STAMP_LAND_SECONDS := 0.3
 const STAMP_HOLD_SECONDS := 0.65
@@ -94,12 +94,16 @@ func begin_scrub() -> void:
 	slider.set_value_no_signal(WorldClock.year)
 	year_label.text = str(roundi(WorldClock.year))
 	bar.show()
+	_hold_stamp()
 
 
 func end_scrub() -> void:
 	scrubbing = false
 	bar.hide()
 	get_tree().paused = false
+	_kill_stamp()
+	_stamp_tween = create_tween()
+	_stamp_tween.tween_property(stamp, "modulate:a", 0.0, STAMP_FADE_SECONDS)
 	WorldClock.jump(WorldClock.nearest_era())
 
 
@@ -112,6 +116,8 @@ func stop_scrub() -> void:
 func _on_slider_changed(value: float) -> void:
 	year_label.text = str(roundi(value))
 	WorldClock.scrub(value)
+	if scrubbing:
+		_write_stamp(value)
 
 
 func _on_jumped(to_year: int) -> void:
@@ -145,11 +151,33 @@ func _build_stamp() -> void:
 	add_child(stamp)
 
 
-func _stamp_year(to_year: int) -> void:
+func _kill_stamp() -> void:
 	if _stamp_tween != null and _stamp_tween.is_valid():
 		_stamp_tween.kill()
-	stamp.text = str(to_year)
-	stamp.add_theme_color_override("font_color", ERA_CRAYONS[to_year])
+
+
+func _hold_stamp() -> void:
+	_kill_stamp()
+	stamp.scale = Vector2.ONE
+	stamp.modulate.a = 1.0
+	_write_stamp(WorldClock.year)
+
+
+func _write_stamp(year: float) -> void:
+	stamp.text = str(roundi(year))
+	stamp.add_theme_color_override("font_color", _crayon_at(year))
+
+
+func _crayon_at(year: float) -> Color:
+	var eras: Array = WorldClock.ERAS
+	var later := 1 if year <= eras[1] else 2
+	var share := inverse_lerp(float(eras[later - 1]), float(eras[later]), year)
+	return ERA_CRAYONS[eras[later - 1]].lerp(ERA_CRAYONS[eras[later]], share)
+
+
+func _stamp_year(to_year: int) -> void:
+	_kill_stamp()
+	_write_stamp(to_year)
 	stamp.modulate.a = 0.0
 	stamp.scale = Vector2(1.3, 1.3)
 	_stamp_tween = create_tween().set_parallel().set_ease(Tween.EASE_OUT)

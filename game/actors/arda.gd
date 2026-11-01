@@ -24,6 +24,8 @@ const LEAN_EASE := 9.0
 ## Turning round squeezes the sprite for a moment, so the flip isn't a hard cut.
 const TURN_SQUEEZE := 0.16
 const TURN_RECOVER := 6.0
+## Left standing, Arda glances the other way now and then.
+const LOOK_AROUND_SECONDS := 4.5
 const PUFF_COUNT := 3
 const PUFF_LIFETIME := 0.42
 const SPLASH_TINT := Color("d7eaee")
@@ -53,6 +55,7 @@ var _stepped_at: float = -STRIDE
 var _up_latched := false
 var _turn := 0.0
 var _next_puff := 0
+var stands_for := 0.0
 ## A few reused bursts, one for each footfall.
 var puffs: Array[CPUParticles2D] = []
 
@@ -81,10 +84,22 @@ func _physics_process(delta: float) -> void:
 		var faces_left := direction.x < 0.0
 		_turn = 1.0 if faces_left != body_sprite.flip_h else _turn
 		body_sprite.flip_h = faces_left
+	_look_around(delta)
 	_turn = move_toward(_turn, 0.0, TURN_RECOVER * delta)
 	body_sprite.rotation = lerpf(body_sprite.rotation, LEAN_RADIANS * velocity.x / speed, 1.0 - exp(-LEAN_EASE * delta))
 	body_sprite.position.y = -absf(sin(_walked * BOB_SPEED)) * BOB_HEIGHT * pixels_per_metre / FOOT_PX_PER_M
 	_set_waterline(depth)
+
+
+func _look_around(delta: float) -> void:
+	if velocity != Vector2.ZERO:
+		stands_for = 0.0
+		return
+	stands_for += delta
+	if stands_for >= LOOK_AROUND_SECONDS:
+		stands_for = 0.0
+		body_sprite.flip_h = not body_sprite.flip_h
+		_turn = 1.0
 
 
 ## Ignores a W still held from the last door, so it can't walk Arda straight back through.

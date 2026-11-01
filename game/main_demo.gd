@@ -424,6 +424,44 @@ func _check_motion(main: Main) -> void:
 	var drawing := CrayonArt.new()
 	assert(is_equal_approx(drawing.progress, 1.0), "a drawing is finished unless it is being drawn")
 	drawing.free()
+	await _check_living_details(main)
+
+
+## The year runs live through a scrub, hints write themselves, and the home looks back at Arda.
+func _check_living_details(main: Main) -> void:
+	await get_tree().create_timer(TimeControl.STAMP_HOLD_SECONDS + 1.0).timeout
+	main.enter_room("salon", Vector2(1000, 690))
+	main.time.begin_scrub()
+	main.time.slider.value = 2041.0
+	assert(main.time.stamp.text == "2041", "the big year follows the scrub")
+	assert(is_equal_approx(main.time.stamp.modulate.a, 1.0), "the big year shows through a scrub")
+	main.time.end_scrub()
+	await get_tree().create_timer(TimeControl.STAMP_LAND_SECONDS + TimeControl.STAMP_HOLD_SECONDS + TimeControl.STAMP_FADE_SECONDS + 0.2).timeout
+	assert(is_zero_approx(main.time.stamp.modulate.a), "the big year leaves after a scrub")
+	main.hint.text = "A brand new line, written out by hand."
+	await _frames(2)
+	assert(main.hint.visible_ratio < 1.0, "a new hint writes itself")
+	await get_tree().create_timer(WrittenLabel.LONGEST_SECONDS + 0.1).timeout
+	assert(is_equal_approx(main.hint.visible_ratio, 1.0), "a hint finishes writing")
+	var ayla: Ayla = main.room.find_children("*", "Ayla", true, false)[0]
+	main.arda.global_position = Vector2(1650, 700)
+	await _physics(2)
+	assert(ayla.looks_right(), "Ayla turns to Arda on her right")
+	main.arda.global_position = Vector2(700, 700)
+	await _physics(2)
+	assert(not ayla.looks_right(), "Ayla turns back to Arda on her left")
+	var facing := main.arda.body_sprite.flip_h
+	main.arda.stands_for = Arda.LOOK_AROUND_SECONDS
+	await _physics(2)
+	assert(main.arda.body_sprite.flip_h != facing, "Arda looks around when left standing")
+	main.calendar.open()
+	await _frames(1)
+	var slot := main.calendar.slot(2, 1)
+	slot.action = "wall"
+	await _frames(1)
+	assert(slot.scale.x > 1.0, "a filled slot pops")
+	slot.action = ""
+	main.calendar.close()
 
 
 ## Sounds vary, rooms arrive through paper, and every button answers a press.
