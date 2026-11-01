@@ -107,6 +107,11 @@ func _ready() -> void:
 	_material.set_shader_parameter("height_map", plate_height)
 	WorldClock.year_changed.connect(_on_year_changed)
 	WorldClock.refresh()
+	# The room's keepsakes, which lift off and drift once the flood reaches them.
+	var keepsakes := Flotsam.new()
+	keepsakes.name = "Flotsam"
+	keepsakes.room = self
+	add_child(keepsakes)
 	# After the room's own hook, so they always read this year's water.
 	if room_name == "salon":
 		var ayla := Ayla.new()
@@ -162,6 +167,17 @@ func ripple_count() -> int:
 ## The water heaves for a moment, as when a wall breaks.
 func start_surge() -> void:
 	_surge = 1.0
+
+
+## How strongly the water is still heaving, as after a wall breaks.
+func surge_level() -> float:
+	return _surge
+
+
+## The water level the painting is drawing right now, which an eased arrival
+## can lag behind flood_m. Things that sit on the drawn water read this one.
+func drawn_flood_m() -> float:
+	return float(_material.get_shader_parameter("flood_m"))
 
 
 ## How far something this near the front has slid. Near objects move more than far ones.

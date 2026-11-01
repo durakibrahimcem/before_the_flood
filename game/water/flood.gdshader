@@ -26,6 +26,8 @@ uniform vec3 deep_color = vec3(0.1, 0.34, 0.42);
 
 const float OBJECT_FULL_M = 2.5;
 
+// flood.gdshader's waves(): flotsam_item.gd copies these numbers so the keeps
+// ride the very surface this draws. If one changes, both must.
 float waves(vec2 p, float t) {
 	return sin(p.x * 46.0 + t * 1.7) * 0.5 + sin(p.x * 97.0 - t * 2.3 + p.y * 30.0) * 0.3 + sin(p.y * 70.0 + t * 1.1) * 0.2;
 }
