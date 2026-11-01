@@ -1,8 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://ui/newspaper/newspaper.gd" id="1"]
-[ext_resource type="Script" path="res://ui/newspaper/crayon_picture.gd" id="2"]
-[ext_resource type="Script" path="res://ui/newspaper/ink_rule.gd" id="3"]
+[ext_resource type="Texture2D" path="res://ui/newspaper/gazete.png" id="2"]
 
 [node name="NewspaperOverlay" type="CanvasLayer"]
 layer = 20
@@ -15,80 +14,60 @@ anchor_bottom = 1.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.45)
 
-[node name="Center" type="CenterContainer" parent="."]
+[node name="Sheet" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 140.0
+offset_top = 110.0
+offset_right = 1780.0
+offset_bottom = 930.0
+pivot_offset = Vector2(820, 410)
+mouse_filter = 2
+
+[node name="Page" type="TextureRect" parent="Sheet"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+texture = ExtResource("2")
+expand_mode = 1
 
-[node name="Sheet" type="PanelContainer" parent="Center"]
-custom_minimum_size = Vector2(800, 0)
+[node name="Band" type="VBoxContainer" parent="Sheet"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 244.0
+offset_right = 1500.0
+offset_bottom = 456.0
 mouse_filter = 2
+theme_override_constants/separation = 4
+alignment = 1
 
-[node name="Margins" type="MarginContainer" parent="Center/Sheet"]
-mouse_filter = 2
-theme_override_constants/margin_left = 34
-theme_override_constants/margin_top = 28
-theme_override_constants/margin_right = 34
-theme_override_constants/margin_bottom = 26
-
-[node name="Column" type="VBoxContainer" parent="Center/Sheet/Margins"]
-mouse_filter = 2
-theme_override_constants/separation = 12
-
-[node name="Masthead" type="Label" parent="Center/Sheet/Margins/Column"]
-layout_mode = 2
-mouse_filter = 2
-horizontal_alignment = 1
-text = "The Bay Herald"
-
-[node name="MastheadRule" type="Control" parent="Center/Sheet/Margins/Column"]
-layout_mode = 2
-custom_minimum_size = Vector2(0, 8)
-mouse_filter = 2
-script = ExtResource("3")
-lines = 2
-
-[node name="Year" type="Label" parent="Center/Sheet/Margins/Column"]
+[node name="Year" type="Label" parent="Sheet/Band"]
 layout_mode = 2
 mouse_filter = 2
 horizontal_alignment = 1
 text = "2050"
 
-[node name="Headline" type="Label" parent="Center/Sheet/Margins/Column"]
+[node name="Headline" type="Label" parent="Sheet/Band"]
 layout_mode = 2
 mouse_filter = 2
 horizontal_alignment = 1
 autowrap_mode = 2
 text = ""
 
-[node name="HeadlineRule" type="Control" parent="Center/Sheet/Margins/Column"]
-layout_mode = 2
-custom_minimum_size = Vector2(0, 3)
-mouse_filter = 2
-script = ExtResource("3")
-
-[node name="Story" type="Label" parent="Center/Sheet/Margins/Column"]
+[node name="Story" type="Label" parent="Sheet/Band"]
 layout_mode = 2
 mouse_filter = 2
+horizontal_alignment = 1
 autowrap_mode = 2
 text = ""
 
-[node name="Picture" type="Control" parent="Center/Sheet/Margins/Column"]
-layout_mode = 2
-custom_minimum_size = Vector2(0, 200)
-mouse_filter = 2
-script = ExtResource("2")
-
-[node name="HintRule" type="Control" parent="Center/Sheet/Margins/Column"]
-layout_mode = 2
-custom_minimum_size = Vector2(0, 8)
-mouse_filter = 2
-script = ExtResource("3")
-lines = 2
-
-[node name="Hint" type="Label" parent="Center/Sheet/Margins/Column"]
-layout_mode = 2
+[node name="Hint" type="Label" parent="."]
+anchors_preset = 0
+offset_top = 944.0
+offset_right = 1920.0
+offset_bottom = 990.0
 mouse_filter = 2
 horizontal_alignment = 1
 text = "Press E, Enter or click to continue"

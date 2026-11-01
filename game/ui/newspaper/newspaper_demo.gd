@@ -22,21 +22,13 @@ func _ready() -> void:
 	await _frames(1)
 	var page := Newspapers.pick(plan, 2050)
 	assert(overlay.visible, "the paper is up")
-	assert(_label(overlay, "Masthead").text == "The Bay Herald", "the masthead reads The Bay Herald")
+	assert((overlay.get_node("Sheet/Page") as TextureRect).texture != null, "Ebru's page shows")
 	assert(_label(overlay, "Year").text == "2050", "the year label shows the era")
 	assert(_label(overlay, "Headline").text == str(page.get("headline", "")), "the headline matches the page")
 	assert(_label(overlay, "Story").text == str(page.get("story", "")), "the story matches the page")
-	var picture: CrayonPicture = overlay.get_node("Center/Sheet/Margins/Column/Picture")
-	assert(picture.key == str(page.get("picture", "")), "the picture key follows the page")
-	assert(picture.art == null, "without art the crayon placeholder draws")
-
-	# Ebru's art drops in by key without code changes.
-	var art := ImageTexture.create_from_image(Image.create_empty(8, 8, false, Image.FORMAT_RGB8))
-	overlay.pictures[str(page.get("picture", ""))] = art
+	await _check_every_story_fits(overlay)
 	overlay.show_for(plan, 2050)
 	await _frames(1)
-	assert(picture.art == art, "exported art drops into the picture slot")
-	overlay.pictures.erase("calm")
 
 	var interact := InputEventKey.new()
 	interact.physical_keycode = KEY_E
@@ -95,15 +87,38 @@ func _ready() -> void:
 	assert(not overlay.visible, "jumping home closes the page")
 	assert(dismissals == 6, "the jump close emits dismissed once")
 
-	var masthead := _label(overlay, "Masthead")
-	var normal := masthead.get_theme_font_size("font_size")
+	var story := _label(overlay, "Story")
+	var normal := story.get_theme_font_size("font_size")
 	Settings.set_options(false, true)
-	assert(masthead.get_theme_font_size("font_size") > normal, "large text grows the type")
+	assert(story.get_theme_font_size("font_size") > normal, "large text grows the type")
 	Settings.set_options(false, false)
-	assert(masthead.get_theme_font_size("font_size") == normal, "the type returns to normal")
+	assert(story.get_theme_font_size("font_size") == normal, "the type returns to normal")
 
 	print("DEMO PASS")
 	get_tree().quit()
+
+
+## Ebru's page has one fixed band for text, so the longest words any plan can reach must fit it.
+func _check_every_story_fits(overlay: NewspaperOverlay) -> void:
+	var longest_story := ""
+	var longest_headline := ""
+	for plan: Plan in Plan.all_plans():
+		for era: int in NewspaperOverlay.POPUP_YEARS:
+			var page := Newspapers.pick(plan, era)
+			if str(page["story"]).length() > longest_story.length():
+				longest_story = page["story"]
+			if str(page["headline"]).length() > longest_headline.length():
+				longest_headline = page["headline"]
+	for large: bool in [false, true]:
+		Settings.set_options(false, large)
+		overlay.show_page({ "headline": longest_headline, "story": longest_story }, 2080)
+		await _frames(2)
+		var used := 0.0
+		for label_name: String in ["Year", "Headline", "Story"]:
+			var label := _label(overlay, label_name)
+			used += label.get_line_count() * label.get_line_height()
+		assert(used <= NewspaperOverlay.BAND_HEIGHT, "the longest story fits, large %s, needs %f" % [large, used])
+	Settings.set_options(false, false)
 
 
 func _close_with(overlay: NewspaperOverlay, event: InputEvent, via: String) -> void:
@@ -127,7 +142,7 @@ func _on_dismissed() -> void:
 
 
 func _label(overlay: NewspaperOverlay, label_name: String) -> Label:
-	return overlay.get_node("Center/Sheet/Margins/Column/" + label_name) as Label
+	return overlay.get_node("Sheet/Band/" + label_name) as Label
 
 
 func _frames(count: int) -> void:

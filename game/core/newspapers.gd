@@ -11,7 +11,7 @@ static var _papers: Array = []
 static var _clues: Dictionary = {}
 
 
-## Returns { "headline", "story", "picture", "action" }. Action is the fix the paper hints at.
+## Returns { "headline", "story", "action" }. Action is the fix the paper hints at.
 static func pick(plan: Plan, era: int) -> Dictionary:
 	_load()
 	var fix := fix_key(plan)
@@ -23,7 +23,7 @@ static func pick(plan: Plan, era: int) -> Dictionary:
 			if int(paper["tier"]) == tier:
 				break
 	if found.is_empty():
-		return { "headline": "", "story": "", "picture": "", "action": "" }
+		return { "headline": "", "story": "", "action": "" }
 	var page := found.duplicate()
 	page["action"] = fix
 	# Seawall papers keep their story, then quietly point at what would have helped.

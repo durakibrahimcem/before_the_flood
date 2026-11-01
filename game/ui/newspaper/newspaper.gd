@@ -4,35 +4,36 @@ extends CanvasLayer
 
 signal dismissed
 
-const MASTHEAD := "The Bay Herald"
 const HINT := "Press E, Enter or click to continue"
 const POPUP_YEARS: Array[int] = [2050, 2080]
 const SHOW_SECONDS := 0.15
+const SETTLE_SECONDS := 0.3
 const SHADE_ALPHA := 0.45
-const LARGE_SCALE := 1.35
+## Ebru's page leaves one band for text, so large text grows less here than elsewhere.
+const LARGE_SCALE := 1.2
+const BAND_HEIGHT := 212.0
+const SHEET_SPOT := Vector2(140, 110)
+const DROP_FROM := Vector2(0, -36)
+const DROP_TURN := -0.02
 const INK := Color(0.15, 0.125, 0.10)
-const PAPER := Color(0.949, 0.918, 0.855)
 const MUTED := Color(0.45, 0.40, 0.34)
+const HINT_INK := Color(0.96, 0.93, 0.85)
+const HINT_OUTLINE := Color(0.15, 0.125, 0.10)
 
 @export var auto_popup := true
-## Ebru's art drops in here by the picture key from the data files.
-@export var pictures: Dictionary[String, Texture2D] = {}
 
 @onready var shade: ColorRect = $Shade
-@onready var sheet: PanelContainer = $Center/Sheet
-@onready var masthead: Label = $Center/Sheet/Margins/Column/Masthead
-@onready var year: Label = $Center/Sheet/Margins/Column/Year
-@onready var headline: Label = $Center/Sheet/Margins/Column/Headline
-@onready var story: Label = $Center/Sheet/Margins/Column/Story
-@onready var hint: Label = $Center/Sheet/Margins/Column/Hint
-@onready var picture: CrayonPicture = $Center/Sheet/Margins/Column/Picture
+@onready var sheet: Control = $Sheet
+@onready var year: Label = $Sheet/Band/Year
+@onready var headline: Label = $Sheet/Band/Headline
+@onready var story: Label = $Sheet/Band/Story
+@onready var hint: Label = $Hint
 
 var _serif: Font = preload("res://ui/fonts/PlayfairDisplay.ttf")
 var _tween: Tween
 
 
 func _ready() -> void:
-	_style_sheet()
 	_style_text()
 	_apply_text_sizes()
 	visible = false
@@ -48,14 +49,9 @@ func show_for(plan: Plan, era: int) -> void:
 func show_page(page: Dictionary, era: int) -> void:
 	assert(is_node_ready(), "Add the overlay to the tree before showing a page")
 	Sfx.play("paper")
-	masthead.text = MASTHEAD
 	year.text = str(era)
 	headline.text = str(page.get("headline", ""))
 	story.text = str(page.get("story", ""))
-	var picture_key := str(page.get("picture", ""))
-	picture.key = picture_key
-	picture.art = pictures.get(picture_key) as Texture2D
-	picture.queue_redraw()
 	visible = true
 	_play_show()
 
@@ -87,11 +83,16 @@ func _is_dismiss(event: InputEvent) -> bool:
 func _play_show() -> void:
 	if _tween != null:
 		_tween.kill()
+	var calm := Settings.calm_storm
 	shade.color.a = 0.0
 	sheet.modulate.a = 0.0
-	_tween = create_tween()
+	sheet.position = SHEET_SPOT + (Vector2.ZERO if calm else DROP_FROM)
+	sheet.rotation = 0.0 if calm else DROP_TURN
+	_tween = create_tween().set_parallel().set_ease(Tween.EASE_OUT)
 	_tween.tween_property(shade, "color:a", SHADE_ALPHA, SHOW_SECONDS)
-	_tween.parallel().tween_property(sheet, "modulate:a", 1.0, SHOW_SECONDS)
+	_tween.tween_property(sheet, "modulate:a", 1.0, SHOW_SECONDS)
+	_tween.tween_property(sheet, "position", SHEET_SPOT, SETTLE_SECONDS).set_trans(Tween.TRANS_BACK)
+	_tween.tween_property(sheet, "rotation", 0.0, SETTLE_SECONDS).set_trans(Tween.TRANS_BACK)
 
 
 func _on_jumped(to_year: int) -> void:
@@ -103,30 +104,21 @@ func _on_jumped(to_year: int) -> void:
 		_close()
 
 
-func _style_sheet() -> void:
-	var box := StyleBoxFlat.new()
-	box.bg_color = PAPER
-	box.border_color = Color(INK, 0.3)
-	box.set_border_width_all(1)
-	box.set_corner_radius_all(1)
-	box.shadow_color = Color(0.0, 0.0, 0.0, 0.3)
-	box.shadow_size = 10
-	sheet.add_theme_stylebox_override("panel", box)
-
-
 func _style_text() -> void:
-	for label: Label in [masthead, year, headline, story, hint]:
+	for label: Label in [year, headline, story, hint]:
 		label.add_theme_font_override("font", _serif)
-	for label: Label in [masthead, year, headline, story]:
+	for label: Label in [headline, story]:
 		label.add_theme_color_override("font_color", INK)
-	hint.add_theme_color_override("font_color", MUTED)
+	year.add_theme_color_override("font_color", MUTED)
+	hint.add_theme_color_override("font_color", HINT_INK)
+	hint.add_theme_color_override("font_outline_color", HINT_OUTLINE)
+	hint.add_theme_constant_override("outline_size", 6)
 	hint.text = HINT
 
 
 func _apply_text_sizes() -> void:
 	var factor := LARGE_SCALE if Settings.large_text else 1.0
-	masthead.add_theme_font_size_override("font_size", roundi(48.0 * factor))
-	year.add_theme_font_size_override("font_size", roundi(32.0 * factor))
-	headline.add_theme_font_size_override("font_size", roundi(30.0 * factor))
-	story.add_theme_font_size_override("font_size", roundi(22.0 * factor))
-	hint.add_theme_font_size_override("font_size", roundi(20.0 * factor))
+	year.add_theme_font_size_override("font_size", roundi(24.0 * factor))
+	headline.add_theme_font_size_override("font_size", roundi(44.0 * factor))
+	story.add_theme_font_size_override("font_size", roundi(26.0 * factor))
+	hint.add_theme_font_size_override("font_size", roundi(24.0 * factor))
