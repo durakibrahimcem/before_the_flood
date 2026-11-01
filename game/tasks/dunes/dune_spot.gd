@@ -9,6 +9,8 @@ const GRASS := Color(0.42, 0.60, 0.30)
 const GRASS_LINE := Color(0.25, 0.38, 0.19)
 const BLADE_ANGLES: Array[float] = [-60.0, -35.0, -12.0, 14.0, 36.0, 58.0]
 const BLADE_HEIGHTS: Array[float] = [46.0, 54.0, 42.0, 52.0, 44.0, 56.0]
+## Sparks answer a planted tuft in the sand's own colour.
+const PLANT_SPARK := Color("e8d9a8")
 
 var is_planted := false
 
@@ -40,13 +42,11 @@ func _ready() -> void:
 
 func plant() -> void:
 	is_planted = true
-	Sfx.play("plant")
+	TaskJuice.play("plant")
 	particles.emitting = false
 	queue_redraw()
-	var pop := create_tween()
-	pop.set_trans(Tween.TRANS_BACK)
-	pop.set_ease(Tween.EASE_OUT)
-	pop.tween_property(self, "scale", Vector2.ONE, 0.25).from(Vector2(0.7, 0.7))
+	TaskJuice.pop(self)
+	TaskJuice.sparks(get_parent(), position, PLANT_SPARK)
 
 
 func _draw() -> void:

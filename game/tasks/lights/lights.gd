@@ -196,7 +196,7 @@ func _nearest_switch_index() -> int:
 
 func _flip(index: int) -> void:
 	var light: LightSwitch = _switches[index]
-	Sfx.play("switch")
+	TaskJuice.play("switch")
 	light.flip()
 	var zone := _zones[index] as SalonZone
 	zone.dim()

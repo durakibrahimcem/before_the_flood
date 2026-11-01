@@ -10,6 +10,8 @@ const PLANT_RADIUS := 110.0
 const TOP := 300.0
 const BOTTOM := 1120.0
 const RETREAT_SECONDS := 0.6
+## Sparks answer a planted shoot in the meadow's own green.
+const PLANT_SPARK := Color("7fa88b")
 
 ## Handcrafted anchors for up to repeat 5 (Plan.SLOTS caps repeats at 6 picks).
 ## Staggered so they never read as a grid. min() below guards the ceiling.
@@ -162,13 +164,15 @@ func _nearest_empty_spot() -> SeagrassSpot:
 
 
 func _plant(spot: SeagrassSpot) -> void:
-	Sfx.play("plant")
+	TaskJuice.play("plant")
 	var shoot := SeagrassShoot.new()
 	shoot.texture = shoot_texture
 	shoot.position = spot.position
 	add_child(shoot)
 	spot.shoot = shoot
 	shoot.root()
+	TaskJuice.pop(shoot)
+	TaskJuice.sparks(self, spot.position, PLANT_SPARK)
 	if is_calm():
 		spot.state = SeagrassSpot.State.ROOTED
 		rooted += 1
