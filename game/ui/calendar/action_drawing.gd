@@ -2,7 +2,7 @@ class_name ActionDrawing
 extends Control
 ## One card in the tray. Passive display: the Calendar owns every click.
 
-const BASE_BADGE_FONT := 20
+const BASE_BADGE_FONT := 26
 ## Room under the drawing for the name and a line saying what the action does.
 const CAPTION_LINE := 1.35
 const TIP_LINES := 2.0

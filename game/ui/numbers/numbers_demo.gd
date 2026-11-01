@@ -61,6 +61,9 @@ func _check_rows(panel: NumbersPanel) -> void:
 
 ## The scrap must hold every row and value inside its paper edges.
 func _check_fits(panel: NumbersPanel) -> void:
+	assert(panel.NOTEBOOK != null, "Ebru's notebook is the page")
+	if not Settings.large_text:
+		assert(panel.position.y + panel.size.y <= 230.0, "the notebook stays a small note on the wall")
 	var origin := panel.global_position
 	for row: String in ["Homes", "Flood", "Neighbours"]:
 		var box: Control = panel.get_node("Rows/" + row) as Control

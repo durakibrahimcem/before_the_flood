@@ -2,7 +2,7 @@ class_name DaySlot
 extends Control
 ## One slot of one day. Passive display: the Calendar fills it in.
 
-const BASE_BADGE_FONT := 15
+const BASE_BADGE_FONT := 19
 
 var action: String = "":
 	set(value):

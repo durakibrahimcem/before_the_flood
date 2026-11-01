@@ -12,7 +12,7 @@ const CARD_BODIES: Array[String] = [
 	"Mediterranean seagrass cuts wave height by about 20 to 30 percent. Real meadows recover far more slowly than in this game, and they also lock away carbon.",
 	"Plastic blocking drains puts over 200 million people at risk of worse flooding.",
 	"Well-built walls can protect dense cities. Ours failed because it was built fast and then neglected. Its harm to the meadow is a simplified game rule.",
-	"The country is fictional and the model is simplified. It shows how choices connect, and doesn't predict any real place. Its COP 31 topics: climate change, oceans and seas, and zero waste.",
+	"The country is fictional and the model is simplified. It shows how choices connect, not what will happen anywhere real. COP 31 topics: seas, resilient cities, zero waste, climate education.",
 ]
 
 
@@ -41,7 +41,8 @@ func _ready() -> void:
 	link.add_theme_color_override("font_color", EndPalette.CRAYON)
 	link.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	link.pressed.connect(func() -> void: OS.shell_open(LEARN_URL))
-	var credits := _label("Credits", CREDITS, 22, EndPalette.FADED)
+	var credits := _label("Credits", CREDITS, 27, EndPalette.FADED)
+	credits.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	credits.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	box.add_child(heading)
 	box.add_child(grid)
@@ -67,9 +68,9 @@ func _make_card(index: int) -> PanelContainer:
 	inner.add_theme_constant_override("separation", 12)
 	inner.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var title := _label("Title", String(CARD_TITLES[index]), EndPalette.CARD_TITLE_SIZE, EndPalette.INK)
-	var body := _label("Body", String(CARD_BODIES[index]), 28, EndPalette.INK)
+	var body := _label("Body", String(CARD_BODIES[index]), 32, EndPalette.INK)
 	Settings.size_text(title, EndPalette.CARD_TITLE_SIZE)
-	Settings.size_text(body, 28)
+	Settings.size_text(body, 32)
 	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	inner.add_child(title)

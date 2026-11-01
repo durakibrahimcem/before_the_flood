@@ -23,11 +23,11 @@ const TIPS := {
 	"wall": "Stack the big blocks.",
 }
 const BASE_TITLE_FONT := 46
-const BASE_HINT_FONT := 24
-const BASE_DAY_FONT := 24
-const BASE_CAPTION_FONT := 26
-const BASE_TIP_FONT := 21
-const BASE_BADGE_FONT := 20
+const BASE_HINT_FONT := 31
+const BASE_DAY_FONT := 31
+const BASE_CAPTION_FONT := 33
+const BASE_TIP_FONT := 27
+const BASE_BADGE_FONT := 26
 const PICK_LINE := "Pick a drawing for today. Press 1 to 6, or click. E closes."
 ## Presses that travel further than this count as drags, not clicks.
 const CLICK_SLOP := 12.0
@@ -158,7 +158,7 @@ func _build() -> void:
 	for action: String in Plan.ACTIONS:
 		var card := ActionDrawing.new()
 		card.name = "Drawing%s" % action.capitalize()
-		card.custom_minimum_size = Vector2(0.0, 284.0)
+		card.custom_minimum_size = Vector2(0.0, 326.0)
 		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		tray.add_child(card)
 		card.setup(action, _art_for(action), NAMES[action], TIPS[action], Plan.ACTIONS.find(action) + 1)

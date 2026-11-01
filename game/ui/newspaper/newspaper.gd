@@ -144,7 +144,7 @@ func _style_text() -> void:
 
 func _apply_text_sizes() -> void:
 	var factor := LARGE_SCALE if Settings.large_text else 1.0
-	year.add_theme_font_size_override("font_size", roundi(24.0 * factor))
+	year.add_theme_font_size_override("font_size", roundi(28.0 * factor))
 	headline.add_theme_font_size_override("font_size", roundi(44.0 * factor))
 	story.add_theme_font_size_override("font_size", roundi(26.0 * factor))
-	hint.add_theme_font_size_override("font_size", roundi(24.0 * factor))
+	hint.add_theme_font_size_override("font_size", roundi(30.0 * factor))

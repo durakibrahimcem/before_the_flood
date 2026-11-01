@@ -40,10 +40,10 @@ func _ready() -> void:
 	Settings.changed.connect(_on_settings_changed)
 	_add_volume()
 	_track(title_label, 44)
-	_track(resume_button, 30)
-	_track(calm_box, 26)
-	_track(large_box, 26)
-	_track(hint_label, 19)
+	_track(resume_button, 36)
+	_track(calm_box, 33)
+	_track(large_box, 33)
+	_track(hint_label, 25)
 	_apply_text_sizes()
 	_sync_boxes()
 	visible = false
@@ -74,7 +74,7 @@ func _add_volume() -> void:
 	var after_large := large_box.get_index() + 1
 	column.move_child(label, after_large)
 	column.move_child(volume_slider, after_large + 1)
-	_track(label, 26)
+	_track(label, 33)
 
 
 func open() -> void:

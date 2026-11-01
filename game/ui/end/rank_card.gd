@@ -22,7 +22,7 @@ func _ready() -> void:
 	_caption = _wide_label("Caption", "", EndPalette.BODY_SIZE, EndPalette.INK, 650, 710)
 	_sub = _wide_label("Sub", SUB_LINE, 28, EndPalette.FADED, 452, 500)
 	Settings.size_text(_caption, EndPalette.BODY_SIZE)
-	Settings.size_text(_sub, 28)
+	Settings.size_text(_sub, 34)
 	add_child(_number)
 	add_child(_sub)
 	add_child(_caption)

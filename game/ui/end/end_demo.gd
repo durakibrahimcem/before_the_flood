@@ -22,7 +22,7 @@ const CARD_BODIES := [
 	"Mediterranean seagrass cuts wave height by about 20 to 30 percent. Real meadows recover far more slowly than in this game, and they also lock away carbon.",
 	"Plastic blocking drains puts over 200 million people at risk of worse flooding.",
 	"Well-built walls can protect dense cities. Ours failed because it was built fast and then neglected. Its harm to the meadow is a simplified game rule.",
-	"The country is fictional and the model is simplified. It shows how choices connect, and doesn't predict any real place. Its COP 31 topics: climate change, oceans and seas, and zero waste.",
+	"The country is fictional and the model is simplified. It shows how choices connect, not what will happen anywhere real. COP 31 topics: seas, resilient cities, zero waste, climate education.",
 ]
 
 var failed := false

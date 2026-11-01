@@ -27,7 +27,7 @@ func _ready() -> void:
 	add_child(_wide_label("Title", "Your plan code", EndPalette.TITLE_SIZE, EndPalette.INK, 150, 226))
 	_code = _wide_label("Code", "-", EndPalette.CODE_SIZE, EndPalette.INK, 258, 392)
 	_line = _wide_label("Line", SHARE_LINE, 28, EndPalette.INK, 420, 470)
-	Settings.size_text(_line, 28)
+	Settings.size_text(_line, 34)
 	add_child(_code)
 	add_child(_line)
 	var band := CenterContainer.new()

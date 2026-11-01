@@ -24,7 +24,7 @@ static func build_theme() -> Theme:
 		var font := load(FONT_PATH) as Font
 		if font != null:
 			theme.default_font = font
-	theme.default_font_size = 22
+	theme.default_font_size = 28
 	var normal := _paper_box(PAPER, INK, 26.0, 16.0)
 	var hover := _paper_box(PAPER_WARM, INK, 26.0, 16.0)
 	var pressed := _paper_box(CRAYON, INK, 26.0, 16.0)

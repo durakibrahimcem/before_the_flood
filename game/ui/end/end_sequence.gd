@@ -52,11 +52,11 @@ var _fade: Tween
 
 
 func _ready() -> void:
-	Settings.size_text(ending_caption, 34)
-	Settings.size_text(ghost_caption, 32)
-	Settings.size_text(retry_body, 34)
-	Settings.size_text(retry_button, 30)
-	Settings.size_text(next, 28)
+	Settings.size_text(ending_caption, 38)
+	Settings.size_text(ghost_caption, 38)
+	Settings.size_text(retry_body, 40)
+	Settings.size_text(retry_button, 36)
+	Settings.size_text(next, 34)
 	var empty := StyleBoxEmpty.new()
 	for state: String in ["normal", "hover", "pressed", "disabled", "focus"]:
 		click.add_theme_stylebox_override(state, empty)

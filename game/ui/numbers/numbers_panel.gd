@@ -1,22 +1,23 @@
 class_name NumbersPanel
 extends Control
-## A pinned scrap of paper with the numbers that matter, tracking the clock.
+## Ebru's notebook with the numbers that matter, tracking the clock.
 
-const WIDTH := 400.0
-## Short enough to sit on the wall above the doors in every room.
-const BASE_HEIGHT := 158.0
-const ROW_HEIGHT := 34.0
-const LARGE_SCALE := 1.35
+const NOTEBOOK := preload("res://ui/numbers/notebook.png")
+## Big enough to read, and small enough to sit on the wall like a note in every room.
+const PAGE_SIZE := Vector2(352, 220)
+## Where the writing goes on her page, under the rings.
+const ROWS_SPOT := Vector2(20, 24)
+const ROWS_SIZE := Vector2(316, 186)
+## The year sits right after the "Date:" she drew.
+const DATE_INDENT := 74.0
+const ROW_HEIGHT := 36.0
+const LARGE_SCALE := 1.3
 const DRY_BELOW_M := 0.05
 const PULSE_SECONDS := 0.22
-const RED_X := 40.0
 const INK := Color(0.15, 0.125, 0.10)
-const FADED := Color(0.15, 0.125, 0.10, 0.62)
-const WARM_PAPER := Color(0.969, 0.937, 0.863)
-const RULE_BLUE := Color(0.44, 0.56, 0.76, 0.75)
-const MARGIN_RED := Color(0.79, 0.26, 0.22, 0.85)
-const PIN_RED := Color(0.80, 0.22, 0.18)
+const FADED := Color(0.15, 0.125, 0.10, 0.72)
 
+@onready var rows: VBoxContainer = $Rows
 @onready var dateline: Label = $Rows/Dateline
 @onready var homes: Label = $Rows/Homes/Value
 @onready var flood: Label = $Rows/Flood/Value
@@ -33,23 +34,15 @@ const PIN_RED := Color(0.80, 0.22, 0.18)
 ]
 
 var _hand: Font = preload("res://ui/fonts/Caveat.ttf")
-var _scrap := StyleBoxFlat.new()
+var _date_gap := StyleBoxEmpty.new()
 var _pulses: Dictionary = {}
 var _pulse_next := false
 
 
 func _ready() -> void:
-	_scrap.bg_color = WARM_PAPER
-	_scrap.border_color = Color(INK, 0.35)
-	_scrap.set_border_width_all(1)
-	_scrap.set_corner_radius_all(3)
-	_scrap.shadow_color = Color(0.0, 0.0, 0.0, 0.22)
-	_scrap.shadow_size = 5
+	dateline.add_theme_stylebox_override("normal", _date_gap)
 	_style_text()
 	_apply_text_sizes()
-	for box: Control in row_boxes:
-		box.resized.connect(queue_redraw)
-	dateline.resized.connect(queue_redraw)
 	_fill(Sim.at(Run.plan, WorldClock.year))
 	WorldClock.year_changed.connect(_on_year_changed)
 	WorldClock.jumped.connect(_on_jumped)
@@ -57,15 +50,7 @@ func _ready() -> void:
 
 
 func _draw() -> void:
-	draw_style_box(_scrap, Rect2(Vector2.ZERO, size))
-	var pin := Vector2(size.x * 0.5, 9.0)
-	draw_circle(pin + Vector2(1.5, 2.5), 6.5, Color(0.0, 0.0, 0.0, 0.18))
-	draw_circle(pin, 5.5, PIN_RED)
-	draw_circle(pin - Vector2(1.5, 1.5), 1.8, Color(1.0, 0.9, 0.85, 0.6))
-	draw_line(Vector2(RED_X, 8.0), Vector2(RED_X, size.y - 10.0), MARGIN_RED, 1.2)
-	for box: Control in row_boxes:
-		var y := box.global_position.y - global_position.y + box.size.y - 2.0
-		draw_line(Vector2(RED_X + 10.0, y), Vector2(size.x - 8.0, y), RULE_BLUE, 1.0)
+	draw_texture_rect(NOTEBOOK, Rect2(Vector2.ZERO, size), false)
 
 
 func _on_year_changed(state: WorldState) -> void:
@@ -120,12 +105,16 @@ func _style_text() -> void:
 
 func _apply_text_sizes() -> void:
 	var factor := LARGE_SCALE if Settings.large_text else 1.0
-	dateline.add_theme_font_size_override("font_size", roundi(22.0 * factor))
-	homes.add_theme_font_size_override("font_size", roundi(26.0 * factor))
-	flood.add_theme_font_size_override("font_size", roundi(26.0 * factor))
-	neighbours.add_theme_font_size_override("font_size", roundi(26.0 * factor))
+	dateline.add_theme_font_size_override("font_size", roundi(30.0 * factor))
+	homes.add_theme_font_size_override("font_size", roundi(31.0 * factor))
+	flood.add_theme_font_size_override("font_size", roundi(31.0 * factor))
+	neighbours.add_theme_font_size_override("font_size", roundi(31.0 * factor))
 	for caption: Label in captions:
-		caption.add_theme_font_size_override("font_size", roundi(24.0 * factor))
+		caption.add_theme_font_size_override("font_size", roundi(29.0 * factor))
 	for box: Control in row_boxes:
 		box.custom_minimum_size = Vector2(0.0, roundi(ROW_HEIGHT * factor))
-	custom_minimum_size = Vector2(WIDTH, roundi(BASE_HEIGHT * factor))
+	_date_gap.content_margin_left = DATE_INDENT * factor
+	custom_minimum_size = PAGE_SIZE * factor
+	size = custom_minimum_size
+	rows.position = ROWS_SPOT * factor
+	rows.size = ROWS_SIZE * factor

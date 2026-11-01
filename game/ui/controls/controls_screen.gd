@@ -5,16 +5,20 @@ extends CanvasLayer
 signal started
 
 const LARGE_SCALE := 1.4
-const KEYCAP_SIZE := Vector2(58, 58)
-const KEYCAP_BASE := 20
+const KEYCAP_SIZE := Vector2(74, 74)
+const KEYCAP_BASE := 30
 const KEYCAP_TILT: Array[float] = [-2.5, 1.5, -1.0, 2.0, -1.5, 1.0, -2.0, 2.5]
 const WALK_KEYS: Array[String] = ["W", "A", "S", "D"]
 const USE_KEYS: Array[String] = ["E"]
 const TIME_KEYS: Array[String] = ["T"]
 const PAUSE_KEYS: Array[String] = ["Esc"]
+## The share of the sheet the text takes, leaving the rest to Ebru's logo.
+const TEXT_SHARE := 0.54
 
 @onready var _sheet: Control = $Sheet
 @onready var paper: TextureRect = $Sheet/Paper
+@onready var _logo_frame: Control = $Sheet/Frame
+@onready var _center: Control = $Sheet/Center
 @onready var title_label: Label = $Sheet/Center/Column/Title
 @onready var subtitle_label: Label = $Sheet/Center/Column/Subtitle
 @onready var begin_button: Button = $Sheet/Center/Column/Begin
@@ -43,12 +47,12 @@ func _ready() -> void:
 	_fill_keys(_time_keys, TIME_KEYS)
 	_fill_keys(_pause_keys, PAUSE_KEYS)
 	_track(title_label, 84)
-	_track(subtitle_label, 24)
-	_track(hint_walk, 30)
-	_track(hint_use, 30)
-	_track(hint_time, 30)
-	_track(hint_pause, 30)
-	_track(begin_button, 30)
+	_track(subtitle_label, 32)
+	_track(hint_walk, 38)
+	_track(hint_use, 38)
+	_track(hint_time, 38)
+	_track(hint_pause, 38)
+	_track(begin_button, 38)
 	Settings.changed.connect(_apply_text_sizes)
 	begin_button.pressed.connect(_on_begin_pressed)
 	_apply_text_sizes()
@@ -96,6 +100,9 @@ func _apply_text_sizes() -> void:
 	var factor := LARGE_SCALE if Settings.large_text else 1.0
 	for i: int in _sized.size():
 		_sized[i].add_theme_font_size_override("font_size", int(round(_bases[i] * factor)))
+	# Larger text needs the whole sheet, so the logo steps aside.
+	_logo_frame.visible = not Settings.large_text
+	_center.anchor_right = 1.0 if Settings.large_text else TEXT_SHARE
 
 
 func _track(control: Control, base_size: int) -> void:

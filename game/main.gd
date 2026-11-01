@@ -174,7 +174,7 @@ func _reveal_room() -> void:
 func _build_prompt() -> void:
 	_prompt = Label.new()
 	_prompt.modulate.a = 0.0
-	Settings.size_text(_prompt, 36)
+	Settings.size_text(_prompt, 42)
 	_prompt.add_theme_color_override("font_color", Door.INK)
 	_prompt.add_theme_color_override("font_outline_color", Door.OUTLINE)
 	_prompt.add_theme_constant_override("outline_size", 10)
